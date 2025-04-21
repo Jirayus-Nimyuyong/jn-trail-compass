@@ -12,6 +12,6 @@ features:
   - title: Git & GitHub 
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
     icon: 💼
-    link: /git-&-github/introduction-to-git
+    link: th/git-&-github/introduction-to-git
 ---
 
