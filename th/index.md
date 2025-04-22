@@ -13,5 +13,9 @@ features:
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
     icon: 💼
     link: th/git-&-github/introduction-to-git
+  - title: Linux 
+    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    icon: 💼
+    link: /th/linux/introduction-to-linux   
 ---
 
