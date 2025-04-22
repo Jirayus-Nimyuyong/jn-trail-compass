@@ -16,6 +16,10 @@ features:
   - title: Linux 
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
     icon: 💼
-    link: /linux/introduction-to-linux       
+    link: /linux/introduction-to-linux
+  - title: Docker 
+    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    icon: 💼
+    link: /docker/introduction-to-docker           
 ---
 
