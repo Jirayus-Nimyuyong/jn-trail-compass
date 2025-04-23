@@ -20,6 +20,10 @@ features:
   - title: Docker 
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
     icon: 💼
-    link: /th/docker/introduction-to-docker    
+    link: /th/docker/introduction-to-docker   
+  - title: K8S 
+    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    icon: 💼
+    link: /th/k8s/introduction-to-kubernetes   
 ---
 
