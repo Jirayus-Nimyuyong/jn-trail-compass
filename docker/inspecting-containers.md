@@ -42,11 +42,11 @@ docker inspect my-container
 ### 4. ดูข้อมูลเฉพาะบางส่วนของ Container
 หากคุณต้องการดึงข้อมูลเฉพาะบางส่วนของ container เช่น IP address, พอร์ตที่เปิด, หรือ environment variables สามารถใช้ `--format` เพื่อกรองข้อมูลที่ต้องการ:
 ```bash
-docker inspect --format '{{.NetworkSettings.IPAddress}}' container_id
+docker inspect --format `{{.NetworkSettings.IPAddress}}` container_id
 ```
 ในที่นี้:
 - `--format` ใช้ในการจัดรูปแบบข้อมูล
-- `{{.NetworkSettings.IPAddress}}` ใช้เพื่อดึงข้อมูล IP address ของ container
+- .NetworkSettings.IPAddress ใช้เพื่อดึงข้อมูล IP address ของ container
 
 ตัวอย่างอื่นๆ:
 - การดึงชื่อของ container:
