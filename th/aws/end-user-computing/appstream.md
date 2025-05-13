@@ -1,0 +1,1 @@
+AppStream 2.0

@@ -267,6 +267,138 @@ export default defineConfig({
             { text: 'network-flow-algorithms', link: '/algorithm/network-flow-algorithms' },
             { text: 'string-matching-algorithms', link: '/algorithm/string-matching-algorithms' },
             { text: 'advanced-greedy-algorithms', link: '/algorithm/advanced-greedy-algorithms' },
+          ],
+          '/aws/': [
+            { text: 'introduction-to-aws', link: '/aws/introduction-to-aws' },
+            {
+              text: 'Compute',
+              collapsed: true,
+              items: [
+                { text: 'Compute', link: '/aws/compute/compute' },
+                { text: 'EC2', link: '/aws/compute/ec2' },
+                { text: 'Lightsail', link: '/aws/compute/lightsail' },
+                { text: 'Elastic Beanstalk', link: '/aws/compute/elastic-beanstalk' },
+                { text: 'App Runner', link: '/aws/compute/app-runner' },
+                { text: 'Batch', link: '/aws/compute/batch' },
+                { text: 'Serverless', link: '/aws/compute/serverless' },
+                { text: 'Lambda', link: '/aws/compute/lambda' },
+                { text: 'EC2 Image Builder', link: '/aws/compute/ec2-image-builder' },
+                { text: 'AWS Outposts', link: '/aws/compute/aws-outposts' },
+                { text: 'AWS Wavelength', link: '/aws/compute/aws-wavelength' }
+              ]
+            },
+            {
+              text: 'Containers',
+              collapsed: true,
+              items: [
+                { text: 'Containers', link: '/aws/containers/containers' },
+                { text: 'Elastic Container Service', link: '/aws/containers/elastic-container-service' },
+                { text: 'Elastic Kubernetes Service', link: '/aws/containers/elastic-kubernetes-service' },
+                { text: 'Fargate', link: '/aws/containers/fargate' }
+              ]
+            },
+            {
+              text: 'Storage',
+              collapsed: true,
+              items: [
+                { text: 'Storage', link: '/aws/storage/storage' },
+                { text: 'S3', link: '/aws/storage/s3' },
+                { text: 'Elastic File System', link: '/aws/storage/elastic-file-system' },
+                { text: 'FSx', link: '/aws/storage/fsx' },
+                { text: 'S3 Glacier', link: '/aws/storage/s3-glacier' },
+                { text: 'Storage Gateway', link: '/aws/storage/storage-gateway' },
+                { text: 'Backup', link: '/aws/storage/backup' }
+              ]
+            },
+            {
+              text: 'Database',
+              collapsed: true,
+              items: [
+                { text: 'Database', link: '/aws/database/database' },
+                { text: 'RDS', link: '/aws/database/rds' },
+                { text: 'Aurora', link: '/aws/database/aurora' },
+                { text: 'Redshift', link: '/aws/database/redshift' },
+                { text: 'DynamoDB', link: '/aws/database/dynamodb' },
+                { text: 'DocumentDB', link: '/aws/database/documentdb' },
+                { text: 'Keyspaces', link: '/aws/database/keyspaces' },
+                { text: 'Timestream', link: '/aws/database/timestream' },
+                { text: 'Quantum Ledger Database', link: '/aws/database/quantum-ledger-database' },
+                { text: 'ElastiCache', link: '/aws/database/elasticache' },
+                { text: 'Neptune', link: '/aws/database/neptune' },
+                { text: 'Database Migration Service', link: '/aws/database/database-migration-service' }
+              ]
+            },
+            {
+              text: 'Networking & Content Delivery',
+              collapsed: true,
+              items: [
+                { text: 'Networking & Content Delivery', link: '/aws/networking/networking' },
+                { text: 'VPC', link: '/aws/networking/vpc' },
+                { text: 'CloudFront', link: '/aws/networking/cloudfront' },
+                { text: 'Route 53', link: '/aws/networking/route-53' },
+                { text: 'API Gateway', link: '/aws/networking/api-gateway' },
+                { text: 'Global Accelerator', link: '/aws/networking/global-accelerator' },
+                { text: 'Direct Connect', link: '/aws/networking/direct-connect' },
+                { text: 'PrivateLink', link: '/aws/networking/privatelink' },
+                { text: 'App Mesh', link: '/aws/networking/app-mesh' },
+                { text: 'Cloud Map', link: '/aws/networking/cloud-map' }
+              ]
+            },
+            {
+              text: 'Developer Tools',
+              collapsed: true,
+              items: [
+                { text: 'Developer Tools', link: '/aws/developer-tools/developer-tools' },
+                { text: 'Cloud9', link: '/aws/developer-tools/cloud9' },
+                { text: 'CloudShell', link: '/aws/developer-tools/cloudshell' },
+                { text: 'CodeBuild', link: '/aws/developer-tools/codebuild' },
+                { text: 'CodeCommit', link: '/aws/developer-tools/codecommit' },
+                { text: 'CodeDeploy', link: '/aws/developer-tools/codedeploy' },
+                { text: 'CodePipeline', link: '/aws/developer-tools/codepipeline' },
+                { text: 'X-Ray', link: '/aws/developer-tools/x-ray' },
+                { text: 'Tools & SDKs', link: '/aws/developer-tools/tools-and-sdks' }
+              ]
+            },
+            {
+              text: 'Management & Governance',
+              collapsed: true,
+              items: [
+                { text: 'Management & Governance', link: '/aws/management/management-and-governance' },
+                { text: 'Auto Scaling', link: '/aws/management/auto-scaling' },
+                { text: 'CloudFormation', link: '/aws/management/cloudformation' },
+                { text: 'CloudTrail', link: '/aws/management/cloudtrail' },
+                { text: 'CloudWatch', link: '/aws/management/cloudwatch' },
+                { text: 'Config', link: '/aws/management/config' },
+                { text: 'Control Tower', link: '/aws/management/control-tower' },
+                { text: 'License Manager', link: '/aws/management/license-manager' },
+                { text: 'OpsWorks', link: '/aws/management/opsworks' },
+                { text: 'Personal Health Dashboard', link: '/aws/management/personal-health-dashboard' },
+                { text: 'Service Catalog', link: '/aws/management/service-catalog' },
+                { text: 'Trusted Advisor', link: '/aws/management/trusted-advisor' },
+                { text: 'Well-Architected Tool', link: '/aws/management/well-architected-tool' }
+              ]
+            },
+            {
+              text: 'Security, Identity, & Compliance',
+              collapsed: true,
+              items: [
+                { text: 'Security, Identity, & Compliance', link: '/aws/security/security-identity-compliance' },
+                { text: 'IAM', link: '/aws/security/iam' },
+                { text: 'Cognito', link: '/aws/security/cognito' },
+                { text: 'Secrets Manager', link: '/aws/security/secrets-manager' },
+                { text: 'KMS', link: '/aws/security/kms' },
+                { text: 'Artifact', link: '/aws/security/artifact' },
+                { text: 'Shield', link: '/aws/security/shield' },
+                { text: 'WAF', link: '/aws/security/waf' },
+                { text: 'Security Hub', link: '/aws/security/security-hub' },
+                { text: 'GuardDuty', link: '/aws/security/guardduty' },
+                { text: 'Inspector', link: '/aws/security/inspector' },
+                { text: 'Macie', link: '/aws/security/macie' },
+                { text: 'Detective', link: '/aws/security/detective' },
+                { text: 'Audit Manager', link: '/aws/security/audit-manager' },
+                { text: 'Certificate Manager', link: '/aws/security/certificate-manager' }
+              ]
+            }
           ]                       
         }
       }
@@ -524,6 +656,407 @@ export default defineConfig({
             { text: 'network-flow-algorithms', link: '/th/algorithm/network-flow-algorithms' },
             { text: 'string-matching-algorithms', link: '/th/algorithm/string-matching-algorithms' },
             { text: 'advanced-greedy-algorithms', link: '/th/algorithm/advanced-greedy-algorithms' },
+          ],
+          '/th/aws/': [
+            { text: 'introduction-to-aws', link: '/th/aws/introduction-to-aws' },
+            {
+              text: 'Compute',
+              collapsed: true,
+              items: [
+                { text: 'Compute', link: '/th/aws/compute/compute' },
+                { text: 'EC2', link: '/th/aws/compute/ec2' },
+                { text: 'Lightsail', link: '/th/aws/compute/lightsail' },
+                { text: 'Lambda', link: '/th/aws/compute/lambda' },
+                { text: 'Batch', link: '/th/aws/compute/batch' },
+                { text: 'Elastic Beanstalk', link: '/th/aws/compute/elastic-beanstalk' },
+                { text: 'Serverless Application', link: '/th/aws/compute/serverless-application' },
+                { text: 'AWS Outposts', link: '/th/aws/compute/aws-outposts' },
+                { text: 'EC2 Image Builder', link: '/th/aws/compute/ec2-image-builder' },
+                { text: 'AWS App Runner', link: '/th/aws/compute/aws-app-runner' },
+                { text: 'AWS SimSpace Weaver', link: '/th/aws/compute/aws-simspace-weaver' },
+                { text: 'Parallel Computing Service', link: '/th/aws/compute/parallel-computing-service' },
+                { text: 'EC2 Global View', link: '/th/aws/compute/ec2-global-view' },
+              ]
+            },
+            {
+              text: 'Containers',
+              collapsed: true,
+              items: [
+                { text: 'Containers', link: '/th/aws/containers/containers' },
+                { text: 'Elastic Container Service', link: '/th/aws/containers/elastic-container-service' },
+                { text: 'Elastic Kubernetes Service', link: '/th/aws/containers/elastic-kubernetes-service' },
+                { text: 'Red Hat OpenShift Service on AWS', link: '/th/aws/containers/red-hat-openshift-service-on-aws' },
+                { text: 'Elastic Container Registry', link: '/th/aws/containers/elastic-container-registry' },
+              ]
+            },
+            {
+              text: "Storage",
+              collapsed: true,
+              items: [
+                { text: 'Storage', link: '/th/aws/storage/storage' },
+                { text: 'S3', link: '/th/aws/storage/s3' },
+                { text: 'EFS', link: '/th/aws/storage/efs' },
+                { text: 'FSx', link: '/th/aws/storage/fsx' },
+                { text: 'S3 Glacier', link: '/th/aws/storage/s3-glacier' },
+                { text: 'Storage Gateway', link: '/th/aws/storage/storage-gateway' },
+                { text: 'AWS Backup', link: '/th/aws/storage/aws-backup' },
+                { text: 'AWS Elastic Disaster Recovery', link: '/th/aws/storage/aws-elastic-disaster-recovery' },
+              ]
+            },
+            {
+              text: "Database",
+              collapsed: true,
+              items: [
+                { text: 'Database', link: '/th/aws/database/database' },
+                { text: 'Aurora and RDS', link: '/th/aws/database/aurora-and-rds' },
+                { text: 'ElastiCache', link: '/th/aws/database/elasticache' },
+                { text: 'Neptune', link: '/th/aws/database/neptune' },
+                { text: 'Amazon QLDB', link: '/th/aws/database/amazon-qldb' },
+                { text: 'Amazon DocumentDB', link: '/th/aws/database/amazon-documentdb' },
+                { text: 'Amazon Keyspaces', link: '/th/aws/database/amazon-keyspaces' },
+                { text: 'Amazon Timestream', link: '/th/aws/database/amazon-timestream' },
+                { text: 'DynamoDB', link: '/th/aws/database/dynamodb' },
+                { text: 'Aurora DSQL', link: '/th/aws/database/aurora-dsql' },
+                { text: 'Amazon MemoryDB', link: '/th/aws/database/amazon-memorydb' },
+                { text: 'Oracle Database@AWS', link: '/th/aws/database/oracle-database-aws' },
+              ]              
+            },
+            {
+              text: "Migration & Transfer",
+              collapsed: true,
+              items: [
+                { text: 'Migration & Transfer', link: '/th/aws/migration-&-transfer/migration-&-transfer' },
+                { text: 'AWS Migration Hub', link: '/th/aws/migration-&-transfer/aws-migration-hub' },
+                { text: 'AWS Application Migration Service', link: '/th/aws/migration-&-transfer/aws-application-migration-service' },
+                { text: 'Application Discovery Service', link: '/th/aws/migration-&-transfer/application-discovery-service' },
+                { text: 'Database Migration Service', link: '/th/aws/migration-&-transfer/database-migration-service' },
+                { text: 'AWS Transfer Family', link: '/th/aws/migration-&-transfer/aws-transfer-family' },
+                { text: 'AWS Snow Family', link: '/th/aws/migration-&-transfer/aws-snow-family' },
+                { text: 'DataSync', link: '/th/aws/migration-&-transfer/datasync' },
+                { text: 'AWS Mainframe Modernization', link: '/th/aws/migration-&-transfer/aws-mainframe-modernization' },
+                { text: 'Amazon Elastic VMware Service (Preview)', link: '/th/aws/migration-&-transfer/amazon-elastic-vmware-service' },
+              ]
+            },
+            {
+              text: "Networking & Content Delivery",
+              collapsed: true,
+              items: [
+                { text: 'Networking & Content Delivery', link: '/th/aws/networking-&-content-delivery/networking-&-content-delivery' },
+                { text: 'VPC', link: '/th/aws/networking-&-content-delivery/vpc' },
+                { text: 'CloudFront', link: '/th/aws/networking-&-content-delivery/cloudfront' },
+                { text: 'API Gateway', link: '/th/aws/networking-&-content-delivery/api-gateway' },
+                { text: 'Direct Connect', link: '/th/aws/networking-&-content-delivery/direct-connect' },
+                { text: 'AWS App Mesh', link: '/th/aws/networking-&-content-delivery/aws-app-mesh' },
+                { text: 'Global Accelerator', link: '/th/aws/networking-&-content-delivery/global-accelerator' },
+                { text: 'Route 53', link: '/th/aws/networking-&-content-delivery/route-53' },
+                { text: 'AWS Data Transfer Terminal', link: '/th/aws/networking-&-content-delivery/aws-data-transfer-terminal' },
+                { text: 'AWS Private 5G', link: '/th/aws/networking-&-content-delivery/aws-private-5g' },
+                { text: 'AWS Cloud Map', link: '/th/aws/networking-&-content-delivery/aws-cloud-map' },
+                { text: 'Application Recovery Controller', link: '/th/aws/networking-&-content-delivery/application-recovery-controller' },
+              ]
+            },
+            {
+              text: "Developer Tools",
+              collapsed: true,
+              items: [
+                { text: 'Developer Tools', link: '/th/aws/developer-tools/developer-tools' },
+                { text: 'CodeCommit', link: '/th/aws/developer-tools/codecommit' },
+                { text: 'CodeBuild', link: '/th/aws/developer-tools/codebuild' },
+                { text: 'CodeDeploy', link: '/th/aws/developer-tools/codedeploy' },
+                { text: 'CodePipeline', link: '/th/aws/developer-tools/codepipeline' },
+                { text: 'Cloud9', link: '/th/aws/developer-tools/cloud9' },
+                { text: 'CloudShell', link: '/th/aws/developer-tools/cloudshell' },
+                { text: 'X-Ray', link: '/th/aws/developer-tools/x-ray' },
+                { text: 'AWS FIS', link: '/th/aws/developer-tools/aws-fis' },
+                { text: 'Infrastructure Composer', link: '/th/aws/developer-tools/infrastructure-composer' },
+                { text: 'AWS App Studio', link: '/th/aws/developer-tools/aws-app-studio' },
+                { text: 'AWS AppConfig', link: '/th/aws/developer-tools/aws-appconfig' },
+                { text: 'CodeArtifact', link: '/th/aws/developer-tools/codeartifact' },
+                { text: 'Amazon CodeCatalyst', link: '/th/aws/developer-tools/amazon-codecatalyst' },
+                { text: 'Amazon Q Developer', link: '/th/aws/developer-tools/amazon-q-developer' },
+              ]
+            },
+            {
+              text: "Customer Enablement",
+              collapsed: true,
+              items: [
+                { text: 'Customer Enablement', link: '/th/aws/customer-enablement/customer-enablement' },
+                { text: 'AWS IQ', link: '/th/aws/customer-enablement/aws-iq' },
+                { text: 'Managed Services', link: '/th/aws/customer-enablement/managed-services' },
+                { text: 'Activate for Startups', link: '/th/aws/customer-enablement/activate-for-startups' },
+                { text: 'AWS re:Post Private', link: '/th/aws/customer-enablement/aws-re-post-private' },
+                { text: 'Support', link: '/th/aws/customer-enablement/support' },
+              ]
+            },
+            {
+              text: "Robotics",
+              collapsed: true,
+              items: [
+                { text: 'Robotics', link: '/th/aws/robotics/robotics' },
+                { text: 'AWS RoboMaker', link: '/th/aws/robotics/aws-robomaker' },
+              ]
+            },
+            {
+              text: "Blockchain",
+              collapsed: true,
+              items: [
+                { text: 'Blockchain', link: '/th/aws/blockchain/blockchain' },
+                { text: 'Amazon Managed Blockchain', link: '/th/aws/blockchain/amazon-managed-blockchain' },
+              ]
+            },
+            {
+              text: "Satellite",
+              collapsed: true,
+              items: [
+                { text: 'Satellite', link: '/th/aws/satellite/satellite' },
+                { text: 'Ground Station', link: '/th/aws/satellite/ground-station' },
+              ]
+            },    
+            {
+              text: "Quantum Technologies",
+              collapsed: true,
+              items: [
+                { text: 'Quantum Technologies', link: '/th/aws/quantum-technologies/quantum-technologies' },
+                { text: 'Amazon Braket', link: '/th/aws/quantum-technologies/amazon-braket' },
+              ]
+            },    
+            {
+              text: "Management & Governance",
+              collapsed: true,
+              items: [
+                { text: 'Management & Governance', link: '/th/aws/management-&-governance/management-&-governance' },
+                { text: 'AWS Organizations', link: '/th/aws/management-&-governance/aws-organizations' },
+                { text: 'CloudWatch', link: '/th/aws/management-&-governance/cloudwatch' },
+                { text: 'AWS Auto Scaling', link: '/th/aws/management-&-governance/aws-auto-scaling' },
+                { text: 'CloudFormation', link: '/th/aws/management-&-governance/cloudformation' },
+                { text: 'AWS Config', link: '/th/aws/management-&-governance/aws-config' },
+                { text: 'OpsWorks', link: '/th/aws/management-&-governance/opsworks' },
+                { text: 'Service Catalog', link: '/th/aws/management-&-governance/service-catalog' },
+                { text: 'Systems Manager', link: '/th/aws/management-&-governance/systems-manager' },
+                { text: 'Trusted Advisor', link: '/th/aws/management-&-governance/trusted -advisor' },
+                { text: 'Control Tower', link: '/th/aws/management-&-governance/control-tower' },
+                { text: 'AWS Well-Architected Tool', link: '/th/aws/management-&-governance/aws-well-architected-tool' },
+                { text: 'Amazon Q Developer in chat applications', link: '/th/aws/management-&-governance/amazon-q-developer-in-chat-applications' },
+                { text: 'Launch Wizard', link: '/th/aws/management-&-governance/launch-wizard' },
+                { text: 'AWS Compute Optimizer', link: '/th/aws/management-&-governance/aws-compute-optimizer' },
+                { text: 'Resource Groups & Tag Editor', link: '/th/aws/management-&-governance/resource-groups-&-tag-editor' },
+                { text: 'Amazon Grafana', link: '/th/aws/management-&-governance/amazon-grafana' },
+                { text: 'Amazon Prometheus', link: '/th/aws/management-&-governance/amazon-prometheus' },
+                { text: 'AWS Resilience Hub', link: '/th/aws/management-&-governance/aws-resilience-hub' },
+                { text: 'Incident Manager', link: '/th/aws/management-&-governance/incident-manager' },
+                { text: 'AWS Telco Network Builder', link: '/th/aws/management-&-governance/aws-telco-network-builder' },
+                { text: 'AWS Health Dashboard', link: '/th/aws/management-&-governance/aws-health-dashboard' },
+                { text: 'AWS Proton', link: '/th/aws/management-&-governance/aws-proton' },
+                { text: 'AWS User Notifications', link: '/th/aws/management-&-governance/aws-user-notifications' },
+                { text: 'CloudTrail', link: '/th/aws/management-&-governance/cloudtrail' },
+                { text: 'AWS License Manager', link: '/th/aws/management-&-governance/aws-license-manager' },
+                { text: 'AWS Resource Explorer', link: '/th/aws/management-&-governance/aws-resource-explorer' },
+                { text: 'Service Quotas', link: '/th/aws/management-&-governance/service-quotas' },
+              ]
+            },        
+            {
+              text: "Media Services",
+              collapsed: true,
+              items: [
+                { text: 'Media Services', link: '/th/aws/media-services/media-services' },
+                { text: 'Kinesis Video Streams', link: '/th/aws/media-services/kinesis-video-streams' },
+                { text: 'MediaConvert', link: '/th/aws/media-services/mediaconvert' },
+                { text: 'MediaLive', link: '/th/aws/media-services/medialive' },
+                { text: 'MediaPackage', link: '/th/aws/media-services/mediapackage' },
+                { text: 'MediaStore', link: '/th/aws/media-services/mediastore' },
+                { text: 'MediaTailor', link: '/th/aws/media-services/mediatailor' },
+                { text: 'Elemental Appliances & Software', link: '/th/aws/media-services/elemental-appliances-&-software' },
+                { text: 'Elastic Transcoder', link: '/th/aws/media-services/elastic-transcoder' },
+                { text: 'Amazon Interactive Video Service', link: '/th/aws/media-services/amazon-interactive-video-service' },
+                { text: 'AWS Deadline Cloud', link: '/th/aws/media-services/aws-deadline-cloud' },
+                { text: 'MediaConnect', link: '/th/aws/media-services/mediaconnect' },
+              ]
+            },  
+            {
+              text: "Machine Learning",
+              collapsed: true,
+              items: [
+                { text: 'Machine Learning', link: '/th/aws/machine-learning/machine-learning' },
+                { text: 'Amazon SageMaker AI', link: '/th/aws/machine-learning/amazon-sagemaker-ai' },
+                { text: 'Amazon Augmented AI', link: '/th/aws/machine-learning/amazon-augmented-ai' },
+                { text: 'Amazon CodeGuru', link: '/th/aws/machine-learning/amazon-codeguru' },
+                { text: 'Amazon DevOps Guru', link: '/th/aws/machine-learning/amazon-devops-guru' },
+                { text: 'Amazon Comprehend', link: '/th/aws/machine-learning/amazon-comprehend' },
+                { text: 'Amazon Forecast', link: '/th/aws/machine-learning/amazon-forecast' },
+                { text: 'Amazon Fraud Detector', link: '/th/aws/machine-learning/amazon-fraud-detector' },
+                { text: 'Amazon Kendra', link: '/th/aws/machine-learning/amazon-kendra' },
+                { text: 'Amazon Personalize', link: '/th/aws/machine-learning/amazon-personalize' },
+                { text: 'Amazon Polly', link: '/th/aws/machine-learning/amazon-polly' },
+                { text: 'Amazon Rekognition', link: '/th/aws/machine-learning/amazon-rekognition' },
+                { text: 'Amazon Textract', link: '/th/aws/machine-learning/amazon-textract' },
+                { text: 'Amazon Transcribe', link: '/th/aws/machine-learning/amazon-transcribe' },
+                { text: 'Amazon Translate', link: '/th/aws/machine-learning/amazon-translate' },
+                { text: 'AWS DeepComposer', link: '/th/aws/machine-learning/aws-deepcomposer' },
+                { text: 'AWS DeepRacer', link: '/th/aws/machine-learning/aws-deepracer' },
+                { text: 'AWS Panorama', link: '/th/aws/machine-learning/aws-panorama' },
+                { text: 'Amazon Monitron', link: '/th/aws/machine-learning/amazon-monitron' },
+                { text: 'AWS HealthLake', link: '/th/aws/machine-learning/aws-healthlake' },
+                { text: 'Amazon Lookout for Vision', link: '/th/aws/machine-learning/amazon-lookout-for-vision' },
+                { text: 'Amazon Lookout for Equipment', link: '/th/aws/machine-learning/amazon-lookout-for-equipment' },
+                { text: 'Amazon Lookout for Metrics', link: '/th/aws/machine-learning/amazon-lookout-for-metrics' },
+                { text: 'Amazon Q Business', link: '/th/aws/machine-learning/amazon-q-business' },
+                { text: 'AWS HealthOmics', link: '/th/aws/machine-learning/aws-healthomics' },
+                { text: 'Amazon Bedrock', link: '/th/aws/machine-learning/amazon-bedrock' },
+                { text: 'Amazon Q', link: '/th/aws/machine-learning/amazon-q' },
+                { text: 'Amazon Comprehend Medical', link: '/th/aws/machine-learning/amazon-comprehend-medical' },
+                { text: 'Amazon Lex', link: '/th/aws/machine-learning/amazon-lex' },
+                { text: 'AWS HealthImaging', link: '/th/aws/machine-learning/aws-healthimaging' },
+              ]
+            },  
+            {
+              text: "Analytics",
+              collapsed: true,
+              items: [
+                { text: 'Analytics', link: '/th/aws/analytics/analytics' },
+                { text: 'Athena', link: '/th/aws/analytics/athena' },
+                { text: 'Amazon Redshift', link: '/th/aws/analytics/amazon-redshift' },
+                { text: 'CloudSearch', link: '/th/aws/analytics/cloudsearch' },
+                { text: 'Amazon OpenSearch Service', link: '/th/aws/analytics/amazon-opensearch-service' },
+                { text: 'Kinesis', link: '/th/aws/analytics/kinesis' },
+                { text: 'QuickSight', link: '/th/aws/analytics/quicksight' },
+                { text: 'AWS Data Exchange', link: '/th/aws/analytics/aws-data-exchange' },
+                { text: 'AWS Lake Formation', link: '/th/aws/analytics/aws-lake-formation' },
+                { text: 'MSK', link: '/th/aws/analytics/msk' },
+                { text: 'AWS Glue DataBrew', link: '/th/aws/analytics/aws-glue-databrew' },
+                { text: 'Amazon FinSpace', link: '/th/aws/analytics/amazon-finspace' },
+                { text: 'Managed Apache Flink', link: '/th/aws/analytics/managed-apache-flink' },
+                { text: 'EMR', link: '/th/aws/analytics/emr' },
+                { text: 'AWS Clean Rooms', link: '/th/aws/analytics/aws-clean-rooms' },
+                { text: 'Amazon SageMaker', link: '/th/aws/analytics/amazon-sagemaker' },
+                { text: 'AWS Entity Resolution', link: '/th/aws/analytics/aws-entity-resolution' },
+                { text: 'AWS Glue', link: '/th/aws/analytics/aws-glue' },
+                { text: 'Amazon Data Firehose', link: '/th/aws/analytics/amazon-data-firehose' },
+                { text: 'Amazon DataZone', link: '/th/aws/analytics/amazon-datazone' },
+              ]
+            },   
+            {
+              text: "Security, Identity, & Compliance",
+              collapsed: true,
+              items: [
+                { text: 'Security, Identity, & Compliance', link: '/th/aws/security-identity-&-compliance/security-identity-&-compliance' },
+                { text: 'Resource Access Manager', link: '/th/aws/security-identity-&-compliance/resource-access-manager' },
+                { text: 'Cognito', link: '/th/aws/security-identity-&-compliance/cognito' },
+                { text: 'Secrets Manager', link: '/th/aws/security-identity-&-compliance/secrets-manager' },
+                { text: 'GuardDuty', link: '/th/aws/security-identity-&-compliance/guardduty' },
+                { text: 'Amazon Inspector', link: '/th/aws/security-identity-&-compliance/amazon-inspector' },
+                { text: 'Amazon Macie', link: '/th/aws/security-identity-&-compliance/amazon-macie' },
+                { text: 'IAM Identity Center', link: '/th/aws/security-identity-&-compliance/iam-identity-center' },
+                { text: 'Certificate Manager', link: '/th/aws/security-identity-&-compliance/certificate-manager' },
+                { text: 'Key Management Service', link: '/th/aws/security-identity-&-compliance/key-management-service' },
+                { text: 'CloudHSM', link: '/th/aws/security-identity-&-compliance/cloudhsm' },
+                { text: 'Directory Service', link: '/th/aws/security-identity-&-compliance/directory-service' },
+                { text: 'AWS Firewall Manager', link: '/th/aws/security-identity-&-compliance/aws-firewall-manager' },
+                { text: 'AWS Artifact', link: '/th/aws/security-identity-&-compliance/aws-artifact' },
+                { text: 'Detective', link: '/th/aws/security-identity-&-compliance/detective' },
+                { text: 'AWS Signer', link: '/th/aws/security-identity-&-compliance/aws-signer' },
+                { text: 'Security Lake', link: '/th/aws/security-identity-&-compliance/security-lake' },
+                { text: 'WAF & Shield', link: '/th/aws/security-identity-&-compliance/waf-&-shield' },
+                { text: 'Amazon Verified Permissions', link: '/th/aws/security-identity-&-compliance/amazon-verified-permissions' },
+                { text: 'AWS Audit Manager', link: '/th/aws/security-identity-&-compliance/aws-audit-manager' },
+                { text: 'Security Hub', link: '/th/aws/security-identity-&-compliance/security-hub' },
+                { text: 'IAM', link: '/th/aws/security-identity-&-compliance/iam' },
+                { text: 'AWS Private Certificate Authority', link: '/th/aws/security-identity-&-compliance/aws-private-certificate-authority' },
+                { text: 'AWS Payment Cryptography', link: '/th/aws/security-identity-&-compliance/aws-payment-cryptography' },
+                { text: 'AWS Security Incident Response', link: '/th/aws/security-identity-&-compliance/aws-security-incident-response' },
+              ]
+            },   
+            {
+              text: "Cloud Financial Management",
+              collapsed: true,
+              items: [
+                { text: 'Cloud Financial Management', link: '/th/aws/cloud-financial-management/cloud-financial-management' },
+                { text: 'AWS Marketplace', link: '/th/aws/cloud-financial-management/aws-marketplace' },
+                { text: 'AWS Billing Conductor', link: '/th/aws/cloud-financial-management/aws-billing-conductor' },
+                { text: 'Billing and Cost Management', link: '/th/aws/cloud-financial-management/billing-and-cost-management' },
+              ]
+            },     
+            {
+              text: "Front-end Web & Mobile",
+              collapsed: true,
+              items: [
+                { text: 'Front-end Web & Mobile', link: '/th/aws/front-end-web-&-mobile/front-end-web-&-mobile' },
+                { text: 'AWS Amplify', link: '/th/aws/front-end-web-&-mobile/aws-amplify' },
+                { text: 'AWS AppSync', link: '/th/aws/front-end-web-&-mobile/aws-appsync' },
+                { text: 'Device Farm', link: '/th/aws/front-end-web-&-mobile/device-farm' },
+                { text: 'Amazon Location Service', link: '/th/aws/front-end-web-&-mobile/amazon-location-service' },
+              ]
+            },  
+            {
+              text: "Application Integration",
+              collapsed: true,
+              items: [
+                { text: 'Application Integration', link: '/th/aws/application-integration/application-integration' },
+                { text: 'Step Functions', link: '/th/aws/application-integration/step-functions' },
+                { text: 'Amazon AppFlow', link: '/th/aws/application-integration/amazon-appflow' },
+                { text: 'Amazon MQ', link: '/th/aws/application-integration/amazon-mq' },
+                { text: 'Simple Notification Service', link: '/th/aws/application-integration/simple-notification-service' },
+                { text: 'Simple Queue Service', link: '/th/aws/application-integration/simple-queue-service' },
+                { text: 'SWF', link: '/th/aws/application-integration/swf' },
+                { text: 'Managed Apache Airflow', link: '/th/aws/application-integration/managed-apache-airflow' },
+                { text: 'AWS B2B Data Interchange', link: '/th/aws/application-integration/aws-b2b-data-interchange' },
+                { text: 'Amazon EventBridge', link: '/th/aws/application-integration/amazon-eventbridge' },
+              ]
+            },  
+            {
+              text: "Business Applications",
+              collapsed: true,
+              items: [
+                { text: 'Business Applications', link: '/th/aws/business-applications/business-applications' },
+                { text: 'Amazon Connect', link: '/th/aws/business-applications/amazon-connect' },
+                { text: 'Amazon Chime', link: '/th/aws/business-applications/amazon-chime' },
+                { text: 'Amazon Simple Email Service', link: '/th/aws/business-applications/amazon-simple-email-service' },
+                { text: 'Amazon WorkDocs', link: '/th/aws/business-applications/amazon-workdocs' },
+                { text: 'Amazon WorkMail', link: '/th/aws/business-applications/amazon-workmail' },
+                { text: 'AWS Supply Chain', link: '/th/aws/business-applications/aws-supply-chain' },
+                { text: 'Amazon Pinpoint', link: '/th/aws/business-applications/amazon-pinpoint' },
+                { text: 'Amazon One Enterprise', link: '/th/aws/business-applications/amazon-one-enterprise' },
+                { text: 'AWS Wickr', link: '/th/aws/business-applications/aws-wickr' },
+                { text: 'AWS AppFabric', link: '/th/aws/business-applications/aws-appfabric' },
+                { text: 'AWS End User Messaging', link: '/th/aws/business-applications/aws-end-user-messaging' },
+                { text: 'Amazon Chime SDK', link: '/th/aws/business-applications/amazon-chime-sdk' },
+              ]
+            },  
+            {
+              text: "End User Computing",
+              collapsed: true,
+              items: [
+                { text: 'End User Computing', link: '/th/aws/end-user-computing/end-user-computing' },
+                { text: 'WorkSpaces', link: '/th/aws/end-user-computing/workspaces' },
+                { text: 'AppStream 2.0', link: '/th/aws/end-user-computing/appstream' },
+                { text: 'WorkSpaces Thin Client', link: '/th/aws/end-user-computing/workspaces-thin-client' },
+                { text: 'WorkSpaces Secure Browser', link: '/th/aws/end-user-computing/workspaces-secure-browser' },
+              ]
+            },  
+            {
+              text: "Internet of Things",
+              collapsed: true,
+              items: [
+                { text: 'Internet of Things', link: '/th/aws/internet-of-things/internet-of-things' },
+                { text: 'IoT Analytics', link: '/th/aws/internet-of-things/iot-analytics' },
+                { text: 'IoT Device Defender', link: '/th/aws/internet-of-things/iot-device-defender' },
+                { text: 'IoT Device Management', link: '/th/aws/internet-of-things/iot-device-management' },
+                { text: 'IoT Greengrass', link: '/th/aws/internet-of-things/iot-greengrass' },
+                { text: 'IoT SiteWise', link: '/th/aws/internet-of-things/iot-sitewise' },
+                { text: 'IoT Core', link: '/th/aws/internet-of-things/iot-core' },
+                { text: 'IoT TwinMaker', link: '/th/aws/internet-of-things/iot-twinmaker' },
+                { text: 'IoT Events', link: '/th/aws/internet-of-things/iot-events' },
+                { text: 'AWS IoT FleetWise', link: '/th/aws/internet-of-things/aws-iot-fleetwise' },
+              ]
+            },  
+            {
+              text: "Game Development",
+              collapsed: true,
+              items: [
+                { text: 'Game Development', link: '/th/aws/game-development/game-development' },
+                { text: 'Amazon GameLift Servers', link: '/th/aws/game-development/amazon-gamelift-servers' },
+                { text: 'Amazon GameLift Streams', link: '/th/aws/game-development/amazon-gamelift-streams' },
+              ]
+            },                                   
           ]          
         }
       }

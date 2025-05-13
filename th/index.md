@@ -45,5 +45,11 @@ features:
   - title: Algorithm 
     details: ขั้นตอนการแก้ปัญหา
     icon: <img src="https://cdn-icons-png.flaticon.com/512/3011/3011270.png" width="24" height="24" />
-    link: /th/algorithm/introduction-to-algorithms               
+    link: /th/algorithm/introduction-to-algorithms 
+
+  - title: AWS 
+    details: Amazon Web Services
+    icon: <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/amazonaws.svg" width="24" height="24" />
+    link: /th/aws/introduction-to-aws
+            
 ---
