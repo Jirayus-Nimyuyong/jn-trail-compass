@@ -50,6 +50,6 @@ features:
   - title: AWS 
     details: Amazon Web Services
     icon: <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/amazonaws.svg" width="24" height="24" />
-    link: /th/aws/introduction-to-aws
+    link: /th/aws/introduction
             
 ---

@@ -66,4 +66,4 @@ git push -u origin main
 ```
 
 ## สรุป
-Git Repository Initialization เป็นขั้นตอนสำคัญที่ช่วยให้คุณเริ่มต้นจัดการโครงการด้วย Git ไม่ว่าจะเป็นการสร้าง repository ใหม่หรือการเชื่อมต่อกับ remote repository การทำความเข้าใจคำสั่งพื้นฐานจะช่วยให้คุณเริ่มต้นได้อย่างมั่นใจ
+Git Repository Initialization เป็นขั้นตอนสำคัญที่ช่วยให้คุณเริ่มต้นจัดการโครงการด้วย Git ไม่ว่าจะเป็นการสร้าง repository ใหม่หรือการเชื่อมต่อกับ remote repository 
