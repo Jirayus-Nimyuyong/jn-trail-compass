@@ -1,31 +1,35 @@
-# AWS VPC (Virtual Private Cloud)
+# Virtual Private Cloud (VPC)
 
-## 1. ภาพรวม (Overview)
+Virtual Private Cloud (VPC) คือการสร้างเครือข่ายเสมือน (virtual network) ภายใน AWS ที่คุณสามารถควบคุมได้เต็มรูปแบบ เช่น การเลือกช่วง IP (CIDR block), การสร้าง Subnet, Routing, Firewall Rules และอื่น ๆ
 
-Amazon VPC (Virtual Private Cloud) คือพื้นที่เครือข่ายเสมือน (virtual network) ที่คุณสามารถกำหนดค่าและควบคุมได้เต็มรูปแบบภายใน AWS โดยคล้ายกับการมี data center บนคลาวด์ของตนเอง
+* รองรับการแยกทรัพยากรและควบคุม Security อย่างละเอียด
+* สามารถเชื่อมต่อกับเครือข่ายภายนอก เช่น On-premise ผ่าน VPN หรือ Direct Connect ได้
 
-- ใช้สำหรับกำหนดขอบเขตของ private IP address
-- สามารถแยก zone ความปลอดภัยของระบบต่าง ๆ ได้
-- เชื่อมต่อกับ Internet, VPN, หรือ Direct Connect ได้
-- รองรับ High Availability และ Multi-AZ Deployment
+## องค์ประกอบของ VPC
 
----
+## CIDR Block
 
-## 2. องค์ประกอบของ VPC
+CIDR (Classless Inter-Domain Routing) Block คือการกำหนดช่วงของ IP Address ที่ใช้ใน VPC หรือ Subnet โดยมีรูปแบบเช่น 10.0.0.0/16, 192.168.1.0/24
 
-### 2.1 CIDR Block
-CIDR (Classless Inter-Domain Routing) ใช้กำหนด range ของ IP address สำหรับ VPC
+* ตัวเลข /16, /24 เรียกว่า subnet mask ซึ่งบอกขนาดของ IP ที่สามารถใช้ได้
 
-- ตัวอย่าง: `10.0.0.0/16` หมายถึงมี IP address ทั้งหมด 65,536 addresses (2⁶⁴)
-- VPC จะต้องอยู่ในช่วง private IP ตาม RFC1918 เช่น:
-  - 10.0.0.0 – 10.255.255.255 (/8)
-  - 172.16.0.0 – 172.31.255.255 (/12)
-  - 192.168.0.0 – 192.168.255.255 (/16)
+* ตัวอย่าง 10.0.0.0/16 จะมี IP ทั้งหมด 65,536 IP (แต่ AWS จะสำรองไว้ 5 IP ต่อ Subnet)
 
----
+การกำหนด CIDR มีข้อควรระวัง:
 
-### 2.2 Subnet
-Subnets คือการแบ่ง IP range ของ VPC ออกเป็นส่วนย่อย ๆ เพื่อแยกการทำงานและควบคุมการเข้าถึง
+* ไม่สามารถเปลี่ยน CIDR ของ VPC ได้หลังจากสร้าง
+
+* ต้องวางแผนให้เพียงพอกับจำนวน Subnet และ EC2 ที่จะใช้ในอนาคต
+
+* สามารถเพิ่ม Secondary CIDR ได้หากต้องการขยาย IP ภายหลัง
+
+## Subnets
+
+Subnet คือการแบ่งพื้นที่ของ VPC ออกเป็นส่วนย่อย ๆ โดยมีคุณสมบัติสำคัญคือ
+
+* แต่ละ Subnet อยู่ใน Availability Zone เดียว
+* แบ่งออกเป็น Public Subnet (สามารถเข้าถึง Internet ได้) และ Private Subnet (ไม่สามารถเข้าถึง Internet โดยตรง)
+* ใช้ควบคุม Resource ให้กระจายอยู่ในหลาย Zone เพื่อเพิ่มความทนทาน
 
 - Public Subnet:
   - เชื่อมต่อ Internet ผ่าน Internet Gateway
@@ -39,186 +43,220 @@ Subnets คือการแบ่ง IP range ของ VPC ออกเป็
 - การใช้งานแบบ Multi-AZ:
   - เพื่อเพิ่ม availability ควรสร้าง subnet หลายอันใน AZ ที่แตกต่างกัน
 
----
+## Route Tables
 
-### 2.3 Route Table
-Routing Table ควบคุมการส่งข้อมูลระหว่าง subnet หรือออกสู่อินเทอร์เน็ต
+Route Table คือชุดของกฎ (rules) ที่ระบุว่า traffic จาก Subnet หรือ Gateway ควรถูกส่งไปที่ใด
 
-- Default Route Table จะถูกสร้างเมื่อสร้าง VPC
-- สามารถสร้าง Custom Table และ associate กับแต่ละ subnet ได้
-- ตัวอย่าง:
+* Route Table อย่างน้อย 1 ชุดต่อ VPC
+* Subnet หนึ่งสามารถมี Route Table ได้เพียงชุดเดียว
+* ใช้กำหนดเส้นทาง เช่น ส่งไปยัง Internet Gateway, NAT Gateway, หรือ Transit Gateway
 
-```plaintext
-  Destination      | Target
-  -----------------|----------
-  10.0.0.0/16      | local
-  0.0.0.0/0        | igw-xxxxxxxx (Internet Gateway)
-````
+## Internet Gateways
 
----
+Internet Gateway (IGW) เป็นอุปกรณ์ที่ทำให้ Instance ภายใน Public Subnet สามารถติดต่อกับ Internet ได้โดยตรง
 
-### 2.4 Internet Gateway (IGW)
+* ต้องแนบ IGW กับ VPC เท่านั้นจึงจะสามารถใช้งานได้
+* ต้องมีเส้นทางใน Route Table ที่ชี้ไปยัง IGW ด้วย
 
-อุปกรณ์ logical ที่อนุญาตให้ instance ใน VPC เข้าถึงอินเทอร์เน็ต
+## Egress-only Internet Gateways
 
-* ต้อง attach กับ VPC
-* ต้องกำหนด route ไปยัง IGW ใน Route Table
-* ต้อง assign Public IP หรือ Elastic IP ให้ instance
+ใช้เฉพาะกับ IPv6 เพื่อให้ Instance ใน Subnet สามารถส่งข้อมูลออกสู่ Internet ได้ แต่ไม่สามารถรับการเชื่อมต่อจากภายนอกเข้ามาได้
 
----
+* เพิ่มความปลอดภัยในการใช้งาน IPv6
 
-### 2.5 NAT Gateway / NAT Instance
+## DHCP Option Sets
 
-**NAT Gateway** (managed service):
+เป็นชุดของค่าที่ใช้กำหนด Default ค่า DHCP สำหรับ EC2 เช่น:
 
-* ให้ private subnet มี outbound internet access
-* รองรับ high throughput
-* Scale ได้อัตโนมัติ
+* DNS server ที่ใช้งาน (เช่น AmazonProvidedDNS หรือ custom DNS)
+* Domain name
+* NTP server
 
-**NAT Instance** (EC2 instance):
+## Elastic IPs
 
-* ควบคุมระดับล่างได้มากกว่า (ต้อง config เอง)
-* ต้อง enable IP forwarding และกำหนด security group
+Elastic IP Address เป็น Public IPv4 ที่มีค่าแน่นอน (static)
 
-> ใช้ NAT Gateway แทน NAT Instance ใน production เพื่อความเสถียร
+* ใช้สำหรับ EC2 หรือ NAT Gateway ที่ต้องมี IP คงที่
+* สามารถย้าย Elastic IP จาก Resource หนึ่งไปยังอีก Resource หนึ่งได้
 
----
+## Managed Prefix Lists
 
-### 2.6 Security Group
+คือรายการของ CIDR block ที่สร้างขึ้นและจัดการผ่าน AWS
 
-* เป็น stateful firewall ระดับ instance
-* ควบคุม Inbound และ Outbound โดยใช้ rule ตาม Protocol, Port และ Source/Destination
-* Rule ทั้งหมดเป็น Allow เท่านั้น (ไม่มี Deny)
-* ใช้หลัก Principle of Least Privilege
+* ใช้ร่วมกับ Route Table หรือ Security Group
+* ตัวอย่างเช่น prefix list สำหรับบริการของ AWS เช่น S3 หรือ DynamoDB
 
-ตัวอย่าง:
+## NAT Gateways
 
-```plaintext
-Inbound:
-  Type    | Port | Source
-  --------|------|-------------------
-  SSH     | 22   | 203.0.113.10/32
+NAT Gateway ใช้ใน Private Subnet เพื่อให้ Instance ภายในสามารถ access Internet ได้โดยไม่ต้องมี Public IP
 
-Outbound:
-  Type    | Port | Destination
-  --------|------|-------------------
-  All     | All  | 0.0.0.0/0
-```
+* รองรับ high availability
+* คิดค่าใช้จ่ายตาม traffic และชั่วโมงใช้งาน
 
----
+## Peering Connections
 
-### 2.7 Network ACL (NACL)
+เชื่อมต่อ VPC สองชุดเข้าด้วยกันให้สามารถสื่อสารได้โดยตรง (แบบ point-to-point)
 
-* Stateless firewall ระดับ subnet
-* มีทั้ง Allow และ Deny rule
-* ใช้สำหรับควบคุมการเข้าถึง subnet ทั้งหมด
-* Rule มีลำดับ (Rule #) และประเมินตามลำดับ
+* ไม่สามารถ transit traffic ได้ (เช่น VPC A → VPC B → VPC C ไม่ได้)
+* ใช้ร่วมกับ Route Table เพื่อควบคุมเส้นทางระหว่าง VPC
 
-> ใช้ร่วมกับ Security Group เพื่อเพิ่มชั้นความปลอดภัย
+## Security
 
----
+### Network ACLs
 
-### 2.8 Elastic IP (EIP)
+* ทำงานในระดับ Subnet แบบ Stateless (ทุก request ต้องมี response rule ตรงกัน)
+* เหมาะกับการควบคุม traffic แบบกว้าง ๆ เช่น บล็อกทั้ง IP range
+* สนับสนุน allow และ deny rule
 
-* Static IPv4 ที่สามารถ remap ระหว่าง EC2 instances ได้
-* มักใช้กับ NAT Gateway หรือ Bastion Host
+### Security Groups
 
-> มีค่าใช้จ่ายหากไม่ได้ใช้งานหรือไม่ได้ associate กับ instance
+* ทำงานในระดับ Instance แบบ Stateful (จำการตอบกลับได้)
+* สนับสนุนเฉพาะ allow rule เท่านั้น
+* นิยมใช้ควบคุม access ที่ละเอียดกว่า ACL เช่น เปิดเฉพาะพอร์ต 443 ให้เฉพาะ subnet หรือ IP
 
----
+## PrivateLink and Lattice
 
-### 2.9 VPC Peering
+### Endpoints
 
-* เชื่อมต่อ VPC สองอันเข้าด้วยกัน
-* รองรับการสื่อสารแบบ Private IP โดยไม่ต้องผ่านอินเทอร์เน็ต
-* ไม่สามารถ transitive (A → B, B → C แต่ A คุยกับ C ไม่ได้)
-* ต้องกำหนด route และ security group ให้ครอบคลุม
+VPC Endpoint คือจุดเชื่อมต่อแบบ private ไปยังบริการของ AWS เช่น S3, DynamoDB โดยไม่ต้องออก Internet
 
----
+* ประหยัดค่า Data Transfer
+* เพิ่มความปลอดภัย
 
-### 2.10 VPC Endpoints
+### Endpoint Services
 
-* เชื่อมต่อกับบริการของ AWS (S3, DynamoDB) โดยไม่ต้องผ่านอินเทอร์เน็ต
+บริการที่สร้างเพื่อเปิดให้ VPC อื่นมาเชื่อมต่อผ่าน PrivateLink
 
-* มี 2 ประเภท:
+* เช่น สร้าง Network Load Balancer และแชร์ผ่าน Endpoint Service
 
-  * **Interface Endpoint**: สร้าง ENI ใน subnet
-  * **Gateway Endpoint**: กำหนด route ให้ subnet ใช้ผ่าน Gateway (รองรับเฉพาะ S3 และ DynamoDB)
+### Service Networks
 
-> ลดค่าใช้จ่ายและเพิ่มความปลอดภัย
+ใช้ใน AWS VPC Lattice เพื่อ grouping services ที่สามารถเข้าถึงกันได้ภายใน VPC
 
----
+### Lattice Services
 
-### 2.11 DHCP Option Set
+* บริการระดับ application layer ที่รวม network routing และ security ไว้ในที่เดียว
+* รองรับ Zero Trust Model
 
-* ใช้กำหนดค่า DNS, NTP, และ domain name ให้ EC2 instance โดยอัตโนมัติ
-* Default จะใช้ AmazonProvidedDNS
+## Resource Configurations
 
----
+### Resource Gateways
 
-### 2.12 DNS และ Hostnames ใน VPC
+* จุดเชื่อมกลางที่ใช้สำหรับเชื่อมกับ resource ภายนอก เช่น S3 Gateway Endpoint
 
-* VPC จะเปิด DNS resolution และ hostnames ได้ (เปิดผ่าน VPC settings)
-* Amazon DNS: `169.254.169.253`
-* หากต้องการใช้ Route 53 Resolver ในแบบ Hybrid ต้องตั้งค่า DNS forwarding และ query rules
+### Target Groups
 
----
+* กลุ่มของเป้าหมายที่ Load Balancer ส่ง traffic ไปยัง
+* รองรับ Instance ID, IP Address หรือ Lambda
 
-### 2.13 VPC Flow Logs
+## DNS Firewall
 
-* บันทึก traffic ที่เข้า/ออก network interfaces
-* ใช้สำหรับ security audit และ troubleshooting
-* สามารถเก็บใน CloudWatch Logs หรือ S3
+### Rule Groups
 
-ตัวอย่างข้อมูล Flow Log:
+* กำหนดว่าจะให้ DNS query ใดถูกอนุญาตหรือบล็อก
+* รองรับ Logging
 
-```plaintext
-version account-id interface-id srcaddr dstaddr srcport dstport protocol action log-status
-2       1234567890 eni-xxxxxx   10.0.1.1  172.31.0.1 443     49152    6       ACCEPT OK
-```
+### Domain Lists
 
----
+* รายการโดเมน เช่น example.com ที่จะใช้ใน Rule Group
 
-### 2.14 VPN & Direct Connect
+## Network Firewall
 
-* **VPN**: เชื่อมต่อ VPC กับ on-premise ผ่าน IPSec tunnel
-* **AWS Direct Connect**: สายเชื่อมต่อโดยตรง ความเร็วสูง latency ต่ำ เหมาะสำหรับ production
+### Firewalls
 
----
+* เป็น stateful firewall ระดับ managed service
+* รองรับ packet inspection, intrusion detection, deep packet inspection (DPI)
 
-## 3. การออกแบบ VPC ที่ดี
+### Firewall Policies
 
-### ✅ ควรทำ
+* ระบุว่า traffic แบบใดที่ควรถูกบล็อกหรืออนุญาต (เช่น deny port 23/telnet)
 
-* ใช้ CIDR ที่ไม่ชนกันกับ network อื่น
-* แยก Public/Private Subnet และ Security Group อย่างชัดเจน
-* วาง Load Balancer ใน Public Subnet และ App/DB ใน Private Subnet
-* เปิด VPC Flow Logs สำหรับการ audit
+### Network Firewall Rule Groups
 
-### ❌ ไม่ควรทำ
+* สามารถมีทั้ง Stateless และ Stateful rule
+* แต่ละ group ระบุ protocol, port, direction ได้อย่างละเอียด
 
-* ใช้ default VPC โดยไม่ปรับแต่ง
-* เปิด wide-open Security Group เช่น 0.0.0.0/0 โดยไม่จำเป็น
-* ใช้ CIDR block ใหญ่เกินความจำเป็น ทำให้เปลือง IP
+### TLS Inspection Configurations
 
----
+* ตรวจสอบ encrypted traffic ด้วยการทำ man-in-the-middle (ใช้ CA certificate)
+* ใช้เพื่อป้องกัน malware ที่ซ่อนใน HTTPS
 
-## 4. Diagram (High-level)
+### Network Firewall Resource Groups
 
-```mermaid
-graph TD
-  igw[Internet Gateway] --> pubsubnet[Public Subnet]
-  pubsubnet --> alb[Application Load Balancer]
-  alb --> ec2pub[EC2 - Bastion Host]
-  ec2pub --> nat[NAT Gateway]
-  nat --> prisubnet[Private Subnet]
-  prisubnet --> app[Application EC2]
-  app --> db[Database]
-  vpn[VPN Gateway] --> prisubnet
-```
+* รวมกลุ่ม subnet หรือ ENI ที่ต้องการให้ Firewall ควบคุม
 
----
+## Virtual Private Network (VPN)
 
-## 5. สรุป
+### Customer Gateways
 
-AWS VPC เป็นรากฐานของการวางระบบเครือข่ายใน AWS ซึ่งหากออกแบบอย่างเหมาะสมจะสามารถเพิ่มความปลอดภัย, รองรับการขยายตัว, และควบคุมการเข้าถึงระบบได้อย่างมีประสิทธิภาพ เหมาะสำหรับระบบขนาดเล็กจนถึงระดับองค์กรขนาดใหญ่
+* อุปกรณ์หรือซอฟต์แวร์ฝั่งลูกค้า เช่น Cisco, pfSense, FortiGate ที่ใช้เชื่อมต่อกับ AWS
+
+### Virtual Private Gateways
+
+* Gateway ฝั่ง AWS ที่รองรับ Site-to-Site VPN
+* แนบกับ VPC เพื่อให้รับการเชื่อมต่อจาก Customer Gateway
+
+### Site-to-Site VPN Connections
+
+* เชื่อมต่อเครือข่าย On-premise เข้ากับ AWS แบบ IPsec VPN tunnel
+* รองรับ 2 tunnel เพื่อความ redundant
+
+### Client VPN Endpoints
+
+* ให้ผู้ใช้ทั่วไปเชื่อมต่อ AWS VPC ได้ผ่าน SSL VPN (OpenVPN compatible)
+* เหมาะกับ Remote Work
+
+## AWS Verified Access
+
+### Verified Access Instances
+
+* รวมบริการต่าง ๆ ที่ควบคุมด้วย policy
+* รองรับการแยกบริการตามนโยบายความปลอดภัย
+
+### Verified Access Trust Providers
+
+* ใช้เพื่อระบุแหล่งที่ยืนยันตัวตน เช่น IAM Identity Center, Okta
+
+### Verified Access Groups
+
+* กลุ่มผู้ใช้หรืออุปกรณ์ที่ใช้ร่วมกันใน policy
+
+### Verified Access Endpoints
+
+* URL หรือ domain ที่ผู้ใช้จะเข้าเพื่อเข้าถึงแอปพลิเคชันที่กำหนด
+
+## Transit Gateways
+
+### Transit Gateways
+
+* เป็น Hub สำหรับเชื่อมต่อ VPC, VPN และ Direct Connect หลายตัวเข้าด้วยกัน
+
+### Transit Gateway Attachments
+
+* การแนบทรัพยากรเข้ากับ TGW เช่น VPC-A → TGW
+
+### Transit Gateway Policy Tables
+
+* ใช้ควบคุมการ access ระหว่าง attachments ตาม policy
+
+### Transit Gateway Route Tables
+
+* ใช้ routing ระหว่างเครือข่ายที่เชื่อมต่อ TGW
+
+### Transit Gateway Multicast
+
+* รองรับ Multicast traffic สำหรับ workload แบบ real-time เช่น IPTV หรือ Video streaming
+
+## Traffic Mirroring
+
+### Mirror Sessions
+
+* ตั้งค่าการทำ mirroring เช่น mirrored traffic from ENI-A to ENI-B
+
+### Mirror Targets
+
+* ปลายทางของ traffic ที่ถูก mirrored เช่น EC2 ที่ติดตั้ง IDS
+
+### Mirror Filters
+
+* กำหนดเงื่อนไข traffic ที่ต้องการ mirror เช่น port 443 เท่านั้น
