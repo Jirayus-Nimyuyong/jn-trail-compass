@@ -128,3 +128,12 @@ Route 53 Resolver คือระบบ **DNS สำหรับภายใน 
 ## สรุป
 
 Route 53 เป็นเครื่องมือสำคัญในโครงสร้างพื้นฐาน AWS ที่ให้ทั้งการจดโดเมน, การจัดการ DNS อย่างละเอียด, และการควบคุม routing traffic ตามสถานะและเงื่อนไขที่ยืดหยุ่นสูง สามารถใช้ได้ทั้งกับระบบสาธารณะและระบบภายในองค์กร (VPC)
+
+
+https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html
+
+https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html
+
+https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html
+
+https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html
