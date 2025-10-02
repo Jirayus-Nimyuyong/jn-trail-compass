@@ -1,73 +1,64 @@
-X-Ray Instrumentation in your code
-• Instrumentation means the
-measure of product’s performance,
-diagnose errors, and to write trace
-information.
-• To instrument your application
-code, you use the X-Ray SDK
-• Many SDK require only
-configuration changes
-• You can modify your application
-code to customize and annotation
-the data that the SDK sends to X-
-Ray, using interceptors, filters,
-handlers, middleware…
+# X-Ray: Instrumentation and Concepts
 
-X-Ray Concepts
+**Instrumentation** เป็นคำที่อาจใหม่สำหรับบางคน หมายถึงการ **วัดประสิทธิภาพของโปรแกรม, การวินิจฉัยข้อผิดพลาด และการเขียนข้อมูล Trace** โดยถือเป็นสาขาหนึ่งใน Software Engineering ที่เน้นการตรวจสอบและเก็บข้อมูลเชิงลึกของระบบ
 
-• Segments: each application / service will send them
-• Subsegments: if you need more details in your segment
-• Trace: segments collected together to form an end-to-end trace
-• Sampling: decrease the amount of requests sent to X-Ray, reduce cost
-• Annotations: Key Value pairs used to index traces and use with filters
-• Metadata: Key Value pairs, not indexed, not used for searching
-• The X-Ray daemon / agent has a config to send traces cross account:
-• make sure the IAM permissions are correct – the agent will assume the role
-• This allows to have a central account for all your application tracing
+เมื่อต้องการทำให้แอปพลิเคชันรองรับการใช้งานกับ **X-Ray** (instrumentation) เราจำเป็นต้องแก้ไขโค้ดเล็กน้อย และใช้ **X-Ray SDK**
 
----
-X-Ray: Instrumentation and Concepts
-Introduction to X-Ray Instrumentation
-Instrumentation is a term that may be new to some. It refers to the measurement of a product's performance, diagnosing errors, and writing trace information. This is a field within Software Engineering dedicated to these tasks.
+ตัวอย่างเช่น ใน Node.js เราสามารถ require X-Ray SDK และเชื่อมเข้ากับ Express app ได้เลย เมื่อทำเช่นนี้ โค้ดจะถูก instrumented หมายถึงข้อมูล Trace จากแอปจะถูกส่งไปยังบริการ **X-Ray**
 
-When we want to instrument our application with X-Ray, we need to modify our code and use the X-Ray SDK.
+การใช้งาน SDK มักจะไม่ซับซ้อน บางครั้งแค่ตั้งค่า configuration หรือแก้ไขโค้ดเพียงเล็กน้อยเท่านั้น
 
-Here is an example of how to instrument Node.js code with the X-Ray SDK. By requiring the X-Ray SDK and integrating it with an Express app, the code becomes instrumented. This means trace information from the code will be sent to the X-Ray service.
+ถ้าต้องการปรับแต่ง Trace เพิ่มเติม เช่น การใส่ Annotation หรือเปลี่ยนวิธีที่ X-Ray ส่งข้อมูลไปยัง Express service นักพัฒนาสามารถสร้าง **interceptors, filters, handlers และ middleware** เพื่อปรับแต่งพฤติกรรมของ X-Ray ได้ ซึ่งถือเป็น **ขั้นสูง**
 
-The use of the X-Ray SDK is minimal; sometimes it only requires configuration changes or slight modifications to the application code.
+## แนวคิดขั้นสูงของ X-Ray
 
-If customization of traces is needed, such as annotating data or changing how X-Ray sends data to the Express service, developers can create interceptors, filters, handlers, and middleware. This is an advanced feature that allows customization of X-Ray's behavior within the code.
+* **Segment**: คือหน่วยการทำงานหนึ่งใน Request หรือ URL ซึ่งแต่ละแอปหรือบริการจะส่ง Segment ของตัวเองไปยัง X-Ray
+* **Subsegment**: ใช้เพื่อเพิ่มรายละเอียดใน Segment (เช่น ระบุการเรียก Database, External API)
+* **Trace**: คือการรวมกันของทุก Segment เพื่อให้เห็นภาพ End-to-End ของ API Call หรือ Request หนึ่งครั้ง
 
-Advanced X-Ray Concepts
-A segment represents a unit of work in the URL, and each application or service sends segments. For more granularity, subsegments can be defined to include more detailed information within segments.
+## การทำ Trace Sampling
 
-A trace is the collection of all segments, providing an end-to-end view of an API call or request.
+**Sampling** ช่วยลดจำนวน Request ที่ถูกส่งไปยัง X-Ray เพื่อลดค่าใช้จ่าย
 
-Trace Sampling
-Sampling reduces the number of requests sent to X-Ray to control costs. By default, the X-Ray SDK records every first request each second (called the reservoir) and five percent of additional requests (called the rate).
+โดยค่าเริ่มต้น X-Ray SDK จะบันทึก:
 
-This mechanism ensures at least one trace per second if the service is receiving requests, while limiting the volume of data sent.
+* Request แรกในแต่ละวินาที (เรียกว่า **reservoir**)
+* และ **5% ของ Request เพิ่มเติม** (เรียกว่า **rate**)
 
-Annotations and Metadata
-Annotations are key-value pairs added to traces that are indexed and can be used with filters to search traces. Metadata are also key-value pairs but are not indexed and cannot be used for searching.
+วิธีนี้ทำให้มั่นใจได้ว่าจะมีอย่างน้อย 1 Trace ต่อวินาทีถ้ามี Request เข้ามา และช่วยจำกัดปริมาณข้อมูลที่ถูกส่งออกไป
 
-Annotations are extremely important for trace filtering and analysis in X-Ray.
+## Annotations และ Metadata
 
-Cross-Account Trace Sending
-The X-Ray daemon agent can be configured to send traces across AWS accounts. This requires correct IAM permissions, allowing the agent to assume the appropriate role. This setup enables centralized logging and application tracing across multiple accounts.
+* **Annotations**: เป็นคู่ค่า key-value ที่สามารถใส่เข้าไปใน Trace ได้ และ **ถูกจัดทำดัชนี (indexed)** เพื่อใช้ค้นหาผ่าน filter ได้
+* **Metadata**: เป็น key-value เช่นกัน แต่ **ไม่ได้ถูกจัดทำดัชนี** และไม่สามารถใช้ค้นหาได้
 
-Custom Sampling Rules
-Sampling rules can be customized to control the amount of data sent to X-Ray without changing application code. For example, increasing the reservoir size and rate for POST requests allows more traces to be sent for those requests.
+👉 ดังนั้น **Annotations** จึงสำคัญมากต่อการ Filter และวิเคราะห์ Trace ใน X-Ray
 
-One can also set rules to send all requests to X-Ray, which is useful for debugging but can be expensive in production due to the high volume of data.
+## Cross-Account Trace Sending
 
-The advantage of modifying sampling rules in the X-Ray console is that applications do not need to be restarted or changed. The X-Ray daemon automatically updates and sends the correct amount of data based on the new rules.
+X-Ray Daemon Agent สามารถถูกตั้งค่าให้ส่ง Trace ข้าม AWS Account ได้ โดย:
 
-Summary
-In this lecture, we covered how to instrument code with the X-Ray SDK, the concepts of segments, subsegments, and traces, the importance of annotations versus metadata, cross-account trace sending, and how sampling rules control data volume and cost.
+* ต้องตั้งค่า **IAM Permission** ที่ถูกต้อง
+* ให้ Agent สามารถ **assume role** ของบัญชีเป้าหมาย
 
-Key Takeaways
-Instrumentation involves measuring performance, diagnosing errors, and writing trace information using the X-Ray SDK.
-Segments and subsegments provide granular trace data, while traces aggregate these for end-to-end views.
-Annotations are indexed key-value pairs used for filtering traces, unlike metadata which are not indexed.
-Sampling rules control the volume of trace data sent to X-Ray, balancing cost and detail without requiring code changes.
+การทำแบบนี้ช่วยให้สามารถทำ **Centralized Logging และ Application Tracing** ข้ามหลายบัญชีได้
+
+## การกำหนด Custom Sampling Rules
+
+สามารถกำหนดกฎ **Sampling** เองได้ โดยไม่ต้องแก้ไขโค้ด เช่น:
+
+* เพิ่ม reservoir size และ rate สำหรับ **POST requests**
+* หรือกำหนดให้ส่ง **ทุก Request ไปยัง X-Ray** (เหมาะกับ Debugging แต่ไม่เหมาะกับ Production เพราะมีค่าใช้จ่ายสูง)
+
+ข้อดีคือ หากเปลี่ยน **Sampling Rules ผ่าน X-Ray Console** แอปพลิเคชันไม่ต้อง Restart หรือแก้โค้ดใหม่ เพราะ **Daemon จะอัปเดตเองอัตโนมัติ**
+
+## สรุป
+
+บทนี้ได้อธิบายถึงการ Instrument โค้ดด้วย **X-Ray SDK**, แนวคิดเรื่อง **Segment, Subsegment, Trace**, ความสำคัญของ **Annotations กับ Metadata**, การส่ง Trace ข้ามบัญชี และวิธีควบคุมปริมาณข้อมูลด้วย **Sampling Rules**
+
+## Key Takeaways
+
+* **Instrumentation** คือการวัด Performance, วินิจฉัย Error และเขียน Trace ด้วย X-Ray SDK
+* **Segments/Subsegments** ให้รายละเอียดเชิงลึก ส่วน **Trace** รวมข้อมูลเพื่อให้เห็น End-to-End
+* **Annotations** เป็น key-value ที่สามารถค้นหาได้ ส่วน **Metadata** ไม่สามารถค้นหาได้
+* **Sampling Rules** ช่วยควบคุมปริมาณข้อมูลและค่าใช้จ่าย โดยไม่ต้องแก้ไขโค้ด

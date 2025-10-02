@@ -1,94 +1,76 @@
-AWS Cloud Development Kit (CDK)
+# Cloud Development Kit (CDK)
 
-• Define your cloud infrastructure using a
-familiar language:
-• JavaScript/TypeScript, Python, Java, and .NET
-• Contains high level components called
-constructs
-• The code is “compiled” into a
-CloudFormation template (JSON/YAML)
-• You can therefore deploy infrastructure
-and application runtime code together
-• Great for Lambda functions
-• Great for Docker containers in ECS / EKS
+**AWS Cloud Development Kit (CDK)** ช่วยให้คุณสามารถ **กำหนดโครงสร้างพื้นฐานบนคลาวด์ (cloud infrastructure)** ด้วย **ภาษาโปรแกรมที่คุ้นเคย** เช่น JavaScript, TypeScript, Python, Java และ .NET
 
----
+หลายคนอาจสงสัยว่า CDK เกี่ยวข้องกับ **CloudFormation** อย่างไร
 
-CDK in a diagram
+* CloudFormation ให้คุณกำหนดโครงสร้างพื้นฐานด้วย **YAML หรือ JSON**
+* CDK **เหนือกว่า CloudFormation** เพราะช่วยให้กำหนดโครงสร้างพื้นฐานด้วย **ภาษาโปรแกรม** ได้
 
----
-|
-CDK vs SAM
-• SAM:
-• Serverless focused
-• Write your template declaratively in JSON or YAML
-• Great for quickly getting started with Lambda
-• Leverages CloudFormation
-• CDK:
-• All AWS services
-• Write infra in a programming language JavaScript/TypeScript, Python, Java, and
-.NET
-• Leverages CloudFormation
+## การกำหนด Infrastructure ด้วย CDK
 
----
+ตัวอย่างการใช้ **TypeScript** กำหนด constructs เช่น **VPC, ECS Cluster, และ Fargate Service พร้อม Load Balancer**
 
-CDK + SAM
+ตัวอย่าง:
 
-• You can use SAM CLI to locally test your CDK apps
-• You must first run cdk synth
+1. สร้าง **VPC** ใหม่ พร้อมชื่อและ 3 Availability Zones
+2. สร้าง **ECS Cluster** ชื่อ MyCluster เชื่อมกับ VPC
+3. สร้าง **Fargate Service** พร้อม Application Load Balancer
 
----
+   * กำหนด CPU, จำนวน Tasks, Task image options, memory limits
+   * ตั้งค่า ALB ให้เป็น public
 
-CDK Overview
-Introduction to AWS Cloud Development Kit (CDK)
-The AWS Cloud Development Kit, or CDK, allows you to define your cloud infrastructure in a familiar programming language such as JavaScript, TypeScript, Python, Java, and .NET.
+* ทั้งหมดนี้กำหนดผ่าน **ภาษาโปรแกรม**
+* หากโค้ดไม่ compile → จะเกิด error และไม่สามารถสร้าง CloudFormation template ได้
+* หากโค้ด compile สำเร็จ → จะถูก **แปลงเป็น CloudFormation template** ในรูปแบบ JSON หรือ YAML
 
-You might be wondering how CDK relates to CloudFormation, since CloudFormation lets you define cloud infrastructure using YAML. CDK supersedes CloudFormation by enabling infrastructure definition using programming languages.
+ดังนั้น CDK ใช้สำหรับ **สร้าง CloudFormation templates ใน backend**
 
-Defining Infrastructure with CDK
-For example, using TypeScript, you can define constructs such as a VPC, ECS cluster, and an application load-balanced Fargate service. These constructs are high-level components provided by CDK.
+* ให้ความยืดหยุ่นมากขึ้นเพราะใช้ภาษาโปรแกรม
+* สามารถ deploy **infrastructure + runtime code ของแอป** พร้อมกัน เช่น Lambda หรือ Docker containers บน ECS/EKS
 
-Create a new VPC with a name and three availability zones.
-Define an ECS cluster named MyCluster linked to the VPC.
-Define a Fargate service with an Application Load Balancer linked to the cluster, specifying CPU, number of tasks, task image options, memory limits, and public ALB configuration.
-All of this is defined using a programming language, which means if the code does not compile, it will produce an error and the CloudFormation template cannot be generated. If the code compiles successfully, it is compiled into a CloudFormation template in JSON or YAML format.
+## ข้อดีของ CDK เมื่อเทียบกับ CloudFormation
 
-Therefore, CDK is used to define CloudFormation templates in the backend, providing greater flexibility by using programming languages. This also allows deploying infrastructure and application runtime code together, which is beneficial for Lambda functions and Docker containers in ECS or EKS.
+* CloudFormation เป็น YAML → ไม่ type-safe → ข้อผิดพลาดอาจเจอแค่ตอน deploy
+* CDK ใช้ constructs + ภาษาโปรแกรม → **type safety** → ตรวจจับข้อผิดพลาดได้เร็วขึ้น
 
-Advantages of CDK over CloudFormation
-CloudFormation templates are YAML-based and not type-safe, so errors may only be discovered at deployment time. CDK allows defining infrastructure using constructs and programming languages, enabling type safety and earlier error detection.
+## สถาปัตยกรรมและ Workflow ของ CDK
 
-CDK Architecture and Workflow
-Application constructs include Lambda functions, DynamoDB, Amazon S3, ECS, Step Functions, and more.
-Supported programming languages include Python, TypeScript, Java, and .NET.
-You write your CDK code and then synthesize it using the CDK CLI into a CloudFormation template.
-This template is applied via CloudFormation to define your infrastructure.
-Thus, CDK acts as a layer above CloudFormation, simplifying infrastructure management.
+1. Constructs ของแอป เช่น Lambda, DynamoDB, S3, ECS, Step Functions
+2. รองรับภาษาโปรแกรม: Python, TypeScript, Java, .NET
+3. เขียนโค้ด CDK → **synthesize ด้วย CDK CLI** → ได้ CloudFormation template
+4. ใช้ CloudFormation deploy template → สร้าง infrastructure
 
-Comparing CDK and AWS SAM
-AWS SAM focuses on serverless applications, using declarative JSON or YAML templates, ideal for quickly starting with Lambda functions.
-SAM leverages CloudFormation in the backend.
-CDK is a superset of CloudFormation supporting all AWS services.
-CDK uses familiar programming languages for infrastructure definition.
-Both generate CloudFormation templates under the hood.
-Combining CDK and SAM
-You can combine CDK and SAM frameworks effectively. For example, you can use the SAM CLI to locally test CDK applications by:
+สรุป: **CDK เป็น layer บน CloudFormation** ทำให้ง่ายต่อการจัดการโครงสร้างพื้นฐาน
 
-Running cdk synth to generate a CloudFormation template from the CDK application.
-Using the SAM CLI to locally invoke Lambda functions by referencing the synthesized CloudFormation template.
-This integration allows leveraging the strengths of both tools.
+## การเปรียบเทียบ CDK กับ AWS SAM
 
-Upcoming Hands-On CDK Example
-In the next lecture, we will deploy an application using CDK that:
+| CDK                              | AWS SAM                            |
+| -------------------------------- | ---------------------------------- |
+| รองรับทุกบริการ AWS              | เน้น serverless (Lambda)           |
+| ใช้ภาษาโปรแกรมกำหนดโครงสร้าง     | ใช้ declarative JSON/YAML template |
+| แปลงเป็น CloudFormation template | CloudFormation อยู่เบื้องหลัง      |
 
-Creates an S3 bucket where users can upload images.
-Triggers a Lambda function upon image upload.
-The Lambda function calls Amazon Rekognition to analyze the image.
-Saves the analysis results to Amazon DynamoDB.
-All of this will be defined within a CDK script.
+## การผสม CDK และ SAM
 
-Key Takeaways
-The AWS Cloud Development Kit (CDK) enables defining cloud infrastructure using familiar programming languages like TypeScript, Python, Java, and .NET.
-CDK compiles code into CloudFormation templates, providing type safety and early error detection compared to raw YAML templates.
-CDK supports all AWS services and allows deploying infrastructure and application runtime code together.
-CDK and AWS SAM can be combined, with CDK synthesizing CloudFormation templates that SAM CLI can invoke locally for Lambda functions.
+* สามารถใช้ **SAM CLI** ทดสอบ CDK แอปพลิเคชันแบบ local
+
+1. รัน `cdk synth` → สร้าง CloudFormation template
+2. ใช้ SAM CLI เรียก Lambda local โดยอ้างอิง template ที่สร้าง
+
+* การรวมนี้ช่วยใช้ **จุดแข็งของทั้งสองเครื่องมือ**
+
+## ตัวอย่าง Hands-On CDK (ต่อไป)
+
+* สร้าง S3 bucket ให้ผู้ใช้ upload รูปภาพ
+* Trigger Lambda function เมื่อมีการ upload
+* Lambda ใช้ Amazon Rekognition วิเคราะห์รูป
+* บันทึกผลวิเคราะห์ลง DynamoDB
+* ทั้งหมดกำหนดผ่าน **CDK script**
+
+## Key Takeaways
+
+* **CDK** ช่วยกำหนดโครงสร้างพื้นฐานด้วยภาษาโปรแกรม เช่น TypeScript, Python, Java, .NET
+* CDK แปลงโค้ดเป็น CloudFormation template → **type safety** และตรวจข้อผิดพลาดเร็วกว่า YAML
+* รองรับทุก AWS service และสามารถ deploy **infrastructure + runtime code** พร้อมกัน
+* สามารถรวม **CDK + SAM** เพื่อทดสอบ Lambda local โดย CDK สร้าง template ให้ SAM CLI เรียกใช้งาน

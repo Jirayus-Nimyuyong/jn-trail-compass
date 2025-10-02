@@ -1,36 +1,61 @@
-ECS Rolling Updates
-• When updating from v1 to v2, we can
-control how many tasks can be started
-and stopped, and in which order
 
----
-Amazon ECS - Rolling Updates
-Introduction to ECS Service Updates
-Now let's talk about how to update an ECS service. For this, we use rolling updates. When you update an ECS service from version 1 to version 2, you can control how many tasks will be started and stopped at a time and in which order.
+# ECS Rolling Updates
 
-When you select a new task definition number and want to update an ECS service, you will have two settings: the minimum healthy percent and the maximum percent. By default, these are set to 100 and 200 respectively. Let's see what they mean.
+## แนะนำการอัปเดต Service ใน ECS
 
-For example, your ECS service is running nine tasks, which represents an actual running capacity of 100%. If you set a minimum healthy percent of less than 100, this means you are allowed to terminate some tasks as long as the remaining tasks maintain a percentage over the minimum healthy percent.
+ต่อไปเราจะพูดถึงวิธีการอัปเดต **ECS Service** โดยใช้ **Rolling Updates**
+เมื่อคุณอัปเดต ECS Service จาก **เวอร์ชัน 1 → เวอร์ชัน 2** คุณสามารถควบคุมได้ว่า **จะเริ่มต้น (start)** หรือ **หยุด (stop)** task กี่ตัวในแต่ละครั้ง และจัดการลำดับการอัปเดตอย่างไร
 
-The maximum percent indicates how many new tasks you can create of the new version to roll update your service.
+เมื่อคุณเลือก **task definition ใหม่** และต้องการอัปเดต ECS Service จะมี **2 การตั้งค่า** ที่สำคัญ:
 
-These two settings impact your updates by controlling the number of tasks created and terminated during the rolling update process. You will create new tasks, then terminate old tasks, and so on, to ensure all tasks are updated to the newer version.
+* **Minimum healthy percent** (ค่าเริ่มต้น 100)
+* **Maximum percent** (ค่าเริ่มต้น 200)
 
-Scenario 1: Minimum Healthy Percent at 50 and Maximum Percent at 100
-Suppose you start with four tasks. In this case, you can terminate two tasks so that you are running at 50% capacity. Then, two new tasks are created, bringing you back to 100% capacity. Next, two old tasks are terminated, returning to 50% capacity. Finally, two new tasks are created again, restoring 100% capacity. This completes the rolling update.
+มาดูกันว่ามันหมายถึงอะไร
 
-In this scenario, tasks are terminated during the update because the minimum healthy percent is set to 50 and the maximum to 100.
+## การทำงานของ Minimum Healthy Percent และ Maximum Percent
 
-Scenario 2: Minimum Healthy Percent at 100 and Maximum Percent at 150
-Starting with four tasks, you cannot terminate any tasks initially because the minimum healthy percent is 100. Therefore, you create two new tasks first, increasing capacity to 150%. Since you are above the minimum, you can then terminate two old tasks, bringing capacity back to 100%. Next, you create two new tasks again, and finally terminate two old tasks. This completes the rolling update.
+สมมติว่า ECS Service ของคุณมี **9 tasks** ทำงานอยู่ ซึ่งคิดเป็น 100% ของความสามารถที่รันจริง
 
-This approach allows for zero downtime by temporarily increasing capacity during the update.
+* หากตั้ง **minimum healthy percent < 100** หมายความว่าคุณสามารถยุติ (terminate) task บางส่วนได้ ตราบใดที่ task ที่เหลือยังทำงานอยู่เหนือเปอร์เซ็นต์ที่กำหนด
+* ส่วน **maximum percent** จะบอกว่า คุณสามารถสร้าง task เวอร์ชันใหม่ได้มากที่สุดกี่เปอร์เซ็นต์ของความสามารถระหว่างทำ rolling update
 
-Summary
-Understanding the minimum healthy percent and maximum percent settings is crucial for managing rolling updates in ECS services. These settings determine how many tasks can be stopped or started during the update process, affecting service availability and resource usage.
+**กระบวนการอัปเดต**:
+ECS จะสร้าง task ใหม่ → ยุติ task เก่า → ทำซ้ำ จนกว่า task ทั้งหมดจะอัปเดตไปยังเวอร์ชันใหม่
 
-Key Takeaways
-Rolling updates in Amazon ECS allow controlled updating of services from one version to another.
-The minimum healthy percent controls the lowest allowed running capacity during updates.
-The maximum percent controls the highest allowed running capacity during updates.
-Different settings of minimum and maximum percentages affect how tasks are terminated and created during rolling updates.
+## ตัวอย่างการทำงาน
+
+### **กรณีที่ 1: Minimum Healthy Percent = 50 และ Maximum Percent = 100**
+
+* เริ่มต้นมี 4 tasks
+* สามารถยุติ 2 tasks ได้ (เหลือ 50% ความสามารถ)
+* จากนั้นสร้าง task ใหม่ 2 ตัว → กลับมา 100% ความสามารถ
+* ต่อไปยุติ task เก่าอีก 2 ตัว → เหลือ 50%
+* แล้วสร้าง task ใหม่อีก 2 ตัว → กลับมา 100%
+* **อัปเดตเสร็จสิ้น**
+
+➡️ ในกรณีนี้ จะมี task ถูกหยุดชั่วคราวระหว่างการอัปเดต
+
+### **กรณีที่ 2: Minimum Healthy Percent = 100 และ Maximum Percent = 150**
+
+* เริ่มต้นมี 4 tasks
+* ไม่สามารถหยุด task ได้ทันที เพราะ minimum healthy percent = 100
+* ดังนั้นต้อง **สร้าง task ใหม่ 2 ตัวก่อน** → รวมเป็น 150% ความสามารถ
+* จากนั้นยุติ task เก่า 2 ตัว → กลับมา 100%
+* ต่อไปสร้าง task ใหม่อีก 2 ตัว → ขึ้นไป 150%
+* และสุดท้ายยุติ task เก่าอีก 2 ตัว → กลับมา 100%
+* **อัปเดตเสร็จสิ้น**
+
+➡️ วิธีนี้ช่วยให้เกิด **zero downtime** (ไม่มี downtime) แต่จะใช้ทรัพยากรมากขึ้นในช่วงสั้น ๆ
+
+## สรุป
+
+* การเข้าใจ **minimum healthy percent** และ **maximum percent** เป็นสิ่งสำคัญในการจัดการ rolling updates ใน ECS
+* ค่านี้เป็นตัวกำหนดว่า จะหยุดหรือเริ่ม task ได้กี่ตัวในระหว่างอัปเดต ซึ่งส่งผลต่อ **ความพร้อมใช้งาน (availability)** และ **การใช้ทรัพยากร (resource usage)**
+
+## Key Takeaways
+
+* **Rolling updates ใน ECS** ช่วยให้อัปเดต service จากเวอร์ชันหนึ่งไปอีกเวอร์ชันได้อย่างควบคุมได้
+* **Minimum healthy percent** = ความสามารถขั้นต่ำที่ต้องรักษาไว้ระหว่างอัปเดต
+* **Maximum percent** = ความสามารถสูงสุดที่อนุญาตให้เพิ่มขึ้นระหว่างอัปเดต
+* การตั้งค่าที่ต่างกันจะส่งผลให้มีการ **หยุด/สร้าง task** แตกต่างกัน และส่งผลต่อ **downtime และ resource usage**

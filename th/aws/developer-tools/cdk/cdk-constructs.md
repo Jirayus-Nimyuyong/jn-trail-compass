@@ -1,87 +1,73 @@
-CDK Constructs
+# CDK Constructs Overview
 
-• CDK Construct is a component that encapsulates everything CDK
-needs to create the final CloudFormation stack
-• Can represent a single AWS resource (e.g., S3 bucket) or multiple
-related resources (e.g., worker queue with compute)
-• AWS Construct Library
-• A collection of Constructs included in AWS CDK which contains Constructs for
-every AWS resource
-• Contains 3 different levels of Constructs available (L1, L2, L3)
-• Construct Hub – contains additional Constructs from AWS, 3rd parties,
-and open-source CDK community
+**Constructs** ใน CDK มีความสำคัญมาก
 
----
+* เป็น **ส่วนประกอบ** ที่รวมทุกสิ่งที่ CDK ต้องการเพื่อสร้าง **CloudFormation stack สุดท้าย**
+* Construct สามารถเป็น **resource ของ AWS เดียว** เช่น S3 bucket
+* หรือเป็น **การรวมหลาย resource ที่เกี่ยวข้องกัน** เช่น SQS worker queue พร้อม compute resources
 
-CDK Constructs – Layer 1 Constructs (L1)
-• Can be called CFN Resources which represents all resources directly
-available in CloudFormation
-• Constructs are periodically generated from CloudFormation Resource
-Specification
-• Construct names start with Cfn (e.g., CfnBucket)
-• You must explicitly configure all resource proper ties
+## การเข้าถึง Constructs
 
----
+เราจะได้ Constructs มาจากไหน?
 
-CDK Constructs – Layer 2 Constructs (L2)
-• Represents AWS resources but with a higher level (intent-based API)
-• Similar functionality as L1 but with convenient defaults and boilerplate
-• You don’t need to know all the details about the resource properties
-• Provide methods that make it simpler to work with the resource
-(e.g., bucket.addLifeCycleRule())
+1. **Construct Library**: เป็นชุด Constructs ที่รวมอยู่ใน CDK อยู่แล้ว
 
----
+   * มีสำหรับทุก resource ของ AWS
+   * แบ่งเป็น 3 ระดับ: **Level 1, Level 2, Level 3**
+2. **Construct Hub**: รวม Constructs จาก AWS, third-party, และ community
 
-CDK Constructs – Layer 3 Constructs (L3)
-• Can be called Patterns, which represents multiple related resources
-• Helps you complete common tasks in AWS
-• Examples:
-• aws-apigateway.LambdaRestApi represents an API Gateway backed by a Lambda
-function
-• aws-ecs-patterns.ApplicationLoadBalancerFargateService which represents a
+   * ช่วยให้สร้าง CDK stack ได้เร็วและง่ายขึ้น
 
----
+## Level 1 Constructs: CFN Resources
 
-CDK Constructs Overview
-Introduction to Constructs in CDK
-Constructs in CDK are very important. They are components that encapsulate everything CDK needs to create the final CloudFormation stack. A Construct can be a single AWS resource, such as an S3 bucket, or it can be a combination of multiple related resources. For example, an SQS worker queue with some compute resources.
+* เรียกว่า **CFN Resources** เพราะแทน resource ที่มีใน **CloudFormation ทั้งหมด**
+* ตัวอย่าง: สร้าง bucket → `new s3.CfnBucket`
+* ต้องกำหนด property ตาม **CloudFormation Resource Specifications**
+* เริ่มต้นด้วย **Cfn** เช่น `CfnBucket`, `CfnSQSQueue`
+* เหมาะสำหรับ **ย้ายจาก CloudFormation มายัง CDK แบบทีละ resource**
 
-Obtaining Constructs
-How do we get these Constructs? There is a Construct Library, which is a collection of Constructs included in the CDK. It contains Constructs for every AWS resource. There are three levels of Constructs: Level 1, Level 2, and Level 3. We will explore them in the next sections.
+## Level 2 Constructs: Higher-Level AWS Resources
 
-Additionally, there is the Construct Hub, which includes Constructs from AWS, third parties, and the open-source CDK community. This hub allows you to create your CDK stacks faster and better.
+* แทน resource ของ AWS ใน **ระดับ abstraction ที่สูงกว่า**
+* เน้น **intent** มากกว่า property ดิบ
+* ตัวอย่าง: `s3.Bucket`
+* ไม่เริ่มด้วย `Cfn`
+* มี **default values และ boilerplate code** ช่วยให้ไม่ต้องรู้ทุก property
+* ตัวอย่างการตั้งค่า:
 
-Level 1 Constructs: CFN Resources
-Level 1 Constructs are called CFN Resources because they represent all the resources available within CloudFormation. For example, to create a bucket, you use new s3.CfnBucket. You define the exact same properties as specified in the CloudFormation Resource Specifications.
+  ```typescript
+  versioned: true
+  encryption: s3.BucketEncryption.KMS
+  ```
 
-You recognize Level 1 Constructs because their names start with Cfn. A CFN bucket must have all the required resource properties, such as the bucket name. You can configure all properties individually.
+* มี **methods เพิ่มเติม** เช่น `bucket.addLifecycleRule()` ทำให้การเพิ่ม lifecycle rules ง่ายขึ้น
 
-If you want to migrate from CloudFormation to CDK one resource at a time, you can use CFN bucket, CFN SQS queue, and so on. This approach uses Layer 1 of CDK, which is quite basic.
+## Level 3 Constructs: Patterns
 
-Level 2 Constructs: Higher-Level AWS Resources
-Level 2 Constructs represent AWS resources at a higher level of abstraction. They focus on intent rather than raw resource properties. For example, s3.Bucket is a Level 2 Construct.
+* เรียกว่า **Patterns** เพราะเป็นการรวม **หลาย resource ที่เกี่ยวข้องกัน** เพื่อทำงานทั่วไป
+* ตัวอย่าง:
 
-Unlike Level 1, Level 2 Constructs do not start with Cfn. They provide convenient defaults and boilerplate code, so you do not need to know every resource property.
+  1. **Lambda REST API Pattern** → เพิ่ม resource และ HTTP integration ได้ง่าย
+  2. **ECS Pattern** → สร้าง **Application Load Balancer + Fargate Service** อัตโนมัติ
 
-For instance, you can specify versioned: true and encryption: s3.BucketEncryption.KMS. The Construct automatically knows how to configure these settings.
+     * ไม่ต้องกำหนดทุก resource ด้วย CloudFormation ดิบ
+     * CDK จะเชื่อม ALB + Fargate Service พร้อมพอร์ต, security group, listener ให้
 
-Level 2 Constructs also provide additional methods, such as bucket.addLifecycleRule(), which simplifies adding lifecycle rules that might be more complicated in raw CloudFormation.
+## สรุป
 
-Level 3 Constructs: Patterns
-Level 3 Constructs are called Patterns because they represent multiple related resources combined to perform common tasks.
+* เข้าใจ **ความแตกต่างของแต่ละระดับ Constructs** → เห็นความสามารถของ CDK
 
-For example, a Lambda REST API Pattern allows you to add resources and HTTP integrations easily. Instead of configuring every single resource behind the scenes, you have a simpler API where you define the API, resources, methods, and Lambda functions with ease.
+1. **Level 1**: เข้าถึง CloudFormation แบบตรง ๆ
+2. **Level 2**: Abstraction สูงขึ้น + default + methods
+3. **Level 3**: Patterns รวมหลาย resource → ใช้งาน common AWS tasks ง่ายขึ้น
 
-Another example is an ECS Pattern that creates an Application Load Balancer with a Fargate Service. Writing this as raw CloudFormation can be extremely complicated. With CDK, you just fill in the blanks, and the ALB and Fargate Service are automatically connected with the correct ports, security groups, and listeners.
+* วิธีนี้ช่วยสร้าง **infrastructure AWS** ได้เร็วขึ้นและซับซ้อนน้อยลง
 
-Summary
-Understanding the differences between the layers in CDK Constructs reveals the power of CDK. Level 1 provides direct CloudFormation resource access, Level 2 offers higher-level abstractions with convenient defaults and methods, and Level 3 combines multiple resources into Patterns for common AWS tasks.
+## Key Takeaways
 
-This layered approach helps you create AWS infrastructure faster and with less complexity.
+* Constructs ใน CDK **รวมทุกสิ่งที่ต้องใช้เพื่อสร้าง CloudFormation stack**
+* มี 3 ระดับ:
 
-Key Takeaways
-Constructs in CDK encapsulate everything needed to create the final CloudFormation stack.
-There are three levels of Constructs: Level 1 (CFN Resources), Level 2 (higher-level AWS resources), and Level 3 (Patterns combining multiple resources).
-Level 1 Constructs map directly to CloudFormation resources with exact properties.
-Level 2 Constructs provide convenient defaults, added methods, and simplify resource configuration.
-Level 3 Constructs (Patterns) represent multiple related resources to simplify common AWS tasks like creating APIs or ECS services.
+  1. **Level 1 (CFN Resources)** → ตรงกับ CloudFormation resources
+  2. **Level 2 (higher-level AWS resources)** → มี default + methods + ง่ายต่อการ config
+  3. **Level 3 (Patterns)** → รวมหลาย resource เพื่อทำงาน AWS ทั่วไป เช่น API, ECS services

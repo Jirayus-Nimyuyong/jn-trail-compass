@@ -1,146 +1,99 @@
-AWS X-Ray
+# X-Ray
 
-• Debugging in Production, the good old way:
-• Test locally
-• Add log statements everywhere
-• Re-deploy in production
-• Log formats differ across applications using CloudWatch and analytics is
-hard.
-• Debugging: monolith “easy”, distributed services “hard”
-• No common views of your entire architecture!
-• Enter… AWS X-Ray!
+**AWS X-Ray** เป็นหนึ่งในบริการที่ทรงพลังมากของ AWS แต่กลับถูกใช้งานน้อยกว่าที่ควร แม้กระทั่งการสอบ Certification ของ AWS ก็ยังให้ความสำคัญกับความรู้เกี่ยวกับ X-Ray เนื่องจากบริการนี้ถูกออกแบบมาเพื่อช่วยในการ Debug และ Monitoring แอปพลิเคชันได้อย่างมีประสิทธิภาพ
 
----
+## ความท้าทายของการ Debug ใน Production
 
-AWS X-Ray
-Visual analysis of our applications
+โดยปกติ การ Debug แอปพลิเคชันใน Production มักทำดังนี้:
 
----
+* ทดสอบใน Local
+* ใส่ log statements จำนวนมาก
+* Redeploy
+* วิเคราะห์ logs
 
-AWS X-Ray advantages
-• Troubleshooting performance (bottlenecks)
-• Understand dependencies in a microservice architecture
-• Pinpoint service issues
-• Review request behavior
-• Find errors and exceptions
-• Are we meeting time SLA?
-• Where I am throttled?
-• Identify users that are impacted
+ซึ่งกระบวนการนี้ยุ่งยากและไม่ใช่วิธีที่ดี โดยเฉพาะเมื่อมีหลายแอปพลิเคชันที่เขียน Log ลง **CloudWatch** ด้วย Format ที่ต่างกัน ทำให้ยากต่อการรวบรวมและวิเคราะห์ข้อมูล
 
----
+ในระบบ **Distributed Systems** ที่มี **Microservices** หลายตัวสื่อสารกัน ปัญหาจะซับซ้อนยิ่งขึ้น เพราะการจะได้มุมมองรวมของทั้ง Architecture หรือ Service Map นั้นยากมาก
 
-X-Ray compatibility
-• AWS Lambda
-• Elastic Beanstalk
-• ECS
-• ELB
-• API Gateway
-• EC2 Instances or any application server (even on premise)
+## ภาพรวมของ AWS X-Ray
 
----
+AWS X-Ray ช่วยให้คุณ **เห็นภาพรวมเชิง Visual** ของแอปพลิเคชัน เช่น:
 
-AWS X-Ray Leverages Tracing
-• Tracing is an end to end way to following a “request”
-• Each component dealing with the request adds its own “trace”
-• Tracing is made of segments (+ sub segments)
-• Annotations can be added to traces to provide extra-information
-• Ability to trace:
-• Every request
-• Sample request (as a % for example or a rate per minute)
-• X-Ray Security:
-• IAM for authorization
-• KMS for encryption at rest
+* เมื่อมี Client ส่ง Request เข้ามา X-Ray จะแสดงจำนวน Request ที่สำเร็จ/ล้มเหลว
+* สามารถ Trace การทำงานภายใน เช่นการเรียกไปยัง **IP, SNS, DynamoDB** ฯลฯ
+* ช่วย **ระบุสาเหตุของ Error** ได้อย่างชัดเจน เช่นปัญหาเกิดจาก DynamoDB ไม่ใช่ SNS หรือส่วนอื่น ๆ
 
----
-AWS X-Ray
-How to enable it?
+## ข้อดีของ AWS X-Ray
 
-I) Your code (Java, Python, Go, Node.js, .NET) must import the
-AWS X-Ray SDK
-• Very little code modification needed
-• The application SDK will then capture:
-Calls to AWS services
-HTTP / HTTPS requests
-Database Calls (MySQL, PostgreSQL, DynamoDB)
-Queue calls (SQS)
-2) Install the X-Ray daemon or enable X-Ray AWS Integration
-• X-Ray daemon works as a low level UDP packet interceptor
-(Linux / Windows / Mac…)
-• AWS Lambda / other AWS services already run the X-Ray
-daemon for you
-• Each application must have the IAM rights to write data to X-Ray
+* แก้ปัญหาด้าน Performance และระบุ Bottleneck
+* เข้าใจ **Dependencies** ภายใน Microservice Architecture
+* ชี้เป้าว่าบริการไหนเป็นต้นตอของปัญหา
+* วิเคราะห์ Request Behavior เพื่อหาข้อผิดพลาดและ Exceptions
+* ตรวจสอบว่า **SLA** ของ Latency/Processing Time ตรงตามที่กำหนดหรือไม่
+* ระบุว่า Service ไหนช้า หรือถูก Throttle
+* ดูได้ว่าผู้ใช้กลุ่มใดได้รับผลกระทบจาก Error
 
----
-The X-Ray magic
+## ความเข้ากันได้ (Compatibility)
 
-• X-Ray service collects data from all the different services
-• Service map is computed from all the segments and traces
-• X-Ray is graphical, so even non technical people can help troubleshoot
+X-Ray ใช้งานได้กับหลายบริการของ AWS เช่น:
 
-AWS X-Ray Troubleshooting
+* **Lambda**
+* **Elastic Beanstalk**
+* **ECS**
+* **ELBs**
+* **API Gateway**
+* **EC2 instances**
+* แม้กระทั่ง **On-premise application servers**
 
-• If X-Ray is not working on EC2
-• Ensure the EC2 IAM Role has the proper permissions
-• Ensure the EC2 instance is running the X-Ray Daemon
-• To enable on AWS Lambda:
-• Ensure it has an IAM execution role with proper policy
-(AWSX-RayWriteOnlyAccess)
-• Ensure that X-Ray is imported in the code
-• Enable Lambda X-Ray Active Tracing
+## วิธีการทำงานของ AWS X-Ray
 
+* X-Ray ใช้ **Tracing** เพื่อติดตาม Request แบบ End-to-End
+* ทุก Component ที่เกี่ยวข้อง (Database, Gateway, Load Balancer, Application Server ฯลฯ) จะสร้าง **Trace Segment** ของตัวเอง
+* Segment สามารถมี **Subsegments** และ **Annotations** ที่บอก Context เพิ่มเติมได้
+* สามารถตั้งค่าให้ **Sample Requests** ได้ เช่น เก็บเพียงบางส่วนหรือจำนวนที่กำหนดต่อนาที
 
----
+ด้าน Security:
 
-X-Ray Overview
-Introduction to AWS X-Ray
-AWS X-Ray is one of the most revolutionary services that AWS offers, yet it remains underutilized. The AWS certification exam emphasizes knowledge of X-Ray, reflecting its importance. The service is designed to encourage users to adopt it for better application debugging and monitoring.
+* ใช้ **IAM Authorization**
+* รองรับการ **Encryption at rest** ด้วย **KMS**
 
-Challenges of Debugging in Production
-Traditionally, debugging production applications involves testing locally, adding numerous log statements, redeploying, and then analyzing logs to identify issues. This approach is painful and not considered best practice. When multiple applications log to CloudWatch, each with different formats, centralizing insights becomes difficult. Navigating and analyzing CloudWatch logs is challenging, especially in distributed systems with many microservices communicating with each other. This complexity makes it hard to obtain a unified view of the entire architecture or service map.
+## การเปิดใช้งาน AWS X-Ray
 
-AWS X-Ray Overview
-AWS X-Ray provides a visual analysis of your application. For example, when a client makes a request, X-Ray shows how many requests succeed or fail. It traces the application's internal calls, such as calls to IPs, SNS, or DynamoDB tables, allowing you to visually track what happens during a request. This visual trace helps identify the source of errors, such as pinpointing an issue in a DynamoDB table rather than SNS or other components.
+1. **แก้ไขโค้ด (Code Modification)**
 
-Advantages of AWS X-Ray
-Troubleshoot application performance and identify bottlenecks.
-Understand dependencies within microservice architectures by visualizing interactions.
-Pinpoint problematic services causing issues.
-Analyze request behavior to find errors and exceptions.
-Assess if time SLAs for latency or request processing are met.
-Identify services that slow down or throttle the system.
-Determine which users are impacted by errors.
-Compatibility
-X-Ray is compatible with various AWS services including Lambda, Elastic Beanstalk, ECS, ELBs, API Gateway, EC2 instances, and even on-premise application servers. AWS designed X-Ray to be broadly applicable across many application types.
+   * เพิ่ม **AWS X-Ray SDK** ในโค้ด (Java, Python, Go, Node.js, .NET)
+   * SDK จะดักจับการเรียก AWS Services, HTTP/HTTPS, Database (MySQL, PostgreSQL, DynamoDB) และ Queue
 
-How AWS X-Ray Works
-X-Ray leverages tracing to follow requests end-to-end. Each component handling a request—such as databases, gateways, load balancers, and application servers—adds its own trace segment. These segments may contain subsegments and annotations that provide additional context. Together, these traces allow detailed tracking of requests. Users can sample requests, for example, capturing only a percentage or a fixed number of requests per minute.
+2. **การรัน X-Ray Daemon**
 
-In terms of security, X-Ray uses IAM authorization and supports encryption at rest with KMS.
+   * สำหรับ **On-premise หรือ EC2** → ต้องติดตั้งและรัน **X-Ray Daemon** เอง (มีให้ใช้บน Linux, Windows, Mac)
+   * สำหรับ **AWS Lambda และบริการที่รองรับ** → Daemon จะทำงานอัตโนมัติ
+   * แอปพลิเคชันต้องมี **IAM Permission** เพื่อเขียนข้อมูลไปยัง X-Ray
 
-Enabling AWS X-Ray
-There are two main steps to enable X-Ray:
+## ปัญหาที่พบบ่อย
 
-Code Modification: Your application code, written in Java, Python, Go, Node.js, or .NET, must import the AWS X-Ray SDK. This requires minimal code changes. The SDK captures calls to AWS services, HTTP/HTTPS requests, and database calls (MySQL, PostgreSQL, DynamoDB), as well as queue calls.
+* X-Ray ทำงานได้ใน Local แต่ไม่ทำงานบน EC2
+* สาเหตุ: บน EC2 ไม่มีการรัน **X-Ray Daemon**
+* วิธีแก้:
 
-Running the X-Ray Daemon:
+  * แอปต้อง Import SDK และส่ง Trace ไปยัง Daemon
+  * Daemon จะ Batch Trace Data ทุกวินาที แล้วส่งไปยัง AWS X-Ray
+  * X-Ray จะสร้าง **Service Map** แบบกราฟิก
 
-For on-premise servers or EC2 instances, you must install and run the X-Ray daemon. This daemon acts as a low-level UDP packet interceptor and is available for Linux, Windows, and Mac.
-For AWS Lambda and other services with built-in X-Ray integration, the daemon runs automatically.
-Additionally, the application must have IAM permissions to write data to X-Ray.
+จุดเด่นคือ แม้ผู้ใช้ที่ไม่ใช่สายเทคนิคก็สามารถใช้ Service Map เพื่อช่วย Troubleshooting ได้
 
-Common Issues
-A frequent issue is that X-Ray works locally but not on EC2. This usually occurs because the X-Ray daemon is running locally but not on the EC2 instance. Without the daemon running on EC2, X-Ray cannot receive trace data.
+## การแก้ปัญหา X-Ray บน EC2 และ Lambda
 
-To clarify, on an EC2 instance, your application code must import the X-Ray SDK and send traces to the X-Ray daemon running on the same machine. The daemon batches trace data every second and sends it to AWS X-Ray, which then generates the service map graphically. This graphical representation allows even non-technical users to assist in troubleshooting.
+* **EC2**: ตรวจสอบให้แน่ใจว่า IAM Role ถูกต้อง และ Daemon กำลังทำงานอยู่
+* **Lambda**: Function ต้องมี IAM Execution Role ที่ถูกต้อง, Import SDK, และเปิดใช้งาน **Active Tracing** ในการตั้งค่า Lambda
 
-Troubleshooting X-Ray on EC2 and Lambda
-EC2: Ensure the IAM role has the correct permissions and that the X-Ray daemon is running on the instance.
-Lambda: The Lambda function must have an IAM execution role with the appropriate policy. The X-Ray SDK must be imported, and active tracing must be enabled in the Lambda configuration. This will be covered in more detail in the Lambda section.
-Conclusion
-This overview provides a brief introduction to AWS X-Ray and its capabilities. The next lecture will include hands-on demonstrations running applications with X-Ray to deepen understanding of its operation.
+## สรุป
 
-Key Takeaways
-AWS X-Ray provides a powerful visual analysis tool for debugging and tracing distributed applications.
-It helps identify performance bottlenecks, errors, and service dependencies in microservice architectures.
-Enabling X-Ray requires minimal code modification and running the X-Ray daemon on EC2 or leveraging built-in integrations on AWS Lambda.
-Proper IAM permissions and daemon setup are essential for X-Ray to function correctly in production environments.
+AWS X-Ray เป็นบริการที่ช่วย Debug และ Trace ระบบแบบ Distributed ได้อย่างทรงพลัง ทำให้คุณเห็นภาพรวมของ Performance, Error และ Dependency ของ Microservices
+
+## Key Takeaways
+
+* **AWS X-Ray** คือเครื่องมือ Visual Analysis สำหรับ Debug และ Trace แอปพลิเคชันแบบ Distributed
+* ช่วยหาคอขวด (Bottleneck), ข้อผิดพลาด และ Dependency
+* เปิดใช้งานได้ง่าย แค่เพิ่ม SDK และ Daemon (หรือใช้ Integration ของ Lambda)
+* ต้องมี **IAM Permission** และตั้งค่า Daemon ให้ถูกต้อง จึงจะทำงานได้ใน Production

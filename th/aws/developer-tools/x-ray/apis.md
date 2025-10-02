@@ -1,81 +1,72 @@
-X-Ray Write APIs (used by the X-Ray daemon)
+# X-Ray APIs
 
-• PutTraceSegments: Uploads segment
-documents to AWS X-Ray
-• PutTelemetryRecords: Used by the AWS
-X-Ray daemon to upload telemetry.
-• SegmentsReceivedCount,
-SegmentsRejectedCounts,
-BackendConnectionErrors…
-• GetSamplingRules: Retrieve all sampling
-rules (to know what/when to send)
-• GetSamplingTargets &
-GetSamplingStatisticSummaries: advanced
-• The X-Ray daemon needs to have an IAM
-policy authorizing the correct API calls to
-function correctly
+เรามาพูดถึง **X-Ray APIs** กัน ซึ่งสำคัญมากที่จะต้องเข้าใจภาพรวมว่ามี API อะไรบ้าง และแต่ละตัวทำหน้าที่อะไร เพราะในข้อสอบอาจถามให้ระบุว่า API ไหนที่เหมาะสมกับการทำงานในสถานการณ์หนึ่ง ๆ
 
----
-X-Ray Read APIs – continued
+## X-Ray Write API
 
-• GetServiceGraph: main graph
-• BatchGetTraces: Retrieves a list of
-traces specified by ID. Each trace is a
-collection of segment documents that
-originates from a single request.
-• GetTraceSummaries: Retrieves IDs
-and annotations for traces available for
-a specified time frame using an
-optional filter. To get the full traces,
-pass the trace IDs to BatchGetTraces.
-• GetTraceGraph: Retrieves a service
-graph for one or more specific trace
-IDs.
+**Write API** ใช้โดย **X-Ray daemon** สำหรับการเขียนข้อมูลเข้าไปยัง X-Ray service
+API นี้ถูกควบคุมโดย **Managed Policy** ที่ชื่อว่า **X-Ray Write Only Access** ซึ่งรวม permission สำคัญไว้ 5 อย่าง
 
----
+### 1. PutTraceSegments
 
-X-Ray APIs
-Introduction to X-Ray APIs
-Let's discuss the X-Ray APIs. It is important to understand them at a high level and know what they do because the exam may ask you to identify the correct API for specific X-Ray operations.
+ใช้สำหรับ **อัปโหลด segment documents** เข้า AWS X-Ray
+นี่คือ permission หลักที่จำเป็นสำหรับการเขียนข้อมูลเข้า X-Ray
 
-X-Ray Write API
-The Write API is used by the X-Ray daemon to write data into the X-Ray service. This API is governed by a managed policy called X-Ray Write Only Access, which includes five key permissions.
+### 2. PutTelemetryRecords
 
-PutTraceSegments
-The first permission is PutTraceSegments. As the name indicates, it uploads segment documents into AWS X-Ray. This permission is essential for writing data into X-Ray.
+อนุญาตให้ X-Ray daemon **อัปโหลดข้อมูล Telemetry** เช่น จำนวน segment ที่รับมา, จำนวนที่ถูกปฏิเสธ และ error ของการเชื่อมต่อ backend
+สิ่งนี้ช่วยในการมอนิเตอร์ metrics เกี่ยวกับ data ingestion
 
-PutTelemetryRecords
-Next is PutTelemetryRecords. This allows the X-Ray daemon to upload information about how many segments were received, rejected, and any backend connection errors. This helps in monitoring metrics related to data ingestion.
+### 3. GetSamplingRules
 
-GetSamplingRules
-The Write API also includes some Get operations. One of them is GetSamplingRules. This permission is necessary because when sampling rules are changed in the X-Ray console, all X-Ray daemons are automatically updated to know when to send data. The daemon uses this API to retrieve the current sampling rules.
+แม้ว่า Write API จะเน้นการเขียน แต่ก็มี **Get operation** ด้วย
+เมื่อมีการเปลี่ยน **sampling rules** ใน X-Ray console ตัว daemon ต้องรู้ว่าควรส่งข้อมูลเมื่อใด
+API นี้ใช้สำหรับ **ดึง sampling rules ปัจจุบัน** เพื่อให้ daemon อัปเดตตัวเองอัตโนมัติ
 
-Additional Sampling APIs
-Other related permissions include GetSamplingTargets and GetSamplingStatisticsSummaries. These are advanced APIs also related to sampling rules and help the daemon manage sampling behavior effectively.
+### 4. GetSamplingTargets และ 5. GetSamplingStatisticsSummaries
 
-Summary of Write API Permissions
-To summarize, the X-Ray daemon requires permissions to write data, which include PutTraceSegments and PutTelemetryRecords. Additionally, it needs permissions to retrieve sampling rules via GetSamplingRules and related APIs. These permissions must be authorized through the correct IAM policy assigned to the daemon.
+นี่คือ **API ขั้นสูง** ที่เกี่ยวข้องกับ sampling rules
+ช่วยให้ daemon **จัดการพฤติกรรมการสุ่มตัวอย่าง (sampling behavior)** ได้อย่างมีประสิทธิภาพ
 
-X-Ray Read API
-The Read API is more complex and is used to retrieve data from X-Ray. It is governed by a managed policy that includes multiple Get permissions.
+✅ **สรุป Write API**
+X-Ray daemon ต้องการ permission สำหรับ:
 
-GetServiceGraph
-GetServiceGraph retrieves the main service graph displayed in the X-Ray console, showing the relationships and interactions between services.
+* การเขียนข้อมูล → `PutTraceSegments`, `PutTelemetryRecords`
+* การดึง sampling rules → `GetSamplingRules` และ API ที่เกี่ยวข้อง
+  ซึ่งทั้งหมดนี้ต้องได้รับอนุญาตผ่าน **IAM Policy** ที่กำหนดให้ daemon
 
-BatchGetTraces
-BatchGetTraces retrieves a list of traces specified by their IDs. Each trace is a collection of segment documents originating from a single request.
+## X-Ray Read API
 
-GetTraceSummary
-GetTraceSummary provides the IDs and annotations for traces available within a specified time range. This helps in identifying traces of interest before retrieving full details.
+**Read API** ซับซ้อนกว่า และใช้สำหรับ **ดึงข้อมูลจาก X-Ray**
+ถูกควบคุมโดย **Managed Policy** ที่มี Get permissions หลายตัว
 
-GetTraceGraph
-GetTraceGraph retrieves a specific service graph for one or more trace IDs, allowing detailed analysis of the trace's service interactions.
+### 1. GetServiceGraph
 
-Conclusion
-These Read APIs are essential when using the X-Ray console to analyze trace data. Understanding when and why to use each API is important for the exam and practical use. Ensure that the correct IAM policies authorize these API calls for your use case.
+ดึง **Service Graph หลัก** ที่แสดงใน X-Ray console
+ใช้ดู **ความสัมพันธ์และการเชื่อมต่อระหว่าง services**
 
-Key Takeaways
-The X-Ray Write API is used by the X-Ray daemon to upload segment documents and telemetry records into AWS X-Ray.
-The Write API includes permissions such as PutTraceSegments, PutTelemetryRecords, and GetSamplingRules to manage data writing and sampling rules.
-The Read API consists of multiple Get operations to retrieve service graphs, trace summaries, and trace details for analysis.
-Proper IAM policies must be assigned to the X-Ray daemon to authorize these API calls for both writing and reading data.
+### 2. BatchGetTraces
+
+ดึง **list ของ traces** ที่ระบุด้วย Trace IDs
+แต่ละ trace คือ collection ของ segment documents ที่มาจาก request เดียวกัน
+
+### 3. GetTraceSummary
+
+ดึง **Trace IDs และ Annotations** ภายในช่วงเวลาที่กำหนด
+ช่วยให้สามารถ **ระบุ trace ที่น่าสนใจ** ก่อนจะดึงรายละเอียดแบบเต็ม
+
+### 4. GetTraceGraph
+
+ดึง **Service Graph ของ Trace ID(s) เฉพาะเจาะจง**
+ช่วยให้วิเคราะห์เชิงลึกเกี่ยวกับการโต้ตอบระหว่าง service ภายใน trace นั้น
+
+✅ **สรุป Read API**
+Read APIs คือสิ่งสำคัญที่ใช้ใน X-Ray console เพื่อ **วิเคราะห์ trace data**
+ต้องมั่นใจว่ามีการกำหนด IAM policies ที่ถูกต้องเพื่ออนุญาต API เหล่านี้
+
+## สรุป
+
+* **Write API** ใช้โดย X-Ray daemon เพื่ออัปโหลด **segment documents** และ **telemetry records**
+* Write API มี permission หลัก เช่น `PutTraceSegments`, `PutTelemetryRecords`, `GetSamplingRules`
+* **Read API** มีหลาย Get operations สำหรับดึง **Service Graphs, Trace Summaries, และ Trace Details**
+* ทั้ง Write และ Read APIs ต้องมี IAM policies ที่ถูกต้องกำหนดไว้เพื่อใช้งาน

@@ -1,109 +1,84 @@
-CloudTrailAWS CloudTrail
+# CloudTrail
 
-• Provides governance, compliance and audit for your AWS Account
-• CloudTrail is enabled by default!
-• Get an history of events / API calls made within your AWS Account by:
-• Console
-• SDK
-• CLI
-• AWS Services
-• Can put logs from CloudTrail into CloudWatch Logs or S3
-• A trail can be applied to All Regions (default) or a single Region.
-• If a resource is deleted in AWS, investigate CloudTrail first!
+## ภาพรวมของ CloudTrail
 
----
-|
-CloudTrail Events
-• Management Events:
-• Operations that are performed on resources in your AWS account
-• Examples:
-• Configuring security (IAM AttachRolePolicy)
-• Configuring rules for routing data (Amazon EC2 CreateSubnet)
-• Setting up logging (AWS CloudTrail CreateTrail)
-• By default, trails are configured to log management events.
-• Can separate Read Events (that don’t modify resources) from Write Events (that may modify resources)
-• Data Events:
-• By default, data events are not logged (because high volume operations)
-• Amazon S3 object-level activity (ex: GetObject, DeleteObject, PutObject): can separate Read and Write Events
-• AWS Lambda function execution activity (the Invoke API)
-• CloudTrail Insights Events:
+CloudTrail เป็นบริการที่ให้การกำกับดูแล (governance), การปฏิบัติตามข้อกำหนด (compliance), และการตรวจสอบ (auditing) สำหรับบัญชี AWS ของคุณ โดยเปิดใช้งานเป็นค่าเริ่มต้น ทำให้คุณสามารถเข้าถึงประวัติของ **เหตุการณ์ (events) และ API calls** ทั้งหมดที่เกิดขึ้นในบัญชี AWS ได้
 
----
+การเรียกใช้งาน (calls) เหล่านี้สามารถมาจาก **AWS Management Console, SDKs, CLI หรือบริการ AWS อื่น ๆ** และทั้งหมดจะถูกบันทึกไว้ใน CloudTrail
 
-CloudTrail Insights
+คุณสามารถกำหนดค่าให้ CloudTrail ส่ง log เหล่านี้ไปที่ **CloudWatch Logs** หรือ **Amazon S3** ได้ อีกทั้งยังสามารถสร้าง trail ที่ใช้ได้กับทุก Region หรือเฉพาะ Region เดียว เพื่อรวบรวมประวัติของ events จากทุก Region ไว้ใน S3 bucket เดียว
 
-• Enable CloudTrail Insights to detect unusual activity in your account:
-• inaccurate resource provisioning
-• hitting service limits
-• Bursts of AWS IAM actions
-• Gaps in periodic maintenance activity
-• CloudTrail Insights analyzes normal management events to create a baseline
-• And then continuously analyzes write events to detect unusual patterns
-• Anomalies appear in the CloudTrail console
-• Event is sent to Amazon S3
-• An EventBridge event is generated (for automation needs)
+📌 ตัวอย่าง: หากมีคนลบ EC2 instance และคุณอยากทราบว่าใครเป็นคนทำ CloudTrail จะบันทึก API call ที่เกี่ยวข้อง ทำให้คุณสามารถตรวจสอบว่าใครทำอะไร และเมื่อไร
 
----
+## CloudTrail ในฐานะเครื่องมือตรวจสอบกลาง (Central Audit Tool)
 
-CloudTrail Events Retention
+CloudTrail จะทำหน้าที่อยู่ตรงกลางระหว่างการกระทำต่าง ๆ ไม่ว่าจะผ่าน SDK, CLI, Console, IAM User, IAM Role หรือบริการอื่น ๆ โดย CloudTrail จะบันทึกการกระทำเหล่านั้นทั้งหมดลงใน **CloudTrail Console** เพื่อให้คุณตรวจสอบได้ว่าเกิดอะไรขึ้น
 
-• Events are stored for 90 days in CloudTrail
-• To keep events beyond this period, log them to S3 and use Athena
+หากต้องการเก็บรักษา event เกินกว่า 90 วัน คุณสามารถส่งไปที่ **CloudWatch Logs** หรือ **Amazon S3** เพื่อเก็บระยะยาวได้
 
----
+## ประเภทของ Events ใน CloudTrail
 
-CloudTrail
-Now let's talk about CloudTrail.
+CloudTrail แบ่งประเภทของ Events ออกเป็น 3 ประเภทหลัก ๆ ได้แก่:
 
-Overview of CloudTrail
-CloudTrail is a service that provides governance, compliance, and auditing for your AWS accounts. It is enabled by default, allowing you to obtain a history of all events and API calls made within your AWS accounts. These calls can originate from the AWS Management Console, SDKs, CLI, or other AWS services, and all such logs appear in CloudTrail.
+### 1. **Management Events**
 
-You can configure CloudTrail to send these logs to CloudWatch Logs or Amazon S3. Additionally, you can create a trail that applies to all AWS regions or a single region, enabling you to accumulate event history across all regions into a specific S3 bucket.
+เป็นการปฏิบัติการที่ทำกับทรัพยากร (resources) ในบัญชี AWS ของคุณ เช่น:
 
-For example, if someone deletes an EC2 instance and you want to find out who performed this action, CloudTrail records the API call associated with that event. This allows you to investigate and understand who did what and when.
+* การตั้งค่าความปลอดภัยด้วยการเรียก IAM AttachRolePolicy API
+* การสร้าง subnet
+* การตั้งค่า logging
 
-CloudTrail as a Central Audit Tool
-CloudTrail sits in the middle of actions performed via the SDK, CLI, console, IAM users, IAM roles, or other services. All these actions are recorded in the CloudTrail console, where you can inspect and audit what happened. If you want to retain events for more than 90 days, you can send them to CloudWatch Logs or an S3 bucket.
+ค่าเริ่มต้น (default) ของ trail จะถูกตั้งให้บันทึก **Management Events**
 
-Let's dive deeper into CloudTrail and the types of events it records.
+Management Events แบ่งออกเป็น:
 
-Types of CloudTrail Events
-There are three kinds of events you can see in CloudTrail:
+* **Read Events** → ไม่เปลี่ยนแปลง resource เช่น list IAM users, list EC2 instances
+* **Write Events** → เปลี่ยนแปลง resource เช่น ลบ DynamoDB table (สำคัญมากกว่าเพราะอาจสร้างความเสียหายได้)
 
-Management Events
-These represent operations performed on resources in your AWS accounts. For example, configuring security by calling the IAM AttachRolePolicy API, creating a subnet, or setting up logging will all appear in CloudTrail. By default, trails are configured to log Management Events.
+### 2. **Data Events**
 
-Management Events can be separated into:
+เป็นเหตุการณ์ที่เกี่ยวข้องกับการทำงานระดับ **object-level** และ **ไม่ถูกบันทึกโดยค่าเริ่มต้น** เพราะมีปริมาณข้อมูลสูง ตัวอย่างเช่น:
 
-Read Events: These do not modify resources, such as listing all IAM users or EC2 instances.
-Write Events: These modify resources, such as deleting a DynamoDB table. Write Events are generally more critical because they can cause damage to your AWS infrastructure, whereas Read Events are informational but still important.
-Data Events
-Data Events are separate and are not logged by default because they involve high-volume operations. Examples include Amazon S3 object-level activities such as GetObject, DeleteObject, and PutObject. These events can occur frequently on an S3 bucket.
+* Amazon S3 → `GetObject`, `PutObject`, `DeleteObject`
+* AWS Lambda → การเรียกใช้งานฟังก์ชันด้วย `Invoke` API
 
-Similar to Management Events, Data Events can be separated into Read and Write Events:
+Data Events ก็แบ่งเป็น **Read** และ **Write** เช่นเดียวกับ Management Events
 
-Read Event: GetObject
-Write Events: DeleteObject, PutObject
-AWS Lambda Execution Events
-CloudTrail also records AWS Lambda function execution activities. Whenever someone invokes a Lambda function using the Invoke API, CloudTrail logs this event. Since Lambda functions can be executed frequently, these events can also be high volume.
+* **Read Event** → `GetObject`
+* **Write Event** → `PutObject`, `DeleteObject`
 
-CloudTrail Insights Events
-CloudTrail Insights is a feature that analyzes Management Events to detect unusual activity in your AWS accounts. It must be enabled and incurs additional cost. Insights can detect anomalies such as inaccurate resource provisioning, hitting service limits, bursts of IAM actions, or gaps in periodic maintenance activity.
+### 3. **CloudTrail Insights Events**
 
-How CloudTrail Insights Works
-CloudTrail analyzes what normal management activities look like to create a baseline. It then continuously analyzes incoming Management Events to detect unusual patterns or changes. When an anomaly is detected, CloudTrail generates an Insights Event.
+CloudTrail Insights เป็นฟีเจอร์ที่ช่วยวิเคราะห์ **Management Events** เพื่อหาความผิดปกติ (unusual activity) โดยต้องเปิดใช้งานและมีค่าใช้จ่ายเพิ่ม
 
-These Insights Events appear in the CloudTrail console and can also be sent to Amazon EventBridge. This allows you to automate responses, such as sending an email notification when an anomaly is detected.
+สามารถตรวจจับสิ่งผิดปกติ เช่น:
 
-CloudTrail Event Retention
-By default, CloudTrail stores events for 90 days, after which they are deleted. If you want to retain events for longer periods, for example, for auditing purposes a year later, you must log them to an S3 bucket.
+* การสร้างทรัพยากรผิดพลาด
+* ใช้ทรัพยากรเกิน limit
+* การทำ IAM actions จำนวนมากผิดปกติ
+* ช่วงเวลาที่ไม่มีการบำรุงรักษาตามรอบปกติ
 
-Once stored in S3, you can use Amazon Athena, a serverless query service, to analyze the events. This allows you to query your Management Events, Data Events, and Insights Events for long-term retention and analysis.
+**การทำงานของ Insights:**
 
-I hope you found this lecture helpful. See you in the next lecture.
+* CloudTrail จะเรียนรู้กิจกรรมปกติของระบบเป็น baseline
+* วิเคราะห์ events ใหม่ ๆ อย่างต่อเนื่อง
+* หากตรวจพบความผิดปกติ → สร้าง Insights Event
 
-Key Takeaways
-CloudTrail provides governance, compliance, and auditing for AWS accounts by logging API calls and events.
-There are three types of CloudTrail events: Management Events, Data Events, and CloudTrail Insights Events.
-CloudTrail Insights detects unusual activity by analyzing management events and generating anomaly events.
-Events are retained in CloudTrail for 90 days by default; longer retention requires logging to S3 and querying with Athena.
+Insights Events จะแสดงใน CloudTrail Console และยังสามารถส่งต่อไปยัง **Amazon EventBridge** เพื่อให้คุณสร้าง automation เช่น ส่งอีเมลแจ้งเตือนเมื่อพบ anomaly
+
+## การเก็บรักษา Events ของ CloudTrail
+
+* ค่าเริ่มต้น → เก็บ events **90 วัน** หลังจากนั้นจะถูกลบ
+* หากต้องการเก็บระยะยาว → ต้องส่งไปเก็บใน **Amazon S3**
+* เมื่อเก็บใน S3 แล้ว สามารถใช้ **Amazon Athena** (บริการ query แบบ serverless) เพื่อวิเคราะห์ log ที่เก็บไว้นั้นได้
+
+## Key Takeaways (สรุปสำคัญ)
+
+* CloudTrail ให้ **การกำกับดูแล, ความปลอดภัย, และการตรวจสอบ** โดยการบันทึก API calls และ events
+* มี **3 ประเภทของ events**:
+
+  1. Management Events
+  2. Data Events
+  3. CloudTrail Insights Events
+* CloudTrail Insights ใช้ตรวจจับ **กิจกรรมผิดปกติ** จากการวิเคราะห์ Management Events
+* ค่าเริ่มต้นเก็บ events **90 วัน** ถ้าต้องการเก็บนานกว่านี้ต้องส่งไปยัง **S3** และใช้ **Athena** ในการ query

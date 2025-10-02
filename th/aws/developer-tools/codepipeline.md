@@ -1,115 +1,91 @@
-AWS CodePipeline
+# CodePipeline
 
-• Visual Workflow to orchestrate your CICD
-• Source – CodeCommit, ECR, S3, Bitbucket, GitHub
-• Build – CodeBuild, Jenkins, CloudBees, TeamCity
-• Test – CodeBuild, AWS Device Farm, 3rd party tools, …
-• Deploy – CodeDeploy, Elastic Beanstalk, CloudFormation, ECS, S3, …
-• Invoke – Lambda, Step Functions
-• Consists of stages:
-• Each stage can have sequential actions and/or parallel actions
-• Example: Build è Test è Deploy è Load Testing è …
-• Manual approval can be defined at any stage
+CodePipeline เป็นเครื่องมือแบบ Visual Workflow ที่ช่วยให้คุณสามารถจัดการกระบวนการ **CI/CD (Continuous Integration และ Continuous Delivery)** บน AWS ได้อย่างเป็นระบบและอัตโนมัติ
 
----
+## ผู้ให้บริการ Source ที่รองรับ
 
-Technology Stack for CICD
+คุณสามารถกำหนดแหล่งที่มาของซอร์สโค้ด (Source) ได้หลายแบบ เช่น:
 
----
+* **CodeCommit repositories**
+* **Docker images** ที่เก็บใน Amazon Elastic Container Registry (ECR)
+* **Code** ที่เก็บใน Amazon S3
+* **เครื่องมือภายนอก** เช่น Bitbucket หรือ GitHub
 
-CodePipeline – Artifacts
+## ตัวเลือกในขั้นตอน Build
 
-• Each pipeline stage can create ar tifacts
-• Artifacts stored in an S3 bucket and passed on to the next stage
+หลังจากดึงซอร์สโค้ดแล้ว คุณสามารถเข้าสู่ขั้นตอน Build ได้ โดยรองรับเครื่องมือต่าง ๆ เช่น:
 
----
+* **AWS CodeBuild**
+* **Jenkins**
+* **CloudBees**
+* **TeamCity**
 
-CodePipeline – Troubleshooting
+## ขั้นตอน Testing
 
-• For CodePipeline Pipeline/Action/Stage Execution State Changes
-• Use CloudWatch Events (Amazon EventBridge). Example:
-• You can create events for failed pipelines
-• You can create events for cancelled stages
-• If CodePipeline fails a stage, your pipeline stops, and you can get
-information in the console
-• If pipeline can’t perform an action, make sure the “IAM Service Role”
-attached does have enough IAM permissions (IAM Policy)
-• AWS CloudTrail can be used to audit AWS API calls
+เมื่อผ่านการ Build แล้ว คุณสามารถเพิ่มขั้นตอนการทดสอบโค้ดได้ ตัวเลือกการทดสอบ เช่น:
 
----
+* **AWS CodeBuild**
+* **AWS Device Farm** (เหมาะสำหรับแอปมือถือ iOS และ Android)
+* **เครื่องมือทดสอบของ third-party อื่น ๆ** ที่คุณเลือกใช้
 
-CodePipeline Overview
-Introduction to CodePipeline
-CodePipeline is a visual workflow tool that allows you to orchestrate your Continuous Integration and Continuous Delivery (CI/CD) processes within AWS.
+## ขั้นตอน Deployment
 
-Supported Source Providers
-With CodePipeline, you can specify sources such as:
+เมื่อการทดสอบเสร็จสิ้น การ Deployment สามารถจัดการได้ด้วยบริการต่าง ๆ เช่น:
 
-CodeCommit repositories
-Docker images stored in Amazon Elastic Container Registry (ECR)
-Code stored in Amazon S3
-External tools such as Bitbucket or GitHub
-Build Phase Options
-After obtaining the source code, you can proceed to the build phase. Supported build tools include:
+* **AWS CodeDeploy**
+* **AWS Elastic Beanstalk**
+* **AWS CloudFormation**
+* **Amazon ECS**
+* **Amazon S3**
 
-AWS CodeBuild
-Jenkins
-CloudBees
-TeamCity
-Testing Phase
-Following the build, you can include a test phase to validate your code. Testing options include:
+นอกจากนี้ยังสามารถเรียกใช้งาน **AWS Lambda functions** หรือ **Step Functions** เป็นส่วนหนึ่งของการ Deployment ได้เช่นกัน
 
-AWS CodeBuild
-AWS Device Farm (for mobile apps such as iOS and Android)
-Any third-party testing tools you prefer
-Deployment Phase
-Once testing is complete, deployment can be handled by various services such as:
+## Pipeline Stages และ Actions
 
-AWS CodeDeploy
-AWS Elastic Beanstalk
-AWS CloudFormation
-Amazon ECS
-Amazon S3
-Additionally, you can invoke AWS Lambda functions or Step Functions as part of deployment.
+คุณสามารถสร้าง Pipeline ที่มีหลาย Stage โดยแต่ละ Stage มี Action ที่ทำงาน **แบบลำดับ (sequential)** หรือ **ขนาน (parallel)** ได้ เช่น:
 
-Pipeline Stages and Actions
-You can construct pipelines with multiple stages, each containing sequential and/or parallel actions. For example:
+1. Build
+2. Test
+3. Deploy ไปยัง Staging
+4. ทำ Load Testing บน Staging
+5. Deploy ไป Production
 
-Build
-Test
-Deploy to staging
-Load testing on staging
-Deploy to production
-Manual approval steps can be inserted at any stage, allowing human review before proceeding, such as before deploying to production.
+คุณยังสามารถใส่ **ขั้นตอนการอนุมัติแบบ Manual (Manual Approval)** ใน Pipeline ได้ เช่น ก่อนจะ Deploy ไป Production ต้องให้คนตรวจสอบก่อน
 
-How CodePipeline Works Internally
-Consider a pipeline with three phases: source, build, and deploy.
+## การทำงานภายในของ CodePipeline
 
-Source: CodeCommit
-Build: CodeBuild
-Deploy: CodeDeploy
-Each pipeline stage produces artifacts that are stored in Amazon S3 buckets. These artifacts are passed to the subsequent stages to perform their tasks.
+ลองพิจารณา Pipeline ที่มี 3 ขั้นตอน: Source, Build, Deploy
 
-Concrete Example
-A developer pushes code to CodeCommit.
-CodePipeline extracts the code and creates an artifact stored in an S3 bucket.
-CodeBuild is invoked with the artifact as input; it does not access CodeCommit directly.
-CodeBuild builds the code and produces deployment artifacts.
-These artifacts are stored again in the S3 bucket by CodePipeline.
-CodeDeploy receives the artifacts and deploys them accordingly.
-This interaction between stages is facilitated through Amazon S3 artifacts.
+* **Source**: ใช้ CodeCommit
+* **Build**: ใช้ CodeBuild
+* **Deploy**: ใช้ CodeDeploy
 
-Troubleshooting CodePipeline
-Use Amazon CloudWatch Events and EventBridge to monitor pipeline actions and stage execution state changes.
-Set up notifications for failed pipelines or cancelled stages, such as email alerts.
-Visualize failures in the CodePipeline console for detailed information.
-Verify the IAM service role of CodePipeline to ensure it has the necessary permissions to perform actions like invoking CodeBuild or accessing CodeCommit.
-Use AWS CloudTrail to audit API calls and detect any denied requests within your infrastructure.
-Conclusion
-Understanding CodePipeline's components and workflow is essential for orchestrating efficient CI/CD pipelines in AWS. Hands-on practice will further solidify these concepts.
+การทำงานคือ:
 
-Key Takeaways
-AWS CodePipeline is a visual workflow tool for orchestrating CI/CD pipelines.
-It supports multiple source providers, build tools, test phases, and deployment options.
-Artifacts generated at each stage are stored in Amazon S3 and passed between stages.
-Troubleshooting can be done using CloudWatch Events, EventBridge, IAM roles, and CloudTrail.
+1. นักพัฒนาทำการ Push โค้ดไปที่ CodeCommit
+2. CodePipeline ดึงโค้ดและสร้าง **Artifact** เก็บไว้ใน **S3 bucket**
+3. CodeBuild ถูกเรียกใช้งานโดยรับ Artifact จาก S3 (ไม่ได้เข้าถึง CodeCommit โดยตรง)
+4. CodeBuild ทำการ Build โค้ดและสร้าง Deployment Artifact
+5. Artifact ที่ได้จะถูกเก็บกลับไปยัง S3 โดย CodePipeline
+6. CodeDeploy จะนำ Artifact จาก S3 ไป Deploy ต่อ
+
+การทำงานระหว่างแต่ละ Stage จะถูกเชื่อมโยงกันผ่าน **Artifacts ที่เก็บใน Amazon S3**
+
+## การแก้ไขปัญหา (Troubleshooting CodePipeline)
+
+* ใช้ **Amazon CloudWatch Events** และ **EventBridge** เพื่อติดตามการทำงานของ Pipeline และการเปลี่ยนสถานะของ Stage
+* ตั้งค่า **การแจ้งเตือน (Notifications)** สำหรับ Pipeline ที่ล้มเหลวหรือถูกยกเลิก เช่น การส่งอีเมล
+* ดูรายละเอียดปัญหาได้จาก **CodePipeline Console**
+* ตรวจสอบ **IAM Service Role** ของ CodePipeline ว่ามีสิทธิ์เพียงพอ เช่น การเรียก CodeBuild หรือเข้าถึง CodeCommit
+* ใช้ **AWS CloudTrail** เพื่อตรวจสอบ API Calls และหาสาเหตุของการถูกปฏิเสธสิทธิ์ (Denied Requests)
+
+## สรุป
+
+การเข้าใจองค์ประกอบและการทำงานของ CodePipeline เป็นสิ่งสำคัญสำหรับการออกแบบและจัดการ CI/CD Pipeline ที่มีประสิทธิภาพบน AWS การได้ทดลองปฏิบัติจริงจะช่วยให้เข้าใจลึกซึ้งมากยิ่งขึ้น
+
+## Key Takeaways
+
+* **AWS CodePipeline** เป็นเครื่องมือ Visual Workflow สำหรับจัดการ CI/CD Pipeline
+* รองรับหลาย Source Provider, Build Tools, Test Phase และ Deployment Options
+* **Artifacts** จะถูกเก็บใน **Amazon S3** และส่งต่อระหว่างแต่ละ Stage
+* การแก้ปัญหาสามารถทำได้ด้วย **CloudWatch Events, EventBridge, IAM Role และ CloudTrail**

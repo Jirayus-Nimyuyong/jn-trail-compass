@@ -1,50 +1,77 @@
-AWS AppConfig
+# AWS AppConfig
 
-• Configure, validate, and deploy dynamic configurations
-• Deploy dynamic configuration changes to your
-applications independently of any code deployments
-• You don’t need to restart the application
-• Feature flags, application tuning, allow/block listing…
-• Use with apps on EC2 instances, Lambda, ECS, EKS…
-• Gradually deploy the configuration changes and
-rollback if issues occur
-• Validate configuration changes before deployment
-using:
-• JSON Schema (syntactic check) or
-• Lambda Function – run code to perform validation
-(semantic check)
+**AWS AppConfig** ช่วยให้คุณสามารถจัดการ **configuration ของแอปพลิเคชันแบบ dynamic** แยกจากโค้ดของแอปพลิเคชันเอง
 
----
+* แทนที่จะรวม configuration ไว้กับแอปหรือใช้ environment variables
+* AppConfig ช่วยให้คุณ **สร้าง, ตรวจสอบความถูกต้อง, และ deploy configuration แบบ dynamic** ได้อย่างอิสระ
 
-AWS AppConfig - Overview
-Introduction to AWS AppConfig
-AWS AppConfig allows you to manage your application configurations dynamically, separate from your application code. Instead of shipping configuration alongside your app or using environment variables, AppConfig enables you to configure, validate, and deploy dynamic configurations independently.
+ด้วย AppConfig คุณสามารถเปลี่ยนแปลง configuration ได้โดยที่ **แอปพลิเคชันจะปรับตัวเองโดยไม่ต้อง deploy โค้ดใหม่หรือ restart**
 
-With AppConfig, you can change configurations and your application will adapt without requiring any new code deployment or application restart. This dynamic behavior ensures seamless updates and flexibility.
+* คุณลักษณะนี้ทำให้สามารถอัปเดตได้อย่างราบรื่นและยืดหยุ่น
 
-Feature Flags
-A common use case is feature flags. For example, if your application includes a new feature that you want to disable initially, you can deploy your application with the feature flag set to false in AppConfig. Once ready to test or enable the feature, simply update the feature flag in AppConfig, and your application will automatically enable the feature without redeployment.
+## Feature Flags
 
-Beyond feature flags, AppConfig allows you to dynamically adjust any configuration, such as fine-tuning application performance or modifying IP block or allow lists in real time, all without changing your application code.
+การใช้งานทั่วไปคือ **Feature Flags**
 
-AppConfig is particularly useful for applications running on EC2 instances, AWS Lambda, ECS, EKS, and similar environments.
+* ตัวอย่าง: หากแอปของคุณมีฟีเจอร์ใหม่ที่ต้องการปิดไว้ก่อน
 
-Gradual Deployment and Rollback
-When deploying configuration changes, such as enabling a feature flag, you may not want to release the change to all instances simultaneously. AppConfig supports gradual deployment to monitor for issues. If problems are detected, it can automatically trigger a rollback to the previous configuration.
+  * คุณสามารถ deploy แอปพร้อม **feature flag ตั้งค่าเป็น false** ใน AppConfig
+  * เมื่อต้องการทดสอบหรือเปิดใช้งานฟีเจอร์นั้น เพียง **อัปเดต flag ใน AppConfig**
+  * แอปจะเปิดฟีเจอร์ให้อัตโนมัติ **โดยไม่ต้อง redeploy**
 
-Configuration Sources
-AppConfig supports multiple configuration sources, including Parameter Store, SSM documents, S3 buckets, and others. Applications running on EC2 instances or other compute services regularly poll these sources for configuration updates.
+นอกจากนี้ AppConfig ยังสามารถปรับค่า configuration แบบ dynamic อื่น ๆ ได้ เช่น:
 
-Monitoring and Validation
-When a configuration change occurs, CloudWatch monitors the application for any issues. If an alarm is triggered, AppConfig can automatically rollback the configuration to maintain stability.
+* ปรับ performance ของแอป
+* แก้ไข IP block/allow list แบบ real-time
+* ทั้งหมดนี้ **ไม่ต้องแก้ไขโค้ดของแอปพลิเคชัน**
 
-To ensure configurations are valid before deployment, AppConfig supports validation using JSON Schema to check data types and structure, or Lambda functions for more complex validation logic.
+AppConfig เหมาะสำหรับแอปพลิเคชันที่รันบน:
 
-Summary
-AWS AppConfig provides a robust solution for managing application configurations dynamically, enabling feature flag management, gradual rollouts, validation, and monitoring without the need to redeploy or restart applications.
+* EC2, AWS Lambda, ECS, EKS และ environment ที่คล้ายกัน
 
-Key Takeaways
-AWS AppConfig enables dynamic configuration management outside of application code.
-Feature flags can be toggled in real time without redeploying or restarting applications.
-Configuration changes can be gradually deployed with monitoring and automatic rollback.
-Configurations can be validated using JSON Schema or Lambda functions before deployment.
+## Gradual Deployment และ Rollback
+
+เมื่อทำการ deploy การเปลี่ยนแปลง configuration เช่น การเปิด feature flag
+
+* คุณอาจไม่ต้องการ release ให้ทุก instance พร้อมกัน
+* AppConfig รองรับ **gradual deployment** เพื่อ monitor ปัญหา
+* หากพบปัญหา สามารถ **rollback configuration กลับไปเวอร์ชันก่อนหน้าได้อัตโนมัติ**
+
+## แหล่งที่มาของ Configuration
+
+AppConfig รองรับหลายแหล่งของ configuration เช่น:
+
+* Parameter Store
+* SSM Documents
+* S3 Bucket
+* และอื่น ๆ
+
+แอปพลิเคชันที่รันบน EC2 หรือ compute service อื่น ๆ จะ **poll แหล่งเหล่านี้เพื่อตรวจสอบการอัปเดต configuration เป็นระยะ**
+
+## การ Monitoring และ Validation
+
+* เมื่อมีการเปลี่ยนแปลง configuration **CloudWatch จะ monitor แอป**
+
+* หากเกิด alarm, AppConfig สามารถ **rollback configuration อัตโนมัติ** เพื่อรักษา stability
+
+* ก่อน deploy configuration สามารถ **ตรวจสอบความถูกต้อง (validation)** ได้ด้วย:
+
+  * JSON Schema → ตรวจสอบ data type และ structure
+  * Lambda function → สำหรับ logic การตรวจสอบที่ซับซ้อนกว่า
+
+## สรุป
+
+**AWS AppConfig** เป็นโซลูชันที่แข็งแรงสำหรับการจัดการ **configuration ของแอปแบบ dynamic**
+
+* รองรับการจัดการ feature flag
+* Gradual rollout
+* Validation
+* Monitoring
+* ทั้งหมดโดยไม่ต้อง redeploy หรือ restart แอปพลิเคชัน
+
+## Key Takeaways
+
+* AWS AppConfig ช่วยจัดการ **configuration แบบ dynamic แยกจากโค้ดแอป**
+* Feature flags สามารถ **toggle แบบ real-time** โดยไม่ต้อง redeploy หรือ restart แอป
+* การเปลี่ยนแปลง configuration สามารถ **deploy แบบ gradual** พร้อม monitor และ rollback อัตโนมัติ
+* Configuration สามารถ **validate** ด้วย JSON Schema หรือ Lambda ก่อน deployment

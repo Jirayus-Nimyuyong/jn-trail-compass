@@ -1,50 +1,64 @@
-ECS + X-Ray integration options
+# ECS + X-Ray integration
 
-X-Ray & ECS Integration Options
-Integrating AWS X-Ray with ECS Clusters
-This lecture discusses how to integrate AWS X-Ray with ECS clusters and presents three options for running the X-Ray Daemon within ECS environments.
+บทเรียนนี้อธิบายวิธีการ **รวม AWS X-Ray กับ ECS Cluster** และมี 3 ตัวเลือกสำหรับการรัน **X-Ray Daemon** ภายในสภาพแวดล้อม ECS
 
-Option 1: Running the X-Ray Daemon as a Daemon Container on EC2 Instances
-In this approach, you have an ECS cluster composed of EC2 instances that you manage. You run the X-Ray Daemon as a Daemon task, meaning one X-Ray Daemon container runs on every EC2 instance in the cluster. For example, if your ECS cluster has 10 EC2 instances, there will be 10 X-Ray Daemon containers, one per instance.
+## ตัวเลือก 1: รัน X-Ray Daemon เป็น Daemon Container บน EC2 Instances
 
-This setup allows the X-Ray agent to run on all EC2 instances. Your application containers run on these instances and are configured from a networking standpoint to communicate with the X-Ray Daemon via a UDP port.
+* สำหรับ ECS cluster ที่มี **EC2 instances** ที่คุณจัดการเอง
+* รัน **X-Ray Daemon** เป็น **Daemon task**
 
-Option 2: Side Car Pattern
-The second pattern is the Side Car pattern. Here, you still have your EC2 instances, but instead of one X-Ray Daemon container per instance, you run one X-Ray Daemon container alongside each application container. This means that if you have 20 application containers on a single EC2 instance, you will have 20 X-Ray Daemon Side Car containers running alongside them.
+  * หมายความว่า **จะมี X-Ray Daemon container 1 ตัวต่อ EC2 instance**
+  * ตัวอย่าง: ถ้า ECS cluster มี 10 EC2 instances จะมี X-Ray Daemon containers 10 ตัว (ตัวละ instance)
+* Application containers ของคุณรันบน EC2 instances เหล่านี้ และเชื่อมต่อกับ X-Ray Daemon ผ่าน **UDP port**
 
-The term "Side Car" refers to the X-Ray Daemon running side-by-side with the application container, providing tracing capabilities per application container.
+## ตัวเลือก 2: Side Car Pattern
 
-Option 3: Using X-Ray with Fargate Clusters
-In Fargate clusters, you do not have control over the underlying EC2 instances. Therefore, you cannot run the X-Ray Daemon container as a Daemon task on instances. Instead, you must use the Side Car pattern, running the X-Ray Daemon container alongside each application container within the Fargate task.
+* ยังใช้ EC2 instances เหมือนเดิม
+* แต่แทนที่จะรัน 1 Daemon container ต่อ instance
+* รัน **X-Ray Daemon container คู่ขนานกับแต่ละ application container**
 
-This means that each Fargate task includes both the application container and the X-Ray Side Car container.
+  * ตัวอย่าง: ถ้า EC2 instance มี application containers 20 ตัว จะมี X-Ray Daemon Side Car containers 20 ตัว
+* "Side Car" หมายถึง X-Ray Daemon รันคู่ขนานกับ application container เพื่อให้แต่ละ container มี tracing ของตัวเอง
 
-Example Task Definition for X-Ray Side Car Pattern
-Although building all images to run this example is complex, here is an overview of an example task definition from the documentation illustrating the Side Car pattern:
+## ตัวเลือก 3: ใช้ X-Ray กับ Fargate Clusters
 
-The X-Ray Daemon container runs with port 2000 mapped to the instance, using the UDP protocol.
-The application container (e.g., Scorekeep API) is configured with an environment variable named AWS_XRAY_DAEMON_ADDRESS.
-This environment variable points to the X-Ray Daemon's UDP port 2000.
-The two containers are linked from a networking standpoint, allowing the application container to resolve the hostname xray-daemon to the X-Ray Daemon container.
-This setup ensures proper communication between the application container and the X-Ray Daemon Side Car.
+* ใน **Fargate clusters** คุณไม่สามารถเข้าควบคุม EC2 instances ได้
+* ดังนั้น **ไม่สามารถรัน Daemon container แบบตัวเลือก 1**
+* ต้องใช้ **Side Car Pattern**
 
-Important Configuration Details
-Map the X-Ray Daemon container port 2000 using UDP.
-Set the environment variable AWS_XRAY_DAEMON_ADDRESS in the application container to point to the X-Ray Daemon's address and port.
-Link the application container and the X-Ray Daemon container for hostname resolution and networking.
-These steps are essential to enable the application container to send trace data to the X-Ray Daemon correctly.
+  * รัน X-Ray Daemon container คู่ขนานกับแต่ละ application container ภายใน Fargate task
+  * แต่ละ Fargate task จะมี **application container + X-Ray Side Car container**
 
-Summary
-To integrate AWS X-Ray with ECS:
+## ตัวอย่าง Task Definition สำหรับ Side Car Pattern
 
-Use the Daemon container approach on EC2 instances you manage.
-Use the Side Car pattern alongside each application container on EC2 instances or Fargate tasks.
-Configure networking correctly with port mappings, environment variables, and container linking.
-This lecture clarifies common exam questions about running X-Ray with ECS and provides deeper insights into these integration patterns.
+* X-Ray Daemon container รันที่ **port 2000 (UDP)**
+* Application container (เช่น Scorekeep API) มี **environment variable ชื่อ AWS_XRAY_DAEMON_ADDRESS**
 
-Key Takeaways
-There are three main options to integrate AWS X-Ray with ECS clusters: running the X-Ray Daemon as a Daemon container on each EC2 instance, using the Side Car pattern alongside each application container, and using the Side Car pattern in Fargate clusters.
-The Daemon container approach runs one X-Ray Daemon container per EC2 instance, capturing traces from all app containers on that instance.
-The Side Car pattern runs one X-Ray Daemon container alongside each application container, providing isolated tracing per app container.
-For Fargate clusters, since there is no control over underlying instances, the Side Car pattern is required to run X-Ray.
-Proper networking setup includes mapping container port 2000 UDP for the X-Ray Daemon, setting the AWS_XRAY_DAEMON_ADDRESS environment variable, and linking containers for hostname resolution.
+  * ตัวแปรนี้ชี้ไปยัง **UDP port 2000 ของ X-Ray Daemon**
+* Container ทั้งสองเชื่อมต่อเครือข่ายกัน ทำให้ application container สามารถ resolve hostname `xray-daemon`
+* ช่วยให้ application container ส่ง trace data ไปยัง X-Ray Daemon ได้ถูกต้อง
+
+## การตั้งค่าที่สำคัญ
+
+1. Map **X-Ray Daemon container port 2000** เป็น **UDP**
+2. ตั้ง **AWS_XRAY_DAEMON_ADDRESS** ใน application container ให้ชี้ไปที่ address และ port ของ X-Ray Daemon
+3. Link container ทั้งสองเพื่อให้สามารถ resolve hostname และเชื่อมต่อเครือข่าย
+
+## สรุป
+
+* **Daemon container approach**: ใช้บน EC2 instances ที่คุณจัดการ
+* **Side Car pattern**: รันคู่กับแต่ละ application container บน EC2 หรือ Fargate
+* ตั้งค่าเครือข่ายให้ถูกต้อง: **port mapping, environment variable, container linking**
+* ทำความเข้าใจตัวเลือกเหล่านี้สำคัญสำหรับการสอบ AWS และการวางระบบจริง
+
+## Key Takeaways
+
+* มี **3 ตัวเลือกหลัก** สำหรับรวม X-Ray กับ ECS:
+
+  1. Daemon container บนแต่ละ EC2 instance
+  2. Side Car คู่กับแต่ละ application container
+  3. Side Car ใน Fargate clusters
+* **Daemon container approach**: 1 X-Ray Daemon container ต่อ EC2 instance เก็บ traces จากทุก app container
+* **Side Car pattern**: 1 X-Ray Daemon container คู่กับแต่ละ app container เพื่อให้ tracing แยกกัน
+* ใน Fargate clusters ต้องใช้ Side Car เนื่องจากไม่สามารถควบคุม underlying instances
+* การตั้งค่าเครือข่ายสำคัญ: map **port 2000 UDP**, ตั้ง **AWS_XRAY_DAEMON_ADDRESS**, link containers

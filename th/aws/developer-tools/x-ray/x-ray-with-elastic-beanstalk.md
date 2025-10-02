@@ -1,50 +1,63 @@
-X-Ray with Elastic Beanstalk
+# X-Ray with Beanstalk
 
-• AWS Elastic Beanstalk platforms include the X-Ray daemon
-• You can run the daemon by setting an option in the Elastic Beanstalk console
-or with a configuration file (in .ebextensions/xray-daemon.config)
-• Make sure to give your instance profile the correct IAM permissions so that
-the X-Ray daemon can function correctly
-• Then make sure your application code is instrumented with the X-Ray SDK
-• Note: The X-Ray daemon is not provided for Multicontainer Docker
+ในบทเรียนนี้ เราจะดูวิธีการ **รวม AWS X-Ray กับ Elastic Beanstalk**
 
----
+* แพลตฟอร์ม Beanstalk มี **X-Ray daemon** รวมมาแล้วโดยค่าเริ่มต้น
+* จึงไม่จำเป็นต้องติดตั้งเอง
+* เพียงเปิดใช้งานผ่าน **คอนโซล Beanstalk** หรือใช้ไฟล์ **EB extensions** ก็เพียงพอ
 
-X-Ray with Beanstalk
-Integrating AWS X-Ray with Elastic Beanstalk
-This lecture provides a quick overview of how to integrate AWS X-Ray with Elastic Beanstalk (Beanstalk).
+## การเปิดใช้งาน X-Ray Daemon
 
-The Beanstalk platform includes the X-Ray daemon by default, so there is no need to include it manually. You can run the daemon by simply setting one option in the Beanstalk console, as will be demonstrated in the hands-on section.
+มีสองวิธีหลัก:
 
-Alternatively, you can create an EB extensions file named x-ray-daemon.config inside the .ebextensions folder. This file should have a .config extension and contain a single line that enables the X-Ray daemon. This approach is straightforward and simple.
+1. **ผ่าน Beanstalk console**
 
-Once you enable the X-Ray daemon, ensure that your EC2 instance has an instance profile with the correct IAM permissions. This is necessary for the X-Ray daemon to function properly and write data to the X-Ray service.
+   * เพียงตั้งค่าออปชัน X-Ray daemon ในส่วน monitoring ของ platform software
+   * X-Ray daemon จะรันบน EC2 instances โดยอัตโนมัติ
 
-Additionally, your application code must be instrumented with the X-Ray SDK to send trace data. If you are running multiple Docker containers, you will need to manage the X-Ray daemon yourself, which will be covered in the next lecture focusing on ECS.
+2. **ผ่าน EB extensions**
 
-Creating a Beanstalk Application with X-Ray Enabled
-Let's proceed to create an application to demonstrate X-Ray integration with Beanstalk. We will create a web server environment, name the application, and select Node.js as the platform. We will keep all other settings as default and choose a single instance environment.
+   * สร้างไฟล์ชื่อ `x-ray-daemon.config` ในโฟลเดอร์ `.ebextensions`
+   * ใส่ `.config` extension
+   * บรรทัดเดียวที่เปิดใช้งาน X-Ray daemon ก็เพียงพอ
 
-After clicking next, select an existing service role and choose a key pair. Proceed by clicking next. There is no need to configure VPC or instance traffic and scaling settings, so continue by clicking next through those steps.
+## สิ่งสำคัญเกี่ยวกับ IAM
 
-In the monitoring section, scroll down to find the Amazon X-Ray option under platform software. Activate the X-Ray daemon by enabling this option. This will enable X-Ray on the Beanstalk EC2 instances.
+* EC2 instance ต้องมี **instance profile** พร้อม **IAM permissions** ที่ถูกต้อง
+* Permissions เหล่านี้จำเป็นเพื่อให้ daemon สามารถเขียนข้อมูลไปยัง X-Ray ได้
+* ถ้าใช้ **custom role** แทน default role ต้องตรวจสอบให้แน่ใจว่ามี permission สำหรับ X-Ray ครบ
 
-Click next and then submit to launch the environment. X-Ray is now activated, and Beanstalk will launch the environment with X-Ray enabled.
+## การสร้าง Beanstalk Application พร้อม X-Ray
 
-Verifying IAM Role Permissions for X-Ray
-Let's examine the configuration to verify the EC2 instance profile. The profile used is AWS Elastic Beanstalk EC2 Role. In the IAM console, navigate to Roles and search for this role. Click on it to view the permission policies attached.
+ขั้นตอนตัวอย่าง:
 
-One of the policies attached is the Elastic Beanstalk Web Tier Policy. Inspecting this policy reveals that it includes the necessary permissions for X-Ray. These permissions allow the daemon running on the EC2 instance to send data to Amazon X-Ray and retrieve data as needed.
+1. สร้าง **web server environment**
+2. ตั้งชื่อ application และเลือก **Node.js platform**
+3. ใช้ค่าตั้งต้น (default) ทั้งหมดและเลือก **single instance environment**
+4. เลือก **existing service role** และ **key pair**
+5. ข้ามการตั้งค่า VPC, instance traffic และ scaling
+6. ในส่วน monitoring ให้เลื่อนลงไปที่ **Amazon X-Ray**
+7. เปิดใช้งาน X-Ray daemon
+8. คลิก **next** แล้ว **submit** เพื่อเปิด environment
+9. ตอนนี้ X-Ray ถูกเปิดใช้งานแล้ว และ Beanstalk จะรัน environment พร้อม X-Ray
 
-It is important to note that if you launch a Beanstalk application using a custom role instead of the default role, you must ensure that the custom role includes the necessary permissions for X-Ray.
+## ตรวจสอบ IAM Role สำหรับ X-Ray
 
-Viewing X-Ray Traces
-If your application has more than just a congratulations page and is properly integrated with X-Ray, you will be able to see the traces in the X-Ray console. At minimum, you have now seen how to enable the X-Ray option under Beanstalk.
+* ตรวจสอบ **EC2 instance profile** ที่ใช้ (เช่น `AWS Elastic Beanstalk EC2 Role`)
+* ตรวจสอบ IAM console ว่ามี **Elastic Beanstalk Web Tier Policy** แนบอยู่
+* Policy นี้มี permission สำหรับให้ daemon ส่งข้อมูลและดึงข้อมูลจาก X-Ray
+* หากใช้ custom role ต้องมั่นใจว่า **มี permission สำหรับ X-Ray ครบ**
 
-This concludes the lecture on integrating Beanstalk with X-Ray. Remember to terminate your environment after completing your work.
+## การดู X-Ray Traces
 
-Key Takeaways
-The AWS Elastic Beanstalk platform includes the X-Ray daemon, which can be enabled via a simple configuration.
-Enabling X-Ray requires setting an option in the Beanstalk console or creating an .ebextensions/x-ray-daemon.config file.
-The EC2 instance profile must have the correct IAM permissions to allow the X-Ray daemon to send data.
-Application code must be instrumented with the X-Ray SDK to send trace data for monitoring.
+* หากแอปพลิเคชันมีฟังก์ชันมากกว่าแค่หน้า congratulations
+* และถูก instrument ด้วย **X-Ray SDK**
+* จะสามารถดู **traces** ได้ใน **X-Ray console**
+* ขั้นต่ำที่สุด คุณก็ได้เห็นวิธีเปิดใช้งาน X-Ray ใน Beanstalk
+
+## สรุปข้อสำคัญ (Key Takeaways)
+
+* **Elastic Beanstalk** มี X-Ray daemon รวมมาแล้ว
+* การเปิดใช้งาน X-Ray ทำได้ง่ายผ่าน **Beastalk console** หรือ **.ebextensions/x-ray-daemon.config**
+* EC2 instance profile ต้องมี IAM permissions ที่ถูกต้องเพื่อให้ daemon ส่งข้อมูล
+* แอปพลิเคชันต้อง **instrumented ด้วย X-Ray SDK** เพื่อส่ง trace data สำหรับมอนิเตอร์

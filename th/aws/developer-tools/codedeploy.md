@@ -1,268 +1,172 @@
-AWS CodeDeploy
+# AWS CodeDeploy
 
-• Deployment service that automates
-application deployment
-• Deploy new applications versions to EC2
-Instances, On-premises servers, Lambda
-functions, ECS Services
-• Automated Rollback capability in case of
-failed deployments, or trigger CloudWatch
-Alarm
-• Gradual deployment control
-• A file named appspec.yml defines how the
-deployment happens
+AWS CodeDeploy คือบริการสำหรับการ **ปรับใช้ (deployment)** แอปพลิเคชันโดยอัตโนมัติ ทำให้สามารถอัปเกรดแอปจากเวอร์ชัน 1 ไปเวอร์ชัน 2 ได้อย่างราบรื่น
 
----
+## เป้าหมายการปรับใช้ (Deployment Targets)
 
-CodeDeploy – EC2/On-premises Platform
+คุณสามารถปรับใช้แอปไปยังเป้าหมายเหล่านี้ได้:
 
-• Can deploy to EC2 Instances & on-premises servers
-• Perform in-place deployments or blue/green deployments
-• Must run the CodeDeploy Agent on the target instances
-• Define deployment speed
-• AllAtOnce: most downtime
-• HalfAtATime: reduced capacity by 50%
-• OneAtATime: slowest, lowest availability impact
-• Custom: define your %
+* EC2 instances
+* เซิร์ฟเวอร์ On-premises
+* Lambda functions
+* ECS services
 
----
+*หมายเหตุ: EC2 และ on-premises ใช้วิธี deployment แบบเดียวกัน*
 
-CodeDeploy – In-Place Deployment
+## ฟีเจอร์ของ CodeDeploy
 
----
+* รองรับ **การอัปเดตแอปพลิเคชันอัตโนมัติ**
+* มีฟีเจอร์ **rollback อัตโนมัติ** หากการปรับใช้ล้มเหลวหรือมี alarm ถูก trigger
+* ควบคุมความเร็วการปรับใช้ได้ เช่น ทีละเครื่อง, ครึ่งหนึ่ง, ทั้งหมด, หรือใช้ **Blue/Green Deployment**
 
-CodeDeploy – Blue-Green Deployment
+การปรับใช้ถูกควบคุมด้วยไฟล์ **appspec.yml** ซึ่งกำหนดว่า deployment จะทำงานอย่างไร
 
----
+## Deployment บน EC2 และ On-Premises
 
-CodeDeploy Agent
+รองรับการปรับใช้ 2 แบบ:
 
-• The CodeDeploy Agent must be
-running on the EC2 instances as a pre-
-requisites
-• It can be installed and updated
-automatically if you’re using Systems
-Manager
-• The EC2 Instances must have sufficient
-permissions to access Amazon S3 to get
-deployment bundles
+1. **In-place deployment**
+2. **Blue/green deployment**
 
----
+> **เงื่อนไข**: ต้องติดตั้ง **CodeDeploy agent** บน instance เป้าหมาย เพื่อให้ agent ทำการอัปเดตแอป
 
-CodeDeploy – Lambda Platform
+## ความเร็วของการปรับใช้ (Deployment Speed Options)
 
-• CodeDeploy can help you automate
-traffic shift for Lambda aliases
-• Feature is integrated within the SAM
-framework
-• Linear : grow traffic every N minutes
-until 100%
-• LambdaLinear10PercentEvery3Minutes
-• LambdaLinear10PercentEvery10Minutes
-• Canary: try X percent then 100%
-• LambdaCanary10Percent5Minutes
-• LambdaCanary10Percent30Minutes
-• AllAtOnce: immediate
+* **AllAtOnce**: อัปเดตทุก instance พร้อมกัน → downtime สูงสุด
+* **HalfAtATime**: อัปเดตทีละครึ่ง → ลด downtime ได้
+* **OneAtATime**: อัปเดตทีละเครื่อง → downtime น้อยที่สุด แต่ช้าที่สุด
+* สามารถกำหนดค่า custom เองได้
 
----
+**ตัวอย่าง In-Place Deployment แบบ HalfAtATime**
 
-CodeDeploy – ECS Platform
+* แอปเวอร์ชัน 1 รันอยู่บน EC2 4 เครื่อง
+* ปรับใช้แบบครึ่งต่อครึ่ง → หยุด 2 เครื่อง → อัปเกรดเป็นเวอร์ชัน 2 → เสร็จแล้วทำกับอีก 2 เครื่อง
+* เป็นการปรับใช้แบบค่อย ๆ ลด downtime
 
-• CodeDeploy can help you automate
-the deployment of a new ECS Task
-Definition
-• Only Blue/Green Deployments
-• Linear : grow traffic every N minutes
-until 100%
-• ECSLinear10PercentEvery3Minutes
-• ECSLinear10PercentEvery10Minutes
-• Canary: try X percent then 100%
-• ECSCanary10Percent5Minutes
-• ECSCanary10Percent30Minutes
-• AllAtOnce: immediate
+## Blue/Green Deployment
 
----
-CodeDeploy – Deployment to EC2
+* รัน **สองเวอร์ชันพร้อมกัน**
+* Load Balancer ชี้ไปยังกลุ่ม instance เวอร์ชัน 1 (blue)
+* สร้าง Auto Scaling group ใหม่สำหรับเวอร์ชัน 2 (green)
+* Load Balancer ค่อย ๆ ย้าย traffic จาก blue → green
+* หลังจากเสร็จสิ้น traffic shift → terminate instance เวอร์ชันเก่า
+* ช่วยให้ **ปรับใช้แบบ Zero Downtime**
 
-• Define how to deploy the
-application using
-appspec.yml +
-Deployment Strategy
-• Will do In-place update to
-your fleet of EC2 instances
-• Can use hooks to verify the
-deployment after each
-deployment phase
+## การติดตั้ง CodeDeploy Agent
 
----
+Agent ต้องติดตั้งบน EC2 ก่อนจึงจะ deploy ได้
 
-CodeDeploy – Deploy to an ASG
+* ติดตั้งด้วยคำสั่ง Linux (manual)
+* หรือใช้ AWS Systems Manager (อัตโนมัติ)
 
-• In-place Deployment
-• Updates existing EC2 instances
-• Newly created EC2 instances by an
-ASG will also get automated
-deployments
-• Blue/Green Deployment
-• A new Auto-Scaling Group is created
-(settings are copied)
-• Choose how long to keep the old
-EC2 instances (old ASG)
-• Must be using an ELB
+**สิทธิ์ IAM ของ EC2 instance**: ต้องมีสิทธิ์เข้าถึง **S3 bucket** ที่เก็บ application revisions เพื่อให้ agent โหลดไฟล์ deployment มาติดตั้ง
 
----
+## CodeDeploy กับ Lambda
 
-CodeDeploy – Redeploy & Rollbacks
+* CodeDeploy สามารถ **traffic shifting สำหรับ Lambda aliases** ได้
+* เช่น PROD alias จากเวอร์ชัน 1 → เวอร์ชัน 2
+* ค่า **X (0 → 100)** ใช้บอกสัดส่วน traffic ที่ถูกย้ายจากเวอร์ชันเก่าไปใหม่
 
-• Rollback = redeploy a previously deployed revision of your application
-• Deployments can be rolled back:
-• Automatically – rollback when a deployment fails or rollback when a
-CloudWatch Alarm thresholds are met
-• Manually
-• Disable Rollbacks — do not perform rollbacks for this deployment
-• If a roll back happens, CodeDeploy redeploys the last known good
-revision as a new deployment (not a restored version)
+**กลยุทธ์การย้าย traffic (Traffic Shifting Strategies):**
 
----
+* **Linear** → เพิ่ม traffic แบบเปอร์เซ็นต์คงที่ทุก ๆ N นาที
+* **Canary** → ส่ง traffic น้อย ๆ ไปทดสอบก่อน (เช่น 10% 5 นาที) ถ้าผ่านค่อยย้ายทั้งหมด
+* **AllAtOnce** → ย้าย traffic ทั้งหมดในครั้งเดียว
 
-CodeDeploy Overview
-Introduction to AWS CodeDeploy
-AWS CodeDeploy is a deployment service that automates application deployment. This means you can upgrade your application from version one to version two seamlessly.
+## CodeDeploy กับ ECS
 
-Deployment Targets
-You can deploy application versions to the following targets:
+* รองรับเฉพาะ **Blue/Green Deployment**
+* การทำงาน:
 
-EC2 instances
-On-premises servers
-Lambda functions
-ECS services
-Note that EC2 instances and on-premises servers share the same deployment methodology.
+  * Load Balancer route traffic ไปยัง target group ที่มี ECS tasks
+  * CodeDeploy สร้าง target group ใหม่ (green) สำหรับ task definition ใหม่
+  * รัน tasks ใหม่ใน cluster ด้วยความจุเท่าเดิม
+  * ค่อย ๆ ย้าย traffic จาก blue → green
+  * ใช้กลยุทธ์ linear, canary หรือ all-at-once เช่นเดียวกับ Lambda
 
-Deployment Features
-CodeDeploy allows you to update applications and also supports automatic rollback. If a deployment fails or an alarm is triggered, CodeDeploy can automatically initiate a rollback, ensuring safe automated deployments.
+## CodeDeploy สำหรับ EC2 และ Auto Scaling Group (ASG)
 
-Additionally, you can control the deployment speed, choosing to deploy to one instance at a time, all at once, half at a time, or using blue/green deployment strategies.
+เมื่อทำการปรับใช้ (deploy) ไปยัง EC2 instance คุณจะต้องมีไฟล์ **appspec.yml** ที่วางไว้ที่ root ของ code repository ไฟล์นี้จะกำหนดกลยุทธ์การปรับใช้ (deployment strategy) และ **hooks** ที่ใช้สำหรับตรวจสอบความถูกต้องหลังจากแต่ละขั้นตอนของการปรับใช้
 
-The deployment process is controlled by a file named appspec.yml, which defines how the deployment occurs.
+## กลยุทธ์ In-Place Deployment
 
-EC2 and On-Premises Deployment Platform
-This platform allows deployment to EC2 instances and on-premises servers. You can perform two types of deployments:
+* เป็นกลยุทธ์ที่ใช้บ่อยที่สุด
+* จะอัปเดต EC2 instances ที่มีอยู่โดยตรง
+* ตัวอย่างเช่น กำหนดการปรับใช้แบบ **HalfAtATime** → หยุดทำงานครึ่งหนึ่งของ instances เพื่ออัปเกรดเป็นเวอร์ชัน 2 จากนั้นอัปเกรดอีกครึ่งหนึ่ง
 
-In-place deployments
-Blue/green deployments
-To enable deployments, the CodeDeploy agent must be installed on the target instances. This agent performs the updates on the instances.
+## การปรับใช้ร่วมกับ Auto Scaling Groups (ASG)
 
-Deployment Speed Options
-You can define the deployment speed as follows:
+กรณีที่ปรับใช้กับ ASG จะมีความซับซ้อนมากขึ้น โดยมี 2 ตัวเลือกหลัก:
 
-AllAtOnce: Updates all instances simultaneously, resulting in the most downtime.
-HalfAtATime: Updates half the instances at a time, reducing downtime.
-OneAtATime: Updates one instance at a time, minimizing availability impact but slower.
-Custom deployment speeds can also be defined.
-In-Place Deployment Example: HalfAtATime
-Consider version one running on four EC2 instances. Using the HalfAtATime setting for in-place deployment:
+1. **In-Place Deployment**
 
-Two instances are taken down for maintenance.
-The CodeDeploy agent stops the application on these instances and upgrades them to version two.
-Once complete, the other two instances are taken down and upgraded similarly.
-This process ensures gradual deployment with controlled downtime.
+   * คล้ายกับการปรับใช้ EC2 ปกติ → อัปเดต instances ที่มีอยู่โดยตรง
 
-Blue/Green Deployment
-Blue/green deployment involves running two versions in parallel:
+2. **Blue/Green Deployment**
 
-An Application Load Balancer points to version one instances in an Auto Scaling group.
-A new Auto Scaling group is created for version two instances, either manually or automatically by CodeDeploy.
-The load balancer shifts traffic from the version one group (blue) to the version two group (green).
-After traffic is shifted, the old version one instances are terminated.
-This strategy allows zero downtime deployments by running both versions simultaneously during the transition.
+   * CodeDeploy จะสร้าง Auto Scaling Group (ASG) ใหม่ที่คัดลอกค่าการตั้งค่าเดิมมา
+   * จากนั้นสามารถกำหนดระยะเวลาเก็บ ASG เก่าไว้ได้
+   * Elastic Load Balancer (ELB) จะสลับการรับส่งข้อมูล (traffic) จากกลุ่มเก่าไปยังกลุ่มใหม่
 
-CodeDeploy Agent Installation
-The CodeDeploy agent must be installed on EC2 instances as a prerequisite. This can be done:
+## In-Place Deployment ร่วมกับ ASG
 
-Manually using Linux commands.
-Automatically using AWS Systems Manager if your instances are managed by it.
-The EC2 instance with the CodeDeploy agent requires sufficient IAM permissions to access Amazon S3, where the application revisions are stored. The agent downloads the application revision from the S3 bucket during deployment.
+* หาก ASG สร้าง EC2 instances ใหม่ขึ้นมาโดยอัตโนมัติ CodeDeploy จะปรับใช้แอปพลิเคชันลงใน instances ใหม่เหล่านั้นโดยอัตโนมัติ
+* คุณสมบัตินี้ช่วยเพิ่มความสามารถและความยืดหยุ่นอย่างมากให้กับกระบวนการปรับใช้
 
-CodeDeploy with Lambda Platform
-CodeDeploy automates traffic shifting for Lambda aliases, allowing you to shift traffic from version one to version two under a production alias.
+## Workflow ของ Blue/Green Deployment
 
-This feature is fully integrated with the AWS Serverless Application Model (SAM) framework, enabling seamless use of CodeDeploy within SAM deployments.
+สมมติว่ามีการปรับใช้แบบ Blue/Green:
 
-Traffic Shifting in Lambda
-Consider a PROD alias with:
+1. เริ่มต้น ELB จะส่ง traffic ไปยัง EC2 instances ที่รันด้วย **เวอร์ชัน 1 (V1)** ภายใน ASG
+2. CodeDeploy ทำการปรับใช้แอปเวอร์ชัน V1 บน instances เหล่านี้
+3. เมื่ออัปเกรดเป็น **เวอร์ชัน 2 (V2)** → จะสร้าง instances ใหม่ขึ้นมาจาก **launch template V2**
+4. CodeDeploy จะปรับใช้แอป V2 บน instances เหล่านี้
+5. ELB จะส่ง traffic ไปยังทั้ง V1 และ V2 ชั่วระยะเวลาหนึ่ง
+6. หากทุกอย่างทำงานปกติ → V1 instances จะถูก terminate → การปรับใช้เสร็จสมบูรณ์
 
-Version one deployed previously.
-Version two deployed subsequently.
-CodeDeploy gradually shifts traffic from version one to version two by adjusting a variable X from 0 to 100:
+## การ Redeploy และ Rollback
 
-When X is 0, all traffic points to version one.
-X increases gradually until it reaches 100, at which point all traffic points to version two.
-Several traffic shifting strategies exist:
+Rollback = กระบวนการนำเวอร์ชันก่อนหน้าที่ใช้งานได้ (known good revision) มาปรับใช้อีกครั้งเพื่อย้อนกลับไปสู่สถานะที่มั่นคง
 
-Linear: Traffic increases by a fixed percentage every N minutes (e.g., 10% every 3 minutes).
-Canary: A small amount of traffic is shifted initially (e.g., 10% for 5 minutes), then all traffic is shifted if successful.
-AllAtOnce: Immediate shift from version one to version two without gradual testing.
-CodeDeploy with ECS Platform
-CodeDeploy automates deployment of new ECS task definitions using blue/green deployments only.
+มี 2 วิธี:
 
-Example setup:
+* **อัตโนมัติ (Automatic)** → เกิดขึ้นเมื่อการปรับใช้ล้มเหลวหรือ CloudWatch Alarms แจ้งเตือน
+* **ด้วยตนเอง (Manual)** → ผู้ใช้เป็นคนสั่ง rollback
 
-An Application Load Balancer routes traffic to a target group where ECS tasks run in a cluster.
-CodeDeploy creates a new target group for the new version (green) alongside the existing one (blue).
-The new ECS task definition runs with the same capacity as before.
-CodeDeploy shifts traffic from the blue target group to the green target group using strategies similar to Lambda (linear, canary, or AllAtOnce).
-Conclusion
-This overview covered AWS CodeDeploy's capabilities across EC2/on-premises, Lambda, and ECS platforms, including deployment strategies, traffic shifting, and agent requirements.
+> ❗ ถ้า rollback ถูกปิดใช้งาน (disabled) → จะไม่มีการ rollback
 
-CodeDeploy provides safe, automated, and configurable deployment processes to help manage application updates efficiently.
+## กลไกการ Rollback ของ CodeDeploy
 
-Key Takeaways
-AWS CodeDeploy automates application deployment across EC2 instances, on-premises servers, Lambda functions, and ECS services.
-It supports in-place and blue/green deployment strategies with configurable deployment speeds such as AllAtOnce, HalfAtATime, and OneAtATime.
-CodeDeploy enables safe deployments by allowing automatic rollbacks if failures or alarms occur.
-Traffic shifting for Lambda and ECS deployments can be managed with linear, canary, or immediate (AllAtOnce) strategies.
+* เมื่อ rollback เกิดขึ้น **CodeDeploy จะไม่กู้คืน (restore) deployment เดิมในที่เดิม**
+* แต่จะ **สร้างการปรับใช้ใหม่** โดยใช้ **last known good revision**
+* กล่าวคือ rollback = การ deploy เวอร์ชันที่เสถียรอีกครั้ง ไม่ใช่การย้อนกลับไปสู่สถานะเก่าแบบ snapshot
 
----
+นี่เป็นรายละเอียดที่สำคัญและอาจถูกถามในข้อสอบ
 
-CodeDeploy for EC2 and ASG
-Introduction to CodeDeploy Concepts
-Let's explore some additional concepts related to CodeDeploy. When deploying to an EC2 instance, you will have an appspec.yml file located at the root of your code repository. This file defines the deployment strategy and hooks that are used to verify deployments after each phase.
+## สรุป
 
-In-Place Deployment Strategy
-One common deployment strategy is the in-place update to your fleet of EC2 instances. For example, you can configure a half-at-a-time deployment where half of the instances are taken down and upgraded to version two, followed by the other half being updated similarly. This approach updates the existing EC2 instances directly.
+* CodeDeploy คือบริการที่ช่วยปรับใช้แอปบน **EC2, on-premises, Lambda, และ ECS**
+* รองรับทั้ง **in-place** และ **blue/green** deployment
+* ปรับแต่งความเร็วในการ deploy ได้ เช่น one-at-a-time, half-at-a-time, all-at-once
+* มีระบบ **rollback อัตโนมัติ** เพื่อความปลอดภัย
+* Lambda และ ECS รองรับการ **traffic shifting** (linear, canary, all-at-once)
+* CodeDeploy ใช้ไฟล์ **appspec.yml** ที่ root ของ code เพื่อกำหนดกลยุทธ์และ hooks
+* **In-place deployment** → อัปเดต EC2 instances ที่มีอยู่
+* **Blue/Green deployment** → สร้าง ASG ใหม่และ ELB จะสลับ traffic ให้
+* หากมี EC2 ใหม่ถูกสร้างจาก ASG → CodeDeploy จะ deploy ให้โดยอัตโนมัติ
+* Rollback = การ deploy เวอร์ชันที่ดีล่าสุดอีกครั้ง (ไม่ใช่การกู้คืนสถานะเก่า)
+* Rollback อาจเกิดขึ้น **อัตโนมัติ** หรือ **ด้วยตนเอง**
 
-Deployments with Auto Scaling Groups (ASG)
-Deployments involving Auto Scaling Groups are slightly more complex. There are two main options:
+## Key Takeaways
 
-In-place deployments: This is similar to the EC2 in-place update, where existing instances are updated.
-Blue/Green deployments: A new Auto Scaling Group is created with copied settings, and you can choose how long to keep the old ASG. The Elastic Load Balancer (ELB) redirects traffic from the old target group to the new one.
-In-Place Deployment with ASG
-In the case of in-place deployments with ASGs, if new EC2 instances are created automatically within your ASG, CodeDeploy will automatically deploy the application to those new instances. This feature adds significant power and flexibility to your deployment process.
-
-Blue/Green Deployment Workflow
-Consider the blue/green deployment scenario:
-
-Initially, your ELB routes traffic to EC2 instances launched with version 1 (V1) within the ASG.
-CodeDeploy deploys the V1 application to these instances.
-When upgrading to version 2 (V2), new instances are created using launch template V2.
-CodeDeploy deploys the application to these new instances.
-The ELB then routes traffic to both V1 and V2 instances for a period.
-If everything is healthy, the V1 instances are terminated, completing the blue/green deployment.
-Redeploys and Rollbacks
-A rollback is the process of redeploying a previously deployed revision of your application to revert to a known good state. Rollbacks can occur in two ways:
-
-Automatically: Triggered by deployment failures or CloudWatch Alarms indicating a problem.
-Manually: Initiated by the user.
-If rollbacks are disabled, no rollback will be performed for the deployment.
-
-How Rollbacks Work in CodeDeploy
-When a rollback occurs, CodeDeploy does not restore a previous deployment in place. Instead, it performs a new deployment using the last known good revision. This means the rollback is effectively a new deployment of a stable version, not a restoration of a previous state. This distinction is important and may be tested in certification exams.
-
-Conclusion
-This lecture covered theoretical aspects of CodeDeploy deployment strategies, including in-place and blue/green deployments for EC2 and Auto Scaling Groups, as well as the rollback mechanism. Understanding these concepts is essential for managing deployments effectively and preparing for certification exams.
-
-Key Takeaways
-CodeDeploy uses an appspec.yml file at the root of your code to define deployment strategies and hooks.
-In-place deployments update existing EC2 instances, while blue/green deployments create new Auto Scaling Groups (ASGs) and switch traffic via ELB.
-Auto Scaling Groups automatically receive deployments for new EC2 instances created within them.
-Rollbacks redeploy the last known good revision as a new deployment, either automatically on failure or manually if enabled.
+* CodeDeploy = ระบบปรับใช้แอปอัตโนมัติ
+* รองรับ: EC2, On-premises, Lambda, ECS
+* มีกลยุทธ์: in-place, blue/green
+* ความเร็ว deploy: AllAtOnce, HalfAtATime, OneAtATime
+* Rollback อัตโนมัติเมื่อเกิดปัญหา
+* Traffic shifting ใช้ Linear, Canary, หรือ AllAtOnce
+* **appspec.yml** = ไฟล์หลักสำหรับกำหนดการปรับใช้
+* In-place = อัปเดต instance เดิม
+* Blue/Green = สร้าง ASG ใหม่ + ELB switch traffic
+* ASG instances ใหม่ → CodeDeploy deploy ให้ทันที
+* Rollback = redeploy เวอร์ชันเสถียร ไม่ใช่ restore deployment เก่า

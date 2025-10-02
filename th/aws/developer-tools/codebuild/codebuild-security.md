@@ -1,69 +1,66 @@
-CodeBuild Security
+# CodeBuild Security
 
-• To access resources in your VPC, make sure you specify a VPC
-configuration for your CodeBuild
-• Secrets in CodeBuild:
-• Don’t store them as plaintext in environment variables
-• Instead…
-• Environment variables can reference parameter store parameters
-• Environment variables can reference secrets manager secrets
+มาเริ่มกันด้วยบทเรียนสั้น ๆ เกี่ยวกับ **ความปลอดภัยของ CodeBuild**
 
----
+โดยปกติ CodeBuild จะทำงานอยู่นอก VPC ของคุณ แต่คุณสามารถสั่งให้ CodeBuild ทำงานภายใน VPC ได้ เพื่อเข้าถึงทรัพยากรใน VPC อย่างปลอดภัย
 
-CodeBuild Security
-CodeBuild Security Overview
-Let's begin with a quick lecture on CodeBuild security.
+## การจัดการ Secrets ใน CodeBuild
 
-Although CodeBuild runs outside your VPC by default, you can launch CodeBuild inside your VPC to access your VPC resources securely.
+สิ่งสำคัญคือ **ห้ามเก็บ secrets (เช่น รหัสผ่านหรือ API key)** ไว้ใน environment variables แบบ plaintext โดยตรง
 
-Managing Secrets in CodeBuild
-It is important not to store secrets as plaintext in CodeBuild environment variables. Instead, you have two secure options:
+คุณมีตัวเลือกที่ปลอดภัย 2 แบบ:
 
-Use environment variables that reference parameters stored in AWS Systems Manager Parameter Store.
-Use environment variables that reference secrets stored in AWS Secrets Manager.
-We will see how to configure these options shortly.
+1. ใช้ environment variables ที่อ้างอิงจากค่า **Parameter Store** ใน AWS Systems Manager
+2. ใช้ environment variables ที่อ้างอิงจากค่า **Secrets Manager**
 
-Creating a CodeBuild Project and Configuring Security Settings
-We are now in the CodeBuild console, creating a new build project. I will not fill in all the details, but I want to show you where the security settings are located.
+## การสร้าง CodeBuild Project และตั้งค่าความปลอดภัย
 
-If you scroll down to the "Additional Configuration" section, you will find important security-related settings.
+เมื่อสร้าง build project ใหม่ใน CodeBuild Console หากเลื่อนลงไปที่ส่วน **Additional Configuration** จะพบการตั้งค่าความปลอดภัยที่สำคัญ
 
-VPC Configuration
-One key setting is related to the VPC. You can launch CodeBuild within your VPC by specifying the subnets and security groups. This allows CodeBuild to access resources inside your VPC securely.
+### VPC Configuration
 
-Environment Variables and Secrets
-Environment variables are very important for security. For example, if you need to access an RDS database inside your VPC, you might need the database password.
+คุณสามารถสั่งให้ CodeBuild รันใน VPC โดยระบุ **subnets** และ **security groups** เพื่อให้เข้าถึงทรัพยากรใน VPC ได้อย่างปลอดภัย
 
-You could set an environment variable like DB_PASSWORD with the value "supersecret", but this is insecure because it stores the secret in plaintext and could be leaked.
+### Environment Variables และ Secrets
 
-Instead, you should use either a parameter from Parameter Store or a secret from Secrets Manager.
+Environment variables มีความสำคัญต่อความปลอดภัย เช่น หากคุณต้องการเข้าถึงฐานข้อมูล RDS ใน VPC คุณอาจต้องใช้รหัสผ่าน
 
-Let's look at how to create a secure parameter in Parameter Store.
+การตั้งค่าตัวแปรเช่น:
 
-Creating a Secure Parameter in AWS Systems Manager Parameter Store
-In the Parameter Store console, create a new parameter named /CodeBuild/DBPassword.
+```cli
+DB_PASSWORD = "supersecret"
+```
 
-Set the parameter type to "SecureString" and associate it with a KMS key, such as the AWS managed CMK.
+ถือว่าไม่ปลอดภัย เพราะเป็นการเก็บรหัสผ่านแบบ plaintext ที่อาจรั่วไหลได้
 
-Set the value to "SuperSecret" and create the parameter.
+วิธีที่ถูกต้องคือใช้ค่าใน **Parameter Store** หรือ **Secrets Manager** แทน
 
-Now, in your CodeBuild project, you can reference this parameter name in your environment variables. For example, set DB_PASSWORD to reference the parameter store value.
+## การสร้าง Secure Parameter ใน Parameter Store
 
-At runtime, CodeBuild will fetch the actual secret value "SuperSecret" and inject it into the build container securely.
+1. เข้าไปที่ **Parameter Store Console**
+2. สร้าง parameter ใหม่ชื่อ `/CodeBuild/DBPassword`
+3. เลือกประเภท parameter เป็น **SecureString**
+4. ผูก parameter นี้กับ **KMS key** เช่น AWS managed CMK
+5. ใส่ค่าที่เป็นความลับ เช่น `"SuperSecret"` แล้วกดสร้าง
 
-You can also add another environment variable, such as DB_PASSWORD_ALT, and use the same approach with Secrets Manager by referencing the secret name.
+จากนั้นไปที่ CodeBuild Project:
 
-Make sure the IAM role associated with your CodeBuild project has permissions to access both Systems Manager Parameter Store and Secrets Manager.
+* กำหนด environment variable เช่น `DB_PASSWORD` ให้ชี้ไปที่ parameter `/CodeBuild/DBPassword`
+* ตอนรันจริง CodeBuild จะดึงค่า `"SuperSecret"` มาใส่ใน container โดยอัตโนมัติและปลอดภัย
 
-Summary
-This approach ensures that secrets are not exposed as plaintext in your environment variables and are securely managed using AWS services.
+คุณยังสามารถสร้างตัวแปรอื่น ๆ เช่น `DB_PASSWORD_ALT` โดยใช้ Secrets Manager ด้วยวิธีเดียวกัน
 
-This is a simple but important security best practice to remember, especially for exam preparation.
+อย่าลืมว่า **IAM Role ของ CodeBuild** ต้องมีสิทธิ์เข้าถึงทั้ง Parameter Store และ Secrets Manager
 
-Thank you for watching, and I will see you in the next lecture.
+## สรุป
 
-Key Takeaways
-CodeBuild can be launched inside your VPC to access VPC resources securely.
-Avoid storing secrets as plaintext environment variables in CodeBuild.
-Use AWS Systems Manager Parameter Store or Secrets Manager to securely manage secrets.
-Ensure the IAM role for CodeBuild has permissions to access Parameter Store and Secrets Manager.
+วิธีนี้ช่วยป้องกันไม่ให้ secrets ถูกเก็บเป็น plaintext ใน environment variables และมั่นใจได้ว่าจัดการอย่างปลอดภัยด้วยบริการของ AWS
+
+นี่เป็น **Best Practice ที่สำคัญมาก** โดยเฉพาะอย่างยิ่งสำหรับการสอบ AWS
+
+## Key Takeaways
+
+* CodeBuild สามารถรันใน VPC เพื่อเข้าถึงทรัพยากรภายใน VPC ได้
+* ห้ามเก็บ secrets เป็น plaintext environment variables
+* ใช้ **Parameter Store** หรือ **Secrets Manager** จัดการ secrets อย่างปลอดภัย
+* ให้สิทธิ์ IAM Role ของ CodeBuild ในการเข้าถึง Parameter Store และ Secrets Manager

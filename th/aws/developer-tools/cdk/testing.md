@@ -1,54 +1,68 @@
-CDK – Testing
-• To test CDK apps, use CDK Asser tions Module
-combined with popular test frameworks such as
-Jest (JavaScript) or Pytest (Python)
-• Verify we have specific resources, rules, conditions,
-parameters…
-• Two types of tests:
-• Fine-grained Assertions (common) – test specific
-aspects of the CloudFormation template (e.g., check if a
-resource has this property with this value)
-• Snapshot Tests – test the synthesized CloudFormation
-template against a previously stored baseline template
-• To import a template
-• Template.fromStack(MyStack) : stack built in CDK
-• Template.fromString(mystring) : stack build outside CDK
+# CDK - Unit Testing
 
----
+บทเรียนนี้ให้ภาพรวมสั้น ๆ เกี่ยวกับ **การทดสอบใน AWS Cloud Development Kit (CDK)**
+เนื่องจาก CDK ใช้โค้ดในการสร้าง Infrastructure คุณจึงสามารถทดสอบโค้ดโครงสร้างพื้นฐานได้เหมือนกับโค้ด Python หรือ JavaScript ปกติ
 
-CDK - Unit Testing
-Introduction to CDK Testing
-This lecture provides a brief overview of testing within the AWS Cloud Development Kit (CDK). Since CDK uses code, you can test your infrastructure code in the same way as standard Python or JavaScript code.
+ใน **CDK applications** จะมี **assertion modules** ซึ่งรวมกับ **framework การทดสอบยอดนิยม** เช่น:
 
-In CDK applications, there are assertion modules that include popular test frameworks such as Jest for JavaScript and Pytest for Python. These assertion modules allow us to verify whether specific resources, rules, conditions, or parameters meet our requirements.
+* **Jest** สำหรับ JavaScript
+* **Pytest** สำหรับ Python
 
-Here is a simple test example that checks whether the CDK application synthesizes correctly. This means verifying that the generated CloudFormation template contains the necessary resources and configurations.
+โมดูลเหล่านี้ช่วยให้เรายืนยันว่า **resource, rule, condition, หรือ parameter** ตรงตามความต้องการหรือไม่
 
-Types of Tests in CDK
-There are two main types of tests in CDK:
+ตัวอย่างเช่น การทดสอบว่า **CDK application สังเคราะห์ (synthesize) ถูกต้อง**
 
-Fine-grained assertions: The most common type, where you test whether specific resources have particular properties.
-Snapshot tests: Tests that compare the current CloudFormation template against a previously stored baseline template.
-Fine-Grained Assertions
-For example, you can test whether a Lambda function has the correct handler and runtime, such as nodejs14.x. Additionally, you can verify that an SNS topic subscription count is exactly one. These tests ensure that individual resource properties are as expected.
+* ตรวจสอบว่า CloudFormation template ที่สร้างขึ้นมี resource และ configuration ที่จำเป็นครบถ้วน
 
-Snapshot Tests
-Snapshot tests verify the entire CloudFormation template against a stored baseline. This is useful to ensure that key resources, such as a DynamoDB table, remain present with expected properties. Snapshot testing helps detect unintended changes in the infrastructure template.
+## ประเภทของการทดสอบใน CDK
 
-Methods to Test CloudFormation Templates
-There are two primary methods to test CloudFormation templates in CDK:
+1. **Fine-grained assertions**
 
-fromStack: This method imports a CDK stack defined in code and generates the template for testing.
-fromString: This method imports a CloudFormation template as a string, allowing testing of templates that exist outside of CDK code.
-Using Template.fromStack(MyStack), you import a CDK stack named MyStack for testing. Alternatively, Template.fromString(myString) allows you to import a CloudFormation template from a string variable myString. This flexibility enables testing of both CDK-generated and external templates.
+   * ทดสอบว่ามี **resource เฉพาะ** ที่มี property ตามที่คาดหวัง
 
-Remembering these two methods, fromStack and fromString, is important, especially from an exam perspective.
+2. **Snapshot tests**
 
-Conclusion
-This concludes the lecture on CDK unit testing. Testing your CDK applications ensures that your infrastructure code behaves as expected and that your CloudFormation templates are correctly generated.
+   * เปรียบเทียบ CloudFormation template ปัจจุบันกับ **baseline template ที่เก็บไว้ก่อนหน้า**
 
-Key Takeaways
-CDK allows testing of infrastructure code similarly to standard programming languages like Python or JavaScript.
-CDK assertion modules integrate popular testing frameworks such as Jest and Pytest.
-Fine-grained assertions verify specific resource properties within the CloudFormation template.
-Snapshot tests compare the current CloudFormation template against a stored baseline to detect changes.
+### Fine-Grained Assertions
+
+* ตัวอย่าง:
+
+  * ตรวจสอบว่า Lambda function มี handler และ runtime ถูกต้อง เช่น `nodejs14.x`
+  * ตรวจสอบว่า SNS topic มีจำนวน subscription = 1
+* การทดสอบนี้ช่วยยืนยันว่า **property ของ resource แต่ละตัวตรงตามที่คาดหวัง**
+
+### Snapshot Tests
+
+* Snapshot tests ตรวจสอบ **CloudFormation template ทั้งหมด** กับ baseline ที่เก็บไว้
+* ใช้เพื่อให้แน่ใจว่า resource สำคัญ เช่น **DynamoDB table** ยังอยู่และมี property ตามที่คาด
+* ช่วยตรวจจับ **การเปลี่ยนแปลงที่ไม่ตั้งใจ** ใน template
+
+## วิธีทดสอบ CloudFormation Templates
+
+มี **สองวิธีหลัก**:
+
+1. **`fromStack`**
+
+   * นำเข้า CDK stack ที่เขียนในโค้ด และสร้าง template สำหรับทดสอบ
+   * ตัวอย่าง: `Template.fromStack(MyStack)`
+
+2. **`fromString`**
+
+   * นำเข้า CloudFormation template ในรูปแบบ string
+   * ตัวอย่าง: `Template.fromString(myString)`
+   * เหมาะกับการทดสอบ template ที่อยู่นอก CDK code
+
+> การจำ **สองวิธีนี้ (`fromStack` และ `fromString`)** สำคัญ โดยเฉพาะสำหรับการสอบ
+
+## สรุป
+
+* การทดสอบ CDK ช่วยให้แน่ใจว่า **โค้ด infrastructure ทำงานตามที่คาด**
+* ตรวจสอบว่า **CloudFormation template ถูกสร้างอย่างถูกต้อง**
+
+## ข้อสรุปสำคัญ (Key Takeaways)
+
+* CDK สามารถทดสอบ **infrastructure code** เหมือนโค้ด Python หรือ JavaScript ปกติ
+* Assertion modules ของ CDK รองรับ **framework การทดสอบยอดนิยม** เช่น Jest และ Pytest
+* **Fine-grained assertions** → ตรวจสอบ property ของ resource เฉพาะ
+* **Snapshot tests** → เปรียบเทียบ CloudFormation template ปัจจุบันกับ baseline เพื่อหาการเปลี่ยนแปลง

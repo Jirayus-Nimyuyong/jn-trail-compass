@@ -1,49 +1,54 @@
-AWS Distro for OpenTelemetry
+# AWS Distro for OpenTelemetry
 
-• Secure, production-ready AWS-supported distribution of the open-source
-project OpenTelemetry project
-• Provides a single set of APIs, libraries, agents, and collector services
-• Collects distributed traces and metrics from your apps
-• Collects metadata from your AWS resources and services
-• Auto-instrumentation Agents to collect traces without changing your code
-• Send traces and metrics to multiple AWS services and partner solutions
-• X-Ray, CloudWatch, Prometheus…
-• Instrument your apps running on AWS (e.g., EC2, ECS, EKS, Fargate, Lambda)
-as well as on-premises
-• Migrate from X-Ray to AWS Distro for Temeletry if you want to standardize
-with open-source APIs from Telemetry or send traces to multiple
-destinations simultaneously
+**AWS Distro for OpenTelemetry (ADOT)** เป็นการแจกจ่าย (distribution) ที่สร้างโดย AWS เพื่อรองรับ **โครงการ OpenTelemetry** โดยออกแบบให้ **ปลอดภัยและพร้อมใช้งานในระบบ production**
 
----
+## OpenTelemetry คืออะไร?
 
-AWS Distro for OpenTelemetry
-Introduction to AWS Distro for OpenTelemetry
-AWS Distro for OpenTelemetry is a distribution created by AWS that supports the OpenTelemetry project. It is designed to be secure and production ready.
+* OpenTelemetry ให้ **ชุด API, ไลบรารี, agents, และ collector services เดียว** สำหรับเก็บ **distributed traces และ metrics** จากแอปพลิเคชันของคุณ
+* ยังช่วยเก็บ **metadata** จากทรัพยากรและบริการ AWS ของคุณ
+* คล้ายกับ **AWS X-Ray** แต่เป็น **open-source**
+* มี agents ที่สามารถ **auto-instrumented** เพื่อเก็บ traces โดยไม่ต้องแก้ไขโค้ดแอปพลิเคชัน
 
-What is OpenTelemetry?
-OpenTelemetry provides a single set of APIs, libraries, agents, and collector services to collect distributed traces and metrics from your applications. It also helps collect metadata from your AWS resources and services.
+  * ฟังก์ชันการทำงานคล้ายกับ X-Ray
 
-OpenTelemetry is similar to AWS X-Ray but is open-source. It includes agents that can be auto-instrumented to collect traces without requiring changes to your application code, providing functionality similar to X-Ray.
+## การเก็บข้อมูลและการรวมระบบ
 
-Data Collection and Integration
-Thanks to scalable collection within your AWS account and applications, all traces and metrics can be sent to multiple AWS services as well as partner solutions. For example:
+* ด้วยความสามารถในการเก็บข้อมูลแบบ **scalable** ภายใน AWS account และแอปพลิเคชัน
+* Traces และ Metrics สามารถส่งไปยัง **หลายบริการของ AWS** และ **partner solutions**
 
-Traces can be sent to the X-Ray service.
-Metrics can be sent to CloudWatch.
-Both traces and metrics can be sent to Prometheus.
-Supported Environments
-You can instrument your applications running on various AWS environments such as EC2, ECS, EKS, Fargate, or Lambda. It also supports applications running on-premises. Using the OpenTelemetry standard, you can send traces and metrics to AWS services like X-Ray or to partner services such as Datadog.
+  * Traces → X-Ray
+  * Metrics → CloudWatch
+  * Traces + Metrics → Prometheus
 
-Differences Between OpenTelemetry and X-Ray
-You might consider migrating from X-Ray to AWS Distro for OpenTelemetry if you want to standardize on open-source APIs or if you want to send trace data to multiple destinations simultaneously, a feature supported by OpenTelemetry.
+## สภาพแวดล้อมที่รองรับ
 
-Summary
-The AWS Distro for OpenTelemetry collects traces and metrics from each application request. It also collects contextual data about your AWS resources. This data can be sent to X-Ray, CloudWatch, Amazon Managed Service for Prometheus, and any partner monitoring solutions supported by OpenTelemetry.
+* แอปพลิเคชันที่รันบน AWS: **EC2, ECS, EKS, Fargate, Lambda**
+* รองรับแอปพลิเคชันที่รัน **on-premises**
+* ใช้มาตรฐาน OpenTelemetry ทำให้สามารถส่ง traces และ metrics ไปยัง:
 
-This overview provides a high-level understanding of AWS Distro for OpenTelemetry. In exam scenarios, questions about this topic are typically high-level.
+  * บริการ AWS เช่น X-Ray
+  * บริการ partner เช่น Datadog
 
-Key Takeaways
-AWS Distro for OpenTelemetry is a secure, production-ready distribution supported by AWS.
-OpenTelemetry provides a unified set of APIs, libraries, agents, and collector services to gather distributed traces and metrics.
-It supports auto-instrumentation to collect traces without modifying application code.
-Collected telemetry data can be sent to multiple AWS services like X-Ray, CloudWatch, Amazon Managed Service for Prometheus, and partner solutions simultaneously.
+## ความแตกต่างระหว่าง OpenTelemetry กับ X-Ray
+
+* หากต้องการ **มาตรฐานแบบ open-source APIs**
+* หากต้องการ **ส่ง trace data ไปหลายปลายทางพร้อมกัน**
+* OpenTelemetry รองรับฟีเจอร์เหล่านี้ ในขณะที่ X-Ray จำกัดที่ AWS service
+
+## สรุป
+
+* AWS Distro for OpenTelemetry ใช้เก็บ **traces และ metrics** จากแต่ละ request ของแอป
+* เก็บ **contextual data** ของทรัพยากร AWS
+* สามารถส่งข้อมูลไปยัง:
+
+  * X-Ray
+  * CloudWatch
+  * Amazon Managed Service for Prometheus
+  * Partner monitoring solutions ที่รองรับ OpenTelemetry
+
+## Key Takeaways
+
+* **ADOT** เป็น distribution ที่ **ปลอดภัยและพร้อมใช้งานใน production**
+* OpenTelemetry ให้ **ชุด API, ไลบรารี, agents และ collectors** สำหรับเก็บ traces และ metrics
+* รองรับ **auto-instrumentation** เพื่อเก็บ traces โดยไม่ต้องแก้ไขโค้ด
+* ข้อมูล telemetry ที่เก็บได้สามารถส่งไปยังหลายบริการพร้อมกัน เช่น **X-Ray, CloudWatch, Prometheus และ partner solutions**
