@@ -28,6 +28,8 @@
 
 ความยืดหยุ่นนี้ช่วยให้สามารถจัดการ IAM ได้หลากหลาย
 
+![An image](../../../../public/images/aws/iam/1.png)
+
 ## จุดประสงค์ของ Users และ Groups
 
 ทำไมต้องสร้าง users และ groups?

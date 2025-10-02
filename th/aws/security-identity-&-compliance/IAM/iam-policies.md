@@ -1,5 +1,7 @@
 # IAM Policies
 
+![An image](../../../../public/images/aws/iam/2.png)
+
 มาดู IAM Policies อย่างละเอียดกัน
 สมมติว่าเรามีกลุ่มนักพัฒนา: Alice, Bob, และ Charles
 
@@ -25,9 +27,13 @@
 
 การสืบทอด policy แบบหลายชั้นนี้ จะเห็นชัดเจนมากขึ้นเมื่อลองปฏิบัติจริง
 
+![An image](../../../../public/images/aws/iam/3.png)
+
 ## โครงสร้างของ IAM Policy
 
 IAM policy เป็น **เอกสาร JSON** ที่ประกอบด้วยหลายส่วนสำคัญ
+
+![An image](../../../../public/images/aws/iam/4.png)
 
 ### ส่วนประกอบหลักของ IAM Policy
 

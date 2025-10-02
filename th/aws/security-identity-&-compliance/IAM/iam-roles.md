@@ -19,6 +19,8 @@
 * EC2 Instance ใช้ IAM Role เพื่อเรียก API ของ AWS
 * หากสิทธิ์ใน IAM Role ถูกต้อง EC2 Instance จะสามารถเข้าถึงทรัพยากรได้
 
+![An image](../../../../public/images/aws/iam/8.png)
+
 ## ตัวอย่าง IAM Roles ที่พบบ่อย
 
 * **EC2 Instance Role** → ให้ EC2 ทำงานแทนเรา
