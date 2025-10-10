@@ -9,10 +9,14 @@
 
 คุณสามารถสร้างและตั้งค่า Function URL ผ่าน **AWS Management Console หรือ API** หากต้องการจำกัดจำนวนครั้งที่ Lambda function สามารถรันได้ สามารถใช้ **reserved concurrency** ของ Lambda ควบคุมจำนวน concurrent executions สูงสุด
 
+![An image](../../../../public/images/aws/lambda/44.png)
+
 ## ความปลอดภัยของ URL และการควบคุมการเข้าถึง
 
 * **Resource-based policies**: แนบกับ Lambda function เพื่อกำหนดว่าบัญชีใด, ช่วง IP (CIDR), หรือ IAM principal ใดสามารถเข้าถึง Function URL ได้
 * **CORS**: หากเรียก Function URL จากโดเมนต่างกัน เช่น S3 bucket ที่อยู่หลัง CloudFront (example.com) และ API ของคุณเป็น Lambda Function URL (api.example.com) คุณต้องตั้งค่า CORS บน Function URL เพื่อให้รองรับ cross-domain requests
+
+![An image](../../../../public/images/aws/lambda/45.png)
 
 ## ประเภทการ Authentication
 
@@ -20,6 +24,8 @@
 
    * อนุญาตให้เข้าถึง Function URL แบบสาธารณะและไม่ต้อง authenticate
    * การเข้าถึงจะขึ้นกับ **resource-based policy** ต้องกำหนดให้ public access เช่น ใช้ principal `"*"` กับ `InvokeFunctionUrl`
+
+   ![An image](../../../../public/images/aws/lambda/46.png)
 
 2. **AuthType = AWS_IAM**
 
@@ -32,6 +38,8 @@
      * ตัวอย่าง: Account A มี resource-based policy อนุญาต role ใน Account B
      * IAM role ใน Account B ต้องมี identity-based policy อนุญาต invoke ด้วย
      * เมื่อทั้งสอง policy ถูกตั้งค่าแล้ว role ใน Account B จะสามารถใช้ Lambda Function URL ของ Account A ได้
+
+   ![An image](../../../../public/images/aws/lambda/47.png)  
 
 ## สรุป
 

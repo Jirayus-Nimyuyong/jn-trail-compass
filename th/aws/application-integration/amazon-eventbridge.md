@@ -1,5 +1,7 @@
 # Amazon EventBridge
 
+![An image](../../../public/images/aws/eventbridge/1.png)
+
 **Amazon EventBridge** (เดิมชื่อ CloudWatch Events) เป็นบริการที่ช่วยให้คุณสามารถ **ตั้งเวลาและตอบสนองต่อเหตุการณ์ (events) ภายใน AWS** ได้ แม้ว่าชื่อจะเปลี่ยนไป แต่ในเอกสารหรือประสบการณ์เก่า ๆ อาจยังเจอชื่อ CloudWatch Events
 
 * EventBridge สามารถตั้ง **cron jobs** บนคลาวด์ เช่น เรียก Lambda ทุกชั่วโมงเพื่อรันสคริปต์
@@ -22,6 +24,8 @@ EventBridge ทำหน้าที่เป็น **ศูนย์กลา�
 * สามารถตั้ง **Scheduled Events** ด้วย cron expression เช่น ทุก 4 ชั่วโมง หรือ วันจันทร์แรกของเดือน เวลา 08:00
 * EventBridge จะสร้าง **JSON document** แสดงรายละเอียด event เช่น instance ID, timestamp, IP address
 
+![An image](../../../public/images/aws/eventbridge/2.png)
+
 ## Event Destinations และ Integrations
 
 หลังจาก events ถูกประมวลผล สามารถส่งไปยังหลายปลายทาง เช่น:
@@ -36,6 +40,8 @@ EventBridge ทำหน้าที่เป็น **ศูนย์กลา�
 * รัน SSM automation หรือ actions ของ EC2 เช่น start, stop, restart
 
 ## Event Buses ใน Amazon EventBridge
+
+![An image](../../../public/images/aws/eventbridge/3.png)
 
 EventBridge มี **ประเภทของ Event Bus** หลัก 3 แบบ:
 
@@ -57,12 +63,16 @@ Event Buses ช่วยให้คุณ **กำหนดเส้นทา�
 
 ## Schema Registry
 
+![An image](../../../public/images/aws/eventbridge/4.png)
+
 * EventBridge มีฟีเจอร์ **Schema Registry** วิเคราะห์ events บน event bus
 * สามารถ **สร้างโค้ดในแอปพลิเคชัน** ที่เข้าใจโครงสร้างของ events ได้ล่วงหน้า
 * Schema versioning → ทำให้ปรับปรุงโครงสร้าง events ของแอปได้ตามเวลา
 * ตัวอย่าง: Schema สำหรับ CodePipeline Event → ดาวน์โหลดและใช้ในโค้ดได้ทันที
 
 ## การรวม Events หลายบัญชีด้วย Amazon EventBridge
+
+![An image](../../../public/images/aws/eventbridge/6.png)
 
 การบรรยายนี้อธิบายวิธีการ **รวม events จากหลายบัญชี AWS เข้าบัญชีกลาง (central account) ด้วย Amazon EventBridge** จุดประสงค์คือเพื่อให้สามารถ **จัดการ events ทั้งหมดจากหลายบัญชี AWS ในบัญชีกลางเดียว** ได้
 

@@ -3,7 +3,12 @@
 ความปลอดภัยของ Amazon S3 แบ่งออกเป็นหลายส่วน:
 
 1. **User-based security**: ใช้ IAM policy เพื่อกำหนดสิทธิ์ว่า IAM user คนใดสามารถเรียก API ไหนได้บ้าง
+
+![An image](../../../../public/images/aws/s3/3.png)
+
 2. **Resource-based security**: ใช้นโยบายแบบ S3 Bucket Policy กำหนดสิทธิ์สำหรับ bucket ทั้งหมด
+
+![An image](../../../../public/images/aws/s3/2.png)
 
 ## Resource-Based Security: S3 Bucket Policies
 
@@ -57,13 +62,19 @@ IAM principal จะเข้าถึง object ได้เมื่อ:
 
 * ถ้า IAM user ในบัญชี AWS ต้องเข้าถึง bucket → กำหนดสิทธิ์ผ่าน IAM policy
 
+![An image](../../../../public/images/aws/s3/3.png)
+
 ## การเข้าถึงโดย EC2 ผ่าน IAM Role
 
 * สำหรับ EC2 ที่ต้องเข้าถึง S3 → สร้าง **IAM Role** ให้ EC2 instance แทนการใช้ IAM user
 
+![An image](../../../../public/images/aws/s3/4.png)
+
 ## Cross-Account Access
 
 * ถ้า IAM user จากบัญชี AWS อื่นต้องเข้าถึง bucket → ใช้ **Bucket Policy** ให้สิทธิ์
+
+![An image](../../../../public/images/aws/s3/5.png)
 
 ## Block Public Access Settings
 
@@ -71,6 +82,8 @@ IAM principal จะเข้าถึง object ได้เมื่อ:
 * ป้องกัน bucket ถูก public โดยไม่ตั้งใจ แม้ bucket policy จะกำหนดให้ public
 * ควรเปิดถ้าบucket ไม่ควรเป็น public
 * สามารถตั้งที่ account level เพื่อป้องกัน bucket ใด ๆ ถูก public โดยไม่ตั้งใจ
+
+![An image](../../../../public/images/aws/s3/6.png)
 
 ## สรุป Key Takeaways
 

@@ -6,6 +6,8 @@
 * ถ้ามีผลลัพธ์ที่ถูก cache ไว้ → จะถูกส่งกลับทันที
 * ถ้าไม่มี (cache miss) → API Gateway จะส่ง request ต่อไปยัง backend เพื่อดึง response
 
+![An image](../../../../public/images/aws/api-gateway/12.png)
+
 แนวทางนี้ช่วย **ลดภาระของ backend** ได้อย่างมาก
 
 ## ค่า TTL (Time To Live) ของ Cache
@@ -33,6 +35,8 @@
   ```
 
 * แต่ **Client ต้องมีสิทธิ์ IAM** ที่เหมาะสมถึงจะ invalidate cache ได้
+
+![An image](../../../../public/images/aws/api-gateway/13.png)
 
 ## การตั้งค่า Cache (Hands-On)
 

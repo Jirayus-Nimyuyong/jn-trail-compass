@@ -13,6 +13,8 @@ Mappings ยังสามารถใช้กับ region ต่าง ๆ �
 * ขึ้นอยู่กับ region ของคุณ เช่น `us-east-1`, `us-west-1`, `eu-west-1`
 * และขึ้นอยู่กับ architecture เช่น `HVM64` หรือ `HVMG2`
 
+![An image](../../../../public/images/aws/cloudformation/9.png)
+
 Mapping นี้จะให้ **AMI ID ที่แตกต่างกัน** ทุกครั้ง
 
 * เพราะ AMI เฉพาะกับแต่ละ region
@@ -32,6 +34,8 @@ Mapping นี้จะให้ **AMI ID ที่แตกต่างกั�
    * หาก deploy ใน `us-east-1` → `AWS::Region` จะ resolve เป็น `us-east-1`
    * หาก deploy ใน `us-west-1` → resolve เป็น `us-west-1`
 3. ระบุ **second-level key** เช่น architecture (`HVM64`)
+
+![An image](../../../../public/images/aws/cloudformation/10.png)
 
 ผลลัพธ์คือคุณจะได้ AMI ที่ถูกต้องสำหรับ **region และ architecture** ที่กำหนด
 

@@ -15,6 +15,8 @@
   * แต่ละ Lambda instance จะสร้าง connection ไปยัง EFS → ต้องระวังไม่ให้เกิน **EFS connection limits**
   * หาก Lambda หลายฟังก์ชันถูกเรียกพร้อมกันเป็น burst → อาจเจอ **connection burst limits**
 
+![An image](../../../../public/images/aws/lambda/29.png)  
+
 ## การเปรียบเทียบตัวเลือกการเก็บข้อมูลสำหรับ Lambda
 
 ### 1. Ephemeral Storage (/tmp)
@@ -60,6 +62,8 @@
 * การเข้าถึง: mount เป็น network file system บน Lambda
 * Performance: เข้าถึงข้อมูลเร็วมาก
 * การแชร์: แชร์ระหว่าง Lambda invocation
+
+![An image](../../../../public/images/aws/lambda/30.png)
 
 ## สรุป (Key Takeaways)
 

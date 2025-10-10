@@ -48,6 +48,8 @@ CloudFront มีฟังก์ชัน 2 ประเภท:
 * **Startup time ต่ำกว่า 1 ms**
 * ปรับขนาดเพื่อรองรับ **ล้าน requests ต่อวินาที**
 
+![An image](../../../../public/images/aws/lambda/21.png)
+
 **Lambda@Edge**
 
 * ยืดหยุ่นกว่า ปรับแต่งได้ทั้ง:
@@ -60,6 +62,8 @@ CloudFront มีฟังก์ชัน 2 ประเภท:
 * รองรับ **หลายพัน requests ต่อวินาที**
 * Author function ใน **us-east-1** แล้ว CloudFront replicate ไปทั่วโลก
 
+![An image](../../../../public/images/aws/lambda/22.png)
+
 ## เปรียบเทียบ CloudFront Functions vs Lambda@Edge
 
 | Feature            | CloudFront Functions      | Lambda@Edge                                                      |
@@ -71,6 +75,8 @@ CloudFront มีฟังก์ชัน 2 ประเภท:
 
 * CloudFront Functions = ฟังก์ชันสั้นและเร็ว
 * Lambda@Edge = ฟังก์ชันซับซ้อนและเวลา execution ยาวกว่า
+
+![An image](../../../../public/images/aws/lambda/23.png)
 
 ## กรณีใช้งาน CloudFront Functions
 

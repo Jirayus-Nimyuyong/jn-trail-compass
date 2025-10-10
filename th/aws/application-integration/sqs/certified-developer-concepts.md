@@ -10,6 +10,8 @@
   * หากเปิด long polling, consumer จะรอจนมีข้อความเข้ามาใน queue
 * เมื่อมีข้อความใหม่เข้ามา Consumer จะได้รับข้อความทันที
 
+![An image](../../../../public/images/aws/sqs/14.png)
+
 **ประโยชน์ของ Long Polling:**
 
 1. ลดจำนวน API calls ไปยัง SQS
@@ -29,6 +31,8 @@
 * ขนาดข้อความสูงสุดใน SQS คือ **256 KB**
 * หากต้องการส่งข้อความใหญ่ เช่น **1 GB**
 * ใช้ **SQS Extended Client (Java library)** หรือ pattern ในภาษาอื่น
+
+![An image](../../../../public/images/aws/sqs/15.png)
 
 **หลักการทำงาน:**
 

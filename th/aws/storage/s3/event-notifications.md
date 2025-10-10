@@ -7,6 +7,8 @@
 * Object ถูกกู้คืน (Restored)
 * Object ถูกทำซ้ำ (Replicated)
 
+![An image](../../../../public/images/aws/s3/8.png)
+
 ## การกรองเหตุการณ์ (Event Filtering)
 
 คุณสามารถกรองเหตุการณ์เพื่อมุ่งไปยัง object เฉพาะได้ เช่น ต้องการเฉพาะไฟล์ที่ลงท้ายด้วย `.JPEG`
@@ -35,6 +37,8 @@ Event Notifications สามารถส่งไปยังปลายทา
 
 เพื่อให้ Event Notifications ทำงานได้ถูกต้อง ต้องตั้งค่า **permissions** ให้ S3 สามารถส่งข้อมูลไปยังปลายทางได้
 
+![An image](../../../../public/images/aws/s3/9.png)
+
 * **SNS Resource Access Policy** → แนบกับ SNS topic เพื่อให้ S3 ส่งข้อความไปได้
 * **SQS Resource Access Policy** → แนบกับ SQS queue เพื่อให้ S3 ส่งข้อมูลไปได้
 * **Lambda Resource Policy** → แนบกับ Lambda function เพื่อให้ S3 สามารถ invoke ฟังก์ชันได้
@@ -45,6 +49,8 @@ Event Notifications สามารถส่งไปยังปลายทา
 * Policies เหล่านี้ทำงานคล้ายกับ S3 bucket policy
 
 ## การรวมกับ Amazon EventBridge
+
+![An image](../../../../public/images/aws/s3/10.png)
 
 * ทุกเหตุการณ์ที่เกิดขึ้นใน S3 bucket จะถูกส่งไปยัง **Amazon EventBridge** โดยอัตโนมัติ
 * จาก EventBridge → สามารถตั้ง **rules** เพื่อส่งเหตุการณ์ไปยัง **บริการ AWS กว่า 18 รายการ**

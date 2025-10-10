@@ -7,6 +7,8 @@
 * Lambda จะดึงข้อมูลจากบริการเหล่านี้ แล้วทำการประมวลผล
 * การประมวลผลใน Event Source Mapping ถือว่าเป็น **synchronous invocation**
 
+![An image](../../../../public/images/aws/lambda/15.png)
+
 ## Event Source Mapping กับ Kinesis
 
 * เมื่อ Lambda ถูกตั้งค่าให้ดึงข้อมูลจาก Kinesis จะมี **Event Source Mapping** ถูกสร้างขึ้นภายใน
@@ -27,6 +29,8 @@
   * items ใหม่เท่านั้น
   * จากจุดเริ่มต้นของ shard
   * จาก timestamp ที่กำหนด
+
+![An image](../../../../public/images/aws/lambda/16.png)
 
 **ข้อสำคัญ:**
 
@@ -60,6 +64,8 @@
 * สามารถตั้งค่า **batch size 1–10 messages**
 * แนะนำตั้ง **visibility timeout ของ queue = 6 เท่าของ Lambda timeout**
 * หากต้องการ DLQ สำหรับ message ที่ไม่สามารถประมวลผลได้ ให้ตั้งค่า **บน SQS queue** ไม่ใช่บน Lambda
+
+![An image](../../../../public/images/aws/lambda/17.png)
 
 ### การประมวลผลตามลำดับและการ scaling กับ SQS
 

@@ -1,5 +1,7 @@
 # X-Ray with Beanstalk
 
+![An image](../../../../public/images/aws/x-ray/7.png)
+
 ในบทเรียนนี้ เราจะดูวิธีการ **รวม AWS X-Ray กับ Elastic Beanstalk**
 
 * แพลตฟอร์ม Beanstalk มี **X-Ray daemon** รวมมาแล้วโดยค่าเริ่มต้น

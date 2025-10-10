@@ -1,6 +1,6 @@
 # Beanstalk Cloning
 
-## บทนำเกี่ยวกับ Elastic Beanstalk Cloning
+![An image](../../../../public/images/aws/beanstalk/12.png)
 
 Elastic Beanstalk มีฟีเจอร์ที่สะดวกมากในการ **โคลน (Clone)** สภาพแวดล้อม (Environment) ที่มีอยู่แล้ว ไปเป็นสภาพแวดล้อมใหม่ ซึ่งสภาพแวดล้อมที่ถูกโคลนจะมีการตั้งค่าทั้งหมดเหมือนกับต้นฉบับทุกอย่าง ฟีเจอร์นี้มีประโยชน์มากหากคุณมี **Production Environment** อยู่แล้ว และต้องการสร้าง **Test Environment** ที่มีการตั้งค่าเหมือนกันทุกประการ
 

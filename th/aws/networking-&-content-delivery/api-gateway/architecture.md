@@ -1,6 +1,6 @@
 # API Gateway - Architecture
 
-## บทนำเกี่ยวกับ API Gateway ใน Microservice Architecture
+![An image](../../../../public/images/aws/api-gateway/27.png)
 
 * บทเรียนนี้อธิบายภาพรวมการใช้งาน **Microservice Architecture** ด้วย **API Gateway**
 * API Gateway ช่วยให้คุณมี **อินเทอร์เฟซเดียว (single interface)** สำหรับทุก microservices ของบริษัท

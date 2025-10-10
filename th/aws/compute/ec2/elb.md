@@ -13,6 +13,8 @@
 
 ผู้ใช้ไม่ทราบว่าเชื่อมต่อกับ instance ไหน พวกเขาเชื่อมต่อเพียงกับ **Elastic Load Balancer** ซึ่งเป็น **endpoint เดียว**
 
+![An image](../../../../public/images/aws/ec2/18.png)
+
 ## ประโยชน์ของการใช้ Load Balancer
 
 * ให้ **จุดเชื่อมต่อเดียว** กับแอปพลิเคชันของคุณ
@@ -42,6 +44,8 @@
   * Endpoint: /health
 * หาก instance ไม่ตอบกลับ HTTP 200 → ถือว่า **Unhealthy**
 
+![An image](../../../../public/images/aws/ec2/19.png)
+
 ## ประเภทของ Load Balancer ที่ AWS จัดการให้
 
 1. **Classic Load Balancer (CLB)** – รุ่นเก่า, รองรับ HTTP, HTTPS, TCP, SSL, Security CP. แนะนำไม่ให้ใช้แล้ว
@@ -58,6 +62,8 @@
 * EC2 instance → อนุญาต inbound port 80 **จาก Security Group ของ Load Balancer เท่านั้น**
   → ช่วยให้ instance รับทราฟฟิก **เฉพาะจาก Load Balancer** เพิ่มความปลอดภัย
 
+![An image](../../../../public/images/aws/ec2/20.png)  
+
 ## Elastic Load Balancer – Sticky Sessions
 
 **Sticky sessions** หรือที่เรียกว่า **session affinity** คือฟีเจอร์ของ ELB ที่ทำให้ **ผู้ใช้ที่ส่งคำขอหลายครั้งไปยัง Load Balancer ถูกส่งไปยัง backend instance เดิมทุกครั้ง**
@@ -71,6 +77,8 @@
 * ผู้ใช้คนที่ 3 → ถูกส่งไปยัง instance ที่กำหนดตลอด
 
 ฟีเจอร์นี้สามารถใช้ได้กับ **CLB, ALB, และ NLB**
+
+![An image](../../../../public/images/aws/ec2/29.png)
 
 ### การทำงานของ Sticky Sessions
 
@@ -136,6 +144,8 @@ Sticky sessions ใช้ **Cookie** ที่ส่งมาพร้อมก�
 ## Elastic Load Balancer – Cross Zone Load Balancing
 
 Cross zone load balancing คือการกระจายทราฟฟิกข้าม **Availability Zones (AZs)** เพื่อให้โหลดถูกกระจายอย่างสมดุล
+
+![An image](../../../../public/images/aws/ec2/30.png)
 
 ตัวอย่าง:
 
@@ -205,6 +215,8 @@ Cross zone load balancing คือการกระจายทราฟฟิ
 * หากเว็บไซต์แสดงไอคอนล็อคสีเขียว → การเชื่อมต่อถูกเข้ารหัส
 * SSL Certificates มีวันหมดอายุ ต้องต่ออายุเพื่อยืนยันความถูกต้อง
 
+![An image](../../../../public/images/aws/ec2/31.png)
+
 ### SSL Certificates กับ Load Balancer
 
 * ผู้ใช้เชื่อมต่อผ่าน HTTPS → ใช้ SSL Certificates เข้ารหัสข้อมูล
@@ -229,6 +241,8 @@ Cross zone load balancing คือการกระจายทราฟฟิ
   * CloudFront
 * ไม่รองรับ Classic Load Balancer (รุ่นเก่า)
 
+![An image](../../../../public/images/aws/ec2/32.png)
+
 **ตัวอย่าง ALB + SNI**
 
 * ALB มี 2 Target Groups: `www.mycorp.com` และ `Domain1.example.com`
@@ -252,6 +266,8 @@ Cross zone load balancing คือการกระจายทราฟฟิ
   * **Classic Load Balancer (CLB)** → เรียกว่า **Connection Draining**
   * **Application Load Balancer (ALB) / Network Load Balancer (NLB)** → เรียกว่า **Deregistration Delay**
 * หลักการสำคัญ: ให้เวลา EC2 instance ทำงานคำสั่งหรือเชื่อมต่อที่กำลังดำเนินอยู่ให้เสร็จก่อนที่ instance จะถูก **deregister** หรือถูกทำเครื่องหมายว่าไม่พร้อมใช้งาน
+
+![An image](../../../../public/images/aws/ec2/33.png)
 
 ### การทำงานของ Connection Draining
 

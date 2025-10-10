@@ -2,6 +2,8 @@
 
 CodePipeline เป็นเครื่องมือแบบ Visual Workflow ที่ช่วยให้คุณสามารถจัดการกระบวนการ **CI/CD (Continuous Integration และ Continuous Delivery)** บน AWS ได้อย่างเป็นระบบและอัตโนมัติ
 
+![An image](../../../public/images/aws/ci-cd/8.png)
+
 ## ผู้ให้บริการ Source ที่รองรับ
 
 คุณสามารถกำหนดแหล่งที่มาของซอร์สโค้ด (Source) ได้หลายแบบ เช่น:

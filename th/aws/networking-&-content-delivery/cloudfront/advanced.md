@@ -2,6 +2,8 @@
 
 ## การกำหนดราคาและ Price Classes
 
+![An image](../../../../public/images/aws/cloudfront/17.png)
+
 CloudFront มี **edge locations** กระจายอยู่ทั่วโลก และค่าใช้จ่ายของ **data transfer out** (การส่งข้อมูลออกจาก CloudFront) จะแตกต่างกันไปตามภูมิภาค
 
 ตัวอย่างเช่น:
@@ -41,6 +43,8 @@ CloudFront รองรับ **หลาย origin และ origin groups** �
 
 ทำได้โดยการตั้งค่า **cache behaviors** ที่แตกต่างกันตาม path patterns
 
+![An image](../../../../public/images/aws/cloudfront/18.png)
+
 ### Origin Groups
 
 Origin groups ช่วยเพิ่ม **high availability** โดยกำหนด **primary origin** และ **secondary origin**
@@ -57,6 +61,8 @@ Origin groups ช่วยเพิ่ม **high availability** โดยกำ�
 
 กลไก failover นี้สามารถใช้กับ **S3 bucket** ได้ด้วย โดยการตั้ง origin groups ของ S3 ในภูมิภาคต่าง ๆ และเปิด replication ระหว่างกัน → จะได้ **regional high availability** และ **disaster recovery**
 
+![An image](../../../../public/images/aws/cloudfront/19.png)
+
 ## Field-Level Encryption
 
 Field-level encryption ช่วยปกป้อง **ข้อมูลสำคัญ** ตลอดการส่งข้อมูล โดยเพิ่ม **ชั้นความปลอดภัย** นอกจาก HTTPS
@@ -69,6 +75,8 @@ Field-level encryption ช่วยปกป้อง **ข้อมูลสำ
 4. Web server ใช้ **private key** เพื่อถอดรหัสฟิลด์นั้น
 
 > ข้อมูลสำคัญจะถูกเข้ารหัสตลอดการเดินทาง และมีเพียง **origin server** เท่านั้นที่เข้าถึงข้อมูลเดคริปต์ได้
+
+![An image](../../../../public/images/aws/cloudfront/20.png)
 
 ## สรุป
 

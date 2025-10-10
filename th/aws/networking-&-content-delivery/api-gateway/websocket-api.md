@@ -4,6 +4,8 @@ WebSocket API ใน API Gateway ช่วยให้เกิด **การ�
 
 * การสื่อสารสองทางนี้ทำให้เซิร์ฟเวอร์สามารถส่งข้อมูลกลับไปยังไคลเอนต์ได้โดยไม่ต้องรอให้ไคลเอนต์ส่งคำขอ
 
+![An image](../../../../public/images/aws/api-gateway/21.png)
+
 ## กรณีการใช้งานของ WebSocket API
 
 * ใช้สำหรับแอปพลิเคชันแบบ **stateful**
@@ -15,6 +17,8 @@ WebSocket API ใน API Gateway ช่วยให้เกิด **การ�
   * แพลตฟอร์มการซื้อขายทางการเงิน
 
 ## การเชื่อมต่อแบบ Persistent และ Lifecycle Events
+
+![An image](../../../../public/images/aws/api-gateway/22.png)
 
 * ตัวอย่าง: แอปแชท
 
@@ -57,6 +61,8 @@ wss://<unique-id>.execute-api.<region>.amazonaws.com/<stage-name>
 * แต่ละ frame สามารถเรียก Lambda function ใหม่ และใช้ connection ID เดิม
 * Lambda สามารถดึงข้อมูลผู้ใช้จาก DynamoDB และบันทึกข้อความตามต้องการ
 
+![An image](../../../../public/images/aws/api-gateway/23.png)
+
 ## การสื่อสารจาก Server ไป Client
 
 * เซิร์ฟเวอร์สามารถส่งข้อความกลับไปไคลเอนต์โดยไม่ต้องรอ request จากไคลเอนต์
@@ -68,6 +74,8 @@ https://<unique-id>.execute-api.<region>.amazonaws.com/<stage-name>/@connections
 
 * Lambda หรือ backend อื่นสามารถส่ง HTTP POST พร้อม Sign ด้วย IAM Sig v4 ไปยัง URL นี้ เพื่อส่งข้อความไปยังไคลเอนต์
 
+![An image](../../../../public/images/aws/api-gateway/24.png)
+
 ## การจัดการ Connections ผ่าน API Gateway
 
 สำหรับ URL `/@connections/<connectionid>` สามารถทำได้ดังนี้:
@@ -75,6 +83,8 @@ https://<unique-id>.execute-api.<region>.amazonaws.com/<stage-name>/@connections
 * **POST** → ส่งข้อความจาก server ไปยังไคลเอนต์ WebSocket ที่เชื่อมต่อ
 * **GET** → ตรวจสอบสถานะการเชื่อมต่อล่าสุดของไคลเอนต์
 * **DELETE** → ตัดการเชื่อมต่อของไคลเอนต์
+
+![An image](../../../../public/images/aws/api-gateway/25.png)
 
 ## Routing ใน WebSocket API
 
@@ -96,6 +106,8 @@ https://<unique-id>.execute-api.<region>.amazonaws.com/<stage-name>/@connections
 * Route selection expression เช่น `request.body.action`
 
   * ถ้า `action` เป็น `join`, API Gateway จะเรียก Lambda backend ที่แม็พกับ route `join`
+
+![An image](../../../../public/images/aws/api-gateway/26.png)
 
 ## สรุป
 

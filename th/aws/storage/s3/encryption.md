@@ -2,11 +2,14 @@
 
 คุณสามารถเข้ารหัส **object** ใน S3 ได้หลายวิธี ดังนี้:
 
+![An image](../../../../public/images/aws/s3/14.png)
+
 1. **Server-side encryption (SSE)** มีหลายประเภท:
 
    * **SSE-S3** → ใช้กุญแจที่ AWS จัดการให้
    * **SSE-KMS** → ใช้กุญแจจาก AWS KMS (Key Management Service)
    * **SSE-C** → ใช้กุญแจที่ลูกค้าให้เอง
+
 2. **Client-side encryption** → เข้ารหัสที่ฝั่งลูกค้าก่อนอัปโหลด
 
 ## SSE-S3: Server-Side Encryption ด้วย S3-Managed Keys
@@ -29,6 +32,8 @@
 4. ทำการเข้ารหัสแล้วเก็บไฟล์เข้าบัคเก็ต
 
 ## SSE-KMS: Server-Side Encryption ด้วย AWS KMS Keys
+
+![An image](../../../../public/images/aws/s3/15.png)
 
 * คุณสามารถ **ควบคุมกุญแจเอง** ผ่าน AWS KMS
 * ข้อดี:
@@ -55,7 +60,11 @@
 * การเรียก API มี quota จำกัด (5,000–30,000 request/วินาที)
 * Bucket ที่มี throughput สูงอาจเจอ **throttling**
 
+![An image](../../../../public/images/aws/s3/16.png)
+
 ## SSE-C: Server-Side Encryption ด้วย Customer-Provided Keys
+
+![An image](../../../../public/images/aws/s3/17.png)
 
 * กุญแจจัดการ **นอก AWS**
 * AWS ใช้กุญแจจากลูกค้าเพื่อเข้ารหัส object **แต่ไม่เก็บกุญแจไว้**
@@ -68,6 +77,8 @@
 3. การอ่านไฟล์ต้องใช้กุญแจเดียวกัน
 
 ## Client-Side Encryption
+
+![An image](../../../../public/images/aws/s3/18.png)
 
 * ลูกค้าทำการเข้ารหัสไฟล์ก่อนอัปโหลด
 * การจัดการกุญแจและการถอดรหัสทั้งหมดเกิดขึ้น **นอก AWS**
@@ -96,7 +107,7 @@
   * ปฏิเสธ `GetObject` ถ้า `aws:SecureTransport` = false
   * ถ้าใช้ HTTPS → ถูกอนุญาต, HTTP → ถูกบล็อก
 
-ได้เลย นี่คือการแปลไทยแบบเข้าใจง่าย 🌟
+![An image](../../../../public/images/aws/s3/19.png)
 
 ## S3 Default Encryption
 

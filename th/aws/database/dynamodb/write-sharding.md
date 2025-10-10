@@ -5,6 +5,8 @@
 * หากเราใช้ **candidate ID** เป็น **partition key** ข้อมูลทั้งหมดจะถูกแบ่งไปเพียง **สองพาร์ติชัน** คือของผู้สมัคร A และผู้สมัคร B
 * การตั้งค่านี้จะทำให้เกิด **hot partition** ซึ่งส่งผลกระทบต่อทั้งการเขียน (write) และการอ่าน (read)
 
+![An image](../../../../public/images/aws/dynamodb/19.png)
+
 ## การแก้ปัญหา Hot Partition
 
 วิธีแก้คือ **กระจาย candidate ID ให้หลากหลายมากขึ้น** โดยเพิ่ม **suffix** หรือ **prefix** เข้าไปในค่า partition key

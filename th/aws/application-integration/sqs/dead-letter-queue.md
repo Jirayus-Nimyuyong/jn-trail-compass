@@ -1,6 +1,6 @@
 # **SQS - Dead Letter Queues (DLQ)**
 
-## **แนะนำ Dead Letter Queues (DLQ) ใน SQS**
+![An image](../../../../public/images/aws/sqs/11.png)
 
 Dead Letter Queue คือกลไกใน Amazon SQS ที่ใช้จัดการข้อความที่ไม่สามารถประมวลผลได้สำเร็จ หลังจากถูกลองประมวลผลหลายครั้ง
 
@@ -50,6 +50,8 @@ Dead Letter Queue คือกลไกใน Amazon SQS ที่ใช้จ�
 ## **การจัดการ Dead Letter Queue ด้วย Re-drive to Source**
 
 AWS มีฟีเจอร์ที่ชื่อว่า **Re-drive to Source**
+
+![An image](../../../../public/images/aws/sqs/12.png)
 
 * ใช้ในการนำข้อความจาก DLQ → ส่งกลับไปยังคิวต้นทาง (Source Queue)
 * เหมาะในกรณีที่:

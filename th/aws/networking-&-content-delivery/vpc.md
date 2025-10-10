@@ -19,6 +19,8 @@ Virtual Private Cloud (VPC) คือการสร้างเครือข�
 * รองรับการแยกทรัพยากรและควบคุม Security อย่างละเอียด
 * สามารถเชื่อมต่อกับเครือข่ายภายนอก เช่น On-premise ผ่าน VPN หรือ Direct Connect ได้
 
+![An image](../../../public/images/aws/vpc/1.png)
+
 ## ภาพรวมสถาปัตยกรรม VPC
 
 ถ้ามองภาพรวมที่ใหญ่ขึ้น เรามีโครงสร้างพื้นฐานคลาวด์หนึ่ง Region ที่มี VPC อยู่ VPC จะมี **CIDR Range** ซึ่งคือชุดของ IP ที่กำหนดว่า VPC นี้จะใช้ IP อะไรได้บ้าง
@@ -26,6 +28,8 @@ Virtual Private Cloud (VPC) คือการสร้างเครือข�
 ตัวอย่างเช่น มี 2 AZ แต่ละ AZ มีทั้ง **Public Subnet และ Private Subnet** → คุณสามารถเปิด EC2 Instance ใน Subnet ใดก็ได้
 
 นี่เป็นสถาปัตยกรรมทั่วไปใน AWS โดยปกติ **Default VPC** ที่ AWS สร้างมาให้ในแต่ละ Region จะมีแค่ **Public Subnets (1 ต่อ AZ)** และจะ **ไม่มี Private Subnet**
+
+![An image](../../../public/images/aws/vpc/2.png)
 
 ## สถาปัตยกรรมแบบ Three-Tier
 
@@ -53,6 +57,8 @@ ELB จะกระจายทราฟฟิกไปยัง **EC2 Instances
 ทั้งหมดนี้รวมกันคือ **สถาปัตยกรรม Three-Tier แบบมาตรฐาน** ที่มักเจอในโจทย์สอบ
 
 นี่คือเหตุผลที่ก่อนหน้านี้เราต้องปูพื้นเรื่อง VPC และ Subnet เพื่อให้เข้าใจโครงสร้างนี้ได้ง่ายขึ้นครับ
+
+![An image](../../../public/images/aws/vpc/8.png)
 
 ## องค์ประกอบของ VPC
 
@@ -134,6 +140,8 @@ Internet Gateway (IGW) เป็นอุปกรณ์ที่ทำให้
 * ต้องมีเส้นทางใน Route Table ที่ชี้ไปยัง IGW ด้วย
 * ถูกกำหนดในระดับ VPC
 
+![An image](../../../public/images/aws/vpc/3.png)
+
 ## Egress-only Internet Gateways
 
 ใช้เฉพาะกับ IPv6 เพื่อให้ Instance ใน Subnet สามารถส่งข้อมูลออกสู่ Internet ได้ แต่ไม่สามารถรับการเชื่อมต่อจากภายนอกเข้ามาได้
@@ -171,6 +179,8 @@ NAT Gateway และ NAT Instances ใช้ใน Private Subnet เพื่�
 * ใช้เพื่อให้ **Private Subnet** ออกอินเทอร์เน็ตได้
 * การเชื่อมต่อนี้ผ่าน **NAT Gateway** หรือ **NAT Instance** ที่อยู่ใน **Public Subnet**
 
+![An image](../../../public/images/aws/vpc/3.png)
+
 ## Peering Connections
 
 เชื่อมต่อ VPC สองชุดเข้าด้วยกันให้สามารถสื่อสารได้โดยตรง (แบบ point-to-point)
@@ -180,9 +190,13 @@ NAT Gateway และ NAT Instances ใช้ใน Private Subnet เพื่�
 * ใช้ร่วมกับ Route Table เพื่อควบคุมเส้นทางระหว่าง VPC
 * เงื่อนไข: **CIDR/IP Range ต้องไม่ทับกัน** → ไม่งั้นจะเกิด Routing Conflict
 
+![An image](../../../public/images/aws/vpc/5.png)
+
 ## Security
 
 ภายใน VPC ของเรา ซึ่งมี Public Subnet และ EC2 Instance หนึ่งเครื่อง เราสามารถสร้าง **Network ACL (NACL)** ขึ้นมา ซึ่งทำหน้าที่เป็น **firewall** ที่ควบคุม **การรับ–ส่ง Traffic เข้าออก Subnet** โดย NACL สามารถกำหนดได้ทั้ง **Allow Rule** (อนุญาต) และ **Deny Rule** (ปฏิเสธ) อย่างชัดเจน
+
+![An image](../../../public/images/aws/vpc/4.png)
 
 ### Network ACLs
 
@@ -216,6 +230,8 @@ Security Group ทำหน้าที่เป็น Firewall เช่นก�
 ### Endpoints
 
 VPC Endpoint คือจุดเชื่อมต่อแบบ private ไปยังบริการของ AWS เช่น S3, DynamoDB โดยไม่ต้องออก Internet
+
+![An image](../../../public/images/aws/vpc/6.png)
 
 * ใช้เชื่อมต่อ AWS Services ผ่าน **Private Network** แทนการออกอินเทอร์เน็ต
 * ปกติแล้ว AWS Services (เช่น S3, DynamoDB, CloudWatch) เข้าถึงผ่าน **Public Internet**
@@ -309,6 +325,8 @@ VPC Endpoint คือจุดเชื่อมต่อแบบ private ไ�
 * ใช้ **VPN Appliance** ขององค์กรเชื่อมกับ AWS VPN Gateway
 * การเชื่อมต่อถูก **เข้ารหัส (Encrypted)** แต่ยังวิ่งผ่าน **Public Internet**
 * ตั้งค่าได้เร็ว ใช้เวลาไม่กี่นาที
+
+![An image](../../../public/images/aws/vpc/7.png)
 
 ### Client VPN Endpoints
 

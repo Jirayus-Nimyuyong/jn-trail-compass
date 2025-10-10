@@ -2,6 +2,8 @@
 
 API Gateway คือบริการ **Serverless ของ AWS** ที่ให้เราสร้าง **REST APIs แบบสาธารณะ** ที่ Client เข้าถึงได้ โดยที่ Client จะสื่อสารกับ API Gateway และ API Gateway จะ **Proxy** คำร้องขอไปยัง Lambda
 
+![An image](../../../../public/images/aws/api-gateway/1.png)
+
 **เหตุผลที่ใช้ API Gateway** คือมันมีมากกว่าแค่ HTTP Endpoint เพราะยังมีฟีเจอร์อื่น ๆ เช่น การยืนยันตัวตน, Usage Plan, Stages และอื่น ๆ การผสานรวม API Gateway กับ Lambda ช่วยให้ได้ **ระบบ Serverless เต็มรูปแบบ โดยไม่ต้องจัดการโครงสร้างพื้นฐานเอง**
 
 ## ฟีเจอร์หลักของ API Gateway
@@ -44,6 +46,8 @@ API Gateway สามารถเชื่อมต่อได้กับห�
 * ให้ Client ส่งข้อมูลไปยัง Kinesis Data Stream โดยไม่ต้องมี AWS Credentials
 * Client ส่ง HTTP Request → API Gateway → ส่งข้อมูลไปยัง Kinesis Data Stream
 * จากนั้นข้อมูลสามารถส่งต่อไปที่ Kinesis Firehose → เก็บลง S3 ในรูปแบบ JSON
+
+![An image](../../../../public/images/aws/api-gateway/2.png)
 
 นี่แสดงถึงพลังของ API Gateway ที่สามารถเปิด AWS Services ให้ Client ภายนอกใช้อย่างปลอดภัย
 

@@ -64,6 +64,8 @@ KMS Keys (เดิมเรียกว่า Customer Master Keys - CMKs) ม�
 * การคัดลอก EBS snapshot ที่เข้ารหัสข้าม region ต้อง **เข้ารหัสใหม่ด้วย KMS key ของ region ปลายทาง**
 * กุญแจเดิมไม่สามารถอยู่ในหลาย region พร้อมกัน
 
+![An image](../../../../public/images/aws/encrypt/4.png)
+
 ## นโยบายกุญแจ KMS (KMS Key Policies)
 
 * ควบคุมการเข้าถึง KMS keys เช่นเดียวกับ S3 bucket policy

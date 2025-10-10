@@ -10,6 +10,8 @@ TTL จะบอก client ให้เก็บ (cache) ผลลัพธ์�
 
 กลไกการ cache นี้ช่วยลดจำนวนครั้งที่ต้อง query DNS (เพราะ DNS records โดยปกติไม่ได้เปลี่ยนบ่อย) ทำให้ client ใช้ข้อมูลที่ cache ไว้เพื่อเข้าถึง web server และทำการสื่อสาร HTTP ได้เลย
 
+![An image](../../../../public/images/aws/route53/5.png)
+
 ## กรณีสุดขั้วของค่า TTL
 
 **1. TTL สูง (เช่น 24 ชั่วโมง):**

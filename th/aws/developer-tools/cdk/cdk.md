@@ -7,6 +7,12 @@
 * CloudFormation ให้คุณกำหนดโครงสร้างพื้นฐานด้วย **YAML หรือ JSON**
 * CDK **เหนือกว่า CloudFormation** เพราะช่วยให้กำหนดโครงสร้างพื้นฐานด้วย **ภาษาโปรแกรม** ได้
 
+![An image](../../../../public/images/aws/cdk/1.png)
+
+## CDK in a diagram
+
+![An image](../../../../public/images/aws/cdk/2.png)
+
 ## การกำหนด Infrastructure ด้วย CDK
 
 ตัวอย่างการใช้ **TypeScript** กำหนด constructs เช่น **VPC, ECS Cluster, และ Fargate Service พร้อม Load Balancer**
@@ -58,6 +64,8 @@
 1. รัน `cdk synth` → สร้าง CloudFormation template
 2. ใช้ SAM CLI เรียก Lambda local โดยอ้างอิง template ที่สร้าง
 
+![An image](../../../../public/images/aws/cdk/3.png)
+
 * การรวมนี้ช่วยใช้ **จุดแข็งของทั้งสองเครื่องมือ**
 
 ## ตัวอย่าง Hands-On CDK (ต่อไป)
@@ -67,6 +75,8 @@
 * Lambda ใช้ Amazon Rekognition วิเคราะห์รูป
 * บันทึกผลวิเคราะห์ลง DynamoDB
 * ทั้งหมดกำหนดผ่าน **CDK script**
+
+![An image](../../../../public/images/aws/cdk/4.png)
 
 ## Key Takeaways
 

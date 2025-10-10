@@ -1,5 +1,7 @@
 # S3 Object Tags & Metadata
 
+![An image](../../../../public/images/aws/s3/13.png)
+
 ## Metadata ของผู้ใช้ (User-Defined Object Metadata)
 
 * เมื่อคุณสร้างหรืออัปโหลด **object** ไปยัง S3 คุณสามารถกำหนด **metadata** ให้กับ object ได้

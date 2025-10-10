@@ -4,6 +4,8 @@
 
 ## X-Ray Write API
 
+![An image](../../../../public/images/aws/x-ray/5.png)
+
 **Write API** ใช้โดย **X-Ray daemon** สำหรับการเขียนข้อมูลเข้าไปยัง X-Ray service
 API นี้ถูกควบคุมโดย **Managed Policy** ที่ชื่อว่า **X-Ray Write Only Access** ซึ่งรวม permission สำคัญไว้ 5 อย่าง
 
@@ -36,6 +38,8 @@ X-Ray daemon ต้องการ permission สำหรับ:
   ซึ่งทั้งหมดนี้ต้องได้รับอนุญาตผ่าน **IAM Policy** ที่กำหนดให้ daemon
 
 ## X-Ray Read API
+
+![An image](../../../../public/images/aws/x-ray/6.png)
 
 **Read API** ซับซ้อนกว่า และใช้สำหรับ **ดึงข้อมูลจาก X-Ray**
 ถูกควบคุมโดย **Managed Policy** ที่มี Get permissions หลายตัว

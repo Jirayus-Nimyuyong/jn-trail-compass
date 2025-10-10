@@ -14,6 +14,8 @@
 
   * ใช้ได้ทั้ง **GET** (ดาวน์โหลด) หรือ **PUT** (อัปโหลด)
 
+![An image](../../../../public/images/aws/s3/24.png)
+
 ## กรณีใช้งาน Pre-signed URLs
 
 * สมมติว่าคุณมี **S3 bucket แบบ private**

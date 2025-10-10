@@ -1,6 +1,6 @@
 # Lambda in VPC
 
-## แนะนำเรื่องเครือข่ายของ Lambda
+![An image](../../../../public/images/aws/lambda/24.png)
 
 โดยปกติ **Lambda functions** จะถูก launch นอก **VPC** ของคุณ ซึ่ง Lambda จะรันใน VPC ของ AWS เอง ทำให้ Lambda ไม่สามารถเข้าถึง resources ภายใน VPC ของคุณโดยตรง
 
@@ -19,6 +19,8 @@ VPC ของคุณอาจมี resources เช่น:
 * สามารถเข้าถึง **public websites**
 * สามารถเข้าถึง **external APIs**
 * สามารถเข้าถึง **AWS services** เช่น DynamoDB
+
+![An image](../../../../public/images/aws/lambda/25.png)
 
 แต่ถ้าคุณมี VPC ของตัวเองที่มี **private subnets** และ resources เช่น **RDS database** Lambda จะเข้าถึง resources เหล่านี้ **ไม่ได้โดยค่าเริ่มต้น**
 
@@ -55,6 +57,8 @@ Lambda จะสร้าง **Elastic Network Interface (ENI)** ใน subnets 
 
 * ไม่ใช่แบบเดียวกับ EC2
 * Lambda ใน public subnet **ไม่ได้รับ public IP และไม่สามารถเข้าถึงอินเทอร์เน็ตโดยตรง**
+
+![An image](../../../../public/images/aws/lambda/26.png)
 
 ### การเปิด Internet Access ให้ Lambda ใน VPC
 

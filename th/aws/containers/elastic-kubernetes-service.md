@@ -4,6 +4,8 @@
 
 * **Amazon EKS** ย่อมาจาก **Amazon Elastic Kubernetes Service** เป็นบริการสำหรับ **เปิดและจัดการ Kubernetes cluster บน AWS**
 
+![An image](../../../public/images/aws/containers/30.png)
+
 ## Kubernetes คืออะไร?
 
 * Kubernetes เป็น **ระบบโอเพนซอร์ส** สำหรับการ **deploy, scale และจัดการแอปพลิเคชันแบบ containerized** (โดยทั่วไปคือ Docker)
@@ -57,6 +59,8 @@ Amazon EKS รองรับ **สองโหมดการเปิดใช
   * **Amazon EFS** (storage class เดียวที่ compatible กับ Fargate)
   * **Amazon FSx for Lustre**
   * **Amazon FSx for NetApp ONTAP**
+
+![An image](../../../public/images/aws/containers/31.png)  
 
 ## สรุป
 

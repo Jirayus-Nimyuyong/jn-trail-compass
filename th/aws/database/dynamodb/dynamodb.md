@@ -14,6 +14,8 @@
 * กำหนดรูปแบบข้อมูลด้วยตารางและสคีมา
 * ทำการ **joins, aggregations และคำนวณที่ซับซ้อน** ได้ดี
 
+![An image](../../../../public/images/aws/dynamodb/1.png)
+
 ## ข้อจำกัดของการสเกล RDBMS
 
 อย่างไรก็ตาม การสเกลของฐานข้อมูลแบบดั้งเดิมมักรองรับเพียง **vertical scaling**
@@ -91,12 +93,16 @@
    * ควรเลือก key ที่หลากหลายพอเพื่อกระจายข้อมูลให้สม่ำเสมอ
    * เช่น Table `Users` → Partition Key: `User_ID`
 
+   ![An image](../../../../public/images/aws/dynamodb/2.png)
+
 2. **Partition Key + Sort Key (Hash + Range)**
 
    * ต้อง unique เมื่อรวมกัน
    * ข้อมูลจะถูกจัดกลุ่มตาม Partition Key
    * เช่น Table `Users-Games` → Partition Key: `User_ID`, Sort Key: `Game_ID`
    * User เดียวกันสามารถเข้าหลายเกมได้ โดยใช้ combination ของ key ทั้งคู่เพื่อความ unique
+
+   ![An image](../../../../public/images/aws/dynamodb/3.png)
 
 💡 การออกแบบที่ดีต้องเลือก Partition Key ที่ช่วย **กระจายข้อมูลได้อย่างสมดุล**
 

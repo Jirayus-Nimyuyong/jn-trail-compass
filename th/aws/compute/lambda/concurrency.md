@@ -15,6 +15,8 @@
   * ตัวอย่าง: ตั้ง reserved concurrency = 50 → ฟังก์ชันนั้นทำงานพร้อมกันได้สูงสุด 50 concurrent executions
   * หากเกินขีดจำกัด → จะเกิด **Throttling**
 
+![An image](../../../../public/images/aws/lambda/31.png)
+
 ## พฤติกรรม Throttling
 
 * **Synchron
@@ -41,12 +43,16 @@ ous Invocations** → หากถูก throttled, Lambda ส่ง **Throttle 
 * Concurrency limit เป็น **ระดับบัญชีรวมทุกฟังก์ชัน**
 * การจัดการ concurrency สำคัญเพื่อหลีกเลี่ยง throttling ที่ไม่ตั้งใจ
 
+![An image](../../../../public/images/aws/lambda/32.png)
+
 ## Concurrency กับ Asynchronous Invocations
 
 * ตัวอย่าง: S3 Event Notification → เรียก Lambda แบบ asynchronous เมื่อมีการอัปโหลดไฟล์หลายไฟล์พร้อมกัน → เกิด concurrent executions จำนวนมาก
 * หากฟังก์ชันไม่สามารถขยายตัวได้เนื่องจาก concurrency limit → request เพิ่มเติมจะถูก throttled
 * สำหรับ asynchronous invocations → Lambda **retry อัตโนมัติสูงสุด 6 ชั่วโมง**
 * **Retry Interval** → เพิ่มขึ้นแบบ exponential backoff (1 วินาที → สูงสุด 5 นาที) → Lambda จะ retry จนกว่ามี concurrency ว่าง
+
+![An image](../../../../public/images/aws/lambda/33.png)
 
 ## Cold Starts และ Provisioned Concurrency
 
@@ -65,6 +71,8 @@ ous Invocations** → หากถูก throttled, Lambda ส่ง **Throttle 
 * ก่อนหน้านี้ Lambda ใน VPC → cold start ช้า
 * AWS ปรับปรุงปลายปี 2019 → **ลดเวลา cold start สำหรับ Lambda ใน VPC**
 * ลดผลกระทบของ cold start สำหรับ Lambda ที่อยู่ใน VPC
+
+![An image](../../../../public/images/aws/lambda/34.png)
 
 ## สรุป (Key Takeaways)
 

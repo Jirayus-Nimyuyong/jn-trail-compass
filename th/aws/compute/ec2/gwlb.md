@@ -24,6 +24,8 @@
      * ถ้า traffic ไม่ผ่าน → สามารถทิ้ง traffic ได้
 * กระบวนการทั้งหมด **โปร่งใสต่อแอป**
 
+![An image](../../../../public/images/aws/ec2/27.png)
+
 ## สรุปการทำงานของ GWLB
 
 * **Gateway โปร่งใส** → Traffic ทั้งหมดใน VPC ผ่านจุดเข้า-ออกเดียวคือ GWLB
@@ -37,6 +39,8 @@
 
   * EC2 Instances (ลงทะเบียนด้วย Instance ID)
   * หรือ Private IP (สำหรับ Appliances ในเครือข่ายภายในหรือ On-Premises)
+
+![An image](../../../../public/images/aws/ec2/28.png)
 
 ## ข้อควรพิจารณา
 

@@ -1,5 +1,7 @@
 # CloudWatch Alarms
 
+![An image](../../../../public/images/aws/cloudwatch/9.png)
+
 **CloudWatch Alarms** ใช้สำหรับ **ส่งการแจ้งเตือน** ตามค่า metrics ที่กำหนด คุณสามารถสร้าง alarm ที่ซับซ้อนได้ด้วยตัวเลือกหลายแบบ เช่น วิธีการ sampling, ค่าเปอร์เซ็นต์ หรือค่ามากสุด
 
 **สถานะของ Alarm** มี 3 แบบ:
@@ -23,6 +25,8 @@ CloudWatch Alarms สามารถตั้ง action ได้ 3 แบบห
 
 ## Composite Alarms
 
+![An image](../../../../public/images/aws/cloudwatch/10.png)
+
 * ปกติ CloudWatch Alarms **ตรวจสอบ metric เดียว**
 * หากต้องการตรวจสอบ **หลาย metrics พร้อมกัน** ใช้ **Composite Alarms**
 * Composite Alarms รวมหลาย alarms ด้วย **เงื่อนไข AND/OR**
@@ -44,6 +48,8 @@ CloudWatch Alarms สามารถตั้ง action ได้ 3 แบบห
   * สามารถ trigger SNS notification ได้
 
 ## การกู้คืน EC2 Instance
+
+![An image](../../../../public/images/aws/cloudwatch/11.png)
 
 EC2 มี **3 การตรวจสอบสถานะ**:
 
@@ -75,8 +81,9 @@ EC2 มี **3 การตรวจสอบสถานะ**:
 * **เรียกใช้งาน Auto Scaling Action**
 * **ส่งการแจ้งเตือนไปยัง SNS** (จากนั้นคุณสามารถทำอะไรก็ได้ตามต้องการ)
 
-
 ## สิ่งที่ควรรู้เกี่ยวกับ CloudWatch Alarm
+
+![An image](../../../../public/images/aws/cloudwatch/12.png)
 
 * สามารถสร้าง **Alarm** บนพื้นฐานของ **CloudWatch Logs Metric Filters** ได้
 * สำหรับ **ทดสอบ Alarm และการแจ้งเตือน**

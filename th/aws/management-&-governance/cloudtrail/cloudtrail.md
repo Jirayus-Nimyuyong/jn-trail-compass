@@ -8,6 +8,8 @@ CloudTrail เป็นบริการที่ให้การกำกั
 
 📌 ตัวอย่าง: หากมีคนลบ EC2 instance และคุณอยากทราบว่าใครเป็นคนทำ CloudTrail จะบันทึก API call ที่เกี่ยวข้อง ทำให้คุณสามารถตรวจสอบว่าใครทำอะไร และเมื่อไร
 
+![An image](../../../../public/images/aws/cloudtrail/1.png)
+
 ## CloudTrail ในฐานะเครื่องมือตรวจสอบกลาง (Central Audit Tool)
 
 CloudTrail จะทำหน้าที่อยู่ตรงกลางระหว่างการกระทำต่าง ๆ ไม่ว่าจะผ่าน SDK, CLI, Console, IAM User, IAM Role หรือบริการอื่น ๆ โดย CloudTrail จะบันทึกการกระทำเหล่านั้นทั้งหมดลงใน **CloudTrail Console** เพื่อให้คุณตรวจสอบได้ว่าเกิดอะไรขึ้น
@@ -47,6 +49,8 @@ Data Events ก็แบ่งเป็น **Read** และ **Write** เช�
 
 ### 3. **CloudTrail Insights Events**
 
+![An image](../../../../public/images/aws/cloudtrail/2.png)
+
 CloudTrail Insights เป็นฟีเจอร์ที่ช่วยวิเคราะห์ **Management Events** เพื่อหาความผิดปกติ (unusual activity) โดยต้องเปิดใช้งานและมีค่าใช้จ่ายเพิ่ม
 
 สามารถตรวจจับสิ่งผิดปกติ เช่น:
@@ -65,6 +69,8 @@ CloudTrail Insights เป็นฟีเจอร์ที่ช่วยวิ
 Insights Events จะแสดงใน CloudTrail Console และยังสามารถส่งต่อไปยัง **Amazon EventBridge** เพื่อให้คุณสร้าง automation เช่น ส่งอีเมลแจ้งเตือนเมื่อพบ anomaly
 
 ## การเก็บรักษา Events ของ CloudTrail
+
+![An image](../../../../public/images/aws/cloudtrail/3.png)
 
 * ค่าเริ่มต้น → เก็บ events **90 วัน** หลังจากนั้นจะถูกลบ
 * หากต้องการเก็บระยะยาว → ต้องส่งไปเก็บใน **Amazon S3**

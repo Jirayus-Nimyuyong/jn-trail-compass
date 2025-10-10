@@ -1,6 +1,6 @@
 # Logging & Tracing
 
-## Logging และ Tracing ของ API Gateway
+![An image](../../../../public/images/aws/api-gateway/14.png)
 
 เรามาเริ่มจาก **Logging และ Tracing** กันก่อน
 

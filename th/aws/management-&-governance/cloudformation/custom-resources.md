@@ -1,5 +1,7 @@
 # CloudFormation - Custom Resources
 
+![An image](../../../../public/images/aws/cloudformation/29.png)
+
 CloudFormation รองรับ resource หลายประเภทโดยตรง แต่ **Custom Resources** ช่วยให้คุณสามารถกำหนด resource ที่ CloudFormation ยังไม่รองรับ หรือใช้เพื่อสร้าง **logic การจัดเตรียม (provisioning) แบบกำหนดเอง** สำหรับ resource ที่อยู่นอกการจัดการโดยตรงของ CloudFormation
 
 Custom Resources สามารถเป็นได้ทั้ง:
@@ -9,6 +11,8 @@ Custom Resources สามารถเป็นได้ทั้ง:
 * การรันสคริปต์แบบกำหนดเองในช่วง **สร้าง (create), อัปเดต (update), ลบ (delete)** ของ stack ผ่าน Lambda function
 
 **ตัวอย่างที่ใช้จริง:**
+
+![An image](../../../../public/images/aws/cloudformation/30.png)
 
 * รัน Lambda function เพื่อ **ล้าง S3 bucket ก่อนลบ**
 * เป็นตัวอย่างที่พบบ่อยในข้อสอบและเป็น use case ทั่วไปของ Custom Resources

@@ -2,6 +2,8 @@
 
 **Cognito User Pools (CUP)** เป็นบริการที่ให้ **ฐานข้อมูลแบบ serverless** สำหรับผู้ใช้เว็บและแอปพลิเคชันมือถือของคุณ
 
+![An image](../../../../public/images/aws/cognito/1.png)
+
 ## ฐานข้อมูลแบบ Serverless คืออะไร?
 
 * หมายถึงผู้ใช้สามารถ **ยืนยันตัวตน (authenticate)** ด้วยข้อมูลล็อกอินง่าย ๆ เช่น **username หรือ email + password** เพื่อเข้าถึงแอปของคุณ
@@ -31,6 +33,8 @@
 * รองรับ **SAML และ OpenID Connect** สำหรับ identity providers ที่รองรับ OpenID Connect
 
 ## การเชื่อมต่อ AWS กับ Cognito User Pools
+
+![An image](../../../../public/images/aws/cognito/2.png)
 
 ### API Gateway Integration
 
@@ -66,6 +70,8 @@
 
 * สามารถปรับแต่ง **ข้อความส่งถึงผู้ใช้** และแก้ไข **token creation** ได้ เช่น เพิ่มหรือลบ attributes ใน ID token
 
+![An image](../../../../public/images/aws/cognito/3.png)
+
 ## Hosted Authentication UI
 
 * Cognito User Pools มี **hosted authentication UI** ช่วยให้ไม่ต้องเขียน UI ในแอปเอง
@@ -73,11 +79,15 @@
 * รองรับการ **social login, OpenID Connect (OIDC), และ SAML**
 * สามารถปรับแต่งด้วย **logo และ CSS** ให้ตรงกับ branding ของเว็บไซต์
 
+![An image](../../../../public/images/aws/cognito/4.png)
+
 ## Custom Domains สำหรับ Hosted UI
 
 * หากต้องการใช้ **domain ของตัวเอง** ต้องตั้งค่า **custom domain**
 * การใช้ custom domain ต้องมี **HTTPS certificate** ใน **AWS Certificate Manager (ACM)** อยู่ใน region **us-east-1**
 * domain นี้ต้องกำหนดใน **app integration section** ของ Cognito User Pools เพื่อให้ configuration ใช้กับทุก app client
+
+![An image](../../../../public/images/aws/cognito/5.png)
 
 ## Adaptive Authentication
 
@@ -91,6 +101,8 @@
 * Risk score ประเมินจาก **device recognition, location, IP, และอื่น ๆ**
 * หาก credential ถูก compromise ระบบป้องกัน account takeover จะใช้ **phone และ email verification**
 * กิจกรรมทั้งหมดถูกบันทึกใน **CloudWatch**
+
+![An image](../../../../public/images/aws/cognito/6.png)
 
 ## JSON Web Tokens (JWT) ใน Cognito User Pools
 
@@ -108,6 +120,9 @@
   * ข้อมูลเพิ่มเติม เช่น email, given name, phone number, custom attributes
   * Fields อื่น ๆ: username, Cognito groups, เวลา token หมดอายุ
 * หากต้องการข้อมูลเพิ่ม สามารถ query **Cognito user pool database** โดยใช้ user ID
+
+![An image](../../../../public/images/aws/cognito/7.png)
+
 
 ## สรุป
 

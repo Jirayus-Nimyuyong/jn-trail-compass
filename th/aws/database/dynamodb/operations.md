@@ -4,6 +4,8 @@
 
 ในบทเรียนนี้เราจะพูดถึง **การดำเนินการของ DynamoDB 2 แบบ** ที่อาจปรากฏในการสอบ
 
+![An image](../../../../public/images/aws/dynamodb/23.png)
+
 ## วิธีล้างข้อมูลในตาราง (Table Cleanup Methods)
 
 มี **สองวิธี** ในการล้างข้อมูลใน DynamoDB table:

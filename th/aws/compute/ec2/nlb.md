@@ -8,6 +8,8 @@
   * ต่ำกว่าการทำงานของ **Layer 7** (HTTP)
 * เหมาะกับการ **Load Balance TCP หรือ UDP traffic**
 
+![An image](../../../../public/images/aws/ec2/25.png)
+
 **จุดเด่น:**
 
 * ออกแบบมาสำหรับ **ประสิทธิภาพสูงสุด**
@@ -43,6 +45,8 @@
   * NLB → จัดการ IP คงที่
   * ALB → จัดการ HTTP Traffic + Routing Rules
   * ทำให้ได้ประสิทธิภาพสูงและยังรองรับ Routing Rules ของ HTTP
+
+![An image](../../../../public/images/aws/ec2/26.png)  
 
 ## Health Checks
 

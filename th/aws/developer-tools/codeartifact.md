@@ -9,6 +9,8 @@
 
 * CodeArtifact เสนอระบบจัดการ artifacts **ปลอดภัย, ขยายได้, และคุ้มค่า** สำหรับการพัฒนาซอฟต์แวร์ใน AWS
 
+![An image](../../../public/images/aws/ci-cd/19.png)
+
 ## การรวมกับ Dependency Management Tools
 
 CodeArtifact **รวมกับเครื่องมือจัดการ dependencies ยอดนิยม** เช่น:
@@ -59,6 +61,8 @@ CodeArtifact ส่ง **events** เช่น: การสร้าง, แก
 * EventBridge เป็นตัว router ของ events ใน AWS
 * ทำให้สามารถรวมกับ Lambda, Step Functions, SNS, SQS, CodePipeline ได้
 
+![An image](../../../public/images/aws/ci-cd/20.png)
+
 **ตัวอย่าง workflow:**
 
 1. แพ็กเกจเวอร์ชันใหม่ถูก update → CodeArtifact ส่ง event
@@ -78,6 +82,8 @@ CodeArtifact ส่ง **events** เช่น: การสร้าง, แก
   * เช่น อนุญาตให้ผู้ใช้ Bob ใน Account B เข้าถึงแพ็กเกจทั้งหมดใน repository ของคุณ
 
 * การแชร์แบบ cross-account โดย resource policies เป็น **pattern ยอดนิยมใน AWS**
+
+![An image](../../../public/images/aws/ci-cd/21.png)
 
 ## สรุป
 

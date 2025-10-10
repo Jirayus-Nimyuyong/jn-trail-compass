@@ -5,6 +5,8 @@
 EBS Snapshot คือการสำรองข้อมูล (Backup) ของ EBS Volume ณ ช่วงเวลาใดเวลาหนึ่ง (point-in-time).
 ไม่จำเป็นต้องถอด (detach) EBS Volume ออกจาก EC2 Instance เพื่อสร้าง Snapshot แม้ว่าการถอดออกก่อนจะเป็นสิ่งที่แนะนำก็ตาม
 
+![An image](../../../../public/images/aws/ec2/9.png)
+
 ## การคัดลอก Snapshot ข้าม Availability Zone และ Region
 
 คุณสามารถคัดลอก (copy) EBS Snapshots ข้าม Availability Zone หรือแม้แต่ข้าม Region ได้
@@ -31,6 +33,8 @@ EBS Snapshot คือการสำรองข้อมูล (Backup) ขอ
 * ช่วยกำจัดความหน่วง (latency) ในการใช้งานครั้งแรก
 * เหมาะกับ Snapshot ที่มีขนาดใหญ่มากและคุณต้องการสร้าง EBS Volume หรือเปิด Instance จาก Snapshot อย่างรวดเร็ว
 * แต่มีค่าใช้จ่ายสูง ควรใช้อย่างระมัดระวัง
+
+![An image](../../../../public/images/aws/ec2/10.png)
 
 ## สรุป
 

@@ -1,8 +1,9 @@
 # AWS Amplify
 
-## แนะนำ AWS Amplify
+![An image](../../../public/images/aws/other-serverless/13.png)
 
 AWS Amplify คือบริการที่ช่วยให้เราสามารถสร้าง **แอปพลิเคชันมือถือและเว็บ** ได้อย่างง่ายดาย ประกอบด้วยหลายส่วน เช่น **Amplify Studio** ซึ่งช่วยให้สร้าง Full-Stack Application ทั้ง Frontend และ Backend แบบ Visual
+
 
 ## Amplify CLI และ Libraries
 
@@ -11,11 +12,16 @@ AWS Amplify คือบริการที่ช่วยให้เรา�
 
   * Cognito → สำหรับ Authentication
   * S3 → สำหรับ Storage
+  
+![An image](../../../public/images/aws/other-serverless/14.png)
 
 ## Amplify Hosting
 
 * ใช้ **โฮสต์แอป Amplify บน AWS**
 * ให้บริการด้วยความเร็วสูงและรองรับการ deploy แบบ CI/CD
+
+![An image](../../../public/images/aws/other-serverless/16.png)
+
 
 ## ภาพรวมของ AWS Amplify
 

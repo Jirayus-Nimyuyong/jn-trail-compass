@@ -60,9 +60,13 @@ Amazon RDS คือ **Managed Relational Database Service** ที่มีก�
 
 > แม้จะไม่สามารถเข้าถึง Instance โดยตรง แต่ความเป็น Managed ของ RDS ทำให้การใช้งานและดูแลฐานข้อมูลง่ายและสะดวกขึ้นมาก
 
+![An image](../../../public/images/aws/rds/1.png)
+
 ## **RDS Read Replicas vs Multi-AZ**
 
 การเข้าใจความแตกต่างระหว่าง **Read Replicas** และ **Multi-AZ** เป็นเรื่องสำคัญ โดยเฉพาะสำหรับการสอบ AWS
+
+![An image](../../../public/images/aws/rds/2.png)
 
 ### **RDS Read Replicas**
 
@@ -85,10 +89,14 @@ Amazon RDS คือ **Managed Relational Database Service** ที่มีก�
 * หากต้องการทำ reporting หรือ analytics โดยไม่กระทบ production → สร้าง Read Replica สำหรับงานเหล่านี้
 * **ข้อจำกัด:** ใช้เฉพาะ **SELECT** (อ่าน) ไม่สามารถ INSERT, UPDATE, DELETE ได้
 
+![An image](../../../public/images/aws/rds/3.png)
+
 **ค่าใช้จ่าย Network:**
 
 * ข้าม AZ ใน region เดียวกัน → replication ฟรี
 * ข้าม Region → มีค่าใช้จ่าย network
+
+![An image](../../../public/images/aws/rds/4.png)
 
 ### **RDS Multi-AZ**
 
@@ -98,6 +106,8 @@ Amazon RDS คือ **Managed Relational Database Service** ที่มีก�
 * ใช้ **DNS ชื่อเดียว** → หาก Master fail → auto failover ไปยัง standby
 * **ข้อจำกัด:** ไม่ใช้เพื่อเพิ่มการอ่าน (อ่านไม่ได้จาก standby)
 
+![An image](../../../public/images/aws/rds/5.png)
+
 ### **การรวม Read Replicas กับ Multi-AZ**
 
 * สามารถสร้าง Read Replicas และตั้งค่า Multi-AZ เพื่อ disaster recovery ได้
@@ -105,6 +115,8 @@ Amazon RDS คือ **Managed Relational Database Service** ที่มีก�
 
   * RDS จะ snapshot master → restore เป็น standby → establish synchronization
   * แอปยังคงทำงานระหว่าง process
+
+![An image](../../../public/images/aws/rds/6.png)
 
 ### **Key Takeaways: RDS**
 
@@ -134,6 +146,8 @@ Amazon RDS คือ **Managed Relational Database Service** ที่มีก�
 * **Writes:** ต้องใช้ 4/6 copies → หาก AZ ใดล่ม write ยังทำงานได้
 * **Reads:** ต้องใช้ 3/6 copies → high availability
 * **Self-healing:** ซ่อมแซมข้อมูลเสียผ่าน peer-to-peer replication
+
+![An image](../../../public/images/aws/rds/7.png)
 
 ### **Aurora Architecture**
 
@@ -248,6 +262,8 @@ Proxy จะ **pool และแชร์การเชื่อมต่อฐ
 
   * ในระหว่างเหตุการณ์ failover เช่น การสลับจาก primary → standby instance
   * RDS Proxy จะจัดการ failover ให้โดยที่แอปพลิเคชันไม่ต้องรับรู้
+
+![An image](../../../public/images/aws/rds/9.png)
 
 ### **Database Engines ที่รองรับ**
 

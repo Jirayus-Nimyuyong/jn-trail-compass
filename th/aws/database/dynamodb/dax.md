@@ -7,6 +7,8 @@
 * การใช้งาน DAX **ไม่จำเป็นต้องเปลี่ยน API ของ DynamoDB**
 * เพียงสร้าง **DAX cluster** และเริ่มใช้งาน
 
+![An image](../../../../public/images/aws/dynamodb/13.png)
+
 ## ปัญหาที่ DAX แก้ไข
 
 * ปัญหา **Hot Key**: เมื่อ key หรือ item ใดถูกอ่านบ่อย ๆ จะเกิด **throttling** ของ **Read Capacity Units (RCUs)**
@@ -52,6 +54,8 @@ DAX รองรับการรักษาความปลอดภัย�
   * DAX แคช query หรือ object ที่ง่าย
   * ElastiCache เก็บผลลัพธ์จาก computation ที่ซับซ้อน
   * ลดโหลดบน DynamoDB และ **เพิ่มความเร็วตอบสนอง**
+
+![An image](../../../../public/images/aws/dynamodb/14.png)  
 
 ## การสร้าง DAX Cluster
 

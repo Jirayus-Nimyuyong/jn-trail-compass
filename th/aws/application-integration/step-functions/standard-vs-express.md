@@ -1,5 +1,7 @@
 # Standard vs Express
 
+![An image](../../../../public/images/aws/other-serverless/10.png)
+
 ## Standard Workflows
 
 * เป็นค่า **default** ของ Step Functions

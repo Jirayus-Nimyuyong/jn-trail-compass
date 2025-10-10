@@ -7,6 +7,8 @@
 * หมายความว่า **เราจัดการกุญแจเข้ารหัสทั้งหมดด้วยตัวเอง** ไม่ใช่ AWS
 * เราจึงมี **การควบคุมเต็มรูปแบบ** เหนือกุญแจเข้ารหัส
 
+![An image](../../../public/images/aws/encrypt/14.png)
+
 HSM จะถูกติดตั้งใน AWS Cloud แต่เป็นอุปกรณ์ **tamper-resistant** และผ่านมาตรฐาน **FIPS 140-2 Level 3**
 
 * หากใครพยายามเข้าถึงอุปกรณ์ HSM ด้วยตนเอง จะถูกป้องกันและบล็อกทันที
@@ -31,6 +33,8 @@ IAM ใช้สำหรับการสร้าง, อ่าน, อัป
 
 CloudHSM cluster สามารถมี **High Availability** และกระจายข้ามหลาย **Availability Zones (AZs)**
 
+![An image](../../../public/images/aws/encrypt/15.png)
+
 * เช่น มีสอง AZ, หนึ่ง AZ ถูก replicate จากอีก AZ
 * Client สามารถเชื่อมต่อกับ HSM device ใดก็ได้
 * ความพร้อมใช้งานสูงเป็นสิ่งสำคัญ
@@ -39,6 +43,8 @@ CloudHSM cluster สามารถมี **High Availability** และกร�
 
 * เราสามารถใช้ CloudHSM ภายใน AWS Services ผ่าน **KMS Custom Key Store**
 * ขั้นตอน:
+
+  ![An image](../../../public/images/aws/encrypt/16.png)
 
   1. สร้าง **CloudHSM cluster**
   2. สร้าง **KMS Custom Key Store** เชื่อมต่อกับ cluster

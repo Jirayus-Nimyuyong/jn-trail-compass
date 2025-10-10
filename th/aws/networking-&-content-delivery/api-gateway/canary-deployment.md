@@ -1,6 +1,6 @@
 # API Gateway Canary Deployments
 
-## บทนำ: Canary Deployments บน API Gateway
+![An image](../../../../public/images/aws/api-gateway/5.png)
 
 มาพูดถึงวิธีการทำ **Canary Deployment** บน API Gateway กันครับ แนวคิดหลักคือการ **ทดสอบการเปลี่ยนแปลง API Gateway กับปริมาณ Traffic เพียงบางส่วนก่อน** เพื่อให้มั่นใจว่าระบบใหม่ทำงานได้ตามที่ต้องการ
 

@@ -4,6 +4,8 @@
 
 แม้ว่าในบทเรียนนี้เราจะยังไม่ได้ทำ hands-on แต่ **CodeDeploy** ถูกผนวกอยู่ใน **Serverless Application Model (SAM)** framework และเมื่อเรียน SAM เราจะได้ฝึก deploy Lambda ด้วย CodeDeploy
 
+![An image](../../../../public/images/aws/lambda/42.png)
+
 ## ตัวอย่าง Traffic Shifting
 
 สมมติว่าเรามี **PROD alias** ชี้ไปที่ **Lambda Version 1**
@@ -35,6 +37,8 @@
 ### พารามิเตอร์ใน AppSpec.yml สำหรับ Lambda Deployment
 
 เมื่อใช้ CodeDeploy กับ Lambda ผ่าน **AppSpec.yml** ต้องระบุพารามิเตอร์สำคัญดังนี้:
+
+![An image](../../../../public/images/aws/lambda/43.png)
 
 * `Name` : ชื่อ Lambda function ที่จะ deploy
 * `Alias` : ชื่อ alias ของ Lambda function (จำเป็น)

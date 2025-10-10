@@ -1,6 +1,6 @@
 # CloudFormation - Parameters
 
-## แนะนำ CloudFormation Parameters
+![An image](../../../../public/images/aws/cloudformation/5.png)
 
 **Parameters** ใน CloudFormation คือวิธีให้คุณสามารถรับ input เข้าไปยัง template ของคุณ
 เมื่อคุณมี CloudFormation template คุณอาจต้องการให้ผู้ใช้กำหนดค่า parameter ต่าง ๆ
@@ -42,6 +42,8 @@ Parameters มีหลายการตั้งค่า:
 
 **AllowedValues** และ **NoEcho** เป็นตัวอย่างสำคัญสำหรับสอบ
 
+![An image](../../../../public/images/aws/cloudformation/6.png)
+
 **AllowedValues**
 
 * ตัวอย่าง: parameter `InstanceType` Type: String
@@ -61,6 +63,8 @@ Parameters มีหลายการตั้งค่า:
 * ใน YAML ใช้ shorthand version `!Ref`
 * สามารถใช้ได้ทุกที่ใน template
 
+![An image](../../../../public/images/aws/cloudformation/7.png)
+
 **ตัวอย่าง:**
 
 * parameter `SecurityGroupDescription` ใช้ใน property `GroupDescription` ของ SecurityGroup
@@ -74,6 +78,8 @@ Parameters มีหลายการตั้งค่า:
 ## Pseudo Parameters
 
 AWS มี **pseudo parameters** ใช้ได้ในทุก template
+
+![An image](../../../../public/images/aws/cloudformation/8.png)
 
 * เป็นค่าที่กำหนดมาให้โดย default
 * ตัวอย่างสำคัญ:

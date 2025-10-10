@@ -11,12 +11,13 @@ AWS AppSync คือบริการที่ **จัดการ (managed s
 ## การรวมข้อมูลด้วย GraphQL ใน AppSync
 
 * GraphQL สามารถรวมข้อมูลจากหลายแหล่งเป็น **graph เดียว**
-
 * แหล่งข้อมูลเหล่านี้ได้แก่:
 
   * NoSQL Databases
   * Relational Databases
   * HTTP APIs
+
+![An image](../../../public/images/aws/other-serverless/11.png)
 
 * AppSync มีการเชื่อมต่อโดยตรงกับ:
 
@@ -24,6 +25,8 @@ AWS AppSync คือบริการที่ **จัดการ (managed s
   * Aurora
   * OpenSearch
   * Lambda → เพื่อดึงข้อมูลจากแหล่งอื่น ๆ
+
+![An image](../../../public/images/aws/other-serverless/12.png)
 
 ## Real-Time Data และ WebSockets
 

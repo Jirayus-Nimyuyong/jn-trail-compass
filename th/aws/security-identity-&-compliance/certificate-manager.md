@@ -2,6 +2,8 @@
 
 **AWS Certificate Manager (ACM)** เป็นบริการที่ช่วยให้คุณสามารถ **จัดหาสร้าง จัดการ และติดตั้งใบรับรอง SSL/TLS** ได้อย่างง่ายดาย
 
+![An image](../../../public/images/aws/other-service/9.png)
+
 ## วัตถุประสงค์ของใบรับรอง (Certificates)
 
 ใบรับรองถูกใช้เพื่อ **เข้ารหัสข้อมูลระหว่างส่ง (in-flight encryption)** สำหรับเว็บไซต์ของคุณ โดยการเปิดใช้งาน **HTTPS endpoints**
@@ -40,6 +42,8 @@
 * **Public TLS certificates** จาก ACM **ฟรี** และมีฟีเจอร์ **ต่ออายุอัตโนมัติ**
 
 ## AWS Private Certificate Authority (Private CA)
+
+![An image](../../../public/images/aws/other-service/10.png)
 
 ## ภาพรวมของ AWS Private Certificate Authority
 

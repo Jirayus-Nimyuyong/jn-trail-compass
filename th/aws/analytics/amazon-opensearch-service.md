@@ -51,6 +51,8 @@ OpenSearch ไม่ได้มาแทนฐานข้อมูล แต�
 * **Lambda Function** จะอ่าน Stream แล้วส่งข้อมูลเข้า **Amazon OpenSearch** แบบ Real-Time
   ➡ ทำให้แอปพลิเคชันสามารถทำ **Partial Search** เช่น ค้นหาชื่อสินค้า → ได้ Item ID → ดึงข้อมูลเต็มจาก DynamoDB
 
+![An image](../../../public/images/aws/other-service/2.png)  
+
 ## การ Ingest ข้อมูลจาก CloudWatch Logs
 
 2 วิธีหลัก:
@@ -58,12 +60,16 @@ OpenSearch ไม่ได้มาแทนฐานข้อมูล แต�
 1. ใช้ **CloudWatch Log Subscription Filter** → ส่งข้อมูลแบบ Real-Time ไปที่ Lambda (ที่ AWS จัดการให้) → ส่งเข้า OpenSearch
 2. ใช้ **CloudWatch Logs Subscription Filter + Kinesis Data Firehose** → อ่านข้อมูลแล้วส่งเข้า OpenSearch แบบ Near Real-Time
 
+![An image](../../../public/images/aws/other-service/3.png)  
+
 ## การ Ingest ข้อมูลจาก Kinesis Data Streams
 
 2 กลยุทธ์:
 
 1. ใช้ **Kinesis Data Firehose** → Near Real-Time Ingestion (+ Lambda สำหรับ Transform Data ถ้าต้องการ)
 2. ใช้ **Kinesis Data Streams + Lambda** → Lambda อ่าน Stream แบบ Real-Time และเขียนโค้ด Custom เพื่อส่งข้อมูลเข้า OpenSearch
+
+![An image](../../../public/images/aws/other-service/4.png)  
 
 ## สรุป
 

@@ -1,6 +1,6 @@
 # CloudFormation - Stack Policy
 
-## แนะนำ Stack Policies ของ CloudFormation
+![An image](../../../../public/images/aws/cloudformation/28.png)
 
 ในการอัปเดต **CloudFormation Stack** โดยค่าเริ่มต้น จะอนุญาตให้ทำ **action ใด ๆ กับ resources ทั้งหมด** ได้ ซึ่งหมายความว่าคุณสามารถเปลี่ยนแปลง stack ได้ตามต้องการ
 

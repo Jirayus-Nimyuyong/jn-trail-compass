@@ -1,5 +1,7 @@
 # Amazon MSK
 
+![An image](../../../public/images/aws/kinesis/3.png)
+
 **Amazon Managed Streaming for Apache Kafka (Amazon MSK)** คือบริการด้าน **การวิเคราะห์ข้อมูลแบบสตรีม (analytics service)** ของ AWS ที่จัดการ Kafka ให้แบบเต็มรูปแบบ (fully managed) ผู้ใช้สามารถสร้าง อัปเดต หรือลบ Kafka cluster ได้ตามต้องการ
 
 Kafka เป็นอีกหนึ่งทางเลือกที่ทำงานคล้าย **Amazon Kinesis** โดยทั้งสองบริการรองรับ **การสตรีมข้อมูล (data streaming)**

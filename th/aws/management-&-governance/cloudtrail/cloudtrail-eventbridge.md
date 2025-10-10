@@ -1,5 +1,7 @@
 # Amazon EventBridge – การดักจับ API Calls
 
+![An image](../../../../public/images/aws/cloudtrail/4.png)
+
 ## Amazon EventBridge + CloudTrail
 
 ### การผสานงานระหว่าง CloudTrail และ Amazon EventBridge
@@ -13,6 +15,8 @@
 * จากนั้น API Calls เหล่านี้ → จะถูกส่งเป็น **Events ใน Amazon EventBridge**
 
 ดังนั้น เราสามารถสร้างกฎ (Rule) ใน EventBridge เพื่อจับการเรียก API ที่เฉพาะเจาะจง เช่น `DeleteTable` และตั้งค่าปลายทาง (Destination) เป็น **Amazon SNS** เพื่อสร้างการแจ้งเตือน (Alert) ได้
+
+![An image](../../../../public/images/aws/cloudtrail/5.png)
 
 ### ตัวอย่างเพิ่มเติมของการใช้งาน EventBridge + CloudTrail
 

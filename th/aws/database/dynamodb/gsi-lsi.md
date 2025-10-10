@@ -1,5 +1,7 @@
 # DynamoDB Indexes (GSI + LSI)
 
+![An image](../../../../public/images/aws/dynamodb/10.png)
+
 ใน DynamoDB มี **ดัชนีสองประเภท** ที่ควรรู้จัก ได้แก่:
 
 * **Local Secondary Index (LSI)**

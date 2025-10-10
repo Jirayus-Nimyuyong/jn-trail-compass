@@ -1,6 +1,6 @@
 # การรวม Lambda กับ CloudWatch Events / EventBridge
 
-## การแนะนำ
+![An image](../../../../public/images/aws/lambda/12.png)
 
 ในส่วนนี้เราจะพูดถึงวิธีการรวม **CloudWatch Events** หรือ **EventBridge** เข้ากับ **AWS Lambda**
 

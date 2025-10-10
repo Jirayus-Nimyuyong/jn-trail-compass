@@ -4,6 +4,8 @@ Amazon ECS ย่อมาจาก **Elastic Container Service** เมื่�
 
 ## EC2 Launch Type
 
+![An image](../../../../public/images/aws/containers/5.png)
+
 ใน EC2 Launch Type, ECS Cluster ประกอบด้วย **EC2 instances** คุณต้องจัดเตรียมและดูแลโครงสร้างพื้นฐานด้วยตัวเอง
 
 * แต่ละ EC2 instance จะรัน **ECS Agent** ซึ่งทำหน้าที่ลงทะเบียน instance เข้ากับ ECS service และ ECS Cluster ที่ระบุ
@@ -11,6 +13,8 @@ Amazon ECS ย่อมาจาก **Elastic Container Service** เมื่�
 * สรุป: ใน EC2 Launch Type, Docker containers จะถูกรันบน EC2 instances ที่คุณ provision ไว้
 
 ## Fargate Launch Type
+
+![An image](../../../../public/images/aws/containers/6.png)
 
 Fargate Launch Type ให้คุณรัน Docker containers บน AWS **โดยไม่ต้องจัดการ infrastructure**
 
@@ -23,6 +27,8 @@ Fargate Launch Type ให้คุณรัน Docker containers บน AWS **�
 **ข้อดี:** Fargate เหมาะสำหรับ serverless และการจัดการง่าย
 
 ## IAM Roles สำหรับ ECS Tasks
+
+![An image](../../../../public/images/aws/containers/7.png)
 
 **EC2 Instance Profile Role**
 
@@ -40,6 +46,8 @@ Fargate Launch Type ให้คุณรัน Docker containers บน AWS **�
 
 ## Load Balancer Integration
 
+![An image](../../../../public/images/aws/containers/8.png)
+
 * ทั้ง EC2 และ Fargate สามารถรันหลาย ECS tasks ใน Cluster เดียวได้
 * หากต้องการ expose tasks เป็น HTTP/HTTPS endpoint สามารถใช้ **Application Load Balancer (ALB)**
 * ผู้ใช้เชื่อมต่อ ALB → ALB ส่ง traffic ไปยัง ECS tasks
@@ -49,6 +57,8 @@ Fargate Launch Type ให้คุณรัน Docker containers บน AWS **�
 * ALB ใช้ได้ทั้ง EC2 และ Fargate
 
 ## Data Persistence บน Amazon ECS
+
+![An image](../../../../public/images/aws/containers/9.png)
 
 * สำหรับ storage แบบถาวร ใช้ **Data Volumes**
 * ตัวเลือกที่นิยมคือ **Amazon EFS** (Elastic File System)

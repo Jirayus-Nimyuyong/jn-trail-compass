@@ -52,6 +52,8 @@
 * Alarm นี้จะ trigger **Scaling Activity** ของ ECS Service → เพิ่ม **Desired Capacity** → สร้าง task ใหม่
 * หากใช้ **EC2 Launch Type** → **ECS Capacity Provider** จะช่วย scale EC2 cluster อัตโนมัติ
 
+![An image](../../../../public/images/aws/containers/10.png)
+
 ## Key Takeaways
 
 * **ECS Service Auto Scaling** สามารถปรับจำนวน tasks อัตโนมัติตาม metrics

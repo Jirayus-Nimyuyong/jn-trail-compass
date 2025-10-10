@@ -20,6 +20,8 @@ AWS Step Functions ช่วยให้คุณสามารถ **ออก�
 * การรันงาน ECS Task
   AWS Step Functions จะช่วย orchestrate (ควบคุมการไหล) ของ workflow ให้คุณ
 
+  ![An image](../../../../public/images/aws/other-serverless/1.png)
+
 ## การเริ่มต้น Workflow
 
 คุณสามารถเริ่ม workflow ได้หลายวิธี เช่น:
@@ -41,6 +43,8 @@ Step Functions มี **กล่องงาน (task boxes)** เรียก�
 * หรือแม้กระทั่ง **เรียก Step Function อีกอัน**
 
 นอกจากนี้ Task อาจจะเป็น **Activity** → ซึ่งเป็น instance/app server (เช่น EC2, ECS task, หรือ server on-premise) ที่ **ดึงงานจาก Step Functions** มาทำเอง แล้วส่งผลลัพธ์กลับไป (เหมือน AWS SWF)
+
+![An image](../../../../public/images/aws/other-serverless/2.png)
 
 ### ตัวอย่าง Task State ที่เรียก Lambda Function
 
@@ -73,6 +77,8 @@ Step Functions มี **กล่องงาน (task boxes)** เรียก�
 * ถ้าล้มเหลว → handle error → จบ
 
 ในหน้าจอคุณจะเห็น workflow แสดงเป็นสีน้ำเงิน → loop ตอนรอ → จบเมื่อเสร็จ
+
+![An image](../../../../public/images/aws/other-serverless/4.png)
 
 ## Key Takeaways
 

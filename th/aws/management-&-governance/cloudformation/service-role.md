@@ -1,5 +1,7 @@
 # CloudFormation - Service Role
 
+![An image](../../../../public/images/aws/cloudformation/24.png)
+
 CloudFormation สามารถใช้ **service roles** ซึ่งเป็น **IAM roles** ที่คุณสร้างขึ้นและมอบให้ CloudFormation โดยเฉพาะ
 
 * Service role นี้ช่วยให้ CloudFormation สามารถ **สร้าง, อัปเดต, และลบ resource ใน stack** แทนคุณได้

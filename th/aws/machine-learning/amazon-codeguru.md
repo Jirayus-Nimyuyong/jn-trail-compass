@@ -7,6 +7,8 @@ Amazon CodeGuru เป็นบริการที่ใช้ **Machine Learn
 
 ตามปกติแล้วเมื่อมีการ push โค้ด นักพัฒนาคนอื่นจะเป็นผู้ทำ code review และเมื่อโค้ดถูกนำไปใช้งานใน production ก็ต้องมีการเฝ้าติดตามประสิทธิภาพเพื่อตรวจจับบั๊กที่อาจเกิดขึ้น CodeGuru จะช่วย **ทำงานอัตโนมัติ** ทั้งสองอย่างนี้
 
+![An image](../../../public/images/aws/ci-cd/22.png)
+
 ## CodeGuru Reviewer
 
 * ใช้ **Static Code Analysis** เพื่อทำการตรวจสอบโค้ดอัตโนมัติ
@@ -14,12 +16,16 @@ Amazon CodeGuru เป็นบริการที่ใช้ **Machine Learn
 * หากพบ **บั๊ก, memory leaks, หรือปัญหาที่เคยตรวจเจอมาก่อน** → จะให้คำแนะนำเชิงปฏิบัติ (actionable recommendations)
 * ด้วยความสามารถของ Machine Learning → สามารถตรวจหาบั๊กได้แม้กระทั่งก่อน reviewer คนจริงจะเจอ
 
+![An image](../../../public/images/aws/ci-cd/23.png)
+
 ## CodeGuru Profiler
 
 * ใช้สำหรับดูข้อมูล **ประสิทธิภาพของแอปพลิเคชัน** ระหว่าง runtime หรือใน production
 * ตรวจหาบรรทัดโค้ดที่มีต้นทุนสูง (expensive lines of code) และแนะนำการปรับปรุง
 * สามารถใช้ได้ทั้งใน **pre-production** และ **production**
 * มีการวัดประสิทธิภาพแบบ real-time และแนะนำโอกาสในการ **ลดต้นทุน (cost optimization)** และเพิ่มประสิทธิภาพ
+
+![An image](../../../public/images/aws/ci-cd/24.png)
 
 ## เจาะลึก CodeGuru Reviewer
 

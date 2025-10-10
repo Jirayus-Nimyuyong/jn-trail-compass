@@ -14,6 +14,8 @@
 
 เหล่านี้คือฟิลด์ที่สำคัญและมักถูกสอบ
 
+![An image](../../../../public/images/aws/containers/18.png)
+
 ## ตัวอย่าง Scenario
 
 * มี EC2 instance ลงทะเบียนกับ ECS cluster และรัน **ECS Agent**
@@ -33,6 +35,8 @@
 * **Classic Load Balancer** ใช้งานไม่ได้ในกรณีนี้
 * Security group ของ EC2 ต้องอนุญาต traffic จาก ALB security group
 
+![An image](../../../../public/images/aws/containers/19.png)
+
 ## การตั้งค่า Port สำหรับ Fargate
 
 * แต่ละ ECS task บน Fargate ได้ **private IP** เฉพาะตัวผ่าน **Elastic Network Interface (ENI)**
@@ -41,12 +45,16 @@
 * Security group ของ ENI ต้องอนุญาต inbound traffic จาก ALB security group
 * ALB security group อนุญาต inbound traffic จากอินเทอร์เน็ตบน port 80 หรือ 443 (ถ้าใช้ SSL)
 
+![An image](../../../../public/images/aws/containers/20.png)
+
 ## IAM Roles ใน ECS
 
 * IAM role ถูกกำหนดที่ **Task Definition level**
 * ECS tasks ที่สร้างจาก Task Definition จะสืบทอด **ECS Task Role**
 * Task role ใช้สำหรับเข้าถึง AWS services เช่น S3 หรือ DynamoDB
 * สามารถสร้างหลาย Task Definitions พร้อม IAM roles ต่างกัน
+
+![An image](../../../../public/images/aws/containers/21.png)
 
 ## Environment Variables ใน Task Definitions
 
@@ -57,6 +65,8 @@
   * อ้างอิงใน Task Definition แล้วดึงค่า runtime inject เป็น environment variable
   * โหลดเป็น bulk จากไฟล์ใน S3
 
+![An image](../../../../public/images/aws/containers/22.png)  
+
 ## การแชร์ข้อมูลระหว่าง ECS Tasks
 
 * Task สามารถมีหลาย containers
@@ -65,6 +75,8 @@
 * **Fargate tasks:** ใช้ ephemeral storage → ข้อมูลอยู่จน task หยุด (storage ลบอัตโนมัติ)
 * Fargate รองรับ shared storage 20–200 GB
 * Sidecar containers สามารถอ่าน metrics/logs จาก storage ที่ application container เขียน
+
+![An image](../../../../public/images/aws/containers/23.png)
 
 ## สรุป
 

@@ -32,6 +32,8 @@ DynamoDB รองรับ **การเขียนแบบมีเงื�
 * ต้องการ **ปรับราคา** (`price`) ให้ลดลงตาม discount แต่ทำได้เฉพาะถ้า **ราคาเกิน limit**
 * Condition Expression จะตรวจสอบก่อนว่า item ผ่านเงื่อนไขหรือไม่
 
+![An image](../../../../public/images/aws/dynamodb/6.png)
+
 ตัวอย่าง values.json:
 
 ```json
@@ -52,10 +54,14 @@ DynamoDB รองรับ **การเขียนแบบมีเงื�
   * ใช้ `attribute_not_exists` → ลบเฉพาะ item ที่ attribute หายไป
   * ใช้ `attribute_exists` → ลบเฉพาะ item ที่มี attribute อยู่ เช่น ลบรีวิวสินค้าที่ได้ 1 ดาว
 
+![An image](../../../../public/images/aws/dynamodb/8.png)
+
 ## ป้องกันการ overwrite ด้วย Condition Expressions
 
 * ใช้ `attribute_not_exists` บน **partition key** → item จะถูกเขียน **เฉพาะถ้าไม่เคยมีอยู่**
 * ถ้า table ใช้ **partition key + sort key** → สามารถกำหนด `attribute_not_exists` ทั้งคู่ เพื่อป้องกัน overwrite
+
+![An image](../../../../public/images/aws/dynamodb/7.png)
 
 ## ตรวจสอบค่าใน Condition Expressions
 

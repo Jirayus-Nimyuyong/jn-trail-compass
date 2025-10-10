@@ -13,6 +13,8 @@
   * ถ้า instance ใดไม่สมบูรณ์ (unhealthy) → ASG จะ **terminate และสร้าง instance ใหม่อัตโนมัติ**
 * **ASG ไม่มีค่าใช้จ่ายเพิ่มเติม** → จ่ายเฉพาะทรัพยากรที่สร้างขึ้น เช่น EC2 instance
 
+![An image](../../../../public/images/aws/ec2/34.png)
+
 ## การตั้งค่าความจุของ ASG
 
 * **Minimum capacity** → จำนวน instance ขั้นต่ำ (ตัวอย่าง: 2)
@@ -31,6 +33,8 @@
   * ELB ทำ **Health Check** → ส่งต่อผลไปยัง ASG → ASG จะ **terminate instance ที่ไม่สมบูรณ์**
   * เมื่อต้อง **scale out** → ELB จะกระจาย traffic ไปยัง instance ใหม่ด้วย
 * การรวมกันของ **Load Balancer + ASG** ทำให้ **โหลดสมดุลและแอปพร้อมใช้งานตลอดเวลา**
+
+![An image](../../../../public/images/aws/ec2/35.png)
 
 ## Launch Templates และ Attribute ของ ASG
 
@@ -55,6 +59,8 @@
   * Minimum size, Maximum size, Initial capacity
   * Scaling policies
 
+![An image](../../../../public/images/aws/ec2/36.png)
+
 ## Scaling Policies และ CloudWatch Alarms
 
 * ASG สามารถ **scale in/out อัตโนมัติ** ตาม **CloudWatch Alarms**
@@ -65,6 +71,8 @@
   * CPU สูง → เพิ่ม EC2 instance อัตโนมัติ
 * สามารถสร้าง **Scale-out Policy** → เพิ่มจำนวน instance
 * หรือ **Scale-in Policy** → ลดจำนวน instance
+
+![An image](../../../../public/images/aws/ec2/37.png)
 
 ## Auto Scaling Groups (ASG) – นโยบายการปรับขนาด (Scaling Policies)
 
@@ -92,6 +100,8 @@ ASG มี **นโยบายการปรับขนาดหลายแ�
    * ใช้กับ **รูปแบบโหลดซ้ำๆ**
    * ASG วิเคราะห์ **ข้อมูลโหลดย้อนหลัง** → สร้าง forecast → กำหนด scaling actions
 
+![An image](../../../../public/images/aws/ec2/38.png)
+
 ### Metrics ที่ใช้สำหรับ Scaling
 
 การเลือก metric ที่เหมาะสมขึ้นอยู่กับพฤติกรรมแอปพลิเคชัน
@@ -102,6 +112,8 @@ ASG มี **นโยบายการปรับขนาดหลายแ�
   * ตัวอย่าง: ถ้า EC2 instance รองรับได้ 1,000 requests ต่อ target → ตั้งเป็น scaling target
 * **Network In/Out** → เหมาะสำหรับแอปที่ใช้ network หนัก เช่น การอัปโหลด/ดาวน์โหลดไฟล์
 * **Custom Metrics** → metric เฉพาะของแอปสามารถ push ไปยัง CloudWatch เพื่อใช้ในการ scaling
+
+![An image](../../../../public/images/aws/ec2/39.png)
 
 ### Scaling Cooldown
 
@@ -114,6 +126,8 @@ ASG มี **นโยบายการปรับขนาดหลายแ�
 
 * ใช้ **ready-to-use AMIs** → ลดเวลาในการ config instance
 * เปิด **Detailed Monitoring** → update metrics ทุก 1 นาที → ทำให้ scaling ตอบสนองเร็วขึ้น
+
+![An image](../../../../public/images/aws/ec2/40.png)
 
 ## Auto Scaling Groups – Instance Refresh
 
@@ -141,6 +155,8 @@ ASG มี **นโยบายการปรับขนาดหลายแ�
 3. กระบวนการนี้จะดำเนินต่อไป **จน instance รุ่นเก่าทั้งหมดถูกแทนที่ด้วย instance รุ่นใหม่**
 
 ดังนั้นจึงเรียกว่า **EC2 Instance Refresh**: instances เก่าถูก terminate → instances ใหม่ถูกสร้างขึ้นด้วยการตั้งค่าอัปเดต
+
+![An image](../../../../public/images/aws/ec2/41.png)
 
 ### Warm-up Time
 

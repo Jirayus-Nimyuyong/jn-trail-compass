@@ -2,6 +2,8 @@
 
 การตั้งค่านี้สำหรับ **Amazon S3 Bucket** เมื่อใช้การเข้ารหัส **SSE-KMS** ช่วยลดจำนวน API calls ที่ส่งไปยัง **AWS KMS** จาก Amazon S3 ได้ถึง 99% ส่งผลให้ค่าใช้จ่ายจากการเข้ารหัส KMS ลดลงประมาณ 99% ด้วย
 
+![An image](../../../../public/images/aws/encrypt/10.png)
+
 ## การทำงานของ S3 Bucket Key
 
 การปรับปรุงนี้ใช้ **data keys** และโดยเฉพาะอย่างยิ่ง **S3 Bucket Key**

@@ -1,5 +1,7 @@
 # KMS Encryption Patterns และ Envelope Encryption
 
+![An image](../../../../public/images/aws/encrypt/6.png)
+
 AWS Key Management Service (KMS) มี API สำหรับ **encrypt** และ **decrypt** เพื่อจัดการกับข้อมูลขนาดเล็ก (ไม่เกิน 4 KB)
 
 1. เริ่มจาก secret เช่นรหัสผ่าน (password)
@@ -8,6 +10,13 @@ AWS Key Management Service (KMS) มี API สำหรับ **encrypt** แ�
 4. การถอดรหัส ใช้ API **decrypt** โดย KMS จะระบุ CMK ที่ใช้เข้ารหัสและตรวจสอบสิทธิ์กับ IAM หากอนุญาต จะคืนค่าข้อมูลในรูป plain-text
 
 **ข้อจำกัด:** secret ต้องไม่เกิน 4 KB
+
+GenerateDataKey API
+
+![An image](../../../../public/images/aws/encrypt/7.png)
+
+Decrypt envelope data
+![An image](../../../../public/images/aws/encrypt/8.png)
 
 ## Envelope Encryption และ GenerateDataKey API
 

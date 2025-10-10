@@ -9,6 +9,8 @@
 * API Gateway
 * หรือแม้แต่ Application Load Balancer
 
+![An image](../../../../public/images/aws/lambda/5.png)
+
 ## Synchronous หมายถึงอะไร?
 
 * หมายถึงคุณ **รอผลลัพธ์กลับ** ก่อน

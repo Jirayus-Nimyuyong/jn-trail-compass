@@ -2,6 +2,8 @@
 
 ในการบรรยายนี้ เราจะพูดถึงฟีเจอร์ **Wait for Task Token** ของ Step Functions ฟีเจอร์นี้ทำให้ workflow ของ Step Functions สามารถ **หยุดรอ (pause)** ได้ จนกว่าจะมีการส่ง **task token** กลับมา ก่อนที่จะดำเนินการต่อ
 
+![An image](../../../../public/images/aws/other-serverless/8.png)
+
 ## จุดประสงค์ของการรอ Task Token
 
 การรอ task token มีไว้เพื่อให้ workflow สามารถ **รอเหตุการณ์หรือกระบวนการจากภายนอก** ได้ เช่น

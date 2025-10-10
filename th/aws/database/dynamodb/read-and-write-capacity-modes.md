@@ -59,6 +59,8 @@
 
 **DynamoDB** รองรับ **2 แบบของการอ่าน**:
 
+![An image](../../../../public/images/aws/dynamodb/4.png)
+
 1. **Eventually Consistent Reads (default)**
 
    * ข้อมูลอาจล้าหลังชั่วคราวหลังการเขียน
@@ -105,6 +107,8 @@
 
 * Table ประกอบด้วย **Partitions** → ข้อมูลเก็บบนเซิร์ฟเวอร์เฉพาะ
 * การเขียนข้อมูล → Partition Key จะถูก **hash** เพื่อกำหนด partition
+
+![An image](../../../../public/images/aws/dynamodb/5.png)
 
 **ตัวอย่าง**:
 

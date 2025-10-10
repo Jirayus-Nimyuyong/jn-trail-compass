@@ -1,6 +1,6 @@
 # AWS Copilot
 
-## บทนำเกี่ยวกับ AWS Copilot
+![An image](../../../public/images/aws/containers/29.png)
 
 * **AWS Copilot** ไม่ใช่บริการของ AWS โดยตรง แต่เป็น **เครื่องมือ CLI (Command Line Interface)** ที่ออกแบบมาเพื่อ **สร้าง ปล่อย และบริหารจัดการแอปพลิเคชันแบบ container production-ready**
 * เป้าหมายหลักของ Copilot คือ **ลดความยุ่งยากในการรันแอปบน AppRunner, ECS และ Fargate**

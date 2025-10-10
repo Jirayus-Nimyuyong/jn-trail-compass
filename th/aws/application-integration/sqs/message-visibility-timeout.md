@@ -6,6 +6,8 @@
 
 เมื่อ **Consumer** (ผู้ดึงข้อความ) ทำการดึงข้อความจาก Queue (ผ่าน `ReceiveMessage` API) ข้อความนั้นจะ **มองไม่เห็น (Invisible)** สำหรับ Consumer อื่นทันที
 
+![An image](../../../../public/images/aws/sqs/10.png)
+
 ## **ลำดับการทำงาน (Timeline)**
 
 1. Consumer ส่งคำสั่ง `ReceiveMessage` → ได้รับข้อความจาก Queue

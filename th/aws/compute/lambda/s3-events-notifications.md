@@ -1,6 +1,6 @@
 # การรวม S3 Event Notifications กับ Lambda
 
-## การแนะนำ
+![An image](../../../../public/images/aws/lambda/13.png)
 
 เรามาดูกันว่าการรวม **S3 event notifications** เข้ากับ **AWS Lambda** ทำอย่างไร
 
@@ -44,6 +44,8 @@ S3 สามารถส่ง event notifications ไปยัง 3 ปลา�
 * ตัวอย่าง pattern ทั่วไป: S3 bucket **trigger** Lambda function เมื่อมีไฟล์ใหม่
 * Lambda function สามารถประมวลผลไฟล์นั้น และบันทึกข้อมูลลงใน **DynamoDB** หรือ **RDS**
 * Pattern นี้ง่ายและมีประสิทธิภาพสำหรับ workflow การประมวลผลข้อมูลแบบ serverless หลายกรณี
+
+![An image](../../../../public/images/aws/lambda/14.png)
 
 ## Key Takeaways
 

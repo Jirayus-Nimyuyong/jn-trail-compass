@@ -20,6 +20,8 @@
 * **CodeArtifact**: เก็บ, เผยแพร่ และแชร์ software package
 * **CodeGuru**: ตรวจสอบโค้ดอัตโนมัติด้วย machine learning
 
+![An image](../../../public/images/aws/ci-cd/6.png)
+
 เราจะสำรวจบริการแต่ละตัวอย่างละเอียดในบทต่อ ๆ ไป
 
 ### CICD คืออะไร?
@@ -33,6 +35,8 @@
 * server จะ fetch โค้ดและรันเทสต์ นักพัฒนาจะได้รับ feedback ว่าเทสต์ผ่านหรือไม่
 * ข้อดี: เจอบั๊กเร็ว ไม่ต้องทดสอบบนเครื่องตัวเอง ทำให้ส่งโค้ดได้เร็วและบ่อย
 
+![An image](../../../public/images/aws/ci-cd/1.png)
+
 #### Continuous Delivery (CD)
 
 * เมื่อตัวโค้ดผ่านทุกเทสต์แล้ว จะ **deploy อัตโนมัติ** ไปยัง application servers
@@ -44,6 +48,8 @@
 * Continuous Delivery ทำให้ deployment เกิดขึ้น **บ่อยและรวดเร็ว** ลดข้อผิดพลาดและเร่งการส่งมอบ
 * เครื่องมือสำหรับ deployment อัตโนมัติ เช่น AWS CodeDeploy, Jenkins CD, Spinnaker
 
+![An image](../../../public/images/aws/ci-cd/2.png)
+
 ### AWS CICD Tech Stack
 
 * **Code Repository**: CodeCommit, GitHub, Bitbucket หรือ repository ภายนอกอื่น ๆ
@@ -51,6 +57,8 @@
 * **Deploy Phase**: CodeDeploy (deploy ไปยัง EC2, on-premises, Lambda, ECS)
 * **Infrastructure Provisioning**: Elastic Beanstalk เป็นทางเลือกสำหรับ provision infra และ deploy แอป
 * **Orchestration**: CodePipeline orchestrate กระบวนการ CICD ทั้งหมด และกำหนดขั้นตอนแต่ละ stage
+
+![An image](../../../public/images/aws/ci-cd/3.png)
 
 ### สรุป
 

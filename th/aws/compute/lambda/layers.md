@@ -1,6 +1,6 @@
 # Lambda Layers
 
-## แนะนำ Lambda Layers
+![An image](../../../../public/images/aws/lambda/28.png)
 
 Lambda Layers เป็นฟีเจอร์ใหม่ของ AWS Lambda ที่มีสองประโยชน์หลัก
 

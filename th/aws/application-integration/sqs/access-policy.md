@@ -2,6 +2,8 @@
 
 นโยบายการเข้าถึง SQS Queue (SQS Queue Access Policies) มีลักษณะคล้ายนโยบายของ S3 Bucket เพราะเป็น **Resource Policies** ซึ่งอยู่ในรูปแบบ **JSON IAM Policy** ที่แนบโดยตรงกับ **SQS Queue** โดยมีวัตถุประสงค์หลัก 2 อย่างคือ:
 
+![An image](../../../../public/images/aws/sqs/8.png)
+
 ## **Use Case 1: การเข้าถึงข้ามบัญชี (Cross-Account Access)**
 
 ในกรณีที่คุณมี SQS Queue อยู่ในบัญชี AWS หนึ่ง และมีอีกบัญชีหนึ่งที่ต้องการเข้าถึง Queue นี้ (เช่น EC2 instance ในอีกบัญชีที่ต้องการดึงข้อความจากคิว) คุณต้องสร้าง **Queue Access Policy** ขึ้นมา และแนบนโยบายนี้กับ SQS Queue ที่อยู่ในบัญชีแรก

@@ -8,6 +8,8 @@
 
 เดิมที serverless หมายถึง **Function as a Service (FaaS)**
 
+![An image](../../../../public/images/aws/lambda/1.png)
+
 ## AWS Lambda
 
 AWS Lambda เป็นผู้บุกเบิกแนวคิด serverless

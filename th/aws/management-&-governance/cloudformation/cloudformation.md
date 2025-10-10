@@ -19,6 +19,8 @@ AWS CloudFormation เป็นหนึ่งในบริการโปร�
 **CloudFormation template** คือโค้ดที่ **ประกาศว่าโครงสร้างพื้นฐานของคุณประกอบด้วยอะไรบ้าง**
 คุณสามารถใช้ **Infrastructure Composer** เพื่อ visualize โครงสร้างพื้นฐานและดูความสัมพันธ์ระหว่าง component ภายใน CloudFormation
 
+![An image](../../../../public/images/aws/cloudformation/1.png)
+
 ## ทำไมต้องใช้ AWS CloudFormation?
 
 * **Infrastructure as Code:** ไม่ต้องสร้างทรัพยากรด้วยตนเอง ทำให้ควบคุมง่ายขึ้น
@@ -42,6 +44,8 @@ AWS CloudFormation เป็นหนึ่งในบริการโปร�
 * Stack จะถูกระบุด้วยชื่อในแต่ละ region
 * หากลบ stack ทุกทรัพยากรที่ CloudFormation สร้างจะถูกลบทั้งหมด
 
+![An image](../../../../public/images/aws/cloudformation/2.png)
+
 ## การ Deploy CloudFormation Templates
 
 มี 2 วิธีหลัก:
@@ -53,6 +57,8 @@ AWS CloudFormation เป็นหนึ่งในบริการโปร�
 2. **Automated Way:** แก้ไข template ในไฟล์ YAML แล้ว deploy ผ่าน **AWS CLI** หรือ **continuous delivery tools**
 
    * แนะนำสำหรับการทำ deployment อัตโนมัติเต็มรูปแบบ
+
+![An image](../../../../public/images/aws/cloudformation/3.png)
 
 ## ส่วนประกอบของ CloudFormation Templates
 

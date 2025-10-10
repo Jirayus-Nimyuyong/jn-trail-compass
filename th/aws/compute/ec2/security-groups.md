@@ -2,6 +2,8 @@
 
 เรามาเริ่มพูดถึง **ไฟร์วอลล์รอบ ๆ EC2 instances** กัน Security Groups เป็นอีกหนึ่งหัวข้อพื้นฐานที่สำคัญมากในเรื่อง **Network Security บน AWS Cloud** โดย Security Groups จะควบคุมว่า traffic แบบใดสามารถเข้าออกจาก EC2 instances ได้
 
+![An image](../../../../public/images/aws/ec2/1.png)
+
 ## ความง่ายในการใช้งาน Security Groups
 
 Security Groups ใช้งานง่ายมาก เนื่องจากมันมีเฉพาะ **Allow Rules** เท่านั้น หมายความว่าเราต้องกำหนดเองว่า traffic แบบใดอนุญาตให้เข้าออกได้
@@ -51,9 +53,14 @@ Security Groups เป็นเหมือนไฟร์วอลล์รอ�
 * Instance **สามารถมีหลาย Security Groups** ได้พร้อมกัน
 * Security Groups ถูกจำกัดอยู่ใน **Region และ VPC เดียวกัน** ถ้าไป Region หรือ VPC อื่น ต้องสร้างใหม่
 * Security Group **อยู่ภายนอก EC2 Instance** ถ้า traffic ถูกบล็อก → Instance จะไม่เห็นการเชื่อมต่อนั้นเลย
-
 👉 คำแนะนำจาก Developer:
 ควรมี **Security Group แยกเฉพาะสำหรับ SSH** เพื่อจัดการง่ายขึ้น เพราะ SSH เป็นพอร์ตที่ซับซ้อนและต้องระวังเรื่องความปลอดภัยมากที่สุด
+
+## Security Groups Diagram
+
+![An image](../../../../public/images/aws/ec2/2.png)
+
+![An image](../../../../public/images/aws/ec2/3.png)
 
 ## Debugging ปัญหาการเชื่อมต่อ
 

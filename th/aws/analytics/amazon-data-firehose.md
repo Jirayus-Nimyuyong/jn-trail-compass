@@ -1,6 +1,6 @@
 # Amazon Data Firehose
 
-## แนะนำ Amazon Data Firehose
+![An image](../../../public/images/aws/kinesis/2.png)
 
 **Amazon Data Firehose** เป็นบริการที่ออกแบบมาเพื่อ **ส่งข้อมูลจากแหล่งต่าง ๆ ไปยังปลายทางที่ต้องการ**
 

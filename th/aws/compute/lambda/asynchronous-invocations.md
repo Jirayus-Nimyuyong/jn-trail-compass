@@ -15,6 +15,8 @@
 * เนื่องจากเป็นแบบ Asynchronous, **Event จะถูกวางลงใน Event Queue ภายใน**
 * Lambda function จะอ่านจาก Event Queue เพื่อประมวลผล Event
 
+![An image](../../../../public/images/aws/lambda/11.png)
+
 ## กลไก Retry
 
 * Lambda function จะพยายามประมวลผล Event

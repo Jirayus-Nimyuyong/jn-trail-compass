@@ -42,6 +42,8 @@ AWS Lambda คืออะไร และช่วยเราอย่าง�
 
 ## การรวมกับบริการ AWS อื่น ๆ
 
+![An image](../../../../public/images/aws/lambda/2.png)
+
 Lambda สามารถรวมกับบริการ AWS หลายตัว เช่น:
 
 * **API Gateway**: สร้าง REST APIs เรียก Lambda
@@ -64,10 +66,14 @@ Lambda สามารถรวมกับบริการ AWS หลาย�
 * Lambda สร้าง thumbnail และอัพโหลดกลับ S3
 * อาจ insert metadata เช่น ชื่อรูป, ขนาด, วันที่สร้าง ลง DynamoDB
 
+![An image](../../../../public/images/aws/lambda/3.png)
+
 **2. Serverless CRON Jobs**
 
 * ปกติ CRON job รันบน EC2 ต้อง instance ทำงานต่อเนื่อง
 * Lambda + CloudWatch Event / EventBridge สามารถรันตาม schedule (เช่น ทุกชั่วโมง) **ไม่ต้องรันเซิร์ฟเวอร์ตลอดเวลา**
+
+![An image](../../../../public/images/aws/lambda/4.png)
 
 ## การคิดค่าบริการของ AWS Lambda
 

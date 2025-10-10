@@ -14,6 +14,8 @@
 
 ทั้ง **Putty** และ **SSH Command** ต่างก็ใช้โปรโตคอลเดียวกันในการเชื่อมต่อไปยัง EC2 Instances
 
+![An image](../../../../public/images/aws/ec2/4.png)
+
 ## EC2 Instance Connect: การเชื่อมต่อผ่าน Browser
 
 วิธีใหม่ที่ง่ายขึ้นคือ **EC2 Instance Connect** ซึ่งทำให้สามารถเชื่อมต่อไปยัง EC2 Instances ผ่าน **เว็บเบราว์เซอร์** โดยไม่ต้องใช้ Terminal หรือ Putty
@@ -30,6 +32,8 @@
 * ถ้าใช้ **Windows 10+** → ใช้ SSH ผ่าน Command Line ได้เลย
 
 สำหรับผมเอง ใน Lecture ต่อ ๆ ไปจะใช้ **EC2 Instance Connect** เพราะง่าย ไม่ต้องติดตั้งอะไร และไม่ต้องใช้ Command Line ซึ่งเหมาะกับผู้เรียนหลาย ๆ คน
+
+![An image](../../../../public/images/aws/ec2/5.png)
 
 ## แก้ปัญหา SSH Connection
 

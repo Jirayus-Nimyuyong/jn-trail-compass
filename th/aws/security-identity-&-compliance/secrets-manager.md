@@ -27,6 +27,8 @@
 
   * ตัวอย่าง: หากสร้างความลับใน region หลัก ความลับนั้นจะถูกทำสำเนาอัตโนมัติใน region รอง
 
+![An image](../../../public/images/aws/encrypt/23.png)
+
 ### ประโยชน์ของ Multi-Region Secrets
 
 1. **Disaster Recovery**: หากเกิดปัญหาใน region หลัก (เช่น US East 1) สามารถ **promote** ความลับสำเนาใน region รองให้เป็นความลับหลักได้
@@ -53,6 +55,8 @@
   * สามารถดึงความลับจาก Secrets Manager ผ่าน **SSM Parameter Store API** ได้
 
 ## การหมุนเวียนความลับ: Parameter Store vs Secrets Manager
+
+![An image](../../../public/images/aws/encrypt/24.png)
 
 * **Secrets Manager**
 

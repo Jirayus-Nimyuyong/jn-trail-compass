@@ -1,5 +1,7 @@
 # CloudFormation - Outputs & Exports
 
+![An image](../../../../public/images/aws/cloudformation/11.png)
+
 **Output section** ใน CloudFormation เป็น **ส่วนเสริม (optional)**
 
 * ใช้ประกาศค่า output ที่สามารถ **นำไปใช้งานใน stack อื่น ๆ**
@@ -27,6 +29,8 @@
 * Template มี **output section** อ้างอิง security group
 * Output มี **export block** เพื่อ export ค่าโดยใช้ชื่อเฉพาะ เช่น `SSHSecurityGroup`
 
+![An image](../../../../public/images/aws/cloudformation/12.png)
+
 **เงื่อนไขสำคัญ:**
 
 * Export name ต้อง **ไม่ซ้ำ** กับ exports อื่น ๆ ใน region เดียวกัน
@@ -39,6 +43,8 @@
 * Stack ใหม่สามารถใช้ **ImportValue function** เพื่อนำค่า output ที่ export มาใช้
 * ตัวอย่าง: สร้าง EC2 instance แล้ว assign security group โดย **import security group ID** จาก stack อื่น
 * การเชื่อมโยงแบบนี้ช่วยให้ **resource สามารถแชร์ข้าม stack** ได้
+
+![An image](../../../../public/images/aws/cloudformation/13.png)
 
 **ข้อควรระวัง:**
 

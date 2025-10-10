@@ -5,6 +5,8 @@
 * ทุกครั้งที่คุณ **เพิ่ม แก้ไข หรือ ลบ item** การเปลี่ยนแปลงนั้นจะปรากฏใน **stream**
 * **stream** จะแสดงรายการการเปลี่ยนแปลงทั้งหมดของตารางตามเวลา
 
+![An image](../../../../public/images/aws/dynamodb/15.png)
+
 ## การส่ง Stream ไปยังปลายทาง
 
 * สามารถส่ง **DynamoDB Stream** ไปยังหลายปลายทางได้ เช่น:
@@ -69,6 +71,8 @@ DynamoDB Streams ช่วยให้ตอบสนองต่อการเ
 * ต้องกำหนด **Event Source Mapping** เพื่อให้ Lambda อ่านจาก stream
 * Lambda ต้องมี **permissions** ในการดึงข้อมูลจาก stream
 * Lambda จะถูก **invoke แบบ synchronous**
+
+![An image](../../../../public/images/aws/dynamodb/16.png)
 
 ตัวอย่าง workflow:
 

@@ -21,6 +21,8 @@
 * **จำนวน instance ที่แนบได้:** สูงสุด 16 EC2 instance ต่อ volume
 * **File System:** ต้องใช้ **cluster-aware file system** เพื่อให้ Multi-Attach ทำงานได้อย่างถูกต้อง (ไม่เหมือน XFS หรือ EXT4 ทั่วไป)
 
+![An image](../../../../public/images/aws/ec2/13.png)
+
 ## Key Takeaways
 
 * ฟีเจอร์ Multi-Attach ทำให้ **EBS volume เดียวสามารถ attach กับหลาย EC2 instance ใน AZ เดียวกันได้**

@@ -16,11 +16,15 @@ API Gateway สามารถส่งคำขอไปยัง **HTTP endpoi
 * สามารถใช้ **mapping templates** เพื่อแก้ไขคำขอที่ส่งไป backend และคำตอบที่ส่งกลับมาถึง client
 * Mapping templates ทำให้เราสามารถเปลี่ยนชื่อ ฟิลด์ หรือโครงสร้างข้อมูลให้ backend เข้าใจได้
 
+![An image](../../../../public/images/aws/api-gateway/6.png)
+
 **ตัวอย่าง**: เมื่อสร้าง REST API เราสามารถ map การเรียก REST API ให้กลายเป็นการเรียก API ของ **SQS Queue** ได้ เพียงปรับรูปแบบของ request ให้เหมาะสม
 
 ## AWS Lambda Proxy Integration
 
 ใน **Lambda Proxy integration** คำขอจาก client จะถูกส่งตรงไปยัง Lambda function โดยไม่ถูกแก้ไข (ไม่มี mapping templates)
+
+![An image](../../../../public/images/aws/api-gateway/7.png)
 
 * Lambda function จะต้องรับผิดชอบการประมวลผลคำขอและสร้าง response เอง
 * ข้อมูลที่ Lambda ได้รับจะมีรายละเอียด เช่น resource, path, HTTP method, headers, query string parameters, stage variables และ body
@@ -30,6 +34,8 @@ API Gateway สามารถส่งคำขอไปยัง **HTTP endpoi
 ## HTTP Proxy Integration
 
 คล้ายกับ Lambda Proxy แต่เป็นการส่งต่อคำขอไปยัง backend **HTTP endpoint** โดยตรง โดยไม่มีการแก้ไขข้อมูล
+
+![An image](../../../../public/images/aws/api-gateway/8.png)
 
 * คำตอบจาก backend จะถูกส่งกลับไปยัง client ตรง ๆ
 * API Gateway สามารถใส่ **HTTP header** เพิ่มเติม (เช่น API key) ระหว่าง Gateway และ backend ได้ เพื่อความปลอดภัย โดย client จะไม่ทราบถึงรายละเอียดนี้
@@ -50,6 +56,8 @@ Mapping templates จะใช้ได้เฉพาะกรณีที่ I
 * API Gateway สามารถใช้ mapping templates แปลง JSON → XML (SOAP message) และแปลง XML response → JSON
 * ขั้นตอน: API Gateway จะดึงข้อมูลจาก path, payload หรือ headers → สร้าง SOAP message → เรียก SOAP service → รับ XML response → แปลงกลับเป็น JSON เพื่อตอบ client
 
+![An image](../../../../public/images/aws/api-gateway/9.png)
+
 ## ตัวอย่าง: Mapping Query String Parameters
 
 สมมติว่า client ส่งคำขอ:
@@ -57,6 +65,8 @@ Mapping templates จะใช้ได้เฉพาะกรณีที่ I
 ```cli
 ?name=foo&other=bar
 ```
+
+![An image](../../../../public/images/aws/api-gateway/10.png)
 
 และ API Gateway เชื่อมกับ Lambda (ไม่ใช่ proxy)
 

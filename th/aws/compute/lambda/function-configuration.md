@@ -1,5 +1,7 @@
 # Lambda Function Configuration
 
+![An image](../../../../public/images/aws/lambda/27.png)
+
 ## การตั้งค่า Lambda และประสิทธิภาพ
 
 ### การจัดสรร RAM

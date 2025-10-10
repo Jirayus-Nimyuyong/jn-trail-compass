@@ -25,3 +25,5 @@
   * อีเมลเชิงธุรกรรม (transactional)
   * การตลาด (marketing)
   * การส่งอีเมลจำนวนมาก (bulk email communications)
+
+![An image](../../../public/images/aws/other-service/1.png)

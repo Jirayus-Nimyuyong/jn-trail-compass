@@ -19,9 +19,13 @@
 6. Deploy แอปพลิเคชันไปยัง environment ใหม่
 7. โอนย้ายการรับส่งทราฟฟิกจาก environment เก่าไปยัง environment ใหม่ ด้วยการทำ **CNAME swap** หรืออัปเดต DNS ผ่าน Route 53
 
+![An image](../../../../public/images/aws/beanstalk/13.png)
+
 ## RDS และ Elastic Beanstalk
 
 คุณสามารถสร้าง RDS ขึ้นมาพร้อมกับ Beanstalk application ได้ ซึ่งเหมาะสำหรับ **development และ testing environment** เพราะทุกอย่างอยู่ใน stack เดียวกัน
+
+![An image](../../../../public/images/aws/beanstalk/14.png)
 
 ## สิ่งที่ควรพิจารณาสำหรับ Production
 
@@ -44,6 +48,8 @@
    * เนื่องจากเปิด deletion protection ไว้ RDS จะไม่ถูกลบ
    * CloudFormation stack ของ environment เก่าอาจลบไม่สำเร็จและอยู่ในสถานะ **Delete Failed**
    * ต้องไปลบ CloudFormation stack นั้นด้วยตนเองผ่าน AWS CloudFormation console
+
+![An image](../../../../public/images/aws/beanstalk/15.png)
 
 วิธีนี้ทำให้คุณได้ RDS ที่ **แยกออกมาเป็นอิสระจาก Beanstalk environment** ซึ่งเป็นแนวทางที่แนะนำสำหรับ production
 

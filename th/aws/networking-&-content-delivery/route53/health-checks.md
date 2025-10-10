@@ -17,6 +17,8 @@ Route 53 Health Checks ช่วยให้คุณ **ตรวจสอบส
 * **วิธีแก้:** สร้าง Health Checks ใน Route 53 สำหรับแต่ละภูมิภาค (เช่น `us-east-1` และ `eu-west-1`)
 * Health Checks เหล่านี้เชื่อมกับ DNS Record เพื่อให้ **DNS Failover อัตโนมัติ** → Traffic จะไปที่ Resource ที่ Healthy เท่านั้น
 
+![An image](../../../../public/images/aws/route53/10.png)
+
 ## **ประเภทของ Route 53 Health Checks**
 
 1. **Endpoint Health Checks:** ตรวจสอบ Resource สาธารณะ เช่น แอปพลิเคชัน เซิร์ฟเวอร์ หรือ AWS Resource
@@ -45,6 +47,8 @@ Route 53 Health Checks ช่วยให้คุณ **ตรวจสอบส
 
 * Health Checkers ต้องเข้าถึง Resource ได้ → ต้องอนุญาต **IP ของ Route 53 Health Checkers**
 
+![An image](../../../../public/images/aws/route53/11.png)
+
 ## **Calculated Health Checks**
 
 * รวมผลของหลาย Health Checks เป็น Health Check เดียว
@@ -55,6 +59,8 @@ Route 53 Health Checks ช่วยให้คุณ **ตรวจสอบส
   * สามารถตรวจสอบ **Child Health Checks สูงสุด 256 ตัว**
   * กำหนดจำนวนที่ต้อง Healthy → Parent ถือ Healthy
 * ใช้ในกรณี เช่น ทำ Maintenance โดยไม่ให้ Health Check ทั้งหมดล้ม
+
+![An image](../../../../public/images/aws/route53/12.png)
 
 ## **ตรวจสอบ Resource ส่วนตัว**
 

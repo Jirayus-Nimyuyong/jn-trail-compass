@@ -1,6 +1,6 @@
 # Lambda Container Images
 
-## แนะนำ Lambda Container Images
+![An image](../../../../public/images/aws/lambda/38.png)
 
 AWS Lambda ตอนนี้รองรับ **container images** ซึ่งเป็นฟีเจอร์ใหม่ที่ช่วยให้คุณสามารถ deploy Lambda functions เป็น **container images ขนาดสูงสุด 10 GB** จาก **Amazon Elastic Container Registry (ECR)**
 
@@ -27,6 +27,8 @@ AWS มี **base images** สำหรับหลายภาษา เช่�
 2. คัดลอกโค้ดและไฟล์แอป เช่น `app.js` และ `package.json` เข้าไปใน container
 3. ติดตั้ง dependencies ภายใน container เช่น `npm install`
 4. ระบุฟังก์ชันที่จะรันเมื่อ Lambda ถูก invoke เช่น `app.lambdaHandler`
+
+![An image](../../../../public/images/aws/lambda/39.png)
 
 **ข้อดี:**
 

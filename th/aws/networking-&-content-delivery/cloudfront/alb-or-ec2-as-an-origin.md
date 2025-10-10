@@ -1,5 +1,7 @@
 # CloudFront - ALB/EC2 เป็น Origin
 
+![An image](../../../../public/images/aws/cloudfront/13.png)
+
 ## การเชื่อมต่อ CloudFront กับ Application Load Balancer และ EC2 Instance
 
 เราจะเชื่อมต่อ **CloudFront** เข้ากับ **Application Load Balancer (ALB)** หรือ **EC2 instance** ในฐานะ origin ได้อย่างไร?
@@ -24,6 +26,8 @@
 📌 จากมุมมองด้านเครือข่าย นี่ถือเป็นวิธีที่ **ปลอดภัยที่สุด** เพราะแอปพลิเคชันของคุณยังคงอยู่ใน private environment และคุณสามารถเลือกได้เองว่าจะเปิดเผยสิ่งใดผ่าน CloudFront
 
 ## วิธีเดิม (Public Network Method)
+
+![An image](../../../../public/images/aws/cloudfront/14.png)
 
 ก่อนที่ VPC origin จะมีให้ใช้งาน วิธีการเก่าคือการใช้ **public network**
 

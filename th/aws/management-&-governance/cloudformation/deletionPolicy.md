@@ -11,6 +11,8 @@
 
 * ถ้าคุณมี EC2 instance และตั้ง `DeletionPolicy: Delete` → EC2 instance จะถูกลบเมื่อ stack ถูกลบ
 
+![An image](../../../../public/images/aws/cloudformation/25.png)
+
 ## DeletionPolicy กับ S3 Buckets
 
 * ถ้าคุณมี S3 bucket และตั้ง `DeletionPolicy: Delete` → จะลบ bucket ได้ **ก็ต่อเมื่อ bucket ว่าง**
@@ -23,6 +25,9 @@
 ## DeletionPolicy Retain
 
 * `Retain` คือการระบุว่า **resource ไหนต้องการเก็บไว้** แม้ stack ถูกลบ
+
+![An image](../../../../public/images/aws/cloudformation/26.png)
+
 * ตัวอย่าง: DynamoDB table
 
   * ปกติจะถูกลบเมื่อ stack ถูกลบ
@@ -33,6 +38,9 @@
 ## DeletionPolicy Snapshot
 
 * `Snapshot` คือการ **สร้าง snapshot สุดท้ายก่อนลบ resource**
+
+![An image](../../../../public/images/aws/cloudformation/27.png)
+
 * รองรับกับ resources เช่น:
 
   * EBS volumes

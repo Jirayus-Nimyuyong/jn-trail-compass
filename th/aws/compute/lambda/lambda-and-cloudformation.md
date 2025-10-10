@@ -11,6 +11,8 @@ CloudFormation รองรับการอัปโหลด Lambda Functions
 * เหมาะกับ **ฟังก์ชันง่าย ๆ**
 * **ข้อจำกัด:** ไม่สามารถรวม dependencies ภายนอกได้ → ใช้ได้เฉพาะโค้ดที่ **ไม่ต้องพึ่งพาไลบรารีหรือแพ็กเกจอื่น ๆ**
 
+![An image](../../../../public/images/aws/lambda/35.png)
+
 ### 2. **Zip File ใน S3**
 
 * แพ็ก Lambda function เป็น **ไฟล์ zip** แล้วอัปโหลดไปยัง **Amazon S3**
@@ -21,6 +23,8 @@ CloudFormation รองรับการอัปโหลด Lambda Functions
   * **S3 key** (path เต็มของไฟล์ zip)
   * **S3 object version** (ถ้าเปิด versioning ใน bucket) → แนะนำให้ใส่เพื่อให้ CloudFormation ตรวจจับการอัปเดต
 
+![An image](../../../../public/images/aws/lambda/36.png)
+
 **เหตุผล:**
 
 * ถ้าอัปเดตไฟล์ใน S3 แต่ไม่เปลี่ยน bucket, key หรือ object version ใน template → CloudFormation จะ **ไม่ตรวจจับการเปลี่ยนแปลง** และไม่อัปเดต Lambda
@@ -29,6 +33,8 @@ CloudFormation รองรับการอัปโหลด Lambda Functions
 ## การ Deploy Lambda ข้ามหลาย AWS Accounts
 
 * สมมติคุณเก็บ Lambda code ใน S3 ของ **Account 1** และต้องการ deploy ผ่าน CloudFormation ไปยัง **Account 2 และ Account 3**
+
+![An image](../../../../public/images/aws/lambda/37.png)
 
 **ขั้นตอนสำคัญ:**
 

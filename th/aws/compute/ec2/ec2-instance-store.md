@@ -39,6 +39,8 @@
 **เคล็ดลับสำหรับสอบ:**
 เมื่อเจอ **volume ประสิทธิภาพสูงที่ติดฮาร์ดแวร์กับ EC2 instance** ให้คิดว่าเป็น **EC2 Instance Store**
 
+![An image](../../../../public/images/aws/ec2/12.png)
+
 ## Key Takeaways
 
 * **EC2 Instance Store** คือ storage แบบฮาร์ดแวร์ติดเครื่องสำหรับ EC2 instance ให้ **ประสิทธิภาพ I/O สูงมาก**

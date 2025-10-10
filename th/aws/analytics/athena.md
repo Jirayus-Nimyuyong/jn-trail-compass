@@ -6,6 +6,8 @@ Athena สร้างขึ้นบน **Presto Engine** ซึ่งรอง
 
 ผู้ใช้งานเพียงแค่เก็บข้อมูลไว้ใน **S3 bucket** แล้วใช้ Athena เพื่อ query และวิเคราะห์ข้อมูลนั้นได้ทันที โดยไม่ต้องจัดการหรือดูแลโครงสร้างพื้นฐานของฐานข้อมูลใด ๆ เนื่องจากเป็น **Serverless**
 
+![An image](../../../public/images/aws/other-service/5.png)  
+
 ## รูปแบบข้อมูลที่รองรับและการคิดราคา
 
 * Athena รองรับหลายรูปแบบไฟล์ เช่น **CSV, JSON, ORC, Avro, Parquet**
@@ -53,6 +55,8 @@ Athena ไม่ได้ query ได้เฉพาะข้อมูลใน
 * ระบบ **On-premises**
 
 Athena ใช้ **Data Source Connectors (Lambda Functions)** เพื่อเชื่อมต่อและทำ federated queries ข้ามระบบเหล่านี้ และผลลัพธ์สามารถเก็บกลับไปที่ **Amazon S3** ได้
+
+![An image](../../../public/images/aws/other-service/6.png)  
 
 ## สรุป
 

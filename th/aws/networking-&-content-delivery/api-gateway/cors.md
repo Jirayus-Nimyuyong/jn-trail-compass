@@ -24,6 +24,8 @@ API Gateway รองรับการรักษาความปลอด�
 * จากนั้น **API Gateway จะตอบกลับด้วย Pre-flight Response** ที่บอกว่า Origin นั้นสามารถทำ Cross-Origin Request ได้หรือไม่
 * ถ้า Origin ได้รับอนุญาต → เบราว์เซอร์และ API Gateway ก็จะสื่อสารกันได้ และ API Calls สามารถทำงานต่อไปได้ตามปกติ
 
+![An image](../../../../public/images/aws/api-gateway/15.png)
+
 ## สรุป
 
 สำหรับมุมมองการสอบ (Exam Tips) ต้องรู้ว่า:

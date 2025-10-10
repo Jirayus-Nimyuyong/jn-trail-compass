@@ -19,6 +19,8 @@
 
 ถ้า Deploy ลง **Stage v1** จะทำให้ลูกค้าเก่าพัง ดังนั้นควรสร้าง **Stage v2** ที่ชี้ไปยัง Lambda v2 แทน
 
+![An image](../../../../public/images/aws/api-gateway/3.png)
+
 🔗 ตัวอย่าง URL:
 
 * `api.example.com/v1` → ใช้ฟังก์ชัน v1
@@ -57,6 +59,8 @@ stageVariables.variableName
 * **prod stage** → ชี้ไปยัง Alias `prod` ที่ส่ง Traffic 95% ไปยัง `v1` และ 5% ไปยัง `v2`
 
 ในกรณีนี้ สามารถปรับสัดส่วน Traffic บน Lambda Alias ได้โดยตรง **โดยไม่ต้องแก้ไข API Gateway** ทำให้การจัดการเวอร์ชันทำได้สะดวกมาก
+
+![An image](../../../../public/images/aws/api-gateway/4.png)
 
 ## Key Takeaways
 

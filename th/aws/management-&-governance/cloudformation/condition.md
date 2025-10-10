@@ -2,10 +2,14 @@
 
 **Conditions** ตามชื่อคือใช้เพื่อ **ควบคุมการสร้าง resource หรือ output** ขึ้นอยู่กับเงื่อนไขที่กำหนด
 
+![An image](../../../../public/images/aws/cloudformation/14.png)
+
 ตัวอย่าง:
 
 * บาง resource อาจสร้าง **เฉพาะใน environment development** เช่น Dev Stack
 * บาง resource อาจสร้าง **เฉพาะใน environment production** เช่น Prod Stack
+
+![An image](../../../../public/images/aws/cloudformation/15.png)
 
 ความแตกต่างระหว่าง environment อาจเป็น เช่น **มี EBS volume แนบหรือไม่แนบ**
 คุณสามารถกำหนดเงื่อนไขได้ตามต้องการ
@@ -20,6 +24,8 @@
 ## ตัวอย่างการกำหนด Condition
 
 ตัวอย่าง: กำหนด condition ชื่อ `CreateProdResources`
+
+![An image](../../../../public/images/aws/cloudformation/16.png)
 
 * ตรวจสอบว่า **พารามิเตอร์ Env เท่ากับ prod หรือไม่**
 * ถ้า Env = prod → Condition นี้จะประเมินเป็น true

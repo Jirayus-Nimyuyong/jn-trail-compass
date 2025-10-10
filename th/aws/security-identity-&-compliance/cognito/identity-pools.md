@@ -12,6 +12,8 @@ Cognito Identity Pools ยังรองรับ **guest users** หรือ�
 
 เมื่อผู้ใช้ได้รับ temporary AWS credentials แล้ว พวกเขาสามารถเข้าถึง AWS services โดยตรงผ่าน API calls หรือ SDKs ได้ Credentials เหล่านี้จะมาพร้อม **IAM policies** ที่กำหนดไว้ใน Cognito Identity Pool ซึ่งสามารถปรับแต่งตามตัวตนผู้ใช้เพื่อควบคุมสิทธิ์แบบละเอียด
 
+![An image](../../../../public/images/aws/cognito/13.png)
+
 ## การทำงานของ Cognito Identity Pools
 
 สมมติว่าเว็บหรือแอปมือถือของเราต้องเข้าถึง **S3 bucket และ DynamoDB table**
@@ -31,6 +33,8 @@ Cognito Identity Pools ยังรองรับ **guest users** หรือ�
 * แอปมือถือหรือเว็บส่ง **JWT token** จาก User Pool ไปยัง Identity Pool
 * Identity Pool ตรวจสอบ token และขอ temporary credentials จาก STS แล้วส่งกลับไปยังแอป เพื่อเข้าถึง AWS services โดยตรง
 
+![An image](../../../../public/images/aws/cognito/14.png)
+
 ## การกำหนด Role และ IAM Policies ใน Cognito Identity Pools
 
 * สามารถกำหนด **default IAM roles** สำหรับ **authenticated** และ **guest users**
@@ -47,6 +51,8 @@ Cognito Identity Pools ยังรองรับ **guest users** หรือ�
 * **Authenticated users:** ใช้ policy variables จำกัดการเข้าถึงส่วนของ S3 bucket ที่ตรงกับ user ID ของตน หรือจำกัดการเข้าถึง DynamoDB items ที่ partition key ตรงกับ user ID ทำให้เป็น **row-level security**
 
 IAM policies แบบนี้ช่วยให้ผู้ใช้เข้าถึง resources เฉพาะที่อนุญาต ปลอดภัย และเหมาะกับแต่ละตัวตน
+
+![An image](../../../../public/images/aws/cognito/15.png)
 
 ## Cognito Identity Pools Hands On
 
@@ -78,6 +84,9 @@ IAM policies แบบนี้ช่วยให้ผู้ใช้เข้�
 * สร้าง **guest role** เช่น `Unauthenticated Role Demo` พร้อม **minimal permissions**
 
 * คลิก **Next**
+
+![An image](../../../../public/images/aws/cognito/18.png)
+
 
 ## การระบุรายละเอียด User Pool
 

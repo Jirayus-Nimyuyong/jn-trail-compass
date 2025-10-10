@@ -1,6 +1,6 @@
 # CloudFormation - StackSets
 
-## แนะนำ CloudFormation StackSets
+![An image](../../../../public/images/aws/cloudformation/31.png)
 
 **CloudFormation StackSets** ช่วยให้คุณสามารถสร้าง (create), อัปเดต (update), หรือ ลบ (delete) **stacks ข้ามหลายบัญชี (accounts) และหลาย region** ได้ด้วยการทำงานเพียงครั้งเดียวหรือจาก template เดียว
 

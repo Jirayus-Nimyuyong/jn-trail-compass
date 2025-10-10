@@ -8,6 +8,8 @@
 * ด้านหลังอาจมี **Data Subnets** ที่มี **RDS Database** สำหรับอ่าน/เขียน (และอาจมี replicas)
 * สำหรับการ cache เราอาจใช้ **ElastiCache**
 
+![An image](../../../../public/images/aws/beanstalk/1.png)
+
 ถ้ามีหลายแอปพลิเคชันที่ต้อง deploy ตามสถาปัตยกรรมนี้ การสร้างขึ้นใหม่ทุกครั้งจะเป็นเรื่องน่าเบื่อ และในฐานะนักพัฒนา การจัดการโครงสร้างพื้นฐานกับการ deploy โค้ดเป็นสิ่งที่ซับซ้อน เราไม่อยากต้องตั้งค่าฐานข้อมูล, Load Balancer, และองค์ประกอบอื่น ๆ ซ้ำไปซ้ำมา อีกทั้งยังต้องการให้ทุกอย่างสามารถ scale ได้อัตโนมัติ
 
 แอปพลิเคชันเว็บส่วนใหญ่ก็มีสถาปัตยกรรมนี้เหมือนกัน (Load Balancer + Auto Scaling Group) ในฐานะนักพัฒนา สิ่งสำคัญคือโค้ดของเราต้องทำงานได้ โดยไม่ต้องกังวลกับโครงสร้างพื้นฐาน และในกรณีที่ใช้ภาษาหรือสภาพแวดล้อมต่างกัน เราก็อยากได้ **วิธีการ deploy แบบเดียวกัน**
@@ -27,6 +29,8 @@ Elastic Beanstalk มอบมุมมองที่เน้นนักพ�
 * **Environment**: กลุ่มของทรัพยากรที่รันแอปในเวอร์ชันหนึ่ง ๆ (ในหนึ่ง Environment รันได้เพียงเวอร์ชันเดียวในเวลาเดียวกัน แต่สามารถอัปเดตเป็นเวอร์ชันใหม่ได้)
 * **Tiers**: Beanstalk มี 2 Tier → **Web Server Environment** และ **Worker Environment**
 * **Multiple Environments**: สามารถสร้างหลาย Environment ได้ เช่น Development, Testing, Production
+
+![An image](../../../../public/images/aws/beanstalk/2.png)
 
 ขั้นตอนปกติคือ:
 
@@ -60,9 +64,13 @@ Elastic Beanstalk รองรับหลายภาษาและแพล�
 
 คุณสามารถรวม Web + Worker Environment ได้ โดยให้ Web Environment ส่งข้อความเข้า SQS Queue ของ Worker Environment
 
+![An image](../../../../public/images/aws/beanstalk/3.png)
+
 ## Deployment Modes
 
 Elastic Beanstalk มี 2 โหมด:
+
+![An image](../../../../public/images/aws/beanstalk/4.png)
 
 1. **Single Instance**
 

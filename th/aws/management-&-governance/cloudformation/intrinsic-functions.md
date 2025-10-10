@@ -27,6 +27,8 @@
 
 ## ฟังก์ชัน Ref
 
+![An image](../../../../public/images/aws/cloudformation/17.png)
+
 * ใช้เพื่อ **อ้างอิงพารามิเตอร์** (คืนค่าของพารามิเตอร์) หรือ **resource** (คืนค่า physical ID ของ resource ที่สร้าง เช่น EC2 instance)
 * สัญลักษณ์ย่อคือ `!Ref`
 
@@ -43,6 +45,8 @@ Resources:
 * `MyVPC` อาจเป็น resource หรือพารามิเตอร์
 
 ## ฟังก์ชัน GetAtt
+
+![An image](../../../../public/images/aws/cloudformation/18.png)
 
 * ใช้เพื่อ **ดึง attribute ของ resource**
 * ตัวอย่าง EC2 Instance:
@@ -70,7 +74,12 @@ Resources:
 ## ฟังก์ชันอื่น ๆ
 
 * `FindInMap` → ดึงค่าจาก key ใน map ที่กำหนด
+
+![An image](../../../../public/images/aws/cloudformation/19.png)
+
 * `ImportValue` → นำค่าที่ export จาก stack อื่นมาใช้
+
+![An image](../../../../public/images/aws/cloudformation/20.png)
 
 **ตัวอย่างการใช้ ImportValue**
 
@@ -87,8 +96,12 @@ Resources:
 
 ## ฟังก์ชัน Base64
 
+![An image](../../../../public/images/aws/cloudformation/21.png)
+
 * แปลง string เป็น Base64
 * ใช้กับ **user data ของ EC2 instance**
+
+![An image](../../../../public/images/aws/cloudformation/22.png)
 
 ## Condition Functions
 

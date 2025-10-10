@@ -13,7 +13,9 @@
 ถ้า objects เข้าถึงไม่บ่อย → ย้ายไป Standard IA
 ถ้าเพื่อเก็บระยะยาว/archiving → ย้ายไป Glacier หรือ Deep Archive
 
-* การย้ายสามารถทำแบบ manual ได้ แต่ **Lifecycle Rules** ช่วยทำให้อัตโนมัติ
+* การย้ายสามารถทำแบบ manual ได้ แต่ **Lifecycle Rules** ช่วยทำให้อัตโนมัติ|
+
+![An image](../../../../public/images/aws/s3/7.png)
 
 ## ภาพรวม Lifecycle Rules
 

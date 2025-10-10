@@ -7,6 +7,8 @@
 * S3 bucket สามารถเชื่อมกับ **Amazon EventBridge** เพื่อส่ง event ทั้งหมดไปยัง EventBridge
 * EventBridge สามารถตั้ง **rule** ให้เรียก ECS tasks แบบ dynamic
 
+![An image](../../../../public/images/aws/containers/14.png)
+
 **Flow การทำงาน:**
 
 1. ECS task ถูกสร้างขึ้นพร้อมกับ **ECS task role**
@@ -19,6 +21,8 @@
 * อีกหนึ่งสถาปัตยกรรม ใช้ **EventBridge schedule**
 * ECS cluster บน Fargate ทำงานร่วมกับ EventBridge
 * ตั้ง rule ให้ trigger ทุก ๆ ชั่วโมง
+
+![An image](../../../../public/images/aws/containers/15.png)
 
 **Flow การทำงาน:**
 
@@ -34,6 +38,8 @@
 * ECS service รันด้วยสอง ECS tasks
 * ข้อความถูกส่งเข้า SQS queue → ECS service ดึงข้อความไปประมวลผล
 
+![An image](../../../../public/images/aws/containers/16.png)
+
 **Flow การทำงาน:**
 
 * สามารถเปิด **ECS Service Auto Scaling**
@@ -42,6 +48,8 @@
 ## การมอนิเตอร์ ECS Task Lifecycle ด้วย EventBridge
 
 * EventBridge สามารถดักจับ event จาก ECS cluster ได้ เช่น task ที่ **start หรือ exit**
+
+![An image](../../../../public/images/aws/containers/17.png)
 
 **Flow การทำงาน:**
 

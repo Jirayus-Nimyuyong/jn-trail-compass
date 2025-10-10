@@ -57,6 +57,8 @@ Route 53 มีหลายแบบ ได้แก่:
 📌 หากเพิ่มหลาย IP → DNS จะตอบกลับมาพร้อมกัน (เช่น IP จาก `ap-southeast-1` และ `us-east-1`)
 📌 Client จะสุ่มเลือก 1 IP → ทำให้ refresh หน้าเว็บอาจสลับไปมาระหว่าง region ต่างๆ
 
+![An image](../../../../public/images/aws/route53/7.png)
+
 ## Weighted Routing Policy
 
 นโยบายการกำหนดเส้นทางแบบถ่วงน้ำหนัก (Weighted Routing Policy) ช่วยให้เราควบคุมเปอร์เซ็นต์ของคำขอ (requests) ที่จะถูกส่งไปยัง resource ใด ๆ ได้ โดยการกำหนด “น้ำหนัก” (weight) ให้กับแต่ละ resource
@@ -120,6 +122,8 @@ Route 53 จะสร้าง **Record ID** ไม่ซ้ำกัน เช�
 
 นโยบายแบบ Weighted ช่วยให้เราควบคุมการกระจาย traffic ไปยังหลาย resource ได้ตามต้องการ เหมาะสำหรับการทำ load balancing, การ rollout แบบค่อย ๆ เพิ่มสัดส่วน, หรือการจัดการ traffic แบบยืดหยุ่น
 
+![An image](../../../../public/images/aws/route53/8.png)
+
 ## Latency-Based Routing Policy
 
 นโยบายการกำหนดเส้นทางแบบ Latency มีแนวคิดที่เข้าใจง่ายมาก คือการ **ส่งผู้ใช้ไปยัง resource ที่มี latency ต่ำที่สุด** หรือก็คือ resource ที่ใกล้ที่สุดในเชิงเครือข่าย
@@ -175,6 +179,8 @@ Route 53 จะใช้ latency เป็นตัวตัดสินใจ�
 
 ผลลัพธ์แสดงให้เห็นว่า latency-based routing ช่วยปรับปรุงประสบการณ์ผู้ใช้ได้จริง โดยส่ง traffic ไปยัง AWS region ที่ใกล้และตอบสนองเร็วที่สุด
 
+![An image](../../../../public/images/aws/route53/9.png)
+
 ## Failover Routing Policy
 
 ในการตั้งค่านี้ Route 53 จะทำหน้าที่เป็นบริการ DNS โดยมี **EC2 instance 2 ตัว**:
@@ -193,6 +199,8 @@ Record ของ **Secondary** สามารถเลือกที่จะ�
 
 * ถ้า Primary ยัง Healthy → จะตอบ Primary
 * ถ้า Primary ล้มเหลว (unhealthy) → จะตอบ Secondary ทันที เพื่อให้บริการไม่สะดุด
+
+![An image](../../../../public/images/aws/route53/14.png)
 
 ### การสร้าง Failover Record (Hands-On)
 
@@ -243,6 +251,8 @@ Route 53 จะ **failback** กลับไปที่ Primary โดยอั
 
 สิ่งสำคัญคือ ควรสร้าง **default record** เพื่อรองรับกรณีที่ไม่มีตำแหน่งที่ตรงกับกฎ
 
+![An image](../../../../public/images/aws/route53/15.png)
+
 ### **กรณีการใช้งาน (Use Cases)**
 
 * การปรับแต่งเว็บไซต์ตามท้องถิ่น (Website localization)
@@ -289,6 +299,8 @@ Route 53 จะ **failback** กลับไปที่ Primary โดยอั
 
 Geoproximity Routing เป็นคุณสมบัติที่ช่วยกำหนดเส้นทางการรับส่งข้อมูล (traffic) ไปยังทรัพยากรของคุณ โดยอิงจาก **ตำแหน่งทางภูมิศาสตร์ของผู้ใช้และทรัพยากร** ซึ่งแนวคิดนี้อาจดูซับซ้อนเล็กน้อย แต่เมื่อมี **แผนภาพและตัวอย่าง** จะเข้าใจง่ายขึ้น
 
+![An image](../../../../public/images/aws/route53/16.png)
+
 ### **วัตถุประสงค์ของ Geoproximity Routing**
 
 นโยบายนี้ช่วยให้คุณสามารถ **ปรับเปลี่ยนปริมาณ traffic** ที่ไปยังทรัพยากรในตำแหน่งใดตำแหน่งหนึ่งได้ โดยใช้พารามิเตอร์ที่เรียกว่า **Bias**
@@ -308,6 +320,8 @@ Geoproximity Routing เป็นคุณสมบัติที่ช่ว�
 ### **การใช้งานผ่าน Advanced Route 53 Traffic Flow**
 
 หากต้องการใช้ฟีเจอร์ **Bias** ใน Geoproximity Routing ต้องใช้งานผ่าน **Route 53 Traffic Flow (advanced)**
+
+![An image](../../../../public/images/aws/route53/17.png)
 
 ### **ตัวอย่างสถานการณ์: ทรัพยากร 2 แห่งใน Region ต่างกัน**
 
@@ -349,6 +363,8 @@ Geoproximity Routing มีประโยชน์อย่างยิ่ง�
 
 เรามาดูวิธีสร้าง **Geoproximity Records** แบบซับซ้อนด้วยฟีเจอร์ที่เรียกว่า **Traffic Flow** ฟีเจอร์นี้ไม่ได้จำกัดเฉพาะ Geoproximity แต่สามารถใช้กับนโยบายการกำหนดเส้นทางแบบอื่น ๆ ได้ด้วย
 แนวคิดคือการใช้ **UI แบบ Visual Editor** เพื่อจัดการ **Decision Tree** ของ Routing อย่างชัดเจน
+
+![An image](../../../../public/images/aws/route53/18.png)
 
 UI นี้ช่วยให้คุณสามารถกำหนดกฎการกำหนดเส้นทางต่าง ๆ แบบ **เห็นภาพ** แทนการสร้าง DNS Record ทีละตัว
 
@@ -457,6 +473,8 @@ UI แบบ Visual ทำให้เข้าใจภาพรวมของ
 
 เรามาพูดถึง **นโยบายการกำหนดเส้นทางแบบ IP-based** นโยบายนี้เข้าใจง่าย เพราะกำหนดการส่งต่อทราฟฟิกตาม **IP ของลูกค้า**
 
+![An image](../../../../public/images/aws/route53/19.png)
+
 * ใน Route 53 เราจะระบุ **รายการ CIDR** ซึ่งเป็นช่วง IP ของลูกค้า
 * จากนั้นกำหนดว่า **ทราฟฟิกจาก CIDR ไหน จะถูกส่งไปยังที่ไหน**
 
@@ -508,6 +526,8 @@ IP-based Routing เป็นนโยบายที่เรียบง่า
 > แม้จะคล้ายกับ **Elastic Load Balancer (ELB)** แต่ Multi-Value ไม่ใช่ตัวแทนของ ELB
 >
 > * มันเป็น **Client-side Load Balancing** คือ ให้ลูกค้าเลือก Resource เองจากค่าที่ Route 53 ส่งกลับ
+
+![An image](../../../../public/images/aws/route53/20.png)
 
 ### **ตัวอย่างการตั้งค่า**
 

@@ -1,5 +1,7 @@
 # ECS + X-Ray integration
 
+![An image](../../../../public/images/aws/x-ray/8.png)
+
 บทเรียนนี้อธิบายวิธีการ **รวม AWS X-Ray กับ ECS Cluster** และมี 3 ตัวเลือกสำหรับการรัน **X-Ray Daemon** ภายในสภาพแวดล้อม ECS
 
 ## ตัวเลือก 1: รัน X-Ray Daemon เป็น Daemon Container บน EC2 Instances

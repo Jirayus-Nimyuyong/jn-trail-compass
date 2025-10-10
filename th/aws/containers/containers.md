@@ -16,6 +16,8 @@ Docker เป็นแพลตฟอร์มสำหรับพัฒนา�
 
 ## Docker ทำงานอย่างไรบนระบบปฏิบัติการ
 
+![An image](../../../public/images/aws/containers/1.png)
+
 คุณมีเซิร์ฟเวอร์ เช่น EC2 หรือเซิร์ฟเวอร์อื่น ๆ บนเซิร์ฟเวอร์นี้ จะรัน **Docker Daemon** จากนั้นสามารถเริ่มคอนเทนเนอร์ Docker ได้
 
 ตัวอย่าง:
@@ -37,6 +39,8 @@ Docker images จะถูกเก็บใน Docker repositories มีหล
 ## Docker กับ Virtual Machines
 
 Docker เป็นเทคโนโลยี virtualization แต่ต่างจาก Virtual Machines (VMs)
+
+![An image](../../../public/images/aws/containers/2.png)
 
 **Virtual Machines**:
 
@@ -64,6 +68,8 @@ Docker เป็นเทคโนโลยี virtualization แต่ต่า
 5. Pull Docker image จาก repository เมื่อจำเป็น
 6. Run Docker image → สร้าง Docker container ที่รันแอปพลิเคชัน
 
+![An image](../../../public/images/aws/containers/3.png)
+
 ## การจัดการ Docker Container บน AWS
 
 AWS มีบริการหลายตัวสำหรับจัดการ Docker container:
@@ -72,6 +78,8 @@ AWS มีบริการหลายตัวสำหรับจัดก�
 * **Amazon EKS (Elastic Kubernetes Service)**: บริการ Kubernetes แบบ managed
 * **AWS Fargate**: Serverless container platform ทำงานร่วมกับ ECS และ EKS
 * **Amazon ECR**: เก็บ container images ทั้ง private และ public
+
+![An image](../../../public/images/aws/containers/4.png)
 
 ## ข้อสรุปสำคัญ (Key Takeaways)
 

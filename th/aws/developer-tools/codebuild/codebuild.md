@@ -23,6 +23,8 @@ CodeBuild รองรับการทดสอบสำหรับภาษ�
 
 ## วิธีการทำงานของ CodeBuild
 
+![An image](../../../../public/images/aws/ci-cd/9.png)
+
 สมมติว่าคุณมี source code อยู่ใน **CodeCommit**
 
 * ที่ root ของ repo จะมีไฟล์สำคัญคือ `buildspec.yml`
@@ -73,6 +75,8 @@ CodeBuild รองรับการทดสอบสำหรับภาษ�
 4. **Cache**
 
    * ระบุไฟล์ (เช่น dependencies) ที่ต้องการ cache ไว้ใน S3 เพื่อเร่งการ build ครั้งต่อไป
+
+![An image](../../../../public/images/aws/ci-cd/10.png)
 
 ## สรุป
 

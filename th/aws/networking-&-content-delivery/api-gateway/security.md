@@ -17,6 +17,8 @@
   * API Gateway ตรวจสอบสิทธิ์กับ IAM Policy
   * หากผ่าน → API Gateway เรียก Lambda backend และส่งผลลัพธ์กลับให้ Client
 
+![An image](../../../../public/images/aws/api-gateway/16.png)  
+
 ## 2. Resource Policies
 
 * Resource Policies คล้ายกับ Lambda resource policies
@@ -25,11 +27,15 @@
 * สามารถกรองการเข้าถึงด้วย **IP address** หรือจำกัดเข้าผ่าน **VPC Endpoint**
 * เพิ่มการควบคุมความปลอดภัยอีกชั้นนอกเหนือจาก IAM
 
+![An image](../../../../public/images/aws/api-gateway/17.png)  
+
 ## 3. Cognito User Pools
 
 * จัดการ **ฐานข้อมูลผู้ใช้และวงจรชีวิตผู้ใช้**
 * Cognito ออก **Tokens** ที่หมดอายุอัตโนมัติ
 * API Gateway ตรวจสอบตัวตนของผู้ใช้ด้วย **Cognito Tokens** โดยไม่ต้องเขียนโค้ดเอง
+
+![An image](../../../../public/images/aws/api-gateway/18.png)
 
 **การทำงาน:**
 
@@ -47,6 +53,8 @@
 * Request parameters, headers, หรือ query strings ถูกส่งไปยัง Lambda Authorizer
 * Lambda ประเมิน Token และส่งกลับ **IAM Policy** ให้ API Gateway
 * Policy นี้ถูก **cache** เพื่อประสิทธิภาพ
+
+![An image](../../../../public/images/aws/api-gateway/19.png)
 
 **Flow:**
 

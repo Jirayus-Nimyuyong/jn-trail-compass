@@ -24,6 +24,8 @@ Cache เป็น **ฐานข้อมูลในหน่วยควา�
 > แอปต้อง query cache ก่อนหรือหลัง query database
 > ไม่สามารถเปิดใช้งานได้ทันทีโดยไม่ปรับโค้ด
 
+![An image](../../../public/images/aws/cache/1.png)
+
 ## **ตัวอย่างสถาปัตยกรรม ElastiCache**
 
 สมมติสถาปัตยกรรมมี:
@@ -45,6 +47,8 @@ Cache เป็น **ฐานข้อมูลในหน่วยควา�
 * เก็บ **session ของผู้ใช้** ใน ElastiCache → แอปเป็น stateless
 * เมื่อผู้ใช้ login → session data เขียนลงใน ElastiCache
 * หากผู้ใช้ถูก redirect ไปยัง instance ของแอปอีกตัว → ดึง session จาก ElastiCache → ไม่ต้อง login ใหม่
+
+![An image](../../../public/images/aws/cache/2.png)
 
 ## **เปรียบเทียบ Redis และ Memcached**
 
@@ -75,6 +79,8 @@ Cache เป็น **ฐานข้อมูลในหน่วยควา�
 * Redis: multi-AZ, replication, persistence, advanced data structures
 * Memcached: sharding, multi-threading แต่ไม่มี replication และ high availability
 
+![An image](../../../public/images/aws/cache/3.png)
+
 ## **กลยุทธ์การใช้ Caching**
 
 ### **แนะนำกลยุทธ์การใช้ Cache**
@@ -97,6 +103,8 @@ Cache เป็น **ฐานข้อมูลในหน่วยควา�
   * การ cache คือการประหยัดเวลาและเพิ่มความเร็วในการเข้าถึง
 
 ### **การเลือก Caching Design Pattern ที่เหมาะสม**
+
+![An image](../../../public/images/aws/cache/4.png)
 
 #### **1. Lazy Loading (Cache-Aside หรือ Lazy Population)**
 
@@ -174,6 +182,8 @@ def save_user(user_id, user_data):
 ## **Amazon MemoryDB for Redis**
 
 Amazon MemoryDB for Redis เป็นบริการ **ฐานข้อมูล in-memory** ที่เข้ากันได้กับ Redis และรองรับความทนทานของข้อมูล (durable)
+
+![An image](../../../public/images/aws/cache/5.png)
 
 ### **ความแตกต่างระหว่าง Redis กับ MemoryDB for Redis**
 

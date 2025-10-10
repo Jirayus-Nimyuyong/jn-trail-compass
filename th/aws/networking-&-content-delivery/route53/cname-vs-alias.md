@@ -29,6 +29,8 @@
 * Alias record มีแต่ **A (IPv4)** หรือ **AAAA (IPv6)** เท่านั้น
 * ไม่สามารถกำหนด TTL เองได้ → Route 53 จะจัดการให้
 
+![An image](../../../../public/images/aws/route53/6.png)
+
 ## Targets ที่ Alias Record รองรับ
 
 Alias record สามารถชี้ไปยัง AWS Services ได้หลายตัว เช่น:
@@ -84,4 +86,4 @@ Alias record สามารถชี้ไปยัง AWS Services ได้�
 * **Alias:** ฟีเจอร์ Route 53 / ✅ ใช้ได้กับทั้ง root และ non-root domains
 * **Alias:** ฟรี, มี health check ในตัว
 * **Alias:** รองรับหลาย AWS Resources (เช่น ELB, CloudFront, API Gateway ฯลฯ)
-* **Alias:** ❌ ใช้กับ EC2 DNS Name ไม่ได้
+* **Alias:** ❌ ใช้กับ EC2 DNS Name 

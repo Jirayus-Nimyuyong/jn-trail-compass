@@ -1,5 +1,7 @@
 # Amazon SQS
 
+![An image](../../../../public/images/aws/sqs/1.png)
+
 หัวใจหลักของ **Amazon SQS (Simple Queue Service)** คือ **Queue** หรือคิวสำหรับเก็บข้อความ (messages)
 
 * **Producer (ผู้ผลิตข้อความ):** เป็นตัวที่ส่งข้อความเข้ามาใน SQS Queue อาจมี 1 หรือหลาย producer ส่งข้อความพร้อมกันก็ได้ เช่น “process this order” หรือ “process this video”
@@ -12,6 +14,8 @@ SQS ทำหน้าที่เป็น **buffer** ที่ช่วย **d
 * SQS เป็นหนึ่งในบริการที่เก่าและเสถียรที่สุดของ AWS (กว่า 10 ปี)
 * เป็นบริการแบบ **fully managed**
 * ใช้เพื่อ **decouple application** (แยกการทำงานระหว่างระบบ frontend และ backend)
+
+![An image](../../../../public/images/aws/sqs/2.png)
 
 ## คุณสมบัติหลักของ SQS Standard Queues
 
@@ -28,7 +32,11 @@ SQS ทำหน้าที่เป็น **buffer** ที่ช่วย **d
 * ใช้ **AWS SDKs / SendMessage API**
 * ข้อความถูกเก็บไว้ใน SQS จนกว่า consumer จะอ่านและลบออก
 
+![An image](../../../../public/images/aws/sqs/3.png)
+
 ## Consumers (ผู้บริโภคข้อความ)
+
+![An image](../../../../public/images/aws/sqs/4.png)
 
 * เป็นแอปที่คุณเขียนขึ้นมาประมวลผลข้อความ
 * ทำงานได้บน **EC2, Lambda, หรือเซิร์ฟเวอร์ On-Premises**
@@ -36,11 +44,16 @@ SQS ทำหน้าที่เป็น **buffer** ที่ช่วย **d
 * หลังประมวลผล ต้องลบข้อความออกจากคิวด้วย **DeleteMessage API**
 * รองรับ **หลาย consumers พร้อมกัน** → scale ได้ตามปริมาณข้อความ
 
+![An image](../../../../public/images/aws/sqs/5.png)
+
 ## การ Scale Consumers ด้วย Auto Scaling Group (ASG)
 
 * ใช้ **CloudWatch Metric: ApproximateNumberOfMessages** เพื่อตรวจสอบความยาวของคิว
 * ตั้ง **CloudWatch Alarm** → หากคิวมีข้อความเยอะ ให้เพิ่มจำนวน EC2 ใน ASG อัตโนมัติ
 * ช่วยให้ระบบรองรับ traffic พุ่งสูง เช่น ช่วง flash sale หรือ peak load
+
+![An image](../../../../public/images/aws/sqs/6.png)
+
 
 ## ตัวอย่าง Use Case (Application Decoupling)
 
@@ -49,6 +62,8 @@ SQS ทำหน้าที่เป็น **buffer** ที่ช่วย **d
   * Frontend → ส่งข้อความไปที่ SQS เมื่อมี video รอประมวลผล
   * Backend (อยู่ใน ASG) → ดึงข้อความจากคิว ประมวลผล และเก็บผลลัพธ์ไว้ใน S3
   * Frontend กับ Backend scale แยกกันได้ → ระบบเสถียรและยืดหยุ่นกว่า
+
+![An image](../../../../public/images/aws/sqs/7.png)
 
 ## ความปลอดภัย (Security Features)
 

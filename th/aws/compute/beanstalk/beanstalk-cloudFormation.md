@@ -1,5 +1,7 @@
 # Beanstalk & CloudFormation
 
+![An image](../../../../public/images/aws/beanstalk/11.png)
+
 มาดูกันว่าเบื้องหลัง **Elastic Beanstalk** ทำงานอย่างไร จริง ๆ แล้ว Beanstalk อาศัยบริการที่ชื่อว่า **CloudFormation** อยู่เบื้องหลัง
 
 ภายหลังในคอร์สนี้ เราจะได้เรียนรู้ CloudFormation แบบเจาะลึก แต่ในที่นี้จะขอเกริ่นให้เข้าใจก่อนว่า **CloudFormation ใช้สำหรับ Provision AWS Services อื่น ๆ** เพื่อให้สามารถทำงานในรูปแบบ **Infrastructure as Code (IaC)** ได้

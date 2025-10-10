@@ -1,5 +1,7 @@
 # Amazon CloudFront
 
+![An image](../../../../public/images/aws/cloudfront/1.png)
+
 Amazon CloudFront คือบริการ Content Delivery Network (CDN) ของ AWS ที่ช่วยเร่งความเร็วในการส่งเนื้อหา (Content) ให้กับผู้ใช้งาน โดยกระจายเนื้อหาผ่าน Edge Location ที่อยู่ทั่วโลก
 
 มันช่วยปรับปรุงประสิทธิภาพการอ่าน (read performance) โดยการ **แคช (cache)** เนื้อหาของเว็บไซต์ไว้ที่ **Edge Location** หลายแห่งทั่วโลก ทำให้ผู้ใช้เข้าถึงเนื้อหาได้รวดเร็วขึ้นด้วย **latency ที่ต่ำลง** และประสบการณ์ใช้งานที่ดีขึ้น
@@ -26,6 +28,8 @@ CloudFront ประกอบไปด้วย **จุดให้บริก
 
 ## วิธีทำงานของ CloudFront (มุมมองระดับสูง)
 
+![An image](../../../../public/images/aws/cloudfront/2.png)
+
 1. ผู้ใช้ (Client) ส่ง HTTP Request มาที่ **Edge Location**
 2. **Edge Location ตรวจสอบ Cache** ว่ามีไฟล์อยู่แล้วหรือไม่
 
@@ -46,6 +50,8 @@ CloudFront รองรับหลายประเภทของ **Origin** 
 * **Amazon S3** → ใช้สำหรับแจกจ่ายไฟล์ พร้อมเชื่อมต่อผ่าน **Origin Access Control (OAC)** เพื่อความปลอดภัย
 * **VPC Origins** → เช่น **ALB, NLB, หรือ EC2** ที่อยู่ใน Private Subnet
 * **Custom HTTP Origin** → อะไรก็ตามที่รองรับ HTTP เช่นเว็บไซต์ที่เปิดผ่าน S3 (static website hosting) หรือเว็บสาธารณะนอก AWS
+
+![An image](../../../../public/images/aws/cloudfront/3.png)
 
 ## CloudFront vs S3 Cross Region Replication
 

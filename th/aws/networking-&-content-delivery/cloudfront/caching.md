@@ -13,6 +13,8 @@
 **เป้าหมายหลัก** คือการทำให้ **Cache Hit Ratio** สูงที่สุด โดยลดจำนวนครั้งที่ต้องไปดึงข้อมูลจาก Origin ให้น้อยที่สุด
 นอกจากนี้ เรายังสามารถ **ลบข้อมูลออกจาก Cache ก่อนหมดอายุได้** ด้วยการทำ Invalidation
 
+![An image](../../../../public/images/aws/cloudfront/4.png)
+
 ### CloudFront Cache Key คืออะไร?
 
 **Cache Key** คือ ตัวระบุที่ไม่ซ้ำกันของแต่ละวัตถุใน Cache
@@ -30,6 +32,8 @@ Request ที่มี Host name และ Resource portion เหมือน�
 แต่บางครั้งเราต้องการให้ Cache Key **ซับซ้อนขึ้น** เพราะเนื้อหาอาจแตกต่างกันตาม **ผู้ใช้, อุปกรณ์, ภาษา หรือ Location**
 → เราสามารถเพิ่มข้อมูลเข้าไปใน Cache Key ได้ เช่น **HTTP Headers, Cookies, Query Strings** โดยใช้ **Cache Policy**
 
+![An image](../../../../public/images/aws/cloudfront/5.png)
+
 ### การตั้งค่า Cache Policy
 
 **Cache Policy** ใช้ควบคุมวิธีสร้าง Cache Key สามารถระบุได้ว่า:
@@ -44,12 +48,16 @@ Request ที่มี Host name และ Resource portion เหมือน�
 
 AWS มี **Managed Policies** ให้ใช้งาน หรือจะสร้างเองก็ได้
 
+![An image](../../../../public/images/aws/cloudfront/6.png)
+
 ### ผลกระทบของ Cache Policy ต่อการส่ง Request ไปยัง Origin
 
 ทุก **Headers, Cookies, Query Strings** ที่อยู่ใน Cache Key → จะถูกส่งไปยัง Origin ด้วย
 
+![An image](../../../../public/images/aws/cloudfront/7.png)
+
 **ตัวอย่าง**:
-Request ที่มี Header `Accept-Language: fr-fr` (ภาษาฝรั่งเศส)
+Request ที่มี Header `Accept-Language: f![An image](../../../../public/images/aws/cloudfront/5.png)r-fr` (ภาษาฝรั่งเศส)
 
 * ถ้า Cache Policy ไม่รวม Headers → Header จะไม่ถูกแคชและไม่ถูกส่งไปที่ Origin
 * ถ้า Whitelist Language Header → Header จะถูกใส่ใน Cache Key และถูกส่งไป Origin → Origin จะตอบกลับด้วยเนื้อหาภาษาฝรั่งเศส
@@ -67,6 +75,8 @@ Request ที่มี Header `Accept-Language: fr-fr` (ภาษาฝรั�
 
 ### Cache Policy vs Origin Request Policy
 
+![An image](../../../../public/images/aws/cloudfront/8.png)
+
 * **Cache Policy** → กำหนดการทำงานของ Cache และระบุว่า **อะไรบ้าง** (Host name, Resource, Headers, Cookies, Query Strings) จะถูกนำมาใช้สร้าง Cache Key
 * **Origin Request Policy** → กำหนดว่าจะส่งข้อมูลอะไรไปที่ Origin **โดยไม่กระทบต่อ Cache Key**
 
@@ -77,7 +87,7 @@ Request ที่มี Header `Accept-Language: fr-fr` (ภาษาฝรั�
 
 ## CloudFront - การทำ Cache Invalidation
 
-### บทนำเกี่ยวกับ Cache Invalidations ใน CloudFront
+![An image](../../../../public/images/aws/cloudfront/9.png)
 
 CloudFront ใช้ **Backend Origin** (เช่น S3, Load Balancer หรือ HTTP Server) เพื่อให้บริการคอนเทนต์แก่ผู้ใช้ แต่เมื่อมีการอัปเดตคอนเทนต์ที่ Origin → **Edge Location ของ CloudFront จะยังไม่รู้การเปลี่ยนแปลงทันที** เพราะมันยังคงเสิร์ฟไฟล์ที่แคชไว้จนกว่า **TTL (Time To Live)** จะหมดอายุ
 
@@ -119,7 +129,7 @@ CloudFront ใช้ **Backend Origin** (เช่น S3, Load Balancer หร�
 
 ## CloudFront - Cache Behaviors
 
-### บทนำเกี่ยวกับ Cache Behaviors
+![An image](../../../../public/images/aws/cloudfront/10.png)
 
 มาลองทำความเข้าใจเกี่ยวกับ **Cache Behaviors** ใน CloudFront กันครับ
 แนวคิดหลักคือ คุณอาจต้องการกำหนด **Origin** หรือ **การแคช** ที่แตกต่างกันตาม **URL Path Pattern**

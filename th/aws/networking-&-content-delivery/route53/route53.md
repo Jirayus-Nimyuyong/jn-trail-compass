@@ -1,5 +1,9 @@
 # AWS Route 53
 
+![An image](../../../../public/images/aws/route53/1.png)
+
+![An image](../../../../public/images/aws/route53/2.png)
+
 ## Route 53 คืออะไร?
 
 Amazon Route 53 เป็นบริการ **DNS (Domain Name System) ที่มีความพร้อมใช้งานสูง (Highly Available), ปรับขนาดได้ (Scalable), มีการจัดการเต็มรูปแบบ (Fully Managed) และเป็นแบบ Authoritative**
@@ -22,6 +26,8 @@ Route 53 ประกอบด้วย 3 ความสามารถหล�
 1. Domain registration (การจดโดเมน)
 2. DNS routing (การชี้ชื่อโดเมนไปยังทรัพยากร)
 3. Health checking (การตรวจสอบสถานะของ endpoint)
+
+![An image](../../../../public/images/aws/route53/3.png)
 
 ## DNS Records ใน Route 53
 
@@ -80,6 +86,8 @@ Hosted Zone คือ Container สำหรับเก็บ DNS Records ซ�
 
 **สรุป:** Public Hosted Zone ตอบจากทุกที่บนอินเทอร์เน็ต ส่วน Private Hosted Zone ตอบได้เฉพาะใน VPC เท่านั้น
 
+![An image](../../../../public/images/aws/route53/4.png)
+
 ## Health Checks
 
 * ใช้ตรวจสอบว่าสถานะของ resource เช่น web server หรือ API ยังทำงานอยู่หรือไม่
@@ -130,6 +138,8 @@ Hosted Zone คือ Container สำหรับเก็บ DNS Records ซ�
 * Route 53 รองรับการจดโดเมนโดยตรง
 * รองรับ TLD (.com, .org, .dev ฯลฯ)
 * มีบริการ WHOIS และ DNSSEC
+
+![An image](../../../../public/images/aws/route53/21.png)
 
 ### Requests
 

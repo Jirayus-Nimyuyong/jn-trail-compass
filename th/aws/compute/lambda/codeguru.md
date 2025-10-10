@@ -8,6 +8,8 @@
 
 เมื่อคุณเปิดใช้งานการรวมนี้ CodeGuru จะสร้าง **profiler group** เฉพาะสำหรับ Lambda function ของคุณ ฟีเจอร์นี้รองรับทั้ง **Java และ Python runtimes**
 
+![An image](../../../../public/images/aws/lambda/48.png)  
+
 ## วิธีเปิดใช้งาน CodeGuru Integration
 
 * เปิดใช้งานผ่าน **Lambda console**

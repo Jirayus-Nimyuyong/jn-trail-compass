@@ -6,6 +6,8 @@
 * ALB สามารถ **Load Balance หลายแอปพลิเคชันบน EC2 instance เดียวกัน** เหมาะสำหรับ **Containers** และ **ECS**
 * รองรับ **HTTP/2**, **WebSockets**, และ **Redirects** เช่น การ redirect จาก HTTP → HTTPS
 
+![An image](../../../../public/images/aws/ec2/22.png)
+
 ## ฟีเจอร์ Routing ขั้นสูง
 
 ALB รองรับ **Route-Based Routing** เช่น:
@@ -19,6 +21,8 @@ ALB รองรับ **Route-Based Routing** เช่น:
 * ALB รองรับ **Port Mapping** → redirect ไปยัง dynamic port บน ECS instance
 * ต่างจาก **Classic Load Balancer (CLB)** ที่ต้องใช้ **CLB หลายตัว** สำหรับหลายแอปพลิเคชัน
 * ALB ตัวเดียวสามารถจัดการหลายแอปพลิเคชันได้
+
+![An image](../../../../public/images/aws/ec2/23.png)
 
 ## สถาปัตยกรรม ALB และ Target Groups
 
@@ -63,6 +67,8 @@ ALB รองรับ **Route-Based Routing** เช่น:
     * The application servers don’t see the IP of the client directly
     * The true IP of the client is inserted in the header X-Forwarded-For
     * We can also get Port (X-Forwarded-Port) and proto (X-Forwarded-Proto)  
+
+![An image](../../../../public/images/aws/ec2/24.png)
 
 ## สรุป Key Takeaways
 

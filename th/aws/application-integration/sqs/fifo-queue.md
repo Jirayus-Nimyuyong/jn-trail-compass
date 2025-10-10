@@ -1,5 +1,7 @@
 # SQS - FIFO Queues
 
+![An image](../../../../public/images/aws/sqs/16.png)
+
 **SQS FIFO queues** ของ Amazon ให้การรับประกัน **การเรียงลำดับข้อความแบบ First-In, First-Out (FIFO)**
 
 * หมายความว่าเมื่อ Producer ส่งข้อความตามลำดับ เช่น 1, 2, 3, 4
@@ -58,6 +60,8 @@
 
 ## Deduplication Interval
 
+![An image](../../../../public/images/aws/sqs/17.png)
+
 * FIFO queues มี **Deduplication Interval** 5 นาที
 * หมายความว่า หากส่งข้อความซ้ำภายใน 5 นาที ข้อความที่สองจะถูกปฏิเสธ
 
@@ -93,6 +97,8 @@
 * ข้อความที่มี **Group ID เดียวกัน** จะถูกประมวลผลตามลำดับโดย **consumer หนึ่งตัว**
 * หากต้องการ ordering ภายใน subsets ของข้อความ ให้กำหนด **Group ID ต่างกัน**
 * แต่การเรียงลำดับระหว่าง Group ต่างกัน **ไม่ถูกรับประกัน**
+
+![An image](../../../../public/images/aws/sqs/18.png)
 
 ## ตัวอย่าง Message Grouping
 

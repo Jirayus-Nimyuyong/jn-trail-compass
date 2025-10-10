@@ -2,6 +2,8 @@
 
 ในหัวข้อนี้ เราจะมาดูเรื่อง **Activity Tasks** ของ Step Functions กันครับ จุดประสงค์ของ Activity Tasks คล้ายกับ **wait-for-task-token pattern** ที่เราเรียนไปก่อนหน้านี้ แต่แตกต่างกันในด้านวิธีการทำงานเล็กน้อย
 
+![An image](../../../../public/images/aws/other-serverless/9.png)
+
 ## วิธีการทำงานของ Activity Tasks
 
 * มีสิ่งที่เรียกว่า **activity workers** ซึ่งเป็นตัวทำงาน (workers) ที่จะประมวลผลงานที่ Step Functions มอบหมาย

@@ -1,5 +1,7 @@
 # API Gateway – HTTP API vs REST API
 
+![An image](../../../../public/images/aws/api-gateway/20.png)
+
 ## ภาพรวมของประเภท API ใน API Gateway
 
 ในส่วนนี้เราจะพูดถึงประเภทของ API ที่สามารถสร้างได้ใน API Gateway

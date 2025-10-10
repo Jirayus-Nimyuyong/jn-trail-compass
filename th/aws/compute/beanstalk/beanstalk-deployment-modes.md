@@ -17,6 +17,8 @@
 * เมื่อ Deploy แบบ All at once → Elastic Beanstalk จะหยุดแอปบนทุก instance พร้อมกัน (กลายเป็น gray)
 * จากนั้น Deploy เวอร์ชัน 2 ลงไปในทุก instance
 
+![An image](../../../../public/images/aws/beanstalk/5.png)
+
 **ข้อดี/ข้อเสีย:**
 
 * เร็วที่สุด แต่เกิด **downtime** ระหว่างอัปเดต
@@ -32,6 +34,8 @@
   * อีก 2 instances ยังทำงานเวอร์ชัน 1 อยู่
   * เมื่อ batch แรกพร้อมใช้งาน จึงอัปเดต batch ถัดไป
 
+![An image](../../../../public/images/aws/beanstalk/6.png)
+
 **ข้อดี/ข้อเสีย:**
 
 * ไม่มีค่าใช้จ่ายเพิ่ม (จำนวน instances คงที่)
@@ -45,6 +49,8 @@
 * ตัวอย่าง: เริ่มจาก 4 instances เวอร์ชัน 1 → สร้าง 2 instances ใหม่ที่รันเวอร์ชัน 2
 * จากนั้นอัปเดต batch แรกของ instances เก่า → แล้วอัปเดต batch ถัดไป
 * เมื่อเสร็จสิ้น การอัปเดต instances ชุดใหม่จะถูกยกเลิก
+
+![An image](../../../../public/images/aws/beanstalk/7.png)
 
 **ข้อดี/ข้อเสีย:**
 
@@ -61,6 +67,8 @@
 * เมื่อพร้อมทั้งหมด จะนำ instances ใหม่เข้าไปแทนใน ASG เดิม → ทำให้ความสามารถของระบบ **เพิ่มขึ้นเป็นสองเท่า** ชั่วคราว
 * จากนั้น terminate instances เก่า และลบ ASG ชั่วคราว
 
+![An image](../../../../public/images/aws/beanstalk/8.png)
+
 **ข้อดี/ข้อเสีย:**
 
 * ไม่มี downtime
@@ -75,6 +83,8 @@
 * Green รันแยกอิสระ ทำให้ทดสอบและตรวจสอบได้เต็มที่
 * ใช้ **Route 53** แบ่งทราฟฟิกด้วย Weighted Policy (เช่น 90% → Blue, 10% → Green)
 * เมื่อพร้อมใช้งาน → swap URLs เพื่อเปลี่ยน Green เป็น Environment หลัก และปิด Blue
+
+![An image](../../../../public/images/aws/beanstalk/9.png)
 
 **ข้อดี/ข้อเสีย:**
 
@@ -91,6 +101,8 @@
 * ระบบตรวจสอบสุขภาพอัตโนมัติ
 * หากพบปัญหา → Rollback อัตโนมัติโดยหยุดส่งทราฟฟิกไปยัง ASG ใหม่
 * หากเสถียร → ย้าย instances ใหม่ไปยัง ASG หลัก และ terminate เวอร์ชันเก่า
+
+![An image](../../../../public/images/aws/beanstalk/10.png)
 
 **ข้อดี/ข้อเสีย:**
 

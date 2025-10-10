@@ -35,6 +35,8 @@
 
 ## กระบวนการ Deployment ของ SAM
 
+![An image](../../../public/images/aws/sam/1.png)
+
 1. แอปประกอบด้วย **โค้ดและ SAM YAML template**
 2. สร้างแอป locally ด้วย `sam build`
 
@@ -65,12 +67,16 @@
 * ถ้าเปลี่ยน config ใช้ `sam sync`
 * ถ้าเปลี่ยนแค่โค้ด ใช้ `sam sync --code` เพื่อ deploy เร็ว
 
+![An image](../../../public/images/aws/sam/2.png)
+
 ## SAM Policy Templates
 
 * **SAM policy templates** หรือ **serverless application model policy templates** เป็นสิ่งสำคัญสำหรับ **จัดการสิทธิ์ (permissions) ของ Lambda functions**
 * Templates เหล่านี้อาจเจอในข้อสอบ และช่วย **ทำให้การกำหนดสิทธิ์ง่ายขึ้น**
 * SAM policy templates คือ **ชุดสิทธิ์ที่กำหนดล่วงหน้า** ที่สามารถนำไปใช้กับ Lambda function ได้ทันที
 * Templates เหล่านี้ช่วยให้คุณเข้าใจว่า Lambda function สามารถทำอะไรได้บ้างโดยไม่ต้องสร้าง IAM role เอง
+
+![An image](../../../public/images/aws/sam/3.png)
 
 ## ตัวอย่าง SAM Policy Templates
 
@@ -111,6 +117,8 @@
 * สามารถกำหนด **pre-traffic และ post-traffic hooks** เป็น Lambda function เพื่อ **ตรวจสอบการ deploy**
 * สามารถตั้งค่า **rollback อัตโนมัติ** โดยใช้ **CloudWatch alarms**
 
+![An image](../../../public/images/aws/sam/4.png)
+
 ## โฟลว์การ deploy
 
 1. Lambda alias ชี้ไปยัง **version 1** ของ Lambda function
@@ -145,6 +153,8 @@ Key element สำคัญ:
 
    * Lambda function ทำงาน **ก่อนหรือหลัง traffic shifting**
    * ใช้ตรวจสอบหรือรันโค้ดเพิ่มเติม
+
+![An image](../../../public/images/aws/sam/5.png)
 
 ## ตัวอย่างปฏิบัติ: Deploy Lambda ด้วย SAM + CodeDeploy
 
@@ -188,6 +198,8 @@ Key element สำคัญ:
 
 * **SAM framework** มีความสามารถในการทำงาน **Lambda แบบ local** เพื่อพัฒนาและทดสอบบนเครื่องของคุณเอง
 * สามารถจำลองสภาพแวดล้อมของ Lambda เพื่อการทดสอบและพัฒนาได้อย่างมีประสิทธิภาพ
+
+![An image](../../../public/images/aws/sam/6.png)
 
 ## เริ่ม Lambda function แบบ local
 
@@ -243,6 +255,8 @@ Key element สำคัญ:
   * และอื่น ๆ
 
 ## การจัดการหลาย Environment ด้วย SAM
+
+![An image](../../../public/images/aws/sam/8.png)
 
 ## ภาพรวม
 

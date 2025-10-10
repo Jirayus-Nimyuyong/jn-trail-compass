@@ -1,6 +1,6 @@
 # SQS - Delay Queues
 
-## บทนำเกี่ยวกับ Delay Queues
+![An image](../../../../public/images/aws/sqs/13.png)
 
 ตอนนี้เรามาพูดถึง **Delay Queue** กันบ้างครับ
 Delay Queue ถูกออกแบบมาเพื่อหน่วงเวลาข้อความ (Message) ไม่ให้ Consumer มองเห็นทันที ข้อความจะถูกหน่วงเวลาได้สูงสุด **15 นาที**

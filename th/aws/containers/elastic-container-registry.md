@@ -1,6 +1,6 @@
 # Amazon ECR
 
-## บทนำเกี่ยวกับ Amazon ECR
+![An image](../../../public/images/aws/containers/28.png)
 
 * **Amazon ECR (Elastic Container Registry)** คือบริการสำหรับ **เก็บและจัดการ Docker images บน AWS**
 * ปกติเราใช้ repository ออนไลน์อย่าง **Docker Hub** แต่เราสามารถเก็บ Docker images ของเราเองบน **Amazon ECR** ได้

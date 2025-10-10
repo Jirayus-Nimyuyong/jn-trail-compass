@@ -9,6 +9,8 @@ DynamoDB Transactions ช่วยให้คุณสามารถทำ **�
 * **Isolation (การแยกการทำงาน)**
 * **Durability (ความคงทน)**
 
+![An image](../../../../public/images/aws/dynamodb/18.png)
+
 ## โหมดของ Transaction ใน DynamoDB
 
 ### 1. โหมดอ่าน (Read Modes)

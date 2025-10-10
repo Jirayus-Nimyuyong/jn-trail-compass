@@ -35,6 +35,8 @@ EBS เป็น **Block Storage** หมายความว่าคุณต
 
 คุณยังสามารถ **สร้าง EBS Volume โดยไม่ต้อง attach** กับ instance ทันทีได้เช่นกัน เพื่อความยืดหยุ่น
 
+![An image](../../../../public/images/aws/ec2/7.png)
+
 ## Delete on Termination Attribute
 
 เมื่อคุณสร้าง EC2 instance ระบบจะสร้าง EBS Volume ขึ้นมาเป็น **Root Volume** พร้อมกัน โดย Volume จะมี attribute ที่ชื่อว่า **Delete on Termination**
@@ -47,6 +49,8 @@ EBS เป็น **Block Storage** หมายความว่าคุณต
 * หากต้องการเก็บข้อมูล root volume ไว้แม้ terminate instance → ปิด Delete on Termination
 
 นี่คือ use case ที่ออกสอบได้
+
+![An image](../../../../public/images/aws/ec2/8.png)
 
 ## สรุป Key Takeaways
 

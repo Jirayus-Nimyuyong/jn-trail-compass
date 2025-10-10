@@ -1,6 +1,6 @@
 # Amazon ECS – Task Placement Process
 
-## ภาพรวม Task Placement
+![An image](../../../../public/images/aws/containers/24.png)
 
 * **Task Placement Strategies** เป็นเพียง “best effort” หรือพยายามให้ดีที่สุดตามเงื่อนไข
 * เมื่อ Amazon ECS จะวาง task มันจะทำตามขั้นตอนดังนี้:
@@ -39,6 +39,8 @@
    }
    ```
 
+   ![An image](../../../../public/images/aws/containers/25.png)
+
    * ECS จะพยายามใส่ containers ให้เต็ม instance หนึ่งก่อน แล้วจึงย้ายไป instance ถัดไป
 
 2. **Random**
@@ -51,6 +53,8 @@
    }
    ```
 
+   ![An image](../../../../public/images/aws/containers/26.png)
+
 3. **Spread**
 
    * กระจาย tasks ตามค่า attribute เช่น **instance ID** หรือ **availability zone (AZ)**
@@ -61,6 +65,8 @@
      "field": "attribute:ecs.availability-zone"
    }
    ```
+
+   ![An image](../../../../public/images/aws/containers/27.png)
 
    * ตัวอย่าง: มี 3 EC2 instances ใน 3 AZ → task จะถูกกระจายสลับกัน AZ-A → AZ-B → AZ-C
    * เพิ่ม **high availability** ของ service

@@ -1,6 +1,6 @@
 # CloudFront Signed URL / Cookies
 
-## แนะนำเกี่ยวกับ CloudFront Signed URLs และ Cookies
+![An image](../../../../public/images/aws/cloudfront/15.png)
 
 สมมติว่าคุณมี **CloudFront distribution** และต้องการทำให้เป็น **private** เพื่อควบคุมการเข้าถึง เช่น การให้สิทธิ์เฉพาะผู้ใช้ที่ชำระเงินเพื่อดู **คอนเทนต์พรีเมียม** ทั่วโลก และคุณยังต้องการ **ติดตามว่าใครเข้าถึงไฟล์อะไร** บน CloudFront ด้วย
 
@@ -51,6 +51,9 @@
 
 👉 ถ้า S3 ของคุณถูกตั้งค่าให้เข้าถึงได้เฉพาะ **ผ่าน CloudFront (OAI/OAC)** → ต้องใช้ **CloudFront Signed URL**
 👉 ถ้าผู้ใช้เข้าถึง **S3 โดยตรง** → ใช้ **S3 Pre-Signed URL** จะเหมาะกว่า
+
+![An image](../../../../public/images/aws/cloudfront/16.png)
+
 
 ## สรุป
 

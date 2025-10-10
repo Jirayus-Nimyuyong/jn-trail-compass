@@ -1,5 +1,7 @@
 # Writes Operation
 
+![An image](../../../../public/images/aws/dynamodb/20.png)
+
 ## Concurrent Writes (การเขียนพร้อมกัน)
 
 สมมติว่า **ผู้ใช้สองคนพยายามอัปเดตไอเทมเดียวกันพร้อมกัน**

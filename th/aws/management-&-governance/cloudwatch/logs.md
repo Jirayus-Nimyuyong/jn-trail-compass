@@ -38,6 +38,8 @@ Log สามารถส่งไปยัง CloudWatch Logs ผ่าน:
 
 ## การค้นหา Logs ด้วย CloudWatch Logs Insights
 
+![An image](../../../../public/images/aws/cloudwatch/1.png)
+
 **CloudWatch Logs Insights** เป็นเครื่องมือสำหรับ query logs:
 
 * เขียน query และกำหนดช่วงเวลา
@@ -56,15 +58,21 @@ Log สามารถส่งไปยัง CloudWatch Logs ผ่าน:
    * ใช้เวลาส่งข้อมูลสูงสุด 12 ชั่วโมง
    * ไม่ใช่ real-time
 
+![An image](../../../../public/images/aws/cloudwatch/3.png)
+
 2. **Real-Time Streaming:** ใช้ **CloudWatch Logs subscriptions**
 
    * ส่ง log แบบ real-time ไปยัง **Kinesis Data Streams**, **Kinesis Data Firehose**, หรือ **Lambda**
    * ใช้ **subscription filter** เพื่อเลือก log ที่จะส่ง
 
+![An image](../../../../public/images/aws/cloudwatch/4.png)
+
 * สามารถรวม logs จากหลาย account/region ไปยังปลายทางเดียว เช่น Kinesis Data Stream ใน account ที่กำหนด
 * จากนั้นส่งต่อไปยัง S3 หรือ OpenSearch Service ผ่าน Kinesis Data Firehose
 
 ## การรวม Log ข้าม Account (Cross-Account Aggregation)
+
+![An image](../../../../public/images/aws/cloudwatch/5.png)
 
 * ใช้ **destinations**
 * ตัวอย่าง:
@@ -74,9 +82,13 @@ Log สามารถส่งไปยัง CloudWatch Logs ผ่าน:
   3. กำหนด **destination access policy** ให้ sender account ส่งข้อมูลได้
   4. สร้าง **IAM role** ใน recipient account ให้ sender account assume เพื่อส่งข้อมูล
 
+![An image](../../../../public/images/aws/cloudwatch/6.png)
+
 เมื่อทุกอย่างพร้อม สามารถส่ง log จาก CloudWatch Logs ใน account หนึ่ง ไปยังปลายทางในอีก account ได้
 
 ## CloudWatch Agent & CloudWatch Logs Agent
+
+![An image](../../../../public/images/aws/cloudwatch/7.png)
 
 เราจะพูดถึงการใช้ **CloudWatch Agents** เพื่อเก็บ **logs** และ **metrics** จาก **EC2 instances** แล้วส่งไปยัง **CloudWatch**
 
@@ -129,6 +141,8 @@ Log สามารถส่งไปยัง CloudWatch Logs ผ่าน:
 * ถ้าต้องการรายละเอียดมากขึ้น ให้ใช้ **CloudWatch Unified Agent**
 
 ## CloudWatch Logs - Metric Filters
+
+![An image](../../../../public/images/aws/cloudwatch/8.png)
 
 **CloudWatch Logs metric filters** ช่วยให้คุณสามารถกำหนด **filter expressions** บน logs ของคุณได้
 ตัวอย่างเช่น:

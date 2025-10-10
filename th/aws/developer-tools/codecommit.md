@@ -1,6 +1,6 @@
 # CodeCommit
 
-## บทนำสู่ AWS CodeCommit
+![An image](../../../public/images/aws/ci-cd/4.png)
 
 เรามาพูดถึง **AWS CodeCommit** ซึ่งเป็นบริการสำหรับ **version control**
 
@@ -65,6 +65,8 @@ AWS CodeCommit คือบริการ **code repository** บน AWS
 | Hosting                 | บน AWS เท่านั้น                             | บน GitHub หรือ on-premises  |
 | UI                      | Minimal                                     | มี UI ครบฟีเจอร์            |
 | เหมาะกับ                | โค้ดอยู่เฉพาะ AWS เพื่อ security/compliance | องค์กรทั่วไป, UI ครบฟีเจอร์ |
+
+![An image](../../../public/images/aws/ci-cd/5.png)
 
 * CodeCommit เหมาะกับองค์กรที่ต้องการให้โค้ด **อยู่ใน AWS เท่านั้น**
 

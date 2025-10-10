@@ -12,12 +12,16 @@
 
 **ข้อดี:** วิธีนี้ช่วยให้เราสามารถทำ iteration ของโค้ดและติดตามความคืบหน้าจนกว่าจะปล่อยฟังก์ชัน
 
+![An image](../../../../public/images/aws/lambda/40.png)
+
 ## Lambda Aliases
 
 ถ้าเราต้องการให้ผู้ใช้งานมี **endpoint มาตรฐาน** เราสามารถใช้ **Lambda Aliases**
 
 * **Aliases** คือ pointer ที่อ้างอิงไปยัง **Lambda function version**
 * สามารถสร้าง alias เช่น **DEV, TEST, PROD** และชี้ไปยังเวอร์ชันต่าง ๆ
+
+![An image](../../../../public/images/aws/lambda/41.png)
 
 **คุณสมบัติ:**
 

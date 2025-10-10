@@ -1,5 +1,7 @@
 # AWS Distro for OpenTelemetry
 
+![An image](../../../../public/images/aws/x-ray/10.png)
+
 **AWS Distro for OpenTelemetry (ADOT)** เป็นการแจกจ่าย (distribution) ที่สร้างโดย AWS เพื่อรองรับ **โครงการ OpenTelemetry** โดยออกแบบให้ **ปลอดภัยและพร้อมใช้งานในระบบ production**
 
 ## OpenTelemetry คืออะไร?

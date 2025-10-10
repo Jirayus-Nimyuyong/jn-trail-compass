@@ -2,6 +2,8 @@
 
 AWS CodeDeploy คือบริการสำหรับการ **ปรับใช้ (deployment)** แอปพลิเคชันโดยอัตโนมัติ ทำให้สามารถอัปเกรดแอปจากเวอร์ชัน 1 ไปเวอร์ชัน 2 ได้อย่างราบรื่น
 
+![An image](../../../public/images/aws/ci-cd/11.png)
+
 ## เป้าหมายการปรับใช้ (Deployment Targets)
 
 คุณสามารถปรับใช้แอปไปยังเป้าหมายเหล่านี้ได้:
@@ -26,7 +28,9 @@ AWS CodeDeploy คือบริการสำหรับการ **ปร�
 รองรับการปรับใช้ 2 แบบ:
 
 1. **In-place deployment**
+![An image](../../../public/images/aws/ci-cd/12.png)
 2. **Blue/green deployment**
+![An image](../../../public/images/aws/ci-cd/13.png)
 
 > **เงื่อนไข**: ต้องติดตั้ง **CodeDeploy agent** บน instance เป้าหมาย เพื่อให้ agent ทำการอัปเดตแอป
 
@@ -37,7 +41,7 @@ AWS CodeDeploy คือบริการสำหรับการ **ปร�
 * **OneAtATime**: อัปเดตทีละเครื่อง → downtime น้อยที่สุด แต่ช้าที่สุด
 * สามารถกำหนดค่า custom เองได้
 
-**ตัวอย่าง In-Place Deployment แบบ HalfAtATime**
+**ตัวอย่าง In-Place Deployment แบบ![An image](../../../public/images/aws/ci-cd/13.png) HalfAtATime**
 
 * แอปเวอร์ชัน 1 รันอยู่บน EC2 4 เครื่อง
 * ปรับใช้แบบครึ่งต่อครึ่ง → หยุด 2 เครื่อง → อัปเกรดเป็นเวอร์ชัน 2 → เสร็จแล้วทำกับอีก 2 เครื่อง
@@ -59,6 +63,8 @@ Agent ต้องติดตั้งบน EC2 ก่อนจึงจะ de
 * ติดตั้งด้วยคำสั่ง Linux (manual)
 * หรือใช้ AWS Systems Manager (อัตโนมัติ)
 
+![An image](../../../public/images/aws/ci-cd/14.png)
+
 **สิทธิ์ IAM ของ EC2 instance**: ต้องมีสิทธิ์เข้าถึง **S3 bucket** ที่เก็บ application revisions เพื่อให้ agent โหลดไฟล์ deployment มาติดตั้ง
 
 ## CodeDeploy กับ Lambda
@@ -66,6 +72,8 @@ Agent ต้องติดตั้งบน EC2 ก่อนจึงจะ de
 * CodeDeploy สามารถ **traffic shifting สำหรับ Lambda aliases** ได้
 * เช่น PROD alias จากเวอร์ชัน 1 → เวอร์ชัน 2
 * ค่า **X (0 → 100)** ใช้บอกสัดส่วน traffic ที่ถูกย้ายจากเวอร์ชันเก่าไปใหม่
+
+![An image](../../../public/images/aws/ci-cd/15.png)
 
 **กลยุทธ์การย้าย traffic (Traffic Shifting Strategies):**
 
@@ -84,9 +92,13 @@ Agent ต้องติดตั้งบน EC2 ก่อนจึงจะ de
   * ค่อย ๆ ย้าย traffic จาก blue → green
   * ใช้กลยุทธ์ linear, canary หรือ all-at-once เช่นเดียวกับ Lambda
 
+![An image](../../../public/images/aws/ci-cd/16.png)  
+
 ## CodeDeploy สำหรับ EC2 และ Auto Scaling Group (ASG)
 
 เมื่อทำการปรับใช้ (deploy) ไปยัง EC2 instance คุณจะต้องมีไฟล์ **appspec.yml** ที่วางไว้ที่ root ของ code repository ไฟล์นี้จะกำหนดกลยุทธ์การปรับใช้ (deployment strategy) และ **hooks** ที่ใช้สำหรับตรวจสอบความถูกต้องหลังจากแต่ละขั้นตอนของการปรับใช้
+
+![An image](../../../public/images/aws/ci-cd/17.png)
 
 ## กลยุทธ์ In-Place Deployment
 
@@ -107,6 +119,8 @@ Agent ต้องติดตั้งบน EC2 ก่อนจึงจะ de
    * CodeDeploy จะสร้าง Auto Scaling Group (ASG) ใหม่ที่คัดลอกค่าการตั้งค่าเดิมมา
    * จากนั้นสามารถกำหนดระยะเวลาเก็บ ASG เก่าไว้ได้
    * Elastic Load Balancer (ELB) จะสลับการรับส่งข้อมูล (traffic) จากกลุ่มเก่าไปยังกลุ่มใหม่
+
+![An image](../../../public/images/aws/ci-cd/18.png)
 
 ## In-Place Deployment ร่วมกับ ASG
 

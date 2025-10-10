@@ -1,6 +1,6 @@
 # Lambda Destinations
 
-## บทนำสู่ Lambda Destinations
+![An image](../../../../public/images/aws/lambda/20.png)
 
 ตั้งแต่เดือนพฤศจิกายน 2019 AWS ได้แนะนำฟีเจอร์ที่มีประโยชน์มากชื่อ **Lambda Destinations** ฟีเจอร์นี้ช่วยแก้ปัญหาในการติดตาม **asynchronous invocations** หรือ **event mappers** ที่ก่อนหน้านี้ยากที่จะทราบว่า invocation ใดล้มเหลวหรือสำเร็จ และดึงข้อมูลที่เกี่ยวข้องออกมา
 

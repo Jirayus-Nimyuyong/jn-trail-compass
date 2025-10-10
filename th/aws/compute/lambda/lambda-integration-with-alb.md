@@ -9,6 +9,8 @@
 
 ในบทนี้เราจะเน้นที่ **ALB**
 
+![An image](../../../../public/images/aws/lambda/6.png)
+
 ## การทำงานของ ALB กับ Lambda
 
 1. ต้อง **ลงทะเบียน Lambda function ใน target group** ของ ALB
@@ -27,6 +29,8 @@ ALB จะเปลี่ยน HTTP request ที่เข้ามาเป�
 * Headers ถูกส่งเป็น **key-value pairs**
 * Body สำหรับ POST/PUT รวมถึง **flag บอกว่า body เป็น Base64 หรือไม่**
 
+![An image](../../../../public/images/aws/lambda/7.png)
+
 สรุป: **Query parameters, headers และ body ถูกแปลงเป็น JSON ทั้งหมด**
 
 ## รูปแบบ Response ของ Lambda
@@ -39,6 +43,8 @@ JSON response ต้องมี:
 * **response headers** เป็น key-value pairs
 * **body** ของ response
 * **flag บอกว่า body เป็น Base64 หรือไม่**
+
+![An image](../../../../public/images/aws/lambda/8.png)
 
 ALB จะทำการแปลง JSON response กลับเป็น HTTP response ให้
 
@@ -58,6 +64,8 @@ ALB รองรับฟีเจอร์ **multi-value headers** ซึ่ง
 * Key `name` มีสองค่า (foo, bar)
 * ถ้าเปิด multi-value header, Lambda จะได้รับเป็น array: `["foo", "bar"]`
 * ใช้ได้ทั้ง **HTTP headers** และ **query string parameters**
+
+![An image](../../../../public/images/aws/lambda/9.png)
 
 ## สรุปและข้อควรจำ
 

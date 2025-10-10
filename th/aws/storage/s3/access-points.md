@@ -4,6 +4,8 @@
 * ผู้ใช้หรือกลุ่มต่าง ๆ ต้องการเข้าถึงข้อมูลเฉพาะของตัวเอง
 * การจัดการ **ผ่าน bucket policy เดียว** จะซับซ้อนมากขึ้นเรื่อย ๆ เมื่อจำนวนผู้ใช้และข้อมูลเพิ่มขึ้น
 
+![An image](../../../../public/images/aws/s3/25.png)
+
 ## วิธีแก้ปัญหา: S3 Access Points
 
 * **Access Points** คือจุดเชื่อมต่อแยกสำหรับ S3 bucket เพื่อจัดการสิทธิ์การเข้าถึงอย่างง่าย
@@ -46,6 +48,8 @@
   * สามารถกำหนดให้ access point เข้าถึงได้เฉพาะผ่าน **VPC**
   * EC2 instance ใน VPC สามารถเข้าถึง S3 ผ่าน **VPC access point** โดยไม่ต้องผ่านอินเทอร์เน็ต
   * ต้องสร้าง **VPC endpoint** และกำหนด **policy ของ endpoint** ให้สามารถเข้าถึง access point และ bucket ได้
+
+![An image](../../../../public/images/aws/s3/26.png)  
 
 ## Layered Security Model (หลายชั้น)
 

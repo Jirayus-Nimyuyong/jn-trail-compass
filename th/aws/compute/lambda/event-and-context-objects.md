@@ -4,6 +4,8 @@
 
 ในการสอนนี้ เราจะมาทำความเข้าใจ **Event Object** และ **Context Object** ซึ่งเป็นสิ่งสำคัญมากสำหรับการเขียน Lambda function
 
+![An image](../../../../public/images/aws/lambda/18.png)
+
 ## ตัวอย่าง Invocation โดย EventBridge
 
 สมมติว่า Lambda ของคุณถูกเรียกโดย **EventBridge rule**
@@ -50,6 +52,8 @@ def lambda_handler(event, context):
 
 * **event parameter**: ข้อมูลเกี่ยวกับ event ที่ trigger Lambda
 * **context parameter**: ข้อมูลเกี่ยวกับ Lambda invocation และ runtime environment
+
+![An image](../../../../public/images/aws/lambda/19.png)
 
 ## สรุป
 

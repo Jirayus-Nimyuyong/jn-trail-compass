@@ -45,6 +45,8 @@ OpenAPI เป็นมาตรฐานที่ใช้กันอย่า
 * ตรวจสอบว่า headers มีอยู่จริงและไม่ว่างเปล่า
 * ตรวจสอบว่า payload ตรงตาม **JSON Schema model** ที่กำหนดสำหรับ method นั้นหรือไม่
 
+![An image](../../../../public/images/aws/api-gateway/11.png)
+
 สิ่งนี้ช่วยให้มั่นใจว่า backend จะไม่เจอปัญหาในการ parse และใช้ payload ที่รับมา
 
 ## วิธีการตั้งค่า Request Validation

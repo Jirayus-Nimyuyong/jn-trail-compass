@@ -2,6 +2,8 @@
 
 Amazon SNS (Simple Notification Service) เป็นบริการส่งข้อความแบบ **Pub/Sub (Publish-Subscribe)** ที่ช่วยให้สามารถส่งข้อความเพียงครั้งเดียวแต่กระจายไปยังผู้รับหลาย ๆ คนพร้อมกันได้
 
+![An image](../../../public/images/aws/sns/1.png)
+
 ## ความท้าทายของการส่งข้อความไปยังผู้รับหลายคน
 
 ถ้าเราต้องการส่งข้อความเดียวไปหาหลายบริการ เช่น
@@ -41,6 +43,8 @@ SNS สามารถส่งข้อความไปยัง:
   * **Lambda** → เรียกใช้โค้ดอัตโนมัติ
   * **Kinesis Data Firehose** → ส่งต่อไปยัง S3 หรือ Redshift
 
+![An image](../../../public/images/aws/sns/2.png)
+
 ## การเชื่อมต่อกับ AWS Services
 
 หลายบริการของ AWS สามารถส่ง Notification เข้า SNS ได้โดยตรง เช่น:
@@ -51,6 +55,8 @@ SNS สามารถส่งข้อความไปยัง:
 * Budgets
 * S3 Buckets
 * DMS, Lambda, DynamoDB, RDS Events
+
+![An image](../../../public/images/aws/sns/3.png)
 
 ## วิธีการทำงานของ SNS
 
@@ -80,6 +86,8 @@ SNS ยังรองรับ **Direct Publish สำหรับ Mobile Apps*
 
 แนวคิดหลักคือ **ส่งข้อความเพียงครั้งเดียวไปยัง SNS Topic** แล้วให้หลาย SQS Queues **subscribe** กับ Topic นั้น เพื่อรับข้อความทั้งหมดอย่างอิสระ
 
+![An image](../../../public/images/aws/sns/4.png)
+
 **ตัวอย่าง:**
 
 * บริการซื้อขาย (Buying Service) ต้องการส่งข้อความไปยัง 2 คิว SQS
@@ -97,6 +105,8 @@ SNS ยังรองรับ **Direct Publish สำหรับ Mobile Apps*
 
 ## การประยุกต์กับ S3 Events
 
+![An image](../../../public/images/aws/sns/5.png)
+
 S3 Event Rule มีข้อจำกัด เช่น สำหรับ Event Type + Prefix สามารถมีได้ **หนึ่ง Rule ต่อการตั้งค่า**
 
 * หากต้องการส่ง S3 Event เดียวไปหลาย SQS Queue → ใช้ **Fan-Out Pattern**
@@ -106,11 +116,15 @@ S3 Event Rule มีข้อจำกัด เช่น สำหรับ Eve
 
 ## การเชื่อมต่อกับ Kinesis Data Firehose
 
+![An image](../../../public/images/aws/sns/6.png)
+
 * SNS สามารถเชื่อมต่อกับ **Kinesis Data Firehose (KDF)**
 * บริการซื้อขายส่งข้อมูลไป SNS Topic → KDF รับและส่งต่อไปยังปลายทาง เช่น S3 Bucket หรือบริการอื่นที่รองรับ KDF
 * ทำให้เก็บข้อความจาก SNS Topic ได้อย่างยืดหยุ่น
 
 ## Fan-Out กับ FIFO Topics และ Queues
+
+![An image](../../../public/images/aws/sns/7.png)
 
 * SNS รองรับ **FIFO Topics** → รักษาลำดับข้อความ
 * Producer ส่งข้อความเป็นลำดับ (1,2,3,4) → Subscribers (ต้องเป็น **SQS FIFO Queues**) จะได้รับข้อความตามลำดับ
@@ -123,10 +137,14 @@ S3 Event Rule มีข้อจำกัด เช่น สำหรับ Eve
 
 ตัวอย่าง: Buying Service ส่งข้อความไป **SNS FIFO Topic** → Fan-Out ไปยัง 2 SQS FIFO Queues → Fraud Service และ Shipping Service อ่านจาก FIFO Queues
 
+![An image](../../../public/images/aws/sns/8.png)
+
 ## Message Filtering ใน SNS
 
 * SNS รองรับ **Message Filtering** → ใช้นโยบาย JSON กรองข้อความสำหรับ Subscription
 * หาก Subscription ไม่มี Filter Policy → จะได้รับข้อความทั้งหมด
+
+![An image](../../../public/images/aws/sns/9.png)
 
 **ตัวอย่าง:**
 

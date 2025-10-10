@@ -1,5 +1,7 @@
 # Amazon Kinesis Data Streams
 
+![An image](../../../public/images/aws/kinesis/1.png)
+
 **Amazon Kinesis Data Streams** คือบริการที่ใช้ในการ **เก็บและจัดการข้อมูลแบบสตรีม (Streaming Data) แบบ Real-Time** จุดสำคัญคือการทำงานที่ **เกิดขึ้นและถูกประมวลผลทันที**
 
 ## ความเข้าใจเกี่ยวกับ Real-Time Data

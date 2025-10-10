@@ -1,6 +1,6 @@
 # CloudFront - Real Time Logs
 
-## บทนำเกี่ยวกับ Real-Time Logs ใน CloudFront
+![An image](../../../../public/images/aws/cloudfront/21.png)
 
 บทเรียนนี้พูดถึง **การบันทึก Log แบบเรียลไทม์ (Real-Time Logs)** ใน CloudFront ซึ่งช่วยให้ **ทุกคำขอที่ CloudFront รับเข้ามา** สามารถส่งไปยัง **Kinesis Data Stream** ได้ทันที
 ฟีเจอร์นี้ช่วยให้เราสามารถ **ตรวจสอบ, วิเคราะห์, และดำเนินการ** ตามประสิทธิภาพการส่งเนื้อหาได้แบบเรียลไทม์

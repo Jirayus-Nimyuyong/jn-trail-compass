@@ -13,6 +13,8 @@ Amazon Elastic File System (EFS) เป็นบริการ **Network File S
 * EC2 หลาย instance ในหลาย Availability Zone (เช่น US East-1A, 1B, 1C) สามารถเชื่อมต่อ EFS พร้อมกันได้
 * การเชื่อมต่อแบบ multi-AZ ทำให้สามารถ **แชร์ข้อมูลระหว่าง instance ต่าง ๆ** ได้
 
+![An image](../../../public/images/aws/ec2/14.png)
+
 ## **กรณีการใช้งานและความเข้ากันได้**
 
 * เหมาะกับ: Content management, Web serving, Data sharing, WordPress เป็นต้น
@@ -53,6 +55,8 @@ Amazon Elastic File System (EFS) เป็นบริการ **Network File S
 * **EFS Infrequent Access (EFS-IA)**: ไฟล์เข้าถึงไม่บ่อย ลดค่าใช้จ่าย แต่มีค่าธรรมเนียม retrieval
 * **Archive Storage Tier**: ไฟล์เข้าถึงน้อย เช่น ปีละไม่กี่ครั้ง ลดค่าใช้จ่ายมาก
 * **Lifecycle Policies**: ย้ายไฟล์ระหว่าง tiers อัตโนมัติ เช่น ไฟล์ใน Standard ที่ไม่ถูกเข้าถึง 60 วัน → EFS-IA
+
+![An image](../../../public/images/aws/ec2/15.png)
 
 ## **ตัวเลือกความพร้อมใช้งานและความทนทาน**
 
