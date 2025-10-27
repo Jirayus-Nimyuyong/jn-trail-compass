@@ -8,14 +8,15 @@ export const TH = [
       { 
         text: 'CloudFront', 
         collapsed: true,
-        link: 'cloudfront/cloudfront',
+        base: 'th/aws/networking-&-content-delivery/cloudfront',
+        link: '/cloudfront',         
         items:[
-          { text: 'Caching', link: 'cloudfront/caching.md', },
-          { text: 'ALB or EC2 as an origin', link: 'cloudfront/alb-or-ec2-as-an-origin.md', },
-          { text: 'Geo Restriction', link: 'cloudfront/geo-restriction.md', },
-          { text: 'Signed URL / Signed Cookies', link: 'cloudfront/signed-url&signed-cookies.md', },
-          { text: 'Advanced', link: 'cloudfront/advanced.md', },
-          { text: 'Real Time Logs', link: 'cloudfront/real-time-logs.md', },
+          { text: 'Caching', link: '/caching', },
+          { text: 'ALB or EC2 as an origin', link: '/alb-or-ec2-as-an-origin', },
+          { text: 'Geo Restriction', link: '/geo-restriction.md', },
+          { text: 'Signed URL / Signed Cookies', link: '/signed-url&signed-cookies', },
+          { text: 'Advanced', link: '/advanced', },
+          { text: 'Real Time Logs', link: '/real-time-logs', },
         ]
       },
       { 
@@ -44,12 +45,13 @@ export const TH = [
       { 
         text: 'Route 53', 
         collapsed: true,
-        link: 'route53/route53',
+        base: 'th/aws/networking-&-content-delivery/route53',
+        link: '/route53',
         items: [
-          { text: 'TTL', link: 'route53/ttl.md', },
-          { text: 'CNAME vs Alias', link: 'route53/cname-vs-alias.md', },
-          { text: 'Routing Policies', link: 'route53/routing-policy.md', },
-          { text: 'Health Checks', link: 'route53/health-checks.md', },
+          { text: 'TTL', link: '/ttl', },
+          { text: 'CNAME vs Alias', link: '/cname-vs-alias', },
+          { text: 'Routing Policies', link: '/routing-policy', },
+          { text: 'Health Checks', link: '/health-checks', },
         ]
       },
       // { text: 'AWS Data Transfer Terminal', link: 'aws-data-transfer-terminal' },
@@ -67,28 +69,29 @@ export const TH = [
       { 
         text: 'EC2', 
         collapsed: true,
-        link: '/th/aws/compute/ec2/ec2', 
+        base: '/th/aws/compute/ec2',
+        link: '/ec2', 
         items: [
-          { text: 'EC2 Instance Types', link: '/th/aws/compute/ec2/ec2-instance-types.md' },
-          { text: 'Security Groups', link: '/th/aws/compute/ec2/security-groups.md' },
-          { text: 'SSH', link: '/th/aws/compute/ec2/ssh.md' },
-          { text: 'EC2 Instance Connect', link: '/th/aws/compute/ec2/ec2-instance-connect.md' },
-          { text: 'EC2 Instance Roles', link: '/th/aws/compute/ec2/ec2-instance-roles.md' },
-          { text: 'EC2 Instance Purchasing Options', link: '/th/aws/compute/ec2/ec2-instance-purchasing-options.md' },
-          { text: 'EBS', link: '/th/aws/compute/ec2/ebs.md' },
-          { text: 'EBS-Snapshots', link: '/th/aws/compute/ec2/ebs-snapshots.md' },
-          { text: 'AMI', link: '/th/aws/compute/ec2/ami.md' },
-          { text: 'EC2 Instance Store', link: '/th/aws/compute/ec2/ec2-instance-store.md' },
-          { text: 'EBS Volume Types', link: '/th/aws/compute/ec2/ebs-volume-types.md' },
-          { text: 'EBS Multi-Attach', link: '/th/aws/compute/ec2/ebs-multi-attach.md' },
-          { text: 'ELB', link: '/th/aws/compute/ec2/elb.md' },
-          { text: 'CLB', link: '/th/aws/compute/ec2/clb.md' },
-          { text: 'ALB', link: '/th/aws/compute/ec2/alb.md' },
-          { text: 'NLB', link: '/th/aws/compute/ec2/nlb.md' },
-          { text: 'GWLB', link: '/th/aws/compute/ec2/gwlb.md' },
-          { text: 'ASG', link: '/th/aws/compute/ec2/asg.md' },
-          { text: 'Instance Metadata', link: '/th/aws/compute/ec2/instance-metadata.md' },
-          { text: 'Nitro Enclavesa', link: 'th/aws/compute/ec2/nitro-enclavesa.md' },
+          { text: 'EC2 Instance Types', link: '/ec2-instance-types' },
+          { text: 'Security Groups', link: '/security-groups' },
+          { text: 'SSH', link: '/ssh' },
+          { text: 'EC2 Instance Connect', link: '/ec2-instance-connect' },
+          { text: 'EC2 Instance Roles', link: '/ec2-instance-roles' },
+          { text: 'EC2 Instance Purchasing Options', link: '/ec2-instance-purchasing-options' },
+          { text: 'EBS', link: '/ebs' },
+          { text: 'EBS-Snapshots', link: '/ebs-snapshots' },
+          { text: 'AMI', link: '/ami.md' },
+          { text: 'EC2 Instance Store', link: '/ec2-instance-store' },
+          { text: 'EBS Volume Types', link: '/ebs-volume-types' },
+          { text: 'EBS Multi-Attach', link: '/ebs-multi-attach' },
+          { text: 'ELB', link: '/elb' },
+          { text: 'CLB', link: '/clb' },
+          { text: 'ALB', link: '/alb' },
+          { text: 'NLB', link: '/nlb' },
+          { text: 'GWLB', link: '/gwlb' },
+          { text: 'ASG', link: '/asg' },
+          { text: 'Instance Metadata', link: '/instance-metadata' },
+          { text: 'Nitro Enclavesa', link: '/nitro-enclavesa' },
         ]
       },
       // { text: 'Lightsail', link: '/aws/compute/lightsail' },
@@ -131,15 +134,16 @@ export const TH = [
       { 
         text: 'Elastic Beanstalk', 
         collapsed: true,
-        link: 'th/aws/compute/beanstalk/elastic-beanstalk', 
+        base: 'th/aws/compute/beanstalk', 
+        link: '/elastic-beanstalk', 
         items: [
-          { text: 'Beanstalk Deployment Modes', link: 'th/aws/compute/beanstalk/beanstalk-deployment-modes.md' },
-          { text: 'Elastic Beanstalk CLI', link: 'th/aws/compute/beanstalk/cli.md' },
-          { text: 'Beanstalk Lifecycle Policy', link: 'th/aws/compute/beanstalk/beanstalk-lifecycle-policy.md' },
-          { text: 'Elastic Beanstalk Extensions', link: 'th/aws/compute/beanstalk/elastic-beanstalk-extensions.md' },
-          { text: 'Beanstalk & CloudFormation', link: 'th/aws/compute/beanstalk/beanstalk-cloudFormation.md' },
-          { text: 'Beanstalk Cloning', link: 'th/aws/compute/beanstalk/beanstalk-cloning.md' },
-          { text: 'Beanstalk Migrations', link: 'th/aws/compute/beanstalk/beanstalk-migrations.md' },
+          { text: 'Beanstalk Deployment Modes', link: '/beanstalk-deployment-modes' },
+          { text: 'Elastic Beanstalk CLI', link: '/cli' },
+          { text: 'Beanstalk Lifecycle Policy', link: '/beanstalk-lifecycle-policy' },
+          { text: 'Elastic Beanstalk Extensions', link: '/elastic-beanstalk-extensions' },
+          { text: 'Beanstalk & CloudFormation', link: '/beanstalk-cloudFormation' },
+          { text: 'Beanstalk Cloning', link: '/beanstalk-cloning' },
+          { text: 'Beanstalk Migrations', link: '/beanstalk-migrations' },
         ]
       },
       { text: 'Serverless Application', link: 'th/aws/compute/serverless-application' },
@@ -153,21 +157,22 @@ export const TH = [
   },
   {
     text: 'Containers',
+    link: 'th/aws/containers/containers',
     collapsed: true,
     items: [
-      { text: 'Containers', link: 'th/aws/containers/containers' },
       { 
         text: 'Elastic Container Service', 
         collapsed: true,
-        link: 'th/aws/containers/ecs/ecs', 
+        base: 'th/aws/containers/ecs', 
+        link: '/ecs', 
         items: [
-          { text: 'ECS Cluster', link: 'th/aws/containers/ecs/ecs-cluster' },
-          { text: 'ECS Service', link: 'th/aws/containers/ecs/ecs-service' },
-          { text: 'ECS Auto Scaling', link: 'th/aws/containers/ecs/ecs-auto-scaling' },
-          { text: 'ECS Rolling Updates', link: 'th/aws/containers/ecs/ecs-rolling-updates' },
-          { text: 'ECS Solutions Architectures', link: 'th/aws/containers/ecs/ecs-solutions-architectures' },
-          { text: 'ECS Task Definitions', link: 'th/aws/containers/ecs/ecs-task-definitions' },
-          { text: 'ECS Task Placement', link: 'th/aws/containers/ecs/ecs-task-placement' },
+          { text: 'ECS Cluster', link: '/ecs-cluster' },
+          { text: 'ECS Service', link: '/ecs-service' },
+          { text: 'ECS Auto Scaling', link: '/ecs-auto-scaling' },
+          { text: 'ECS Rolling Updates', link: '/ecs-rolling-updates' },
+          { text: 'ECS Solutions Architectures', link: '/ecs-solutions-architectures' },
+          { text: 'ECS Task Definitions', link: '/ecs-task-definitions' },
+          { text: 'ECS Task Placement', link: '/ecs-task-placement' },
           
         ]
       },
@@ -180,30 +185,31 @@ export const TH = [
   },
   {
     text: "Storage",
+    link: '/th/aws/storage/storage',
     collapsed: true,
     items: [
-      { text: 'Storage', link: '/th/aws/storage/storage' },
       { 
         text: 'S3', 
         collapsed: true,
-        link: '/th/aws/storage/s3/s3',
+        base: '/th/aws/storage/s3',
+        link: '/s3',
         items: [
-          { text: 'Bucket Policies', link: '/th/aws/storage/s3/bucket-policies.md' },
-          { text: 'Static Website Hosting', link: '/th/aws/storage/s3/static-website-hosting.md' },
-          { text: 'Versioning', link: '/th/aws/storage/s3/versioning.md' },
-          { text: 'Replication', link: '/th/aws/storage/s3/replication.md' },
-          { text: 'Storage Classes', link: '/th/aws/storage/s3/storage-classes.md' },
-          { text: 'Lifecycle', link: '/th/aws/storage/s3/lifecycle.md', },
-          { text: 'Event Notifications', link: '/th/aws/storage/s3/event-notifications.md', },
-          { text: 'Performance', link: '/th/aws/storage/s3/performance.md', },
-          { text: 'Metadata & S3 Object Tags', link: '/th/aws/storage/s3/metadata-&-object-tags.md', },
-          { text: 'Encryption', link: '/th/aws/storage/s3/encryption.md', },
-          { text: 'CORS', link: '/th/aws/storage/s3/cors.md', },
-          { text: 'MFA Delete', link: '/th/aws/storage/s3/mfa-delete.md', },
-          { text: 'Access Logs', link: '/th/aws/storage/s3/access-logs.md', },
-          { text: 'Pre-Signed URLs', link: '/th/aws/storage/s3/pre-signed-urls.md', },
-          { text: 'Access Points', link: '/th/aws/storage/s3/access-points.md', },
-          { text: 'S3 Object Lambda', link: '/th/aws/storage/s3/object-lambda.md', },
+          { text: 'Bucket Policies', link: '/bucket-policies' },
+          { text: 'Static Website Hosting', link: '/static-website-hosting' },
+          { text: 'Versioning', link: '/versioning' },
+          { text: 'Replication', link: '/replication' },
+          { text: 'Storage Classes', link: '/storage-classes' },
+          { text: 'Lifecycle', link: '/lifecycle', },
+          { text: 'Event Notifications', link: '/event-notifications', },
+          { text: 'Performance', link: '/performance', },
+          { text: 'Metadata & S3 Object Tags', link: '/metadata-&-object-tags', },
+          { text: 'Encryption', link: '/encryption', },
+          { text: 'CORS', link: '/cors', },
+          { text: 'MFA Delete', link: '/mfa-delete', },
+          { text: 'Access Logs', link: '/access-logs', },
+          { text: 'Pre-Signed URLs', link: '/pre-signed-urls', },
+          { text: 'Access Points', link: '/access-points', },
+          { text: 'S3 Object Lambda', link: '/object-lambda', },
         ]
       },
       { 
@@ -220,9 +226,9 @@ export const TH = [
   },
   {
     text: "Database",
+    link: 'th/aws/database/database',
     collapsed: true,
     items: [
-      { text: 'Database', link: '/aws/database/database' },
       { text: 'Aurora and RDS', link: 'th/aws/database/aurora-and-rds' },
       { text: 'ElastiCache', link: 'th/aws/database/elasticache' },
       // { text: 'Neptune', link: '/aws/database/neptune' },
@@ -279,16 +285,17 @@ export const TH = [
   // },
   {
     text: "Developer Tools",
+    link: 'th/aws/developer-tools/developer-tools',
     collapsed: true,
     items: [
-      { text: 'Developer Tools', link: 'th/aws/developer-tools/developer-tools' },
       { text: 'CodeCommit', link: 'th/aws/developer-tools/codecommit' },
       { 
         text: 'CodeBuild', 
         collapsed: true,
-        link: 'th/aws/developer-tools/codebuild/codebuild', 
+        base: 'th/aws/developer-tools/codebuild',
+        link: '/codebuild', 
         items: [
-          { text: 'CodeBuild Security', link: 'th/aws/developer-tools/codebuild/codebuild-security' },
+          { text: 'CodeBuild Security', link: '/codebuild-security' },
         ]
       },
       { text: 'CodeDeploy', link: 'th/aws/developer-tools/codedeploy' },
@@ -298,25 +305,26 @@ export const TH = [
       { 
         text: 'X-Ray', 
         collapsed: true,
-        link: 'th/aws/developer-tools/x-ray/x-ray', 
+        base: 'th/aws/developer-tools/x-ray',
+        link: '/x-ray', 
         items: [
-          { text: 'Instrumentation & Concepts', link: 'th/aws/developer-tools/x-ray/instrumentation-and-concepts' }, 
-          { text: 'Sampling Rules', link: 'th/aws/developer-tools/x-ray/samplingrules' }, 
-          { text: 'APIs', link: 'th/aws/developer-tools/x-ray/apis' },
-          { text: 'X-Ray with Elastic Beanstalk', link: 'th/aws/developer-tools/x-ray/x-ray-with-elastic-beanstalk' },
-          { text: 'X-Ray with ECS', link: 'th/aws/developer-tools/x-ray/x-ray-with-ecs' },
-          { text: 'Distro for OpenTelemetrCloudy', link: 'th/aws/developer-tools/x-ray/distro-for-opentelemetry' }
-          
+          { text: 'Instrumentation & Concepts', link: '/instrumentation-and-concepts' }, 
+          { text: 'Sampling Rules', link: '/samplingrules' }, 
+          { text: 'APIs', link: '/apis' },
+          { text: 'X-Ray with Elastic Beanstalk', link: '/x-ray-with-elastic-beanstalk' },
+          { text: 'X-Ray with ECS', link: '/x-ray-with-ecs' },
+          { text: 'Distro for OpenTelemetrCloudy', link: '/distro-for-opentelemetry' }
         ]
       },
       { 
         text: 'CDK', 
         collapsed: true,
-        link: 'th/aws/developer-tools/cdk/cdk', 
+        base: 'th/aws/developer-tools/cdk',
+        link: '/cdk', 
         items: [
-          { text: 'CDK Constructs', link: 'th/aws/developer-tools/cdk/cdk-constructs' }, 
-          { text: 'Commands & Bootstrapping', link: 'th/aws/developer-tools/cdk/commands-bootstrapping' },
-          { text: 'Testing', link: 'th/aws/developer-tools/cdk/testing' },
+          { text: 'CDK Constructs', link: '/cdk-constructs' }, 
+          { text: 'Commands & Bootstrapping', link: '/commands-bootstrapping' },
+          { text: 'Testing', link: '/testing' },
         ]
       },      
       // { text: 'AWS FIS', link: '/aws/developer-tools/aws-fis' },
@@ -381,39 +389,40 @@ export const TH = [
       { 
         text: 'CloudWatch', 
         collapsed: true,
-        link: 'th/aws/management-&-governance/cloudwatch/cloudwatch', 
+        base: 'th/aws/management-&-governance/cloudwatch',
+        link: '/cloudwatch', 
         items: [
-          { text: 'Metrics', link: 'th/aws/management-&-governance/cloudwatch/metrics' },
-          { text: 'Logs', link: 'th/aws/management-&-governance/cloudwatch/logs' },
-          { text: 'Logs - Encryption', link: 'th/aws/management-&-governance/cloudwatch/logs-encryption' },
-          { text: 'Alarms', link: 'th/aws/management-&-governance/cloudwatch/alarms' },
-          { text: 'Synthetics', link: 'th/aws/management-&-governance/cloudwatch/synthetics' },
-          { text: 'Evidently', link: 'th/aws/management-&-governance/cloudwatch/evidently' },
-          
+          { text: 'Metrics', link: '/metrics' },
+          { text: 'Logs', link: '/logs' },
+          { text: 'Logs - Encryption', link: '/logs-encryption' },
+          { text: 'Alarms', link: '/alarms' },
+          { text: 'Synthetics', link: '/synthetics' },
+          { text: 'Evidently', link: '/evidently' },
         ]
       },
       // { text: 'AWS Auto Scaling', link: '/aws/management-&-governance/aws-auto-scaling' },
       { 
         text: 'CloudFormation', 
         collapsed: true,
-        link: 'th/aws/management-&-governance/cloudformation/cloudformation',
+        base: 'th/aws/management-&-governance/cloudformation',
+        link: '/cloudformation',
         items: [
-          { text: 'YAML', link: 'th/aws/management-&-governance/cloudformation/yaml' },
-          { text: 'Resources', link: 'th/aws/management-&-governance/cloudformation/resources' },
-          { text: 'Parameters', link: 'th/aws/management-&-governance/cloudformation/parameters' },
-          { text: 'Mappings', link: 'th/aws/management-&-governance/cloudformation/mappings' },
-          { text: 'Outputs', link: 'th/aws/management-&-governance/cloudformation/outputs' },
-          { text: 'Condition', link: 'th/aws/management-&-governance/cloudformation/condition' },
-          { text: 'Intrinsic Functions', link: 'th/aws/management-&-governance/cloudformation/intrinsic-functions' },
-          { text: 'Rollbacks', link: 'th/aws/management-&-governance/cloudformation/rollbacks' },
-          { text: 'Service Role', link: 'th/aws/management-&-governance/cloudformation/service-role' },
-          { text: 'Capabilities', link: 'th/aws/management-&-governance/cloudformation/capabilities' },
-          { text: 'DeletionPolicy', link: 'th/aws/management-&-governance/cloudformation/deletionPolicy' },
-          { text: 'Stack Policies', link: 'th/aws/management-&-governance/cloudformation/stack-policies' },
-          { text: 'Termination Protection', link: 'th/aws/management-&-governance/cloudformation/termination-protection' },
-          { text: 'Custom Resources', link: 'th/aws/management-&-governance/cloudformation/custom-resources' },
-          { text: 'StackSets', link: 'th/aws/management-&-governance/cloudformation/stackSets' },
-          {text: 'Dynamic References', link: 'th/aws/management-&-governance/cloudformation/dynamic-feferences'  }
+          { text: 'YAML', link: '/yaml' },
+          { text: 'Resources', link: '/resources' },
+          { text: 'Parameters', link: '/parameters' },
+          { text: 'Mappings', link: '/mappings' },
+          { text: 'Outputs', link: '/outputs' },
+          { text: 'Condition', link: '/condition' },
+          { text: 'Intrinsic Functions', link: '/intrinsic-functions' },
+          { text: 'Rollbacks', link: '/rollbacks' },
+          { text: 'Service Role', link: '/service-role' },
+          { text: 'Capabilities', link: '/capabilities' },
+          { text: 'DeletionPolicy', link: '/deletionPolicy' },
+          { text: 'Stack Policies', link: '/stack-policies' },
+          { text: 'Termination Protection', link: '/termination-protection' },
+          { text: 'Custom Resources', link: '/custom-resources' },
+          { text: 'StackSets', link: '/stackSets' },
+          {text: 'Dynamic References', link: '/dynamic-feferences'  }
         ]
       },
       // { text: 'AWS Config', link: '/aws/management-&-governance/aws-config' },
@@ -422,9 +431,10 @@ export const TH = [
       { 
         text: 'Systems Manager', 
         collapsed: true,
-        link: 'th/aws/management-&-governance/system-manager/systems-manager',
+        base: 'th/aws/management-&-governance/system-manager',
+        link: '/systems-manager',
         items: [
-          { text: 'SSM Parameter Store', link: 'th/aws/management-&-governance/system-manager/ssm-parameter-store' },
+          { text: 'SSM Parameter Store', link: '/ssm-parameter-store' },
         ]
       },
       // { text: 'Trusted Advisor', link: '/aws/management-&-governance/trusted -advisor' },
@@ -445,10 +455,11 @@ export const TH = [
       { 
         text: 'CloudTrail', 
         collapsed: true,
-        link: 'th/aws/management-&-governance/cloudtrail/cloudtrail',
+        base: 'th/aws/management-&-governance/cloudtrail',
+        link: '/cloudtrail',
         items: [
-          { text: 'CloudTrail EventBridge', link: 'th/aws/management-&-governance/cloudtrail/cloudtrail-eventbridge' },
-          { text: 'CloudTrail vs CloudWatch vs X-Ray', link: 'th/aws/management-&-governance/cloudtrail/cloudtrail-vs-cloudwatch-vs-x-ray' },
+          { text: 'CloudTrail EventBridge', link: '/cloudtrail-eventbridge' },
+          { text: 'CloudTrail vs CloudWatch vs X-Ray', link: '/cloudtrail-vs-cloudwatch-vs-x-ray' },
           
         ]
       },
@@ -513,9 +524,9 @@ export const TH = [
   },  
   {
     text: "Analytics",
+    link: 'th/aws/analytics/analytics',
     collapsed: true,
     items: [
-      { text: 'Analytics', link: 'th/aws/analytics/analytics' },
       { text: 'Athena', link: 'th/aws/analytics/athena' },
       // { text: 'Amazon Redshift', link: '/aws/analytics/amazon-redshift' },
       // { text: 'CloudSearch', link: '/aws/analytics/cloudsearch' },
@@ -546,11 +557,12 @@ export const TH = [
       { 
         text: 'Cognito', 
         collapsed: true,
-        link: 'th/aws/security-identity-&-compliance/cognito/cognito', 
+        base: 'th/aws/security-identity-&-compliance/cognito', 
+        link: '/cognito', 
         items: [
-           { text: 'User Pools', link: 'th/aws/security-identity-&-compliance/cognito/user-pools' }, 
-           { text: 'ALB Auth Users', link: 'th/aws/security-identity-&-compliance/cognito/alb-auth-users' },
-           { text: 'Identity Pools', link: 'th/aws/security-identity-&-compliance/cognito/identity-pools' },
+           { text: 'User Pools', link: '/user-pools' }, 
+           { text: 'ALB Auth Users', link: '/alb-auth-users' },
+           { text: 'Identity Pools', link: '/identity-pools' },
         ]
       },
       { text: 'Secrets Manager', link: 'th/aws/security-identity-&-compliance/secrets-manager' },
@@ -560,9 +572,10 @@ export const TH = [
       { 
         text: 'IAM Identity Center', 
         collapsed: true,
-        link: 'th/aws/security-identity-&-compliance/iam-identity-center/iam-identity-center', 
+        base: 'th/aws/security-identity-&-compliance/iam-identity-center', 
+        link: '/iam-identity-center', 
         items: [
-          { text: 'STS', link: 'th/aws/security-identity-&-compliance/iam-identity-center/sts' }
+          { text: 'STS', link: '/sts' }
         ]
       },
       { text: 'Certificate Manager', link: 'th/aws/security-identity-&-compliance/certificate-manager' },
@@ -570,14 +583,14 @@ export const TH = [
       { 
         text: 'Key Management Service', 
         collapsed: true,
-        link: 'th/aws/security-identity-&-compliance/kms/key-management-service', 
+        base: 'th/aws/security-identity-&-compliance/kms', 
+        link: '/key-management-service', 
         items: [
-          { text: 'Encrypt and Decrypt', link: 'th/aws/security-identity-&-compliance/kms/encrypt-and-decrypt' }, 
-          { text: 'KMS Limits', link: 'th/aws/security-identity-&-compliance/kms/kms-limits' },
-          { text: 'KMS Lambda', link: 'th/aws/security-identity-&-compliance/kms/kms-and-lambda' },
-          { text: 'KMS S3 Bucket', link: 'th/aws/security-identity-&-compliance/kms/kms-s3-bucket' },
-          { text: 'KMS Key Policies & IAM', link: 'th/aws/security-identity-&-compliance/kms/kms-key-policies-iam' },
-
+          { text: 'Encrypt and Decrypt', link: '/encrypt-and-decrypt' }, 
+          { text: 'KMS Limits', link: '/kms-limits' },
+          { text: 'KMS Lambda', link: '/kms-and-lambda' },
+          { text: 'KMS S3 Bucket', link: '/kms-s3-bucket' },
+          { text: 'KMS Key Policies & IAM', link: '/kms-key-policies-iam' },
         ]
       },
       { text: 'CloudHSM', link: 'th/aws/security-identity-&-compliance/cloudhsm' },
@@ -594,18 +607,19 @@ export const TH = [
       { 
         text: 'IAM', 
         collapsed: true,
-        link: 'th/aws/security-identity-&-compliance/IAM/iam.md',
+        base: 'th/aws/security-identity-&-compliance/IAM',
+        link: '/iam',
         items: [
-          { text: 'IAM Policies', link: 'th/aws/security-identity-&-compliance/IAM/iam-policies.md' }, 
-          { text: 'IAM MFA', link: 'th/aws/security-identity-&-compliance/IAM/iam-mfa.md' }, 
-          { text: 'AWS Access', link: 'th/aws/security-identity-&-compliance/IAM/aws-access.md' }, 
-          { text: 'IAM Roles', link: 'th/aws/security-identity-&-compliance/IAM/iam-roles.md' }, 
-          { text: 'IAM Security Tools', link: 'th/aws/security-identity-&-compliance/IAM/iam-security-tools.md' },
-          { text: 'IAM Best Practices', link: 'th/aws/security-identity-&-compliance/IAM/iam-best-practices.md' },
-          { text: 'Shared Responsibility Model for IAM', link: 'th/aws/security-identity-&-compliance/IAM/shared-responsibility-model-for-iam.md' },
-          { text: 'IAM Summary', link: 'th/aws/security-identity-&-compliance/IAM/iam-summary.md' },
-          { text: 'Advanced IAM', link: 'th/aws/security-identity-&-compliance/IAM/advanced-iam' },
-          { text: 'Pass Role', link: 'th/aws/security-identity-&-compliance/IAM/pass-role' },
+          { text: 'IAM Policies', link: '/iam-policies' }, 
+          { text: 'IAM MFA', link: '/iam-mfa' }, 
+          { text: 'AWS Access', link: '/aws-access' }, 
+          { text: 'IAM Roles', link: '/iam-roles' }, 
+          { text: 'IAM Security Tools', link: '/iam-security-tools' },
+          { text: 'IAM Best Practices', link: '/iam-best-practices' },
+          { text: 'Shared Responsibility Model for IAM', link: '/shared-responsibility-model-for-iam' },
+          { text: 'IAM Summary', link: '/iam-summary' },
+          { text: 'Advanced IAM', link: '/advanced-iam' },
+          { text: 'Pass Role', link: '/pass-role' },
         ]
       },
       // { text: 'AWS Private Certificate Authority', link: '/aws/security-identity-&-compliance/aws-private-certificate-authority' },
@@ -622,9 +636,10 @@ export const TH = [
       // { text: 'AWS Billing Conductor', link: '/aws/cloud-financial-management/aws-billing-conductor' },
       { 
         text: 'Billing and Cost Management', 
-        link: 'th/aws/cloud-financial-management/billing-and-cost-management/billing-and-cost-management', 
+        base: 'th/aws/cloud-financial-management/billing-and-cost-management',
+        link: '/billing-and-cost-management', 
         items: [
-          { text: 'AWS Budget', link: 'th/aws/cloud-financial-management/billing-and-cost-management/aws-buget.md' }, 
+          { text: 'AWS Budget', link: '/aws-buget' }, 
         ]
       },
     ]
@@ -663,14 +678,15 @@ export const TH = [
       { 
         text: 'Simple Queue Service', 
         collapsed: true,
-        link: 'th/aws/application-integration/sqs/simple-queue-service',
+        base: 'th/aws/application-integration/sqs',
+        link: '/simple-queue-service',
         items: [
-          { text: 'Access Policy', link: 'th/aws/application-integration/sqs/access-policy' }, 
-          { text: 'Message Visibility Timeout', link: 'th/aws/application-integration/sqs/message-visibility-timeout' }, 
-          { text: 'Dead Letter Queue', link: 'th/aws/application-integration/sqs/dead-letter-queue' }, 
-          { text: 'Delay Queue', link: 'th/aws/application-integration/sqs/delay-queue' }, 
-          { text: 'FIFO Queue', link: 'th/aws/application-integration/sqs/fifo-queue' }, 
-          { text: 'Certified Developer Concepts', link: 'th/aws/application-integration/sqs/certified-developer-concepts' }, 
+          { text: 'Access Policy', link: '/access-policy' }, 
+          { text: 'Message Visibility Timeout', link: '/message-visibility-timeout' }, 
+          { text: 'Dead Letter Queue', link: '/dead-letter-queue' }, 
+          { text: 'Delay Queue', link: '/delay-queue' }, 
+          { text: 'FIFO Queue', link: '/fifo-queue' }, 
+          { text: 'Certified Developer Concepts', link: '/certified-developer-concepts' }, 
         ]
       },
       // { text: 'SWF', link: '/aws/application-integration/swf' },
