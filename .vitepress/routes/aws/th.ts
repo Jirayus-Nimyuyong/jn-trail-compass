@@ -749,5 +749,333 @@ export const TH = [
   //     { text: 'Amazon GameLift Servers', link: '/aws/game-development/amazon-gamelift-servers' },
   //     { text: 'Amazon GameLift Streams', link: '/aws/game-development/amazon-gamelift-streams' },
   //   ]
-  // },                                   
+  // }, 
+  {
+    text: "my-docs",
+    collapsed: true,
+    items: [
+      {
+        text: "analytics-services",
+        collapsed: true,
+        base: 'th/aws/my-docs/analytics-services',
+        items: [
+            { text: "amazon-appflow", "link": "/amazon-appflow" },
+            { text: "amazon-athena", "link": "/amazon-athena" },
+            { text: "amazon-cloudsearch", "link": "/amazon-cloudsearch" },
+            { text: "amazon-emr", "link": "/amazon-emr" },
+            { text: "amazon-kinesis", "link": "/amazon-kinesis" },
+            { text: "amazon-managed-streaming-for-apache-kafka-amazon-msk", "link": "/amazon-managed-streaming-for-apache-kafka-amazon-msk" },
+            { text: "amazon-opensearch-service", "link": "/amazon-opensearch-service" },
+            { text: "amazon-quicksight", "link": "/amazon-quicksight" },
+            { text: "amazon-redshift", "link": "/amazon-redshift" },
+            { text: "aws-data-exchange", "link": "/aws-data-exchange" },
+            { text: "aws-data-pipeline", "link": "/aws-data-pipeline" },
+            { text: "aws-entity-resolution", "link": "/aws-entity-resolution" },
+            { text: "aws-glue-data-quality", "link": "/aws-glue-data-quality" },
+            { text: "aws-glue-databrew", "link": "/aws-glue-databrew" },
+            { text: "aws-glue", "link": "/aws-glue" },
+            { text: "aws-lake-formation", "link": "/aws-lake-formation" }
+          ]
+      },
+      {
+        text: "application-services",
+        collapsed: true,
+        base: 'th/aws/my-docs/application-services',
+        items: [
+            { text: "amazon-appflow", "link": "/amazon-appflow" },
+            { text: "amazon-eventbridge", "link": "/amazon-eventbridge" },
+            { text: "amazon-managed-workflows-for-apache-airflow", "link": "/amazon-managed-workflows-for-apache-airflow" },
+            { text: "amazon-ses", "link": "/amazon-ses" },
+            { text: "amazon-simple-workflow-amazon-swf", "link": "/amazon-simple-workflow-amazon-swf" },
+            { text: "amazon-sns", "link": "/amazon-sns" },
+            { text: "amazon-sqs", "link": "/amazon-sqs" },
+            { text: "aws-step-functions", "link": "/aws-step-functions" }
+          ]
+      },
+      {
+        text: "aws-billing-and-cost-management",
+        collapsed: true,
+        base: 'th/aws/my-docs/aws-billing-and-cost-management',
+        items: [
+            { text: "aws-billing-and-cost-management", "link": "/aws-billing-and-cost-management" }
+          ]
+      },
+      {
+        text: "comparison",
+        collapsed: true,
+        base: 'th/aws/my-docs/comparison',
+        items: [
+            { text: "amazon-aurora-vs-amazon-rds", "link": "/amazon-aurora-vs-amazon-rds" },
+            { text: "amazon-cognito-user-pools-vs-identity-pools", "link": "/amazon-cognito-user-pools-vs-identity-pools" },
+            { text: "amazon-efs-vs-amazon-fsx-for-windows-vs-amazon-fsx-for-lustre", "link": "/amazon-efs-vs-amazon-fsx-for-windows-vs-amazon-fsx-for-lustre" },
+            { text: "amazon-eks-vs-amazon-ecs", "link": "/amazon-eks-vs-amazon-ecs" },
+            { text: "amazon-kinesis-data-streams-vs-data-firehose-vs-data-analytics-vs-video-streams", "link": "/amazon-kinesis-data-streams-vs-data-firehose-vs-data-analytics-vs-video-streams" },
+            { text: "amazon-rds-vs-dynamodb", "link": "/amazon-rds-vs-dynamodb" },
+            { text: "amazon-s3-vs-ebs-vs-efs", "link": "/amazon-s3-vs-ebs-vs-efs" },
+            { text: "amazon-s3-vs-glacier", "link": "/amazon-s3-vs-glacier" },
+            { text: "amazon-simple-workflow-swf-vs-aws-step-functions-vs-amazon-sqs", "link": "/amazon-simple-workflow-swf-vs-aws-step-functions-vs-amazon-sqs" },
+            { text: "application-load-balancer-vs-network-load-balancer-vs-gateway-load-balancer", "link": "/application-load-balancer-vs-network-load-balancer-vs-gateway-load-balancer" },
+            { text: "aws-cloudtrail-vs-amazon-cloudwatch", "link": "/aws-cloudtrail-vs-amazon-cloudwatch" },
+            { text: "aws-datasync-vs-storage-gateway", "link": "/aws-datasync-vs-storage-gateway" },
+            { text: "aws-global-accelerator-vs-amazon-cloudfront", "link": "/aws-global-accelerator-vs-amazon-cloudfront" },
+            { text: "aws-secrets-manager-vs-systems-manager-parameter-store", "link": "/aws-secrets-manager-vs-systems-manager-parameter-store" },
+            { text: "backup-and-restore-vs-pilot-light-vs-warm-standby-vs-multi-site", "link": "/backup-and-restore-vs-pilot-light-vs-warm-standby-vs-multi-site" },
+            { text: "cloudwatch-agent-vs-ssm-agent-vs-custom-daemon-scripts", "link": "/cloudwatch-agent-vs-ssm-agent-vs-custom-daemon-scripts" },
+            { text: "ebs-ssd-vs-hdd", "link": "/ebs-ssd-vs-hdd" },
+            { text: "ec2-container-service-ecs-vs-lambda", "link": "/ec2-container-service-ecs-vs-lambda" },
+            { text: "ec2-instance-health-check-vs-elb-health-check-vs-auto-scaling-and-custom-health-check", "link": "/ec2-instance-health-check-vs-elb-health-check-vs-auto-scaling-and-custom-health-check" },
+            { text: "elastic-beanstalk-vs-cloudformation-vs-opsworks-vs-codedeploy", "link": "/elastic-beanstalk-vs-cloudformation-vs-opsworks-vs-codedeploy" },
+            { text: "elb-health-checks-vs-route-53-health-checks-for-target-health-monitoring", "link": "/elb-health-checks-vs-route-53-health-checks-for-target-health-monitoring" },
+            { text: "ervice-control-policies-scp-vs-iam-policies", "link": "/ervice-control-policies-scp-vs-iam-policies" },
+            { text: "global-secondary-index-vs-local-secondary-index", "link": "/global-secondary-index-vs-local-secondary-index" },
+            { text: "interface-endpoint-vs-gateway-endpoint-vs-gateway-load-balancer-endpoint", "link": "/interface-endpoint-vs-gateway-endpoint-vs-gateway-load-balancer-endpoint" },
+            { text: "latency-routing-vs-geoproximity-routing-vs-geolocation-routing", "link": "/latency-routing-vs-geoproximity-routing-vs-geolocation-routing" },
+            { text: "redis-append-only-files-vs-redis-replication", "link": "/redis-append-only-files-vs-redis-replication" },
+            { text: "redis-cluster-mode-enabled-vs-disabled-vs-memcached", "link": "/redis-cluster-mode-enabled-vs-disabled-vs-memcached" },
+            { text: "s3-pre-signed-urls-vs-cloudfront-signed-urls-vs-origin-access-identity-oai-origin-access-control-oac", "link": "/s3-pre-signed-urls-vs-cloudfront-signed-urls-vs-origin-access-identity-oai-origin-access-control-oac" },
+            { text: "s3-standard-vs-s3-standard-ia-vs-s3-one-zone-ia", "link": "/s3-standard-vs-s3-standard-ia-vs-s3-one-zone-ia" },
+            { text: "s3-transfer-acceleration-vs-direct-connect-vs-vpn-vs-snowball-vs-snowmobile", "link": "/s3-transfer-acceleration-vs-direct-connect-vs-vpn-vs-snowball-vs-snowmobile" },
+            { text: "security-group-vs-nacl", "link": "/security-group-vs-nacl" },
+            { text: "sni-custom-ssl-vs-dedicated-ip-custom-ssl", "link": "/sni-custom-ssl-vs-dedicated-ip-custom-ssl" },
+            { text: "step-scaling-vs-simple-scaling-policies-in-amazon-ec2", "link": "/step-scaling-vs-simple-scaling-policies-in-amazon-ec2" },
+            { text: "vpc-interface-endpoint-vs-gateway-endpoint-in-aws", "link": "/vpc-interface-endpoint-vs-gateway-endpoint-in-aws" }
+          ]
+      },
+      {
+        text: "compute-services",
+        collapsed: true,
+        base: 'th/aws/my-docs/compute-services',
+        items: [
+            { text: "batch", "link": "/batch" },
+            { text: "beanstalks", "link": "/beanstalks" },
+            { text: "ec2", "link": "/ec2" },
+            { text: "ecr", "link": "/ecr" },
+            { text: "ecs", "link": "/ecs" },
+            { text: "eks", "link": "/eks" },
+            { text: "fargate", "link": "/fargate" },
+            { text: "lambda", "link": "/lambda" },
+            { text: "lightsail", "link": "/lightsail" },
+            { text: "parallelcluster", "link": "/parallelcluster" },
+            { text: "sam", "link": "/sam" },
+            { text: "sar", "link": "/sar" },
+            { text: "savings-plan", "link": "/savings-plan" },
+            { text: "wavelength", "link": "/wavelength" }
+          ]
+      },
+      {
+        text: "database-services",
+        collapsed: true,
+        base: 'th/aws/my-docs/database-services',
+        items: [
+            { text: "amazon-aurora", "link": "/amazon-aurora" },
+            { text: "amazon-documentdb", "link": "/amazon-documentdb" },
+            { text: "amazon-rds", "link": "/amazon-rds" },
+            { text: "dynamodb", "link": "/dynamodb" },
+            { text: "elasticache", "link": "/elasticache" },
+            { text: "memorydb", "link": "/memorydb" },
+            { text: "neptune", "link": "/neptune" },
+            { text: "redshift-serverless", "link": "/redshift-serverless" },
+            { text: "redshift", "link": "/redshift" }
+          ]
+      },
+      {
+        text: "desktop-and-app-streaming",
+        collapsed: true,
+        base: 'th/aws/my-docs/desktop-and-app-streaming',
+        items: [
+            { text: "amazon-workspaces", "link": "/amazon-workspaces" }
+          ]
+      },
+      {
+        text: "developer-tools",
+        collapsed: true,
+        base: 'th/aws/my-docs/developer-tools',
+        items: [
+            { text: "aws-appconfig", "link": "/aws-appconfig" },
+            { text: "aws-codebuild", "link": "/aws-codebuild" },
+            { text: "aws-codecommit", "link": "/aws-codecommit" },
+            { text: "aws-codedeploy", "link": "/aws-codedeploy" },
+            { text: "aws-codepipeline", "link": "/aws-codepipeline" },
+            { text: "aws-codestar", "link": "/aws-codestar" },
+            { text: "aws-x-ray", "link": "/aws-x-ray" }
+          ]
+      },
+      {
+        text: "front-end-web-and-mobile-services",
+        collapsed: true,
+        base: 'th/aws/my-docs/front-end-web-and-mobile-services',
+        items: [
+            { text: "aws-amplify", "link": "/aws-amplify" },
+            { text: "aws-appsync", "link": "/aws-appsync" },
+            { text: "aws-device-farm", "link": "/aws-device-farm" }
+          ]
+      },
+      {
+        text: "machine-learning-and-ai",
+        collapsed: true,
+        base: 'th/aws/my-docs/machine-learning-and-ai',
+        items: [
+            { text: "amazon-augmented-ai-a2i", "link": "/amazon-augmented-ai-a2i" },
+            { text: "amazon-bedrock-agentcore-browser-tool", "link": "/amazon-bedrock-agentcore-browser-tool" },
+            { text: "amazon-bedrock-agentcore-code-interpreter", "link": "/amazon-bedrock-agentcore-code-interpreter" },
+            { text: "amazon-bedrock-agentcore-gateway", "link": "/amazon-bedrock-agentcore-gateway" },
+            { text: "amazon-bedrock-agentcore-identity", "link": "/amazon-bedrock-agentcore-identity" },
+            { text: "amazon-bedrock-agentcore-memory", "link": "/amazon-bedrock-agentcore-memory" },
+            { text: "amazon-bedrock-agentcore-observability", "link": "/amazon-bedrock-agentcore-observability" },
+            { text: "amazon-bedrock-agentcore-runtime", "link": "/amazon-bedrock-agentcore-runtime" },
+            { text: "amazon-bedrock-agentcore", "link": "/amazon-bedrock-agentcore" },
+            { text: "amazon-bedrock-flows", "link": "/amazon-bedrock-flows" },
+            { text: "amazon-bedrock-knowledge-bases", "link": "/amazon-bedrock-knowledge-bases" },
+            { text: "amazon-bedrock-prompt-management", "link": "/amazon-bedrock-prompt-management" },
+            { text: "amazon-bedrock", "link": "/amazon-bedrock" },
+            { text: "amazon-codeguru-profiler", "link": "/amazon-codeguru-profiler" },
+            { text: "amazon-codeguru-reviewer", "link": "/amazon-codeguru-reviewer" },
+            { text: "amazon-codeguru-security", "link": "/amazon-codeguru-security" },
+            { text: "amazon-comprehend-medical", "link": "/amazon-comprehend-medical" },
+            { text: "amazon-comprehend", "link": "/amazon-comprehend" },
+            { text: "amazon-devops-guru", "link": "/amazon-devops-guru" },
+            { text: "amazon-elastic-inference", "link": "/amazon-elastic-inference" },
+            { text: "amazon-fraud-detector", "link": "/amazon-fraud-detector" },
+            { text: "amazon-kendra", "link": "/amazon-kendra" },
+            { text: "amazon-lex", "link": "/amazon-lex" },
+            { text: "amazon-personalize", "link": "/amazon-personalize" },
+            { text: "amazon-polly", "link": "/amazon-polly" },
+            { text: "amazon-q", "link": "/amazon-q" },
+            { text: "amazon-rekognition.", "link": "/amazon-rekognition." },
+            { text: "amazon-sagemaker-clarify", "link": "/amazon-sagemaker-clarify" },
+            { text: "amazon-sagemaker-data-wrangler", "link": "/amazon-sagemaker-data-wrangler" },
+            { text: "amazon-sagemaker-feature-store", "link": "/amazon-sagemaker-feature-store" },
+            { text: "amazon-sagemaker", "link": "/amazon-sagemaker" },
+            { text: "amazon-textract", "link": "/amazon-textract" },
+            { text: "amazon-titan", "link": "/amazon-titan" },
+            { text: "amazon-transcribe", "link": "/amazon-transcribe" },
+            { text: "amazon-translate", "link": "/amazon-translate" },
+            { text: "aws-agent-squad", "link": "/aws-agent-squad" },
+            { text: "aws-ai-factories", "link": "/aws-ai-factories" },
+            { text: "aws-deeplens", "link": "/aws-deeplens" },
+            { text: "aws-healthlake", "link": "/aws-healthlake" },
+            { text: "aws-healthscribe", "link": "/aws-healthscribe" },
+            { text: "aws-strands-agents", "link": "/aws-strands-agents" }
+          ]
+      },
+      {
+        text: "management-tools",
+        collapsed: true,
+        base: 'th/aws/my-docs/management-tools',
+        items: [
+            { text: "amazon-cloudwatch", "link": "/amazon-cloudwatch" },
+            { text: "amazon-managed-grafana", "link": "/amazon-managed-grafana" },
+            { text: "amazon-managed-service-for-prometheus", "link": "/amazon-managed-service-for-prometheus" },
+            { text: "aws-auto-scaling", "link": "/aws-auto-scaling" },
+            { text: "aws-cloud-development-kit-cdk", "link": "/aws-cloud-development-kit-cdk" },
+            { text: "aws-cloudformation", "link": "/aws-cloudformation" },
+            { text: "aws-cloudshell", "link": "/aws-cloudshell" },
+            { text: "aws-cloudtrail", "link": "/aws-cloudtrail" },
+            { text: "aws-compute-optimizer", "link": "/aws-compute-optimizer" },
+            { text: "aws-config", "link": "/aws-config" },
+            { text: "aws-control-tower", "link": "/aws-control-tower" },
+            { text: "aws-health", "link": "/aws-health" },
+            { text: "aws-license-manager", "link": "/aws-license-manager" },
+            { text: "aws-management-console", "link": "/aws-management-console" },
+            { text: "aws-opsworks", "link": "/aws-opsworks" },
+            { text: "aws-outposts", "link": "/aws-outposts" },
+            { text: "aws-proton", "link": "/aws-proton" },
+            { text: "aws-service-catalog", "link": "/aws-service-catalog" },
+            { text: "aws-systems-manager", "link": "/aws-systems-manager" },
+            { text: "aws-trusted-advisor", "link": "/aws-trusted-advisor" },
+            { text: "aws-well-architected-tool", "link": "/aws-well-architected-tool" }
+          ]
+      },
+      {
+        text: "migration-and-transfer-services",
+        collapsed: true,
+        base: 'th/aws/my-docs/migration-and-transfer-services',
+        items: [
+            { text: "aws-application-discovery", "link": "/aws-application-discovery" },
+            { text: "aws-application-migration-service", "link": "/aws-application-migration-service" },
+            { text: "aws-database-migration", "link": "/aws-database-migration" },
+            { text: "aws-datasync", "link": "/aws-datasync" },
+            { text: "aws-migration-hub", "link": "/aws-migration-hub" },
+            { text: "aws-migration-strategies", "link": "/aws-migration-strategies" },
+            { text: "aws-server-migration-service-sms", "link": "/aws-server-migration-service-sms" },
+            { text: "aws-transfer-family", "link": "/aws-transfer-family" },
+            { text: "migration-evaluator", "link": "/migration-evaluator" }
+          ]
+      },
+      {
+        text: "networking-and-content-delivery",
+        collapsed: true,
+        base: 'th/aws/my-docs/networking-and-content-delivery',
+        items: [
+            { text: "amazon-api-gateway", "link": "/amazon-api-gateway" },
+            { text: "amazon-cloudFront", "link": "/amazon-cloudFront" },
+            { text: "amazon-route-53", "link": "/amazon-route-53" },
+            { text: "amazon-vpc", "link": "/amazon-vpc" },
+            { text: "aws-direct-connect", "link": "/aws-direct-connect" },
+            { text: "aws-elastic-load-balancing", "link": "/aws-elastic-load-balancing" },
+            { text: "aws-global-accelerator", "link": "/aws-global-accelerator" },
+            { text: "aws-transit-gateway", "link": "/aws-transit-gateway" }
+          ]
+      },
+      {
+        text: "security-identity-services",
+        collapsed: true,
+        base: 'th/aws/my-docs/security-identity-services',
+        items: [
+            { text: "amazon-cloud-directory", "link": "/amazon-cloud-directory" },
+            { text: "amazon-cognito", "link": "/amazon-cognito" },
+            { text: "amazon-detective", "link": "/amazon-detective" },
+            { text: "amazon-guardduty", "link": "/amazon-guardduty" },
+            { text: "amazon-inspector", "link": "/amazon-inspector" },
+            { text: "amazon-macie", "link": "/amazon-macie" },
+            { text: "aws-artifact", "link": "/aws-artifact" },
+            { text: "aws-audit-manager", "link": "/aws-audit-manager" },
+            { text: "aws-certificate-manager", "link": "/aws-certificate-manager" },
+            { text: "aws-cloudhsm", "link": "/aws-cloudhsm" },
+            { text: "aws-directory-service", "link": "/aws-directory-service" },
+            { text: "aws-firewall-manager", "link": "/aws-firewall-manager" },
+            { text: "aws-identity-and-access-management-iam", "link": "/aws-identity-and-access-management-iam" },
+            { text: "aws-kms", "link": "/aws-kms" },
+            { text: "aws-network-firewall", "link": "/aws-network-firewall" },
+            { text: "aws-organizations", "link": "/aws-organizations" },
+            { text: "aws-resource-access-manager", "link": "/aws-resource-access-manager" },
+            { text: "aws-secrets-manager", "link": "/aws-secrets-manager" },
+            { text: "aws-security-hub", "link": "/aws-security-hub" },
+            { text: "aws-shield", "link": "/aws-shield" },
+            { text: "aws-waf", "link": "/aws-waf" }
+          ]
+      },
+      {
+        text: "storage-services",
+        collapsed: true,
+        base: 'th/aws/my-docs/storage-services',
+        items: [
+            { text: "aws-backup", "link": "/aws-backup" },
+            { text: "aws-snowball", "link": "/aws-snowball" },
+            { text: "ebs", "link": "/ebs" },
+            { text: "efs", "link": "/efs" },
+            { text: "elastic-disaster-recovery", "link": "/elastic-disaster-recovery" },
+            { text: "fsx", "link": "/fsx" },
+            { text: "s3-glacier", "link": "/s3-glacier" },
+            { text: "s3", "link": "/s3" },
+            { text: "snowmobile", "link": "/snowmobile" },
+            { text: "storage-gateway", "link": "/storage-gateway" }
+          ]
+      },
+      {
+        text: "summay",
+        collapsed: true,
+        base: 'th/aws/my-docs/summay',
+        items: [
+            { text: "aws-cloudops-md-part1", "link": "/aws-cloudops-md-part1" },
+            { text: "aws-cloudops-md-part2", "link": "/aws-cloudops-md-part2" },
+            { text: "aws-cloudops-md-part3", "link": "/aws-cloudops-md-part3" },
+            { text: "aws-cloudops-md-part4", "link": "/aws-cloudops-md-part4" },
+            { text: "aws-cloudops-md-part5", "link": "/aws-cloudops-md-part5" },
+            { text: "aws-cloudops-md-part6", "link": "/aws-cloudops-md-part6" },
+            { text: "aws-cloudops-md-part7", "link": "/aws-cloudops-md-part7" },
+          ]
+      }      
+    ]
+  },                                 
 ] 
